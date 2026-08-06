@@ -2,7 +2,7 @@
 
 **Open source vertical website templates powered by SCALA AI OS.**
 
-Pre-built, industry-optimized websites for restaurants, real estate agencies, salons, gyms, and more. Each template connects natively to [SCALA](https://get-scala.com) for live booking, WhatsApp, CRM, and AI-powered features — or works standalone with mock data.
+Pre-built, industry-optimized websites for restaurants, real estate agencies, salons, gyms, hotels, creative studios, and more. Each template connects natively to [SCALA](https://get-scala.com) for live booking, WhatsApp, CRM, and AI-powered features — or works standalone with mock data.
 
 ## Why SCALA Sites?
 
@@ -27,9 +27,11 @@ SCALA Sites solves this:
 | **PropertyOS** (Real Estate) | ListingSearch, AgentCard, ValuationWidget | `/property` |
 | **BeautyOS** (Salon/Spa) | StylistBooking, BeforeAfter, ServiceMenu | `/beauty` |
 | **GymOS** (Gym/CrossFit) | ClassSchedule, MembershipTiers, TrainerCard | `/gym` |
-| TravelOS (Hotels) | Coming soon | — |
-| StudioOS (Architecture) | Coming soon | — |
+| **TravelOS** (Hotel/Resort) | RoomShowcase, ExperienceGrid, AvailabilityChecker | `/hotel` |
+| **StudioOS** (Creative Agency) | PortfolioShowcase, ServicePackages, ProjectInquiry | `/studio` |
 | LegalOS (Law Firms) | Coming soon | — |
+| ClinicoOS (Clinics) | Coming soon | — |
+| RetailOS (Shops) | Coming soon | — |
 
 ## Shared Components (Core)
 
@@ -53,6 +55,18 @@ Three built-in themes, each fully customizable via CSS variables:
 - **Bold** — Dark background, Bebas Neue headings, sharp edges (gyms, bars)
 - **Classic** — Warm tones, Playfair Display serif, soft radius (traditional, heritage)
 
+Use `createCustomTheme()` to override any color in a base theme:
+
+```typescript
+import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
+
+const myTheme = createCustomTheme('classic', {
+  primary: '#1e3a5f',
+  accent: '#c9a84c',
+  background: '#ffffff',
+})
+```
+
 ## Quick Start
 
 ```bash
@@ -70,12 +84,14 @@ Open `http://localhost:3099` to see all demos.
 scala-sites/
   packages/
     core/           # Shared components, API client, i18n, SEO, analytics
-    themes/         # 3 theme presets (minimal, bold, classic)
+    themes/         # 3 theme presets (minimal, bold, classic) + createCustomTheme
     verticals/
       dineos/       # Restaurant components
       propertyos/   # Real estate components
       beautyos/     # Salon/spa components
       gymos/        # Gym/fitness components
+      travelos/     # Hotel/resort components
+      studioos/     # Creative studio components
   apps/
     demo/           # Next.js demo with all verticals
 ```
@@ -117,6 +133,8 @@ const reviews = await api.getReviews()
 3. Build components following the existing patterns in `packages/core/`
 4. Add a demo page in `apps/demo/app/`
 5. Submit a pull request
+
+New verticals are welcome! Check the [issues](https://github.com/Alessandro114/scala-sites/issues) for requested verticals.
 
 ## License
 

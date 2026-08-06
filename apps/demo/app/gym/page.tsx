@@ -22,9 +22,9 @@ const classes = [
 ]
 
 const tiers = [
-  { id: '1', name: 'Open Gym', price: 49, currency: 'EUR', period: 'month', features: ['Unlimited open gym access', 'Locker room & showers', 'Free WiFi', 'Basic workout tracking'], ctaLabel: 'Start Free Trial', ctaUrl: '#' },
-  { id: '2', name: 'Unlimited', price: 89, currency: 'EUR', period: 'month', highlighted: true, features: ['Everything in Open Gym', 'Unlimited group classes', 'Nutrition consultation (1x/quarter)', 'Priority booking', 'Guest pass (1/month)', 'Progress tracking dashboard'], ctaLabel: 'Start Free Trial', ctaUrl: '#' },
-  { id: '3', name: 'Elite', price: 149, currency: 'EUR', period: 'month', features: ['Everything in Unlimited', '4x Personal Training/month', 'Custom meal plan', 'InBody scan monthly', 'Sauna & recovery area', 'Unlimited guest passes', 'Competition prep support'], ctaLabel: 'Book a Tour', ctaUrl: '#' },
+  { id: '1', name: 'Open Gym', price: 49, currency: 'GBP', period: 'month', features: ['Unlimited open gym access', 'Locker room & showers', 'Free WiFi', 'Basic workout tracking'], ctaLabel: 'Start Free Trial', ctaUrl: '#' },
+  { id: '2', name: 'Unlimited', price: 89, currency: 'GBP', period: 'month', highlighted: true, features: ['Everything in Open Gym', 'Unlimited group classes', 'Nutrition consultation (1x/quarter)', 'Priority booking', 'Guest pass (1/month)', 'Progress tracking dashboard'], ctaLabel: 'Start Free Trial', ctaUrl: '#' },
+  { id: '3', name: 'Elite', price: 149, currency: 'GBP', period: 'month', features: ['Everything in Unlimited', '4x Personal Training/month', 'Custom meal plan', 'InBody scan monthly', 'Sauna & recovery area', 'Unlimited guest passes', 'Competition prep support'], ctaLabel: 'Book a Tour', ctaUrl: '#' },
 ]
 
 const trainers = [

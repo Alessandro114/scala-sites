@@ -17,16 +17,16 @@ const stylists = [
 ]
 
 const services = [
-  { id: '1', name: 'Women\'s Haircut & Blowdry', category: 'Cuts', duration: '60 min', price: 65, currency: 'EUR', popular: true },
-  { id: '2', name: 'Men\'s Haircut', category: 'Cuts', duration: '30 min', price: 35, currency: 'EUR' },
-  { id: '3', name: 'Kids Haircut (under 12)', category: 'Cuts', duration: '25 min', price: 25, currency: 'EUR' },
-  { id: '4', name: 'Full Balayage', category: 'Color', duration: '150 min', price: 180, priceFrom: true, currency: 'EUR', popular: true },
-  { id: '5', name: 'Root Touch-Up', category: 'Color', duration: '60 min', price: 75, currency: 'EUR' },
-  { id: '6', name: 'Full Highlights', category: 'Color', duration: '120 min', price: 150, priceFrom: true, currency: 'EUR' },
-  { id: '7', name: 'Keratin Treatment', category: 'Treatments', duration: '120 min', price: 200, currency: 'EUR', popular: true, description: 'Smooth, frizz-free hair for up to 3 months' },
-  { id: '8', name: 'Olaplex Repair', category: 'Treatments', duration: '45 min', price: 55, currency: 'EUR', description: 'Bond-building treatment for damaged hair' },
-  { id: '9', name: 'Scalp Detox', category: 'Treatments', duration: '30 min', price: 40, currency: 'EUR' },
-  { id: '10', name: 'Bridal Package', category: 'Special', duration: '180 min', price: 350, currency: 'EUR', description: 'Trial + wedding day styling + touch-up kit' },
+  { id: '1', name: 'Women\'s Haircut & Blowdry', category: 'Cuts', duration: '60 min', price: 65, currency: 'GBP', popular: true },
+  { id: '2', name: 'Men\'s Haircut', category: 'Cuts', duration: '30 min', price: 35, currency: 'GBP' },
+  { id: '3', name: 'Kids Haircut (under 12)', category: 'Cuts', duration: '25 min', price: 25, currency: 'GBP' },
+  { id: '4', name: 'Full Balayage', category: 'Color', duration: '150 min', price: 180, priceFrom: true, currency: 'GBP', popular: true },
+  { id: '5', name: 'Root Touch-Up', category: 'Color', duration: '60 min', price: 75, currency: 'GBP' },
+  { id: '6', name: 'Full Highlights', category: 'Color', duration: '120 min', price: 150, priceFrom: true, currency: 'GBP' },
+  { id: '7', name: 'Keratin Treatment', category: 'Treatments', duration: '120 min', price: 200, currency: 'GBP', popular: true, description: 'Smooth, frizz-free hair for up to 3 months' },
+  { id: '8', name: 'Olaplex Repair', category: 'Treatments', duration: '45 min', price: 55, currency: 'GBP', description: 'Bond-building treatment for damaged hair' },
+  { id: '9', name: 'Scalp Detox', category: 'Treatments', duration: '30 min', price: 40, currency: 'GBP' },
+  { id: '10', name: 'Bridal Package', category: 'Special', duration: '180 min', price: 350, currency: 'GBP', description: 'Trial + wedding day styling + touch-up kit' },
 ]
 
 const beforeAfterItems = [
