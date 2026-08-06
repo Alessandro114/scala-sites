@@ -1,0 +1,19 @@
+{
+  "name": "scala-sites",
+  "private": true,
+  "description": "Open source vertical website templates powered by SCALA AI OS",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*",
+    "packages/verticals/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm -w scala-sites-demo run dev",
+    "build": "npm -w scala-sites-demo run build",
+    "lint": "npm -w scala-sites-demo run lint"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

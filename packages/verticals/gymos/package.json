@@ -1,0 +1,11 @@
+{
+  "name": "@scala-sites/gymos",
+  "version": "0.1.0",
+  "main": "index.ts",
+  "types": "index.ts",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=18",
+    "next": ">=14"
+  }
+}

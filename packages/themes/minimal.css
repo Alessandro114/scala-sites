@@ -1,0 +1,18 @@
+/* ============================================================
+   MINIMAL THEME — Luxury / Refined
+   Clean white space, thin fonts, muted emerald accents
+   ============================================================ */
+
+:root {
+  --site-bg:             #ffffff;
+  --site-text:           #1e293b; /* slate-800 */
+  --site-accent:         #059669; /* emerald-600 */
+  --site-accent-hover:   #047857; /* emerald-700 */
+  --site-muted:          #94a3b8; /* slate-400 */
+  --site-card-bg:        #f8fafc; /* slate-50 */
+  --site-border:         #e2e8f0; /* slate-200 */
+  --site-heading-font:   'Inter', system-ui, sans-serif;
+  --site-body-font:      'Inter', system-ui, sans-serif;
+  --site-radius:         0.375rem; /* rounded-md */
+  --site-hero-overlay:   rgba(255, 255, 255, 0.55);
+}
