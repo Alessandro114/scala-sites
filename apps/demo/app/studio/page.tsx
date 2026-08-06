@@ -418,7 +418,7 @@ export default function StudioOSDemoPage() {
         title="Start a Project"
         subtitle="Tell us about your project and we will get back to you within 24 hours."
         onSubmit={async (data) => {
-          console.log('Project inquiry:', data)
+          // Replace with your inquiry API call
           await new Promise((resolve) => setTimeout(resolve, 1000))
         }}
       />

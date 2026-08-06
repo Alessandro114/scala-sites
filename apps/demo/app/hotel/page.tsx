@@ -252,7 +252,7 @@ export default function HotelDemo() {
       <div id="availability">
         <AvailabilityChecker
           onSearch={(params) => {
-            console.log('Availability search:', params)
+            // Replace with your availability API call
           }}
           roomTypes={['Deluxe', 'Suite', 'Penthouse']}
           title="Plan Your Stay"
@@ -266,7 +266,7 @@ export default function HotelDemo() {
           locale="en-GB"
           title="Rooms & Suites"
           subtitle="Each of our rooms is a sanctuary — designed with care and furnished with the finest British craftsmanship"
-          onBook={(id) => console.log('Book room:', id)}
+          onBook={(id) => { /* Replace with booking handler */ }}
         />
       </div>
 
@@ -276,7 +276,7 @@ export default function HotelDemo() {
           locale="en-GB"
           title="Curated Experiences"
           subtitle="From private dining to twilight river cruises — moments crafted exclusively for our guests"
-          onBook={(id) => console.log('Book experience:', id)}
+          onBook={(id) => { /* Replace with booking handler */ }}
         />
       </div>
 

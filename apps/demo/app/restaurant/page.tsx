@@ -480,7 +480,7 @@ export default function DineOSDemoPage() {
         height="full"
       />
 
-      <MenuSection categories={menuCategories} locale="en" currency="EUR" />
+      <MenuSection categories={menuCategories} locale="en" currency="GBP" />
 
       <div id="story">
         <StorySection
@@ -593,7 +593,7 @@ export default function DineOSDemoPage() {
             socialProof={{ count: 347, label: 'guests booked this month' }}
             vertical="dineos"
             onSubmit={async (data) => {
-              console.log('Booking submitted:', data)
+              // Replace with your booking API call
               await new Promise((resolve) => setTimeout(resolve, 1000))
             }}
           />

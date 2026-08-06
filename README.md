@@ -111,7 +111,7 @@ These templates work standalone with mock data. To connect to SCALA:
 import { createScalaAPI } from '@scala-sites/core/lib/scala-api'
 
 const api = createScalaAPI({
-  apiUrl: 'https://api.get-scala.com',
+  baseUrl: 'https://api.get-scala.com',
   apiKey: 'your-api-key',
   tenantId: 'your-tenant-id',
 })
