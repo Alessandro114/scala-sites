@@ -13,7 +13,13 @@
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
     "@scala-sites/core": "*",
-    "@scala-sites/dineos": "*"
+    "@scala-sites/themes": "*",
+    "@scala-sites/dineos": "*",
+    "@scala-sites/propertyos": "*",
+    "@scala-sites/beautyos": "*",
+    "@scala-sites/gymos": "*",
+    "@scala-sites/travelos": "*",
+    "@scala-sites/studioos": "*"
   },
   "devDependencies": {
     "@types/node": "^20",

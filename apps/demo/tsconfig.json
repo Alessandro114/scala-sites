@@ -16,7 +16,13 @@
     "plugins": [{ "name": "next" }],
     "paths": {
       "@scala-sites/core/*": ["../../packages/core/*"],
-      "@scala-sites/dineos/*": ["../../packages/verticals/dineos/*"]
+      "@scala-sites/themes": ["../../packages/themes/index.ts"],
+      "@scala-sites/dineos/*": ["../../packages/verticals/dineos/*"],
+      "@scala-sites/propertyos/*": ["../../packages/verticals/propertyos/*"],
+      "@scala-sites/beautyos/*": ["../../packages/verticals/beautyos/*"],
+      "@scala-sites/gymos/*": ["../../packages/verticals/gymos/*"],
+      "@scala-sites/travelos/*": ["../../packages/verticals/travelos/*"],
+      "@scala-sites/studioos/*": ["../../packages/verticals/studioos/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

@@ -134,3 +134,35 @@ export function themeToCSS(theme: ThemeConfig): string {
     --hero-overlay: ${theme.hero.overlay};
   `.trim()
 }
+
+export function themeToStyleObject(theme: ThemeConfig): Record<string, string> {
+  return {
+    '--color-primary': theme.colors.primary,
+    '--color-primary-hover': theme.colors.primaryHover,
+    '--color-secondary': theme.colors.secondary,
+    '--color-accent': theme.colors.accent,
+    '--color-bg': theme.colors.background,
+    '--color-surface': theme.colors.surface,
+    '--color-text': theme.colors.text,
+    '--color-text-muted': theme.colors.textMuted,
+    '--color-border': theme.colors.border,
+    '--color-success': theme.colors.success,
+    '--color-warning': theme.colors.warning,
+    '--color-error': theme.colors.error,
+    '--font-heading': theme.fonts.heading,
+    '--font-body': theme.fonts.body,
+    '--font-mono': theme.fonts.mono,
+    '--radius-sm': theme.radius.sm,
+    '--radius-md': theme.radius.md,
+    '--radius-lg': theme.radius.lg,
+    '--radius-full': theme.radius.full,
+    '--hero-height': theme.hero.height,
+    '--hero-overlay': theme.hero.overlay,
+  }
+}
+
+export function createCustomTheme(base: ThemeName, overrides: Partial<ThemeConfig['colors']>): ThemeConfig {
+  const theme = { ...themes[base] }
+  theme.colors = { ...theme.colors, ...overrides }
+  return theme
+}

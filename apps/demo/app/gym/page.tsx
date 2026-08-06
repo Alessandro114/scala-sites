@@ -1,3 +1,4 @@
+import { themes, createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
 import { Hero } from '@scala-sites/core/components/hero'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
@@ -8,16 +9,16 @@ import { MembershipTiers } from '@scala-sites/gymos/components/membership-tiers'
 import { TrainerCard } from '@scala-sites/gymos/components/trainer-card'
 
 const classes = [
-  { id: '1', name: 'CrossFit WOD', instructor: 'Marco', time: '06:30', duration: '60 min', day: 'Monday', spotsTotal: 20, spotsTaken: 18, level: 'all' as const, category: 'CrossFit' },
-  { id: '2', name: 'Yoga Flow', instructor: 'Sara', time: '08:00', duration: '75 min', day: 'Monday', spotsTotal: 15, spotsTaken: 10, level: 'beginner' as const, category: 'Yoga' },
-  { id: '3', name: 'HIIT Blast', instructor: 'Luca', time: '12:30', duration: '45 min', day: 'Monday', spotsTotal: 25, spotsTaken: 25, level: 'intermediate' as const, category: 'Cardio' },
-  { id: '4', name: 'Strength Lab', instructor: 'Marco', time: '18:00', duration: '60 min', day: 'Monday', spotsTotal: 16, spotsTaken: 14, level: 'advanced' as const, category: 'Strength' },
-  { id: '5', name: 'Power Yoga', instructor: 'Sara', time: '19:30', duration: '60 min', day: 'Monday', spotsTotal: 15, spotsTaken: 8, level: 'intermediate' as const, category: 'Yoga' },
-  { id: '6', name: 'CrossFit WOD', instructor: 'Luca', time: '06:30', duration: '60 min', day: 'Tuesday', spotsTotal: 20, spotsTaken: 12, level: 'all' as const, category: 'CrossFit' },
-  { id: '7', name: 'Spin & Core', instructor: 'Giulia', time: '07:30', duration: '45 min', day: 'Tuesday', spotsTotal: 20, spotsTaken: 17, level: 'beginner' as const, category: 'Cardio' },
-  { id: '8', name: 'Olympic Lifting', instructor: 'Marco', time: '18:00', duration: '75 min', day: 'Tuesday', spotsTotal: 10, spotsTaken: 8, level: 'advanced' as const, category: 'Strength' },
-  { id: '9', name: 'Yin Yoga', instructor: 'Sara', time: '20:00', duration: '60 min', day: 'Tuesday', spotsTotal: 15, spotsTaken: 5, level: 'beginner' as const, category: 'Yoga' },
-  { id: '10', name: 'CrossFit WOD', instructor: 'Marco', time: '06:30', duration: '60 min', day: 'Wednesday', spotsTotal: 20, spotsTaken: 16, level: 'all' as const, category: 'CrossFit' },
+  { id: '1', name: 'CrossFit WOD', instructor: 'Mike', time: '06:30', duration: '60 min', day: 'Monday', spotsTotal: 20, spotsTaken: 18, level: 'all' as const, category: 'CrossFit' },
+  { id: '2', name: 'Yoga Flow', instructor: 'Sarah', time: '08:00', duration: '75 min', day: 'Monday', spotsTotal: 15, spotsTaken: 10, level: 'beginner' as const, category: 'Yoga' },
+  { id: '3', name: 'HIIT Blast', instructor: 'Luke', time: '12:30', duration: '45 min', day: 'Monday', spotsTotal: 25, spotsTaken: 25, level: 'intermediate' as const, category: 'Cardio' },
+  { id: '4', name: 'Strength Lab', instructor: 'Mike', time: '18:00', duration: '60 min', day: 'Monday', spotsTotal: 16, spotsTaken: 14, level: 'advanced' as const, category: 'Strength' },
+  { id: '5', name: 'Power Yoga', instructor: 'Sarah', time: '19:30', duration: '60 min', day: 'Monday', spotsTotal: 15, spotsTaken: 8, level: 'intermediate' as const, category: 'Yoga' },
+  { id: '6', name: 'CrossFit WOD', instructor: 'Luke', time: '06:30', duration: '60 min', day: 'Tuesday', spotsTotal: 20, spotsTaken: 12, level: 'all' as const, category: 'CrossFit' },
+  { id: '7', name: 'Spin & Core', instructor: 'Emma', time: '07:30', duration: '45 min', day: 'Tuesday', spotsTotal: 20, spotsTaken: 17, level: 'beginner' as const, category: 'Cardio' },
+  { id: '8', name: 'Olympic Lifting', instructor: 'Mike', time: '18:00', duration: '75 min', day: 'Tuesday', spotsTotal: 10, spotsTaken: 8, level: 'advanced' as const, category: 'Strength' },
+  { id: '9', name: 'Yin Yoga', instructor: 'Sarah', time: '20:00', duration: '60 min', day: 'Tuesday', spotsTotal: 15, spotsTaken: 5, level: 'beginner' as const, category: 'Yoga' },
+  { id: '10', name: 'CrossFit WOD', instructor: 'Mike', time: '06:30', duration: '60 min', day: 'Wednesday', spotsTotal: 20, spotsTaken: 16, level: 'all' as const, category: 'CrossFit' },
 ]
 
 const tiers = [
@@ -33,9 +34,9 @@ const trainers = [
 ]
 
 const reviews = [
-  { id: '1', author: 'Alessandro P.', rating: 5, text: 'Best gym in Milan, period. Marco\'s programming is intelligent — I\'ve PR\'d my deadlift 3 times in 6 months without injuries. The community is incredible.', date: '2026-07-20', source: 'Google', verified: true },
-  { id: '2', author: 'Claudia R.', rating: 5, text: 'I was terrified of CrossFit but the beginner program here is so well structured. After 3 months I can do pull-ups and I feel stronger than ever.', date: '2026-07-05', source: 'Google', verified: true },
-  { id: '3', author: 'Thomas W.', rating: 5, text: 'Sara\'s yoga classes are the perfect complement to strength training. My mobility improved dramatically and my back pain is gone. Life-changing.', date: '2026-06-18', source: 'Google', verified: true },
+  { id: '1', author: 'Alex P.', rating: 5, text: 'Best gym in London, period. Mike\'s programming is intelligent — I\'ve PR\'d my deadlift 3 times in 6 months without injuries. The community is incredible.', date: '2026-07-20', source: 'Google', verified: true },
+  { id: '2', author: 'Claire R.', rating: 5, text: 'I was terrified of CrossFit but the beginner program here is so well structured. After 3 months I can do pull-ups and I feel stronger than ever.', date: '2026-07-05', source: 'Google', verified: true },
+  { id: '3', author: 'Thomas W.', rating: 5, text: 'Sarah\'s yoga classes are the perfect complement to strength training. My mobility improved dramatically and my back pain is gone. Life-changing.', date: '2026-06-18', source: 'Google', verified: true },
 ]
 
 const faqs = [
@@ -62,7 +63,7 @@ export const metadata = {
 
 export default function GymDemo() {
   return (
-    <div style={{ '--color-primary': '#18181b', '--color-primary-hover': '#27272a', '--color-secondary': '#f4f4f5', '--color-accent': '#ef4444', '--color-bg': '#ffffff', '--color-surface': '#fafafa', '--color-text': '#18181b', '--color-text-muted': '#71717a', '--color-border': '#e4e4e7', '--color-success': '#22c55e', '--color-warning': '#f59e0b', '--color-error': '#ef4444', '--font-heading': '"Bebas Neue", "Oswald", system-ui, sans-serif', '--font-body': '"Inter", system-ui, sans-serif', '--hero-height': '90vh', '--hero-overlay': 'rgba(0,0,0,0.5)' } as React.CSSProperties}>
+    <div style={themeToStyleObject(createCustomTheme('bold', { primary: '#18181b', primaryHover: '#27272a', accent: '#ef4444', background: '#ffffff', surface: '#fafafa', text: '#18181b', secondary: '#f4f4f5', textMuted: '#71717a', border: '#e4e4e7' })) as React.CSSProperties}>
       <Hero
         title="TRAIN HARD. GET STRONG. HAVE FUN."
         subtitle="CrossFit, strength, HIIT & yoga — expert coaching in a community that pushes you forward"

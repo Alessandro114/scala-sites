@@ -5,6 +5,8 @@ const verticals = [
   { name: 'PropertyOS', slug: '/property', description: 'Real estate agency', color: '#1e3a5f', icon: '🏠' },
   { name: 'BeautyOS', slug: '/beauty', description: 'Hair salon, spa, barber', color: '#9f1239', icon: '💇' },
   { name: 'GymOS', slug: '/gym', description: 'Gym, CrossFit, yoga studio', color: '#18181b', icon: '🏋' },
+  { name: 'TravelOS', slug: '/hotel', description: 'Hotel, B&B, resort', color: '#0f172a', icon: '🏨' },
+  { name: 'StudioOS', slug: '/studio', description: 'Creative studio, agency, photography', color: '#111111', icon: '🎨' },
 ]
 
 export const metadata = {
@@ -61,7 +63,7 @@ export default function Home() {
         <div className="mt-16 text-center">
           <h3 className="text-2xl font-bold mb-4">Coming Soon</h3>
           <div className="flex flex-wrap justify-center gap-3 text-sm text-gray-500">
-            {['TravelOS (Hotels)', 'StudioOS (Architecture)', 'LegalOS (Law Firms)', 'ClinicoOS (Clinics)', 'AgencyOS (Marketing)', 'RetailOS (Shops)'].map(v => (
+            {['LegalOS (Law Firms)', 'ClinicoOS (Clinics)', 'AgencyOS (Marketing)', 'RetailOS (Shops)', 'EduOS (Schools)', 'AutoOS (Dealerships)'].map(v => (
               <span key={v} className="px-4 py-2 border border-dashed border-gray-300 rounded-full">{v}</span>
             ))}
           </div>

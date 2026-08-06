@@ -1,3 +1,4 @@
+import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
 import { Hero } from '@scala-sites/core/components/hero'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
@@ -11,7 +12,7 @@ const listings = [
   { id: '1', title: 'Modern Penthouse with Terrace', address: '12 Kensington High Street, London', price: 1250000, currency: 'EUR', type: 'sale' as const, propertyType: 'Apartment', bedrooms: 3, bathrooms: 2, area: 180, areaUnit: 'm²', image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600', featured: true, viewsLast24h: 12 },
   { id: '2', title: 'Renovated Loft in Shoreditch', address: '23 Shoreditch High Street, London', price: 2200, currency: 'EUR', type: 'rent' as const, propertyType: 'Loft', bedrooms: 1, bathrooms: 1, area: 95, areaUnit: 'm²', image: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600', viewsLast24h: 8 },
   { id: '3', title: 'Family Villa with Garden', address: '8 Richmond Park Road, Surrey', price: 680000, currency: 'EUR', type: 'sale' as const, propertyType: 'Villa', bedrooms: 4, bathrooms: 3, area: 320, areaUnit: 'm²', image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600' },
-  { id: '4', title: 'Studio near Duomo', address: '33 Camden Passage, London', price: 1100, currency: 'EUR', type: 'rent' as const, propertyType: 'Apartment', bedrooms: 0, bathrooms: 1, area: 35, areaUnit: 'm²', image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600', viewsLast24h: 22 },
+  { id: '4', title: 'Studio near Camden', address: '33 Camden Passage, London', price: 1100, currency: 'EUR', type: 'rent' as const, propertyType: 'Apartment', bedrooms: 0, bathrooms: 1, area: 35, areaUnit: 'm²', image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600', viewsLast24h: 22 },
   { id: '5', title: 'Commercial Space — High Street', address: '55 Canary Wharf, London', price: 450000, currency: 'EUR', type: 'sale' as const, propertyType: 'Commercial', bedrooms: 0, bathrooms: 1, area: 120, areaUnit: 'm²', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600' },
   { id: '6', title: 'Elegant 2BR in Notting Hill', address: '22 Notting Hill Gate, London', price: 1800, currency: 'EUR', type: 'rent' as const, propertyType: 'Apartment', bedrooms: 2, bathrooms: 1, area: 85, areaUnit: 'm²', image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600', featured: true },
 ]
@@ -23,9 +24,9 @@ const agents = [
 ]
 
 const reviews = [
-  { id: '1', author: 'James & Sarah T.', rating: 5, text: 'Giulia found us our dream apartment in Notting Hill within two weeks. Her knowledge of the market is exceptional. The whole process was seamless.', date: '2026-07-15', source: 'Google', verified: true },
-  { id: '2', author: 'Roberto M.', rating: 5, text: 'Marco helped us find the perfect office space. Professional, responsive, and always available. Highly recommended for commercial properties.', date: '2026-06-20', source: 'Google', verified: true },
-  { id: '3', author: 'Anna K.', rating: 5, text: 'As an expat, finding a rental in London seemed daunting. Sofia made it effortless. She understood exactly what I needed and found options I never would have discovered on my own.', date: '2026-05-10', source: 'Google', verified: true },
+  { id: '1', author: 'James & Sarah T.', rating: 5, text: 'Julia found us our dream apartment in Notting Hill within two weeks. Her knowledge of the market is exceptional. The whole process was seamless.', date: '2026-07-15', source: 'Google', verified: true },
+  { id: '2', author: 'Daniel M.', rating: 5, text: 'Mark helped us find the perfect office space. Professional, responsive, and always available. Highly recommended for commercial properties.', date: '2026-06-20', source: 'Google', verified: true },
+  { id: '3', author: 'Anna K.', rating: 5, text: 'As an expat, finding a rental in London seemed daunting. Sophie made it effortless. She understood exactly what I needed and found options I never would have discovered on my own.', date: '2026-05-10', source: 'Google', verified: true },
 ]
 
 const faqs = [
@@ -36,7 +37,7 @@ const faqs = [
 ]
 
 const siteConfig = {
-  name: 'Kensington Milano Prime Realty Partners',
+  name: 'Kensington & Partners',
   tagline: 'Your trusted partner in London real estate since 2010',
   phone: '+44 20 7123 4567',
   email: 'info@example.com',
@@ -45,16 +46,16 @@ const siteConfig = {
 }
 
 export const metadata = {
-  title: 'Kensington Milano Prime Realty Partners — Premium Properties in London',
+  title: 'Kensington & Partners — Premium Properties in London',
   description: 'Find your dream property in London. Luxury apartments, houses, and commercial spaces with expert guidance from our experienced team.',
 }
 
 export default function PropertyDemo() {
   return (
-    <div style={{ '--color-primary': '#1e3a5f', '--color-primary-hover': '#2a4f7f', '--color-secondary': '#f0f4f8', '--color-accent': '#c9a84c', '--color-bg': '#ffffff', '--color-surface': '#f8fafc', '--color-text': '#1a1a2e', '--color-text-muted': '#64748b', '--color-border': '#e2e8f0', '--color-success': '#22c55e', '--color-warning': '#f59e0b', '--color-error': '#ef4444', '--font-heading': '"Playfair Display", Georgia, serif', '--font-body': '"Inter", system-ui, sans-serif', '--hero-height': '75vh', '--hero-overlay': 'rgba(0,0,0,0.35)' } as React.CSSProperties}>
+    <div style={themeToStyleObject(createCustomTheme('classic', { primary: '#1e3a5f', primaryHover: '#2a4f7f', secondary: '#f0f4f8', accent: '#c9a84c', background: '#ffffff', surface: '#f8fafc', text: '#1a1a2e', textMuted: '#64748b', border: '#e2e8f0' })) as React.CSSProperties}>
       <Hero
         title="Find Your Place in London"
-        subtitle="Premium residential and commercial properties across Milan's most desirable neighborhoods"
+        subtitle="Premium residential and commercial properties across London's most desirable neighborhoods"
         backgroundImage="https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?w=1600"
         ctaPrimary={{ label: 'Browse Properties', href: '#listings' }}
         ctaSecondary={{ label: 'Free Valuation', href: '#valuation' }}

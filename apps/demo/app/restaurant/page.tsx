@@ -1,5 +1,6 @@
 'use client'
 
+import { themes, createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
 import { Hero } from '@scala-sites/core/components/hero'
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -38,9 +39,9 @@ const siteConfig: SiteConfig = {
   contact: {
     phone: '+44 20 7946 0958',
     email: 'info@thegardenkitchen.com',
-    whatsapp: '+390212345678',
-    address: 'Via Roma 42, 20121 Milano, Italy',
-    coordinates: { lat: 45.4642, lng: 9.19 },
+    whatsapp: '+442079460958',
+    address: '42 Neal Street, London WC2H 9PS',
+    coordinates: { lat: 51.5144, lng: -0.1265 },
   },
   social: {
     instagram: 'thegardenkitchen',
@@ -48,7 +49,7 @@ const siteConfig: SiteConfig = {
   },
   seo: {
     title: 'The Garden Kitchen | Authentic Italian Kitchen',
-    description: 'Traditional Italian cuisine in the heart of Milan.',
+    description: 'Traditional Italian cuisine in the heart of Covent Garden, London.',
   },
 }
 
@@ -298,7 +299,7 @@ const reviews: Review[] = [
     id: '3',
     author: 'Elena K.',
     rating: 4,
-    text: "Beautiful atmosphere, incredible wine list, and the tiramisu is the best in Milan. Only reason it's not 5 stars is the wait — but it's worth it.",
+    text: "Beautiful atmosphere, incredible wine list, and the tiramisu is the best in London. Only reason it's not 5 stars is the wait — but it's worth it.",
     date: '2026-08-01',
     source: 'tripadvisor',
     verified: true,
@@ -319,7 +320,7 @@ const team: TeamMember[] = [
     id: '1',
     name: 'Marco Bianchi',
     role: 'Chef & Owner',
-    bio: '25 years of passion for authentic Italian cuisine. Trained in Bologna, cooked in Rome, came home to Milan.',
+    bio: '25 years of passion for authentic Italian cuisine. Trained in Bologna, cooked in Rome, brought it all to London.',
     photo: 'https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=400&h=400&fit=crop',
     specialties: ['Fresh Pasta', 'Risotto'],
     bookable: false,
@@ -403,7 +404,7 @@ const faqs: FAQItem[] = [
   {
     question: 'Is there parking nearby?',
     answer:
-      'There is a public parking garage 100m away on Via Torino. We also recommend taking the Metro to Duomo station (5 min walk).',
+      'There is a public car park 100m away on Shelton Street. We also recommend taking the Tube to Covent Garden station (2 min walk).',
   },
   {
     question: 'Can you host private events?',
@@ -471,7 +472,7 @@ export default function DineOSDemoPage() {
 
       <Hero
         title="Authentic Italian Kitchen"
-        subtitle="Fresh pasta made daily. Wood-fired pizza. Seasonal ingredients from local farms. In the heart of Milan since 1998."
+        subtitle="Fresh pasta made daily. Wood-fired pizza. Seasonal ingredients from local farms. In the heart of London since 1998."
         backgroundImage="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1600&h=900&fit=crop"
         ctaPrimary={{ label: 'Reserve a Table', href: '#booking' }}
         ctaSecondary={{ label: 'View Menu', href: '#menu' }}
@@ -486,13 +487,13 @@ export default function DineOSDemoPage() {
           headline="Our Story"
           blocks={[
             {
-              title: 'From Bologna to Milan',
-              text: "Marco Bianchi spent 15 years learning the craft of Italian cuisine in Bologna's oldest trattorias. In 1998, he brought that tradition to Milan — one plate at a time. Every dish on our menu tells a story of where it comes from and who taught Marco to make it.",
+              title: 'From Bologna to London',
+              text: "Marco Bianchi spent 15 years learning the craft of Italian cuisine in Bologna's oldest trattorias. In 1998, he brought that tradition to London — one plate at a time. Every dish on our menu tells a story of where it comes from and who taught Marco to make it.",
               image: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&h=600&fit=crop',
             },
             {
               title: 'Fresh, Every Day',
-              text: "Our pasta is made fresh every morning. Our ingredients come from farms within 100km of Milan. Our bread is baked in-house. We don't take shortcuts because our guests can taste the difference.",
+              text: "Our pasta is made fresh every morning. Our ingredients come from the finest UK and Italian suppliers. Our bread is baked in-house. We don't take shortcuts because our guests can taste the difference.",
               image: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=800&h=600&fit=crop',
             },
             {
@@ -610,7 +611,7 @@ export default function DineOSDemoPage() {
       <Footer config={siteConfig} locale="en" />
 
       <WhatsAppCTA
-        phoneNumber="+390212345678"
+        phoneNumber="+442079460958"
         message="Hi! I'd like to know more about The Garden Kitchen"
         vertical="dineos"
       />

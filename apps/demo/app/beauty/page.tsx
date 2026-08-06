@@ -1,3 +1,4 @@
+import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
 import { Hero } from '@scala-sites/core/components/hero'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
@@ -37,8 +38,8 @@ const beforeAfterItems = [
 
 const reviews = [
   { id: '1', author: 'Francesca L.', rating: 5, text: 'Elena is a balayage goddess. I\'ve been going to her for 2 years and my hair has never looked better. The salon is beautiful and the team is incredibly welcoming.', date: '2026-07-28', source: 'Google', verified: true },
-  { id: '2', author: 'Maria G.', rating: 5, text: 'First time getting a keratin treatment here. Chiara explained everything patiently and the results are AMAZING. My morning routine went from 45 to 10 minutes.', date: '2026-07-15', source: 'Google', verified: true },
-  { id: '3', author: 'Sophie W.', rating: 5, text: 'Best haircut I\'ve ever had. Matteo really listened to what I wanted and delivered something even better. The WhatsApp booking is so convenient!', date: '2026-06-22', source: 'Google', verified: true },
+  { id: '2', author: 'Rachel G.', rating: 5, text: 'First time getting a keratin treatment here. Chloe explained everything patiently and the results are AMAZING. My morning routine went from 45 to 10 minutes.', date: '2026-07-15', source: 'Google', verified: true },
+  { id: '3', author: 'Sophie W.', rating: 5, text: 'Best haircut I\'ve ever had. Matt really listened to what I wanted and delivered something even better. The WhatsApp booking is so convenient!', date: '2026-06-22', source: 'Google', verified: true },
   { id: '4', author: 'Laura P.', rating: 4, text: 'Gorgeous salon, lovely team. Only reason for 4 stars is the wait time — arrived 10 min early but still waited 20 min. Hair looked amazing though.', date: '2026-06-10', source: 'Google', verified: true },
 ]
 
@@ -52,7 +53,7 @@ const faqs = [
 
 const siteConfig = {
   name: 'Studio Luxe Hair',
-  tagline: 'Expert color, cut Color, cut & care — in the heart of Milan care — Soho, London',
+  tagline: 'Expert color, cut & care — Soho, London',
   phone: '+44 20 7432 1098',
   email: 'hello@example.com',
   address: '28 Brewer Street, London W1F 0SR',
@@ -66,7 +67,7 @@ export const metadata = {
 
 export default function BeautyDemo() {
   return (
-    <div style={{ '--color-primary': '#9f1239', '--color-primary-hover': '#be123c', '--color-secondary': '#fff1f2', '--color-accent': '#f43f5e', '--color-bg': '#ffffff', '--color-surface': '#fef2f2', '--color-text': '#1a1a2e', '--color-text-muted': '#71717a', '--color-border': '#fecdd3', '--color-success': '#22c55e', '--color-warning': '#f59e0b', '--color-error': '#ef4444', '--font-heading': '"Playfair Display", Georgia, serif', '--font-body': '"Inter", system-ui, sans-serif', '--hero-height': '80vh', '--hero-overlay': 'rgba(0,0,0,0.3)' } as React.CSSProperties}>
+    <div style={themeToStyleObject(createCustomTheme('classic', { primary: '#9f1239', primaryHover: '#be123c', secondary: '#fff1f2', accent: '#f43f5e', background: '#ffffff', surface: '#fef2f2', text: '#1a1a2e', textMuted: '#71717a', border: '#fecdd3' })) as React.CSSProperties}>
       <Hero
         title="Your Hair, Your Way"
         subtitle="Expert colorists, precision stylists, and luxury treatments — book your favorite stylist online"

@@ -6,6 +6,8 @@ const nextConfig = {
     '@scala-sites/propertyos',
     '@scala-sites/beautyos',
     '@scala-sites/gymos',
+    '@scala-sites/travelos',
+    '@scala-sites/studioos',
     '@scala-sites/themes',
   ],
 }
