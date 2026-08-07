@@ -1,480 +1,311 @@
 'use client'
 
-import { useState } from 'react'
-import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
-import { Hero } from '@scala-sites/core/components/hero'
-import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
+import { useEffect, useRef, useState } from 'react'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
 import { Footer } from '@scala-sites/core/components/footer'
-import { FAQAccordion } from '@scala-sites/core/components/faq-accordion'
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
-import { ListingSearch } from '@scala-sites/propertyos/components/listing-search'
-import { AgentCard } from '@scala-sites/propertyos/components/agent-card'
 
-// ─── Mock data ────────────────────────────────────────────────────────────────
+// ─── Color palette ───────────────────────────────────────────────────────────
+const C = {
+  charcoal: '#2c2c2c',
+  charcoalDeep: '#1a1a1a',
+  gold: '#b8963e',
+  goldLight: '#d4b66a',
+  goldMuted: 'rgba(184,150,62,0.25)',
+  offWhite: '#f9f7f4',
+  cream: '#f0ece4',
+  textMuted: '#8a8577',
+  borderSubtle: 'rgba(184,150,62,0.15)',
+  overlay: 'rgba(28,28,28,0.65)',
+}
 
-const listings = [
+// ─── Mock data ───────────────────────────────────────────────────────────────
+
+const featuredProperties = [
   {
     id: '1',
     title: 'Grand Penthouse — One Hyde Park',
-    address: '1 Knightsbridge, London SW1X 7LJ',
-    price: 18500000,
-    currency: 'GBP',
-    type: 'sale' as const,
-    propertyType: 'Penthouse',
-    bedrooms: 5,
-    bathrooms: 6,
-    area: 620,
-    areaUnit: 'm²',
-    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800',
-    featured: true,
-    viewsLast24h: 34,
+    area: 'Knightsbridge',
+    price: '£18,500,000',
+    beds: 5, baths: 6, sqft: '6,674',
+    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&h=600&fit=crop',
   },
   {
     id: '2',
-    title: 'Georgian Townhouse — Belgravia',
-    address: '14 Eaton Square, London SW1W 9BQ',
-    price: 9750000,
-    currency: 'GBP',
-    type: 'sale' as const,
-    propertyType: 'Townhouse',
-    bedrooms: 6,
-    bathrooms: 5,
-    area: 480,
-    areaUnit: 'm²',
-    image: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800',
-    featured: true,
-    viewsLast24h: 21,
+    title: 'Georgian Townhouse — Eaton Square',
+    area: 'Belgravia',
+    price: '£9,750,000',
+    beds: 6, baths: 5, sqft: '5,167',
+    image: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=900&h=600&fit=crop',
   },
   {
     id: '3',
-    title: 'Sky Apartment — The Shard Residences',
-    address: '32 London Bridge Street, London SE1 9SG',
-    price: 5200000,
-    currency: 'GBP',
-    type: 'sale' as const,
-    propertyType: 'Apartment',
-    bedrooms: 3,
-    bathrooms: 3,
-    area: 245,
-    areaUnit: 'm²',
-    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800',
-    viewsLast24h: 18,
+    title: 'Sky Residence — The Shard',
+    area: 'London Bridge',
+    price: '£5,200,000',
+    beds: 3, baths: 3, sqft: '2,637',
+    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=900&h=600&fit=crop',
   },
   {
     id: '4',
-    title: 'Lateral Apartment — Mayfair',
-    address: '47 Park Lane, London W1K 1QA',
-    price: 32000,
-    currency: 'GBP',
-    type: 'rent' as const,
-    propertyType: 'Apartment',
-    bedrooms: 4,
-    bathrooms: 4,
-    area: 320,
-    areaUnit: 'm²',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800',
-    featured: true,
-    viewsLast24h: 29,
+    title: 'Lateral Apartment — Park Lane',
+    area: 'Mayfair',
+    price: '£32,000/month',
+    beds: 4, baths: 4, sqft: '3,444',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&h=600&fit=crop',
   },
   {
     id: '5',
-    title: 'Neo-Classical Villa — Hampstead',
-    address: '22 Bishops Avenue, London N2 0BE',
-    price: 14200000,
-    currency: 'GBP',
-    type: 'sale' as const,
-    propertyType: 'Villa',
-    bedrooms: 8,
-    bathrooms: 7,
-    area: 1100,
-    areaUnit: 'm²',
-    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800',
-    viewsLast24h: 12,
+    title: 'Neo-Classical Villa — Bishops Avenue',
+    area: 'Hampstead',
+    price: '£14,200,000',
+    beds: 8, baths: 7, sqft: '11,840',
+    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&h=600&fit=crop',
   },
   {
     id: '6',
     title: 'River View Duplex — Chelsea Embankment',
-    address: '9 Chelsea Embankment, London SW3 4LQ',
-    price: 22000,
-    currency: 'GBP',
-    type: 'rent' as const,
-    propertyType: 'Duplex',
-    bedrooms: 3,
-    bathrooms: 3,
-    area: 210,
-    areaUnit: 'm²',
-    image: 'https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=800',
-    viewsLast24h: 16,
+    area: 'Chelsea',
+    price: '£22,000/month',
+    beds: 3, baths: 3, sqft: '2,260',
+    image: 'https://images.unsplash.com/photo-1567496898669-ee935f5f647a?w=900&h=600&fit=crop',
   },
 ]
 
-const agents = [
-  {
-    id: '1',
-    name: 'Victoria Ashworth',
-    role: 'Head of Residential Sales',
-    photo: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400',
-    specialties: ['Prime Central London', 'Ultra-HNWI', 'Mayfair', 'Belgravia'],
-    propertiesSold: 203,
-    yearsExperience: 18,
-    bio: 'Victoria leads our Prime Central London desk, having transacted over £2bn in luxury residential property. Her discreet, relationship-driven approach attracts the world\'s most discerning buyers and vendors.',
-    bookingUrl: '#booking',
-  },
-  {
-    id: '2',
-    name: 'Sebastian Hartley',
-    role: 'Director — Investment & Portfolio',
-    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400',
-    specialties: ['Portfolio Acquisition', 'Trophy Assets', 'Off-Market', 'International Buyers'],
-    propertiesSold: 142,
-    yearsExperience: 14,
-    bio: 'Sebastian specialises in large-scale residential investments and trophy asset transactions. Fluent in Mandarin and Arabic, he bridges global capital with London\'s premier real estate market.',
-    bookingUrl: '#booking',
-  },
-  {
-    id: '3',
-    name: 'Isabelle Fontaine',
-    role: 'Senior Associate — Prime Lettings',
-    photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400',
-    specialties: ['Corporate Lettings', 'Furnished Luxury', 'Relocations', 'Knightsbridge'],
-    propertiesSold: 318,
-    yearsExperience: 11,
-    bio: 'Isabelle manages our ultra-prime lettings portfolio, placing C-suite executives and diplomats into London\'s finest addresses. Native French speaker with an exceptional portfolio of discreet, off-market homes.',
-    bookingUrl: '#booking',
-  },
+const services = [
+  { title: 'Sales', icon: '■', desc: 'Discreet marketing and negotiation for prime residential and trophy assets above £2m.' },
+  { title: 'Lettings', icon: '◆', desc: 'Corporate and diplomatic lettings across Mayfair, Belgravia, Knightsbridge and Chelsea.' },
+  { title: 'Property Management', icon: '▲', desc: 'White-glove estate management for absentee owners and family offices.' },
+  { title: 'Development', icon: '●', desc: 'Site acquisition, planning consultancy and sales agency for boutique residential schemes.' },
+  { title: 'International', icon: '◎', desc: 'Cross-border acquisitions with tax, visa and structuring guidance for global UHNWI.' },
 ]
 
-const reviews = [
+const testimonials = [
   {
-    id: '1',
-    author: 'Lord & Lady Cavendish',
-    rating: 5,
-    text: 'Victoria handled the sale of our Belgravia townhouse with extraordinary discretion and skill. She achieved a price 12% above our expectations. We wouldn\'t trust anyone else in Prime Central London.',
-    date: '2026-06-18',
-    source: 'Google',
-    verified: true,
+    quote: 'In 30 years of property investment across four continents, I have never encountered an agency that combines discretion, market intelligence, and execution at the level Mayfair & Partners delivers.',
+    name: 'Sir Edward Pemberton',
+    detail: 'Sold: £22m Eaton Square Townhouse',
   },
   {
-    id: '2',
-    author: 'Hassan Al-Rashid',
-    rating: 5,
-    text: 'Sebastian sourced us an off-market penthouse at One Hyde Park that we could not find elsewhere. His understanding of our requirements was impeccable and the transaction was handled seamlessly.',
-    date: '2026-05-30',
-    source: 'Google',
-    verified: true,
+    quote: 'Sebastian structured the acquisition of our London portfolio — six properties across Mayfair and Knightsbridge — with flawless coordination. He understood our privacy requirements without a single briefing note.',
+    name: 'Nadia Al-Fayed',
+    detail: 'Acquired: £47m Portfolio, 6 Properties',
   },
   {
-    id: '3',
-    author: 'Mei-Ling Zhang',
-    rating: 5,
-    text: 'Relocating from Hong Kong, Isabelle found us the perfect furnished apartment in Knightsbridge within 48 hours. Her market knowledge and personal service are unmatched. Truly five-star.',
-    date: '2026-07-04',
-    source: 'Google',
-    verified: true,
-  },
-  {
-    id: '4',
-    author: 'Dr. Alessandro Conti',
-    rating: 5,
-    text: 'Mayfair & Partners sold our Chelsea property at record price per square foot for the street. Their buyer network is genuinely global. Professional, discreet, and results-driven.',
-    date: '2026-04-22',
-    source: 'Google',
-    verified: true,
-  },
-]
-
-const faqs = [
-  {
-    question: 'What distinguishes Mayfair & Partners from other London estate agents?',
-    answer: 'We operate exclusively in the prime and super-prime segment (£2m+). Our mandate is always discreet — over 60% of our transactions never appear on Rightmove. We leverage a proprietary network of global HNW buyers, family offices, and sovereign funds that no portal can replicate.',
-  },
-  {
-    question: 'How do you price ultra-prime properties?',
-    answer: 'We commission independent RICS-certified appraisals, benchmark against recent comparable transactions in our private database, and factor in unique features such as provenance, architect, planning permissions, and lifestyle attributes. We do not use algorithmic AVM tools for properties above £5m.',
-  },
-  {
-    question: 'Can you handle transactions for international buyers?',
-    answer: 'Yes — over 70% of our buyers are international. We work alongside leading tax counsel, immigration solicitors, and private banks to ensure end-to-end guidance on stamp duty, ATED, residency implications, and wealth structuring. We speak Mandarin, Arabic, French, Italian, and Russian in-house.',
-  },
-  {
-    question: 'Do you offer off-market property access?',
-    answer: 'Our off-market portfolio currently represents over 40 properties valued in excess of £500m. Access is exclusively available to registered clients who have completed our confidential buyer registration process. Contact us to begin.',
-  },
-  {
-    question: 'What are your fees for sales and lettings?',
-    answer: 'Sales: 2% + VAT for sole agency; 2.75% + VAT for joint agency. Prime lettings: 12% of annual rent for tenant find & management. All fees are negotiable for portfolio mandates above £20m. A detailed fee schedule is provided at the first consultation.',
+    quote: 'Relocating our family from Munich, Isabelle had us settled in our Knightsbridge apartment within a week of arrival. The furnished specification was exactly as described. An extraordinary personal service.',
+    name: 'Dr. Christoph Muller',
+    detail: 'Let: £18,000/month Knightsbridge',
   },
 ]
 
 const siteConfig = {
   name: 'Mayfair & Partners',
-  tagline: 'Luxury Property Specialists — Prime Central London Since 1987',
+  tagline: 'Ultra-Prime Real Estate — Prime Central London Since 1987',
   phone: '+44 20 7493 8000',
   email: 'prime@mayfairandpartners.com',
   address: '40 Berkeley Square, Mayfair, London W1J 5AL',
   social: { instagram: '#', facebook: '#' },
 }
 
-// ─── Mortgage calculator (static/visual) ─────────────────────────────────────
+// ─── Animated counter hook ───────────────────────────────────────────────────
 
-function MortgageCalculator() {
-  const [price, setPrice] = useState(5000000)
-  const [deposit, setDeposit] = useState(25)
-  const [rate, setRate] = useState(4.5)
-  const [term, setTerm] = useState(25)
+function useCountUp(end: number, duration = 2000, suffix = '') {
+  const [value, setValue] = useState(0)
+  const ref = useRef<HTMLDivElement>(null)
+  const started = useRef(false)
 
-  const loanAmount = price * (1 - deposit / 100)
-  const monthlyRate = rate / 100 / 12
-  const numPayments = term * 12
-  const monthlyPayment =
-    monthlyRate === 0
-      ? loanAmount / numPayments
-      : (loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments))) /
-        (Math.pow(1 + monthlyRate, numPayments) - 1)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started.current) {
+          started.current = true
+          const startTime = performance.now()
+          const animate = (now: number) => {
+            const elapsed = now - startTime
+            const progress = Math.min(elapsed / duration, 1)
+            const eased = 1 - Math.pow(1 - progress, 3)
+            setValue(Math.round(eased * end))
+            if (progress < 1) requestAnimationFrame(animate)
+          }
+          requestAnimationFrame(animate)
+        }
+      },
+      { threshold: 0.3 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [end, duration])
 
-  const fmt = (n: number) =>
-    new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP', maximumFractionDigits: 0 }).format(n)
+  return { ref, display: `${value}${suffix}` }
+}
 
+// ─── SECTION 1: Hero — Cinematic ─────────────────────────────────────────────
+
+function HeroCinematic() {
   return (
-    <section
-      className="py-20 px-4"
-      style={{ background: 'var(--color-secondary)' }}
-    >
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <p className="text-xs uppercase tracking-widest mb-3" style={{ color: 'var(--color-accent)' }}>
-            Financial Planning
-          </p>
-          <h2 className="text-4xl font-bold mb-3" style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-text)' }}>
-            Mortgage Indicative Calculator
-          </h2>
-          <p className="max-w-xl mx-auto" style={{ color: 'var(--color-text-muted)' }}>
-            Indicative figures only. We work alongside Coutts, Barclays Private, and Rothschild wealth lending desks for bespoke financing.
-          </p>
+    <section className="relative w-full h-screen overflow-hidden grain">
+      {/* Ken Burns background */}
+      <div className="absolute inset-0" style={{ zIndex: 0 }}>
+        <img
+          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&h=1080&fit=crop"
+          alt="Luxury estate aerial view"
+          className="w-full h-full object-cover"
+          style={{
+            animation: 'kenBurns 10s ease-in-out infinite alternate',
+          }}
+        />
+      </div>
+
+      {/* Dark gradient overlay */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(to top, rgba(20,20,20,0.92) 0%, rgba(20,20,20,0.4) 40%, rgba(20,20,20,0.15) 100%)',
+          zIndex: 1,
+        }}
+      />
+
+      {/* Content */}
+      <div className="relative flex flex-col justify-end h-full pb-32 px-6 md:px-16 lg:px-24" style={{ zIndex: 2 }}>
+        {/* Eyebrow */}
+        <div className="flex items-center gap-3 mb-6">
+          <div style={{ width: 48, height: 1, background: C.gold }} />
+          <span
+            className="text-xs uppercase tracking-[0.3em]"
+            style={{ color: C.gold, letterSpacing: '0.3em' }}
+          >
+            Est. 1987
+          </span>
         </div>
 
-        <div className="rounded-2xl overflow-hidden border" style={{ borderColor: 'var(--color-border)' }}>
-          <div className="grid grid-cols-1 lg:grid-cols-2">
-            {/* Controls */}
-            <div className="p-8 space-y-6" style={{ background: 'var(--color-bg)' }}>
-              {/* Purchase price */}
-              <div>
-                <div className="flex justify-between items-center mb-2">
-                  <label className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>Purchase Price</label>
-                  <span className="text-sm font-bold" style={{ color: 'var(--color-accent)' }}>{fmt(price)}</span>
-                </div>
-                <input
-                  type="range"
-                  min={1000000}
-                  max={30000000}
-                  step={250000}
-                  value={price}
-                  onChange={e => setPrice(Number(e.target.value))}
-                  className="w-full h-2 rounded-full appearance-none cursor-pointer"
-                  style={{ accentColor: 'var(--color-accent)' }}
-                />
-                <div className="flex justify-between text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>
-                  <span>£1m</span><span>£30m</span>
-                </div>
-              </div>
+        {/* Title */}
+        <h1
+          className="text-5xl md:text-7xl lg:text-8xl font-light leading-[0.95] mb-4"
+          style={{
+            color: C.offWhite,
+            fontFamily: 'Georgia, "Times New Roman", serif',
+          }}
+        >
+          Mayfair<br />
+          <span style={{ fontStyle: 'italic', fontWeight: 300 }}>&amp; Partners</span>
+        </h1>
 
-              {/* Deposit */}
-              <div>
-                <div className="flex justify-between items-center mb-2">
-                  <label className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>Deposit</label>
-                  <span className="text-sm font-bold" style={{ color: 'var(--color-accent)' }}>{deposit}% — {fmt(price * deposit / 100)}</span>
-                </div>
-                <input
-                  type="range"
-                  min={10}
-                  max={80}
-                  step={5}
-                  value={deposit}
-                  onChange={e => setDeposit(Number(e.target.value))}
-                  className="w-full h-2 rounded-full appearance-none cursor-pointer"
-                  style={{ accentColor: 'var(--color-accent)' }}
-                />
-                <div className="flex justify-between text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>
-                  <span>10%</span><span>80%</span>
-                </div>
-              </div>
+        <p
+          className="text-base md:text-lg max-w-md mb-12"
+          style={{ color: 'rgba(249,247,244,0.6)', lineHeight: 1.6 }}
+        >
+          Ultra-Prime Real Estate Since 1987
+        </p>
 
-              {/* Interest rate */}
-              <div>
-                <div className="flex justify-between items-center mb-2">
-                  <label className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>Interest Rate (p.a.)</label>
-                  <span className="text-sm font-bold" style={{ color: 'var(--color-accent)' }}>{rate}%</span>
-                </div>
-                <input
-                  type="range"
-                  min={1}
-                  max={8}
-                  step={0.25}
-                  value={rate}
-                  onChange={e => setRate(Number(e.target.value))}
-                  className="w-full h-2 rounded-full appearance-none cursor-pointer"
-                  style={{ accentColor: 'var(--color-accent)' }}
-                />
-                <div className="flex justify-between text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>
-                  <span>1%</span><span>8%</span>
-                </div>
-              </div>
-
-              {/* Term */}
-              <div>
-                <div className="flex justify-between items-center mb-2">
-                  <label className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>Mortgage Term</label>
-                  <span className="text-sm font-bold" style={{ color: 'var(--color-accent)' }}>{term} years</span>
-                </div>
-                <input
-                  type="range"
-                  min={5}
-                  max={35}
-                  step={5}
-                  value={term}
-                  onChange={e => setTerm(Number(e.target.value))}
-                  className="w-full h-2 rounded-full appearance-none cursor-pointer"
-                  style={{ accentColor: 'var(--color-accent)' }}
-                />
-                <div className="flex justify-between text-xs mt-1" style={{ color: 'var(--color-text-muted)' }}>
-                  <span>5 yrs</span><span>35 yrs</span>
-                </div>
-              </div>
+        {/* Search strip */}
+        <div
+          className="flex flex-col md:flex-row items-stretch gap-0 rounded-sm overflow-hidden max-w-4xl"
+          style={{
+            border: `1px solid rgba(184,150,62,0.3)`,
+          }}
+        >
+          {[
+            { label: 'Location', placeholder: 'Mayfair, Belgravia...' },
+            { label: 'Property Type', placeholder: 'Penthouse, Villa...' },
+            { label: 'Price Range', placeholder: '£2m — £30m' },
+          ].map((field, i) => (
+            <div
+              key={field.label}
+              className="flex-1 px-6 py-4"
+              style={{
+                borderRight: i < 2 ? `1px solid rgba(184,150,62,0.15)` : 'none',
+                background: 'rgba(0,0,0,0.35)',
+                backdropFilter: 'blur(20px)',
+              }}
+            >
+              <label
+                className="block text-[10px] uppercase tracking-[0.2em] mb-1"
+                style={{ color: C.gold }}
+              >
+                {field.label}
+              </label>
+              <input
+                type="text"
+                placeholder={field.placeholder}
+                className="w-full bg-transparent outline-none text-sm"
+                style={{ color: C.offWhite }}
+              />
             </div>
-
-            {/* Results panel */}
-            <div className="p-8 flex flex-col justify-center" style={{ background: '#0f1923' }}>
-              <p className="text-xs uppercase tracking-widest mb-6" style={{ color: '#c9a84c' }}>
-                Indicative Monthly Repayment
-              </p>
-              <p className="text-6xl font-bold mb-2 text-white leading-none">
-                {fmt(monthlyPayment)}
-              </p>
-              <p className="text-sm mb-8" style={{ color: 'rgba(255,255,255,0.5)' }}>per month (capital + interest)</p>
-
-              <div className="space-y-3 text-sm">
-                {[
-                  ['Loan Amount', fmt(loanAmount)],
-                  ['Total Interest', fmt(monthlyPayment * numPayments - loanAmount)],
-                  ['Total Repaid', fmt(monthlyPayment * numPayments)],
-                  ['LTV Ratio', `${(100 - deposit).toFixed(0)}%`],
-                ].map(([label, value]) => (
-                  <div key={label} className="flex justify-between border-b pb-2" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
-                    <span style={{ color: 'rgba(255,255,255,0.5)' }}>{label}</span>
-                    <span className="font-semibold text-white">{value}</span>
-                  </div>
-                ))}
-              </div>
-
-              <p className="text-xs mt-6" style={{ color: 'rgba(255,255,255,0.3)' }}>
-                For illustration only. Subject to lender criteria, SDLT, and survey. Speak to our finance partners for a formal offer.
-              </p>
-            </div>
-          </div>
+          ))}
+          <button
+            className="px-10 py-4 text-xs uppercase tracking-[0.25em] font-medium transition-all duration-300"
+            style={{
+              background: 'transparent',
+              color: C.gold,
+              borderLeft: `1px solid rgba(184,150,62,0.3)`,
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = C.gold
+              e.currentTarget.style.color = C.charcoalDeep
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.background = 'transparent'
+              e.currentTarget.style.color = C.gold
+            }}
+          >
+            Search
+          </button>
         </div>
       </div>
+
+      {/* Ken Burns keyframes */}
+      <style>{`
+        @keyframes kenBurns {
+          0% { transform: scale(1) translate(0, 0); }
+          100% { transform: scale(1.06) translate(-1%, -1%); }
+        }
+      `}</style>
     </section>
   )
 }
 
-// ─── Map placeholder ──────────────────────────────────────────────────────────
+// ─── SECTION 2: Stats strip ──────────────────────────────────────────────────
 
-function MapSection() {
+function StatsStrip() {
+  const stat1 = useCountUp(42, 2200)     // £4.2bn
+  const stat2 = useCountUp(340, 2000)    // 340+
+  const stat3 = useCountUp(70, 1800)     // 70%
+  const stat4 = useCountUp(38, 2400)     // 38
+
+  const stats = [
+    { ref: stat1.ref, prefix: '£', value: stat1.display, decimal: '.2', suffix: 'bn', label: 'Total Sales Volume' },
+    { ref: stat2.ref, prefix: '', value: stat2.display, decimal: '', suffix: '+', label: 'Prime Properties' },
+    { ref: stat3.ref, prefix: '', value: stat3.display, decimal: '', suffix: '%', label: 'International Clients' },
+    { ref: stat4.ref, prefix: '', value: stat4.display, decimal: '', suffix: '', label: 'Years of Excellence' },
+  ]
+
   return (
-    <section className="py-20 px-4">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-10">
-          <p className="text-xs uppercase tracking-widest mb-3" style={{ color: 'var(--color-accent)' }}>
-            Our Markets
-          </p>
-          <h2 className="text-4xl font-bold" style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-text)' }}>
-            Prime Central London Coverage
-          </h2>
-        </div>
-
-        {/* Map placeholder */}
-        <div
-          className="relative rounded-2xl overflow-hidden border"
-          style={{ borderColor: 'var(--color-border)', height: '420px', background: '#0a1628' }}
-        >
-          {/* Decorative grid lines */}
-          <svg className="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-                <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#c9a84c" strokeWidth="0.5" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-          </svg>
-
-          {/* Central decorative map marker cluster */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="relative">
-              {[
-                { x: 0, y: 0, label: 'Mayfair', size: 'lg' },
-                { x: -160, y: -60, label: 'Notting Hill', size: 'sm' },
-                { x: 120, y: -90, label: 'Belgravia', size: 'md' },
-                { x: -80, y: 90, label: 'Chelsea', size: 'md' },
-                { x: 200, y: 30, label: 'Knightsbridge', size: 'lg' },
-                { x: -200, y: 40, label: 'Kensington', size: 'sm' },
-                { x: 60, y: 110, label: 'Westminster', size: 'sm' },
-                { x: -40, y: -120, label: 'Marylebone', size: 'sm' },
-              ].map(({ x, y, label, size }) => (
-                <div
-                  key={label}
-                  className="absolute flex flex-col items-center"
-                  style={{ transform: `translate(${x}px, ${y}px)` }}
-                >
-                  <div
-                    className="rounded-full border-2 flex items-center justify-center font-bold text-white"
-                    style={{
-                      width: size === 'lg' ? 44 : size === 'md' ? 34 : 26,
-                      height: size === 'lg' ? 44 : size === 'md' ? 34 : 26,
-                      background: size === 'lg' ? '#c9a84c' : 'rgba(201,168,76,0.5)',
-                      borderColor: '#c9a84c',
-                      fontSize: size === 'lg' ? 14 : 10,
-                    }}
-                  >
-                    {size === 'lg' ? '★' : '·'}
-                  </div>
-                  <span
-                    className="mt-1 px-2 py-0.5 rounded text-xs font-semibold whitespace-nowrap"
-                    style={{ background: 'rgba(0,0,0,0.7)', color: '#c9a84c' }}
-                  >
-                    {label}
-                  </span>
-                </div>
-              ))}
+    <section
+      className="diagonal-top relative py-24 md:py-32"
+      style={{ background: C.charcoalDeep, zIndex: 2 }}
+    >
+      <div className="max-w-6xl mx-auto px-6 md:px-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8">
+          {stats.map((s) => (
+            <div key={s.label} ref={s.ref} className="text-center reveal-up">
+              <p
+                className="text-4xl md:text-5xl lg:text-6xl font-light mb-3"
+                style={{
+                  color: C.gold,
+                  fontFamily: 'Georgia, "Times New Roman", serif',
+                }}
+              >
+                {s.prefix === '£' ? '£4.2' : s.value}{s.prefix !== '£' ? s.suffix : 'bn'}
+              </p>
+              <p
+                className="text-xs uppercase tracking-[0.2em]"
+                style={{ color: 'rgba(249,247,244,0.45)' }}
+              >
+                {s.label}
+              </p>
             </div>
-          </div>
-
-          {/* Overlay badge */}
-          <div className="absolute bottom-6 left-6">
-            <div className="rounded-xl px-5 py-4 border" style={{ background: 'rgba(0,0,0,0.85)', borderColor: 'rgba(201,168,76,0.3)' }}>
-              <p className="text-xs uppercase tracking-widest mb-1" style={{ color: '#c9a84c' }}>Our Coverage</p>
-              <p className="text-white font-bold text-lg">Prime Central London</p>
-              <p className="text-xs mt-1" style={{ color: 'rgba(255,255,255,0.5)' }}>8 premier neighbourhoods · 40+ off-market listings</p>
-            </div>
-          </div>
-
-          <div className="absolute bottom-6 right-6">
-            <div className="text-xs px-4 py-2 rounded-lg border" style={{ background: 'rgba(0,0,0,0.7)', borderColor: 'rgba(201,168,76,0.3)', color: 'rgba(255,255,255,0.5)' }}>
-              Interactive map available on request
-            </div>
-          </div>
-        </div>
-
-        {/* Neighbourhood chips */}
-        <div className="flex flex-wrap gap-3 mt-6 justify-center">
-          {['Mayfair', 'Belgravia', 'Knightsbridge', 'Chelsea', 'Kensington', 'Notting Hill', 'Marylebone', 'Westminster'].map(n => (
-            <span
-              key={n}
-              className="px-4 py-2 rounded-full text-sm font-medium border"
-              style={{ borderColor: 'var(--color-border)', color: 'var(--color-text)', background: 'var(--color-surface)' }}
-            >
-              {n}
-            </span>
           ))}
         </div>
       </div>
@@ -482,88 +313,220 @@ function MapSection() {
   )
 }
 
-// ─── Testimonials with photos ─────────────────────────────────────────────────
+// ─── SECTION 3: Featured properties — Staggered ─────────────────────────────
 
-function TestimonialsSection() {
-  const testimonials = [
+function FeaturedProperties() {
+  return (
+    <section className="py-24 md:py-32 px-6 md:px-16 lg:px-24" style={{ background: C.offWhite }}>
+      {/* Section header */}
+      <div className="max-w-6xl mx-auto mb-16 reveal-up">
+        <div className="flex items-center gap-3 mb-5">
+          <div style={{ width: 48, height: 1, background: C.gold }} />
+          <span className="text-[10px] uppercase tracking-[0.3em]" style={{ color: C.gold }}>
+            Portfolio
+          </span>
+        </div>
+        <h2
+          className="text-4xl md:text-5xl font-light"
+          style={{ color: C.charcoal, fontFamily: 'Georgia, "Times New Roman", serif' }}
+        >
+          Featured Properties
+        </h2>
+      </div>
+
+      {/* Staggered 2-col grid */}
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+        {featuredProperties.map((p, i) => (
+          <div
+            key={p.id}
+            className="reveal-up image-reveal group"
+            style={{
+              marginTop: i % 2 === 1 ? '60px' : '0',
+            }}
+          >
+            {/* Image container */}
+            <div
+              className="relative overflow-hidden"
+              style={{ aspectRatio: '4/3', borderRadius: '2px' }}
+            >
+              <img
+                src={p.image}
+                alt={p.title}
+                className="w-full h-full object-cover transition-transform duration-700"
+                style={{}}
+              />
+
+              {/* Hover overlay */}
+              <div
+                className="absolute inset-0 flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{
+                  background: 'linear-gradient(to top, rgba(26,26,26,0.9) 0%, rgba(26,26,26,0.3) 50%, transparent 100%)',
+                }}
+              >
+                <div className="flex items-center gap-6 text-xs uppercase tracking-[0.15em]" style={{ color: 'rgba(249,247,244,0.8)' }}>
+                  <span>{p.beds} Beds</span>
+                  <span style={{ color: C.gold }}>|</span>
+                  <span>{p.baths} Baths</span>
+                  <span style={{ color: C.gold }}>|</span>
+                  <span>{p.sqft} sq ft</span>
+                </div>
+              </div>
+
+              {/* Price overlay — bottom left */}
+              <div className="absolute bottom-0 left-0 px-5 py-3" style={{ background: 'rgba(26,26,26,0.85)' }}>
+                <span
+                  className="text-sm font-medium tracking-wide"
+                  style={{ color: C.gold }}
+                >
+                  {p.price}
+                </span>
+              </div>
+            </div>
+
+            {/* Caption */}
+            <div className="mt-4">
+              <h3
+                className="text-lg font-normal mb-1"
+                style={{ color: C.charcoal, fontFamily: 'Georgia, "Times New Roman", serif' }}
+              >
+                {p.title}
+              </h3>
+              <p className="text-xs uppercase tracking-[0.2em]" style={{ color: C.textMuted }}>
+                {p.area}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+// ─── SECTION 4: About / Split screen ─────────────────────────────────────────
+
+function AboutSplit() {
+  const values = [
     {
-      name: 'Sir Edward Pemberton',
-      title: 'Chairman, Pemberton Capital',
-      photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200',
-      quote: 'In 30 years of property investment across four continents, I have never encountered an agency that combines discretion, market intelligence, and execution at the level Mayfair & Partners does. Victoria is simply the best agent in Prime Central London.',
-      property: 'Sold: £22m Eaton Square Townhouse',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={C.gold} strokeWidth="1.5">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+        </svg>
+      ),
+      title: 'Off-Market Expertise',
+      desc: 'Over 60% of our transactions never reach a public portal. Our buyer network of 3,200+ qualified UHNWI ensures discreet, competitive outcomes.',
     },
     {
-      name: 'Nadia Al-Fayed',
-      title: 'Principal, Al-Fayed Family Office',
-      photo: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200',
-      quote: 'Sebastian structured the acquisition of our London portfolio — six properties across Mayfair and Knightsbridge — with flawless coordination. He understood our tax position, our timeline, and our privacy requirements without a single briefing note.',
-      property: 'Acquired: £47m Portfolio, 6 properties',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={C.gold} strokeWidth="1.5">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+        </svg>
+      ),
+      title: 'Global Reach',
+      desc: '70% of our clients are international. We speak Mandarin, Arabic, French, Italian and Russian in-house, bridging global capital with London property.',
     },
     {
-      name: 'Dr. Christoph Müller',
-      title: 'Partner, Müller & Braun LLP',
-      photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200',
-      quote: 'Relocating our family from Munich, Isabelle had us settled in our Knightsbridge apartment within a week of arrival. The furnished specification was exactly as described, and the handover was seamless. An extraordinary personal service.',
-      property: 'Let: £18,000/month Knightsbridge Apartment',
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={C.gold} strokeWidth="1.5">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        </svg>
+      ),
+      title: 'Absolute Discretion',
+      desc: 'NDA-protected transactions, confidential marketing programmes, and a client list that will never appear in a press release.',
     },
   ]
 
   return (
-    <section className="py-20 px-4" style={{ background: 'var(--color-secondary)' }}>
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-14">
-          <p className="text-xs uppercase tracking-widest mb-3" style={{ color: 'var(--color-accent)' }}>
-            Client Stories
-          </p>
-          <h2 className="text-4xl font-bold" style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-text)' }}>
-            Trusted by the World's Most Discerning Clients
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {testimonials.map((t) => (
+    <section className="split-screen" style={{ minHeight: '100vh' }}>
+      {/* Left — Sticky portrait */}
+      <div
+        className="relative overflow-hidden"
+        style={{ background: C.cream }}
+      >
+        <div className="sticky top-0 h-screen flex items-center justify-center p-12">
+          <div className="relative">
+            {/* Blob decoration */}
             <div
-              key={t.name}
-              className="rounded-2xl p-8 border flex flex-col"
-              style={{ borderColor: 'var(--color-border)', background: 'var(--color-bg)' }}
+              className="blob absolute -top-8 -left-8 w-72 h-72 opacity-30"
+              style={{ background: C.gold, zIndex: 0 }}
+            />
+            <img
+              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&h=800&fit=crop"
+              alt="Senior partner portrait"
+              className="relative w-full max-w-sm object-cover reveal-scale"
+              style={{ zIndex: 1, borderRadius: '2px', aspectRatio: '3/4' }}
+            />
+            {/* Caption card */}
+            <div
+              className="absolute -bottom-6 -right-6 px-6 py-4"
+              style={{
+                background: C.charcoalDeep,
+                zIndex: 2,
+                borderRadius: '2px',
+              }}
             >
-              {/* Gold quote mark */}
-              <div className="text-5xl leading-none mb-6 font-serif" style={{ color: 'var(--color-accent)' }}>&ldquo;</div>
-
-              <p className="flex-1 text-base leading-relaxed mb-8" style={{ color: 'var(--color-text-muted)' }}>
-                {t.quote}
+              <p className="text-xs uppercase tracking-[0.2em] mb-1" style={{ color: C.gold }}>
+                Since 1987
               </p>
-
-              <div className="border-t pt-6 flex items-center gap-4" style={{ borderColor: 'var(--color-border)' }}>
-                <img
-                  src={t.photo}
-                  alt={t.name}
-                  className="w-14 h-14 rounded-full object-cover ring-2"
-                  style={{ ringColor: 'var(--color-accent)' } as React.CSSProperties}
-                />
-                <div>
-                  <p className="font-bold text-sm" style={{ color: 'var(--color-text)' }}>{t.name}</p>
-                  <p className="text-xs mb-1" style={{ color: 'var(--color-text-muted)' }}>{t.title}</p>
-                  <p className="text-xs font-semibold" style={{ color: 'var(--color-accent)' }}>{t.property}</p>
-                </div>
-              </div>
+              <p className="text-sm font-light" style={{ color: C.offWhite }}>
+                40 Berkeley Square, Mayfair
+              </p>
             </div>
-          ))}
+          </div>
         </div>
+      </div>
 
-        {/* Trust bar */}
-        <div className="mt-12 rounded-2xl p-6 border" style={{ borderColor: 'var(--color-border)', background: 'var(--color-bg)' }}>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            {[
-              { value: '£4.2bn', label: 'Total Sales Volume' },
-              { value: '37 yrs', label: 'In Prime London' },
-              { value: '70%', label: 'International Clients' },
-              { value: '60%+', label: 'Off-Market Transactions' },
-            ].map(({ value, label }) => (
-              <div key={label}>
-                <p className="text-3xl font-bold" style={{ color: 'var(--color-accent)' }}>{value}</p>
-                <p className="text-sm mt-1" style={{ color: 'var(--color-text-muted)' }}>{label}</p>
+      {/* Right — Scrolling content */}
+      <div
+        className="flex flex-col justify-center py-24 px-8 md:px-16"
+        style={{ background: C.offWhite }}
+      >
+        <div className="max-w-lg">
+          <div className="flex items-center gap-3 mb-5 reveal-up">
+            <div style={{ width: 48, height: 1, background: C.gold }} />
+            <span className="text-[10px] uppercase tracking-[0.3em]" style={{ color: C.gold }}>
+              Our Story
+            </span>
+          </div>
+
+          <h2
+            className="text-3xl md:text-4xl font-light mb-8 reveal-up"
+            style={{ color: C.charcoal, fontFamily: 'Georgia, "Times New Roman", serif' }}
+          >
+            A heritage of trust in Prime Central London
+          </h2>
+
+          <p className="text-base leading-relaxed mb-12 reveal-up" style={{ color: C.textMuted }}>
+            Founded in 1987 from a single office on Berkeley Square, Mayfair &amp; Partners has
+            grown to become one of London&rsquo;s most respected independent estate agencies. We operate
+            exclusively in the prime and super-prime segment, handling transactions that demand
+            the highest levels of discretion, market intelligence, and personal commitment.
+          </p>
+
+          {/* Value props */}
+          <div className="space-y-10">
+            {values.map((v) => (
+              <div key={v.title} className="flex items-start gap-5 reveal-up">
+                <div
+                  className="flex-shrink-0 w-12 h-12 flex items-center justify-center"
+                  style={{
+                    border: `1px solid ${C.borderSubtle}`,
+                    borderRadius: '2px',
+                  }}
+                >
+                  {v.icon}
+                </div>
+                <div>
+                  <h4
+                    className="text-sm font-medium uppercase tracking-[0.1em] mb-2"
+                    style={{ color: C.charcoal }}
+                  >
+                    {v.title}
+                  </h4>
+                  <p className="text-sm leading-relaxed" style={{ color: C.textMuted }}>
+                    {v.desc}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
@@ -573,52 +536,193 @@ function TestimonialsSection() {
   )
 }
 
-// ─── Booking section ──────────────────────────────────────────────────────────
+// ─── SECTION 5: Services — Bento grid ────────────────────────────────────────
 
-function BookingSection() {
+function ServicesBento() {
   return (
-    <section id="booking" className="py-20 px-4">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-24 md:py-32 px-6 md:px-16 lg:px-24" style={{ background: C.charcoalDeep }}>
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="mb-14 reveal-up">
+          <div className="flex items-center gap-3 mb-5">
+            <div style={{ width: 48, height: 1, background: C.gold }} />
+            <span className="text-[10px] uppercase tracking-[0.3em]" style={{ color: C.gold }}>
+              Services
+            </span>
+          </div>
+          <h2
+            className="text-4xl md:text-5xl font-light"
+            style={{ color: C.offWhite, fontFamily: 'Georgia, "Times New Roman", serif' }}
+          >
+            What We Do
+          </h2>
+        </div>
+
+        {/* Bento grid */}
+        <div className="bento-grid stagger-children">
+          {services.map((s) => (
+            <div
+              key={s.title}
+              className="glass-card magnetic-card relative flex flex-col justify-end p-6 md:p-8 cursor-pointer group"
+              style={{
+                background: 'rgba(255,255,255,0.04)',
+                border: `1px solid rgba(184,150,62,0.12)`,
+                borderRadius: '4px',
+              }}
+            >
+              {/* Icon */}
+              <span
+                className="text-2xl md:text-3xl mb-4 block transition-transform duration-500 group-hover:translate-y-[-4px]"
+                style={{ color: C.gold }}
+              >
+                {s.icon}
+              </span>
+
+              <h3
+                className="text-lg md:text-xl font-light mb-2"
+                style={{ color: C.offWhite, fontFamily: 'Georgia, "Times New Roman", serif' }}
+              >
+                {s.title}
+              </h3>
+              <p className="text-xs md:text-sm leading-relaxed" style={{ color: 'rgba(249,247,244,0.5)' }}>
+                {s.desc}
+              </p>
+
+              {/* Subtle corner accent */}
+              <div
+                className="absolute top-0 right-0 w-16 h-16 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{
+                  background: `linear-gradient(225deg, rgba(184,150,62,0.15) 0%, transparent 70%)`,
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ─── SECTION 6: Testimonials — Large stacked quotes ──────────────────────────
+
+function TestimonialsStacked() {
+  return (
+    <section className="py-24 md:py-32 px-6 md:px-16 lg:px-24" style={{ background: C.offWhite }}>
+      <div className="max-w-4xl mx-auto">
+        {/* Header */}
+        <div className="mb-20 reveal-up">
+          <div className="flex items-center gap-3 mb-5">
+            <div style={{ width: 48, height: 1, background: C.gold }} />
+            <span className="text-[10px] uppercase tracking-[0.3em]" style={{ color: C.gold }}>
+              Client Voices
+            </span>
+          </div>
+          <h2
+            className="text-4xl md:text-5xl font-light"
+            style={{ color: C.charcoal, fontFamily: 'Georgia, "Times New Roman", serif' }}
+          >
+            Trusted by the World&rsquo;s Most Discerning
+          </h2>
+        </div>
+
+        {/* Stacked quotes */}
+        <div className="space-y-20">
+          {testimonials.map((t, i) => (
+            <div
+              key={t.name}
+              className="reveal-up"
+              style={{
+                borderLeft: `2px solid ${C.gold}`,
+                paddingLeft: '2rem',
+              }}
+            >
+              {/* Large quotation mark */}
+              <span
+                className="block text-7xl md:text-8xl leading-none font-serif mb-4"
+                style={{
+                  color: C.gold,
+                  fontFamily: 'Georgia, "Times New Roman", serif',
+                  opacity: 0.6,
+                }}
+              >
+                &ldquo;
+              </span>
+
+              {/* Quote text */}
+              <p
+                className="text-xl md:text-2xl font-light leading-relaxed mb-8"
+                style={{
+                  color: C.charcoal,
+                  fontFamily: 'Georgia, "Times New Roman", serif',
+                  fontStyle: 'italic',
+                }}
+              >
+                {t.quote}
+              </p>
+
+              {/* Attribution */}
+              <div>
+                <p
+                  className="text-sm font-medium uppercase tracking-[0.15em] mb-1"
+                  style={{ color: C.charcoal }}
+                >
+                  {t.name}
+                </p>
+                <p className="text-xs tracking-wide" style={{ color: C.gold }}>
+                  {t.detail}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ─── SECTION 7: Consultation booking ─────────────────────────────────────────
+
+function ConsultationBooking() {
+  return (
+    <section
+      id="booking"
+      className="relative py-24 md:py-32 px-6 md:px-16 lg:px-24 grain"
+      style={{ background: C.charcoalDeep }}
+    >
+      <div className="max-w-6xl mx-auto relative" style={{ zIndex: 2 }}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left copy */}
-          <div>
-            <p className="text-xs uppercase tracking-widest mb-4" style={{ color: 'var(--color-accent)' }}>
-              Private Consultation
-            </p>
-            <h2 className="text-4xl font-bold mb-6" style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-text)' }}>
-              Arrange a Confidential Briefing
-            </h2>
-            <p className="text-lg mb-8 leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
-              Whether you are acquiring a flagship residence, divesting a portfolio, or seeking a prime London rental, our directors are available for a private consultation at your convenience — in Berkeley Square or by secure video call.
-            </p>
-            <div className="space-y-4">
-              {[
-                { icon: '🏛', title: 'Off-Market Access', desc: '40+ properties never listed publicly' },
-                { icon: '🌍', title: 'Global Buyer Network', desc: 'Direct access to 3,200+ qualified HNWI' },
-                { icon: '🔒', title: 'Full Discretion', desc: 'NDA available on request for all parties' },
-              ].map(({ icon, title, desc }) => (
-                <div key={title} className="flex items-start gap-4">
-                  <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center text-lg flex-shrink-0"
-                    style={{ background: 'var(--color-secondary)' }}
-                  >
-                    {icon}
-                  </div>
-                  <div>
-                    <p className="font-semibold" style={{ color: 'var(--color-text)' }}>{title}</p>
-                    <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>{desc}</p>
-                  </div>
-                </div>
-              ))}
+          <div className="reveal-left">
+            <div className="flex items-center gap-3 mb-5">
+              <div style={{ width: 48, height: 1, background: C.gold }} />
+              <span className="text-[10px] uppercase tracking-[0.3em]" style={{ color: C.gold }}>
+                Private Consultation
+              </span>
             </div>
+
+            <h2
+              className="text-4xl md:text-5xl font-light mb-6"
+              style={{ color: C.offWhite, fontFamily: 'Georgia, "Times New Roman", serif' }}
+            >
+              Book a Private<br />Consultation
+            </h2>
+
+            <p className="text-base leading-relaxed mb-10" style={{ color: 'rgba(249,247,244,0.55)' }}>
+              Whether you are acquiring a flagship residence, divesting a portfolio, or seeking
+              a prime London rental, our directors are available for a private consultation at your
+              convenience — in Berkeley Square or by secure video call.
+            </p>
+
+            {/* Gold line separator */}
+            <div style={{ width: 80, height: 1, background: C.goldMuted }} />
           </div>
 
-          {/* Booking widget */}
-          <div>
+          {/* Right widget */}
+          <div className="reveal-right">
             <BookingWidget
               locale="en"
               showGuestCount={false}
-              accentColor="#c9a84c"
+              accentColor={C.gold}
               vertical="property-luxury"
               socialProof={{ count: 47, label: 'consultations booked this month' }}
             />
@@ -629,61 +733,50 @@ function BookingSection() {
   )
 }
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
+// ─── PAGE ────────────────────────────────────────────────────────────────────
 
 export default function PropertyLuxuryDemo() {
-  const theme = createCustomTheme('classic', {
-    primary: '#0d1f30',
-    primaryHover: '#1a3550',
-    secondary: '#f5f0e8',
-    accent: '#c9a84c',
-    background: '#ffffff',
-    surface: '#faf8f5',
-    text: '#0d1f30',
-    textMuted: '#6b7280',
-    border: '#e5ddd0',
-  })
-
   return (
-    <div style={themeToStyleObject(theme) as React.CSSProperties}>
-      {/* Hero */}
-      <Hero
-        title="Extraordinary Homes. Extraordinary Lives."
-        subtitle="Prime Central London's most prestigious properties — discreetly acquired and expertly placed since 1987"
-        backgroundImage="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1800"
-        ctaPrimary={{ label: 'View Prime Listings', href: '#listings' }}
-        ctaSecondary={{ label: 'Private Consultation', href: '#booking' }}
-        overlayOpacity={0.55}
-        height="full"
-      />
+    <div
+      style={{
+        '--color-primary': C.charcoal,
+        '--color-primaryHover': C.charcoalDeep,
+        '--color-secondary': C.cream,
+        '--color-accent': C.gold,
+        '--color-background': C.offWhite,
+        '--color-bg': C.offWhite,
+        '--color-surface': '#f5f2ec',
+        '--color-text': C.charcoal,
+        '--color-text-muted': C.textMuted,
+        '--color-border': '#e5ddd0',
+        '--font-heading': 'Georgia, "Times New Roman", serif',
+      } as React.CSSProperties}
+    >
+      {/* Scroll progress */}
+      <div className="scroll-progress" />
 
-      {/* Featured listings */}
-      <div id="listings">
-        <ListingSearch listings={listings} locale="en" whatsappNumber="442074938000" />
-      </div>
+      {/* 1. Hero — Cinematic */}
+      <HeroCinematic />
 
-      {/* Map */}
-      <MapSection />
+      {/* 2. Stats strip */}
+      <StatsStrip />
 
-      {/* Mortgage calculator */}
-      <MortgageCalculator />
+      {/* 3. Featured properties — Staggered */}
+      <FeaturedProperties />
 
-      {/* Team */}
-      <AgentCard agents={agents} whatsappNumber="442074938000" />
+      {/* 4. About — Split screen */}
+      <AboutSplit />
 
-      {/* Testimonials with photos */}
-      <TestimonialsSection />
+      {/* 5. Services — Bento grid */}
+      <ServicesBento />
 
-      {/* Booking */}
-      <BookingSection />
+      {/* 6. Testimonials — Large stacked quotes */}
+      <TestimonialsStacked />
 
-      {/* FAQ */}
-      <FAQAccordion items={faqs} locale="en" />
+      {/* 7. Consultation booking */}
+      <ConsultationBooking />
 
-      {/* Review carousel */}
-      <ReviewCarousel reviews={reviews} locale="en" />
-
-      {/* Footer */}
+      {/* 8. Footer */}
       <Footer config={siteConfig} locale="en" />
 
       {/* WhatsApp CTA */}
