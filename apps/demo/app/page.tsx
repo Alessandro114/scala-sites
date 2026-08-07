@@ -24,6 +24,15 @@ const verticals = [
   { name: 'StudioOS — Architecture', slug: '/studio-architecture', description: 'Architecture & interior design firm, Clerkenwell', color: '#b8a898', icon: '🏛' },
   { name: 'PraxisOS — Dental', slug: '/clinic-dental', description: 'Modern dental practice, conversion-focused, Chelsea', color: '#0077b6', icon: '🦷' },
   { name: 'AgencyOS', slug: '/agency', description: 'Performance marketing & brand strategy agency, Soho', color: '#6c63ff', icon: '📈' },
+  { name: 'CleanOS — Showcase', slug: '/clean', description: 'Pristine luxury home cleaning, Knightsbridge', color: '#1a5276', icon: '✨' },
+  { name: 'CleanOS — Commercial', slug: '/clean-commercial', description: 'SparkForce B2B contract cleaning, City of London', color: '#0d1b2a', icon: '🏢' },
+  { name: 'DermalyOS — Showcase', slug: '/dermaly', description: 'The Aesthetic Clinic, Harley Street — luxury dermatology', color: '#b76e79', icon: '💉' },
+  { name: 'DermalyOS — Conversion', slug: '/dermaly-skin', description: 'SkinFirst accessible skincare clinic, Shoreditch', color: '#5c4033', icon: '🌸' },
+  { name: 'AgencyOS — Creative', slug: '/agency-creative', description: 'Flux Creative brand & content agency, Fitzrovia', color: '#1a1a1a', icon: '✦' },
+  { name: 'LegalOS — IP', slug: '/law-ip', description: 'Grey & Hart intellectual property law firm, Holborn', color: '#1b3a4b', icon: '™' },
+  { name: 'WeddingOS — Barn', slug: '/wedding-barn', description: 'Oakwood Barn rustic wedding venue, Hampshire', color: '#5c4a3a', icon: '🌾' },
+  { name: 'PetOS — Exotic', slug: '/vet-exotic', description: 'Creature Comforts exotic & small animal specialists, Hampstead', color: '#2d6a4f', icon: '🦎' },
+  { name: 'EduOS — Music', slug: '/school-music', description: 'Resonance Music Academy, learn any instrument, Islington', color: '#2b2d42', icon: '🎸' },
 ]
 
 export const metadata = {
@@ -49,7 +58,7 @@ export default function Home() {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Beautiful websites for every business</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            23 industry-optimized templates that connect natively to your business system.
+            32 industry-optimized templates that connect natively to your business system.
             Booking, WhatsApp, reviews, real-time availability — all built in.
           </p>
           <div className="flex justify-center gap-3 mt-6 text-sm text-gray-500">
