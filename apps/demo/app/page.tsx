@@ -7,11 +7,17 @@ const verticals = [
   { name: 'GymOS', slug: '/gym', description: 'Gym, CrossFit, yoga studio', color: '#18181b', icon: '🏋' },
   { name: 'TravelOS', slug: '/hotel', description: 'Hotel, B&B, resort', color: '#0f172a', icon: '🏨' },
   { name: 'StudioOS', slug: '/studio', description: 'Creative studio, agency, photography', color: '#111111', icon: '🎨' },
+  { name: 'ClinicoOS', slug: '/clinic', description: 'Medical clinic, dental, physio', color: '#0d5c63', icon: '🏥' },
+  { name: 'LegalOS', slug: '/law', description: 'Law firm, solicitors', color: '#1a1a3e', icon: '⚖️' },
+  { name: 'AutoOS', slug: '/auto', description: 'Car dealership, garage', color: '#1c1c1c', icon: '🚗' },
+  { name: 'WeddingOS', slug: '/wedding', description: 'Wedding venue, planner', color: '#8b2252', icon: '💒' },
+  { name: 'PetOS', slug: '/vet', description: 'Veterinary, pet grooming', color: '#166534', icon: '🐾' },
+  { name: 'EduOS', slug: '/school', description: 'School, academy, courses', color: '#4c1d95', icon: '🎓' },
 ]
 
 export const metadata = {
   title: 'SCALA Sites — Open Source Vertical Websites',
-  description: 'Pre-built, industry-optimized websites that connect natively to SCALA AI OS. Free, open source, beautiful.',
+  description: 'Pre-built, industry-optimized websites that connect natively to SCALA AI OS. 12 verticals, free, open source.',
 }
 
 export default function Home() {
@@ -28,45 +34,36 @@ export default function Home() {
         </a>
       </header>
 
-      <main className="max-w-4xl mx-auto px-6 py-16">
+      <main className="max-w-5xl mx-auto px-6 py-16">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Beautiful websites for every business</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Pre-built, industry-optimized templates that connect natively to your business system.
-            Booking, WhatsApp, reviews, real-time availability — all built in. No integrations needed.
+            12 industry-optimized templates that connect natively to your business system.
+            Booking, WhatsApp, reviews, real-time availability — all built in.
           </p>
           <div className="flex justify-center gap-3 mt-6 text-sm text-gray-500">
-            <span className="px-3 py-1 bg-gray-100 rounded-full">Next.js</span>
+            <span className="px-3 py-1 bg-gray-100 rounded-full">Next.js 14</span>
+            <span className="px-3 py-1 bg-gray-100 rounded-full">TypeScript</span>
             <span className="px-3 py-1 bg-gray-100 rounded-full">Tailwind CSS</span>
             <span className="px-3 py-1 bg-gray-100 rounded-full">MIT License</span>
-            <span className="px-3 py-1 bg-gray-100 rounded-full">{'<'}2s LCP</span>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {verticals.map(v => (
             <Link key={v.slug} href={v.slug}
-              className="group block rounded-2xl border border-gray-200 p-8 hover:shadow-xl hover:border-gray-300 transition-all">
+              className="group block rounded-2xl border border-gray-200 p-6 hover:shadow-xl hover:border-gray-300 transition-all">
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-3xl">{v.icon}</span>
                 <div>
-                  <h3 className="text-xl font-bold group-hover:underline">{v.name}</h3>
+                  <h3 className="text-lg font-bold group-hover:underline">{v.name}</h3>
                   <p className="text-sm text-gray-500">{v.description}</p>
                 </div>
               </div>
-              <div className="h-2 rounded-full mt-4" style={{ background: v.color, opacity: 0.2 }} />
-              <p className="text-sm text-gray-400 mt-3">Click to view live demo →</p>
+              <div className="h-1.5 rounded-full mt-3" style={{ background: v.color, opacity: 0.2 }} />
+              <p className="text-xs text-gray-400 mt-2">View demo →</p>
             </Link>
           ))}
-        </div>
-
-        <div className="mt-16 text-center">
-          <h3 className="text-2xl font-bold mb-4">Coming Soon</h3>
-          <div className="flex flex-wrap justify-center gap-3 text-sm text-gray-500">
-            {['LegalOS (Law Firms)', 'ClinicoOS (Clinics)', 'AgencyOS (Marketing)', 'RetailOS (Shops)', 'EduOS (Schools)', 'AutoOS (Dealerships)'].map(v => (
-              <span key={v} className="px-4 py-2 border border-dashed border-gray-300 rounded-full">{v}</span>
-            ))}
-          </div>
         </div>
 
         <div className="mt-16 p-8 rounded-2xl bg-gray-50 text-center">

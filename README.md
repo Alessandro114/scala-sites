@@ -29,9 +29,12 @@ SCALA Sites solves this:
 | **GymOS** (Gym/CrossFit) | ClassSchedule, MembershipTiers, TrainerCard | `/gym` |
 | **TravelOS** (Hotel/Resort) | RoomShowcase, ExperienceGrid, AvailabilityChecker | `/hotel` |
 | **StudioOS** (Creative Agency) | PortfolioShowcase, ServicePackages, ProjectInquiry | `/studio` |
-| LegalOS (Law Firms) | Coming soon | — |
-| ClinicoOS (Clinics) | Coming soon | — |
-| RetailOS (Shops) | Coming soon | — |
+| **ClinicoOS** (Medical Clinic) | DoctorBooking, TreatmentMenu, InsuranceChecker | `/clinic` |
+| **LegalOS** (Law Firm) | LawyerDirectory, CaseEvaluator, PracticeAreas | `/law` |
+| **AutoOS** (Car Dealership) | VehicleInventory, TestDriveBooking, FinanceCalculator | `/auto` |
+| **WeddingOS** (Wedding Venue) | VenueShowcase, WeddingPlanner, VendorDirectory | `/wedding` |
+| **PetOS** (Veterinary) | VetBooking, ServicePackages, PetProfile | `/vet` |
+| **EduOS** (School/Academy) | CourseCatalog, EnrollmentForm, InstructorGrid | `/school` |
 
 ## Shared Components (Core)
 
@@ -92,6 +95,12 @@ scala-sites/
       gymos/        # Gym/fitness components
       travelos/     # Hotel/resort components
       studioos/     # Creative studio components
+      clinicoos/    # Medical clinic components
+      legalos/      # Law firm components
+      autoos/       # Car dealership components
+      weddingos/    # Wedding venue components
+      petos/        # Veterinary components
+      eduos/        # School/academy components
   apps/
     demo/           # Next.js demo with all verticals
 ```

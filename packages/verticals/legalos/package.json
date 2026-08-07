@@ -1,0 +1,18 @@
+{
+  "name": "@scala-sites/legalos",
+  "version": "0.1.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "license": "MIT",
+  "exports": {
+    ".": "./index.ts",
+    "./components/*": "./components/*/index.tsx",
+    "./components/lawyer-directory": "./components/lawyer-directory/index.tsx",
+    "./components/case-evaluator": "./components/case-evaluator/index.tsx",
+    "./components/practice-areas-grid": "./components/practice-areas-grid/index.tsx"
+  },
+  "peerDependencies": {
+    "next": ">=14",
+    "react": ">=18"
+  }
+}

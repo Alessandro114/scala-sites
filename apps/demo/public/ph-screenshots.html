@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>SCALA Sites — Product Hunt Screenshots</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif; background: #f8f9fa; }
+
+/* Screenshot 1: Hero overview */
+.screenshot { width: 1270px; margin: 40px auto; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+
+/* --- SCREENSHOT 1: Landing --- */
+.landing { background: #fff; padding: 80px 60px; }
+.landing h1 { font-size: 48px; font-weight: 800; text-align: center; margin-bottom: 16px; color: #111; }
+.landing .sub { font-size: 20px; color: #6b7280; text-align: center; margin-bottom: 48px; max-width: 700px; margin-left: auto; margin-right: auto; }
+.landing .badges { display: flex; justify-content: center; gap: 12px; margin-bottom: 48px; }
+.landing .badge { padding: 6px 16px; background: #f3f4f6; border-radius: 999px; font-size: 14px; color: #374151; font-weight: 500; }
+.grid6 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto; }
+.vcard { border: 1px solid #e5e7eb; border-radius: 16px; padding: 32px; transition: all 0.2s; }
+.vcard:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); border-color: #d1d5db; }
+.vcard .icon { font-size: 36px; margin-bottom: 8px; }
+.vcard h3 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+.vcard p { font-size: 14px; color: #6b7280; }
+.vcard .bar { height: 4px; border-radius: 4px; margin-top: 16px; opacity: 0.3; }
+
+/* --- SCREENSHOT 2: DineOS Demo --- */
+.dineos { background: #1a1a1a; color: #fff; }
+.dineos-hero { padding: 80px 60px; background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); text-align: center; }
+.dineos-hero h2 { font-size: 52px; font-weight: 800; margin-bottom: 12px; font-family: 'Playfair Display', Georgia, serif; }
+.dineos-hero p { font-size: 18px; color: #d4d4d4; max-width: 600px; margin: 0 auto 32px; }
+.dineos-hero .cta { display: inline-block; padding: 14px 32px; background: #c4a35a; color: #000; font-weight: 700; border-radius: 8px; text-decoration: none; font-size: 16px; margin-right: 12px; }
+.dineos-hero .cta-sec { display: inline-block; padding: 14px 32px; border: 1px solid #555; color: #fff; border-radius: 8px; text-decoration: none; font-size: 16px; }
+
+.dineos-menu { padding: 60px; background: #fff; color: #111; }
+.dineos-menu h3 { font-size: 28px; font-weight: 700; text-align: center; margin-bottom: 24px; }
+.menu-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 32px; }
+.menu-tab { padding: 8px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; cursor: pointer; border: 1px solid #e5e7eb; background: #fff; color: #374151; }
+.menu-tab.active { background: #111; color: #fff; border-color: #111; }
+.menu-items { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 800px; margin: 0 auto; }
+.menu-item { display: flex; justify-content: space-between; align-items: flex-start; padding: 16px; border-bottom: 1px solid #f3f4f6; }
+.menu-item .name { font-weight: 600; font-size: 16px; }
+.menu-item .desc { font-size: 13px; color: #6b7280; margin-top: 4px; max-width: 280px; }
+.menu-item .price { font-weight: 700; font-size: 16px; white-space: nowrap; }
+.menu-item .tag { display: inline-block; padding: 2px 8px; background: #ecfdf5; color: #059669; border-radius: 4px; font-size: 11px; font-weight: 600; margin-top: 4px; }
+.menu-item .tag.sold { background: #fef2f2; color: #dc2626; }
+
+.dineos-booking { padding: 60px; background: #fafafa; display: flex; gap: 40px; align-items: center; }
+.dineos-booking .left { flex: 1; }
+.dineos-booking .left h3 { font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+.dineos-booking .left p { font-size: 16px; color: #6b7280; }
+.booking-widget { flex: 1; background: #fff; border-radius: 16px; padding: 32px; box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
+.booking-widget .field { margin-bottom: 16px; }
+.booking-widget label { display: block; font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 6px; }
+.booking-widget input, .booking-widget select { width: 100%; padding: 10px 14px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px; }
+.booking-widget .slots { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.booking-widget .slot { padding: 8px 16px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 13px; cursor: pointer; }
+.booking-widget .slot.sel { background: #111; color: #fff; border-color: #111; }
+.booking-widget .slot .spots { font-size: 11px; color: #ef4444; display: block; }
+.booking-widget .book-btn { width: 100%; padding: 14px; background: #111; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 16px; }
+.booking-widget .social-proof { text-align: center; font-size: 13px; color: #6b7280; margin-top: 12px; }
+
+/* --- SCREENSHOT 3: Theme Comparison --- */
+.theme-compare { background: #fff; padding: 60px; }
+.theme-compare h3 { font-size: 32px; font-weight: 700; text-align: center; margin-bottom: 40px; }
+.theme-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+.theme-card { border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+.theme-card .preview { padding: 32px; min-height: 200px; }
+.theme-card .label { padding: 16px; background: #f9fafb; border-top: 1px solid #e5e7eb; }
+.theme-card .label h4 { font-size: 16px; font-weight: 700; }
+.theme-card .label p { font-size: 13px; color: #6b7280; }
+
+.minimal-preview { background: #ffffff; border: 1px solid #e5e7eb; font-family: Inter, sans-serif; }
+.minimal-preview h5 { font-size: 24px; font-weight: 300; color: #111; margin-bottom: 8px; }
+.minimal-preview p { font-size: 14px; color: #6b7280; }
+.minimal-preview .btn { display: inline-block; margin-top: 16px; padding: 10px 24px; border: 1px solid #111; color: #111; border-radius: 4px; font-size: 13px; }
+
+.bold-preview { background: #18181b; color: #fff; font-family: 'Bebas Neue', Impact, sans-serif; }
+.bold-preview h5 { font-size: 28px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.bold-preview p { font-size: 14px; color: #a1a1aa; font-family: Inter, sans-serif; }
+.bold-preview .btn { display: inline-block; margin-top: 16px; padding: 10px 24px; background: #ef4444; color: #fff; font-size: 13px; font-weight: 700; }
+
+.classic-preview { background: #fffbf0; font-family: 'Playfair Display', Georgia, serif; }
+.classic-preview h5 { font-size: 26px; font-weight: 700; color: #78350f; margin-bottom: 8px; }
+.classic-preview p { font-size: 14px; color: #92400e; font-family: Inter, sans-serif; }
+.classic-preview .btn { display: inline-block; margin-top: 16px; padding: 10px 24px; background: #c4a35a; color: #fff; border-radius: 8px; font-size: 13px; }
+
+/* --- SCREENSHOT 4: Multi-vertical --- */
+.multi-vert { padding: 60px; background: #fff; }
+.multi-vert h3 { font-size: 32px; font-weight: 700; text-align: center; margin-bottom: 8px; }
+.multi-vert .sub { font-size: 16px; color: #6b7280; text-align: center; margin-bottom: 40px; }
+.feature-table { max-width: 800px; margin: 0 auto; border-collapse: collapse; width: 100%; }
+.feature-table th { text-align: left; padding: 12px 16px; font-size: 14px; font-weight: 600; border-bottom: 2px solid #111; }
+.feature-table td { padding: 12px 16px; font-size: 14px; border-bottom: 1px solid #f3f4f6; }
+.feature-table .check { color: #059669; font-weight: 700; }
+.feature-table .x { color: #d1d5db; }
+.feature-table tr:hover { background: #f9fafb; }
+
+.sep { height: 40px; background: #f8f9fa; text-align: center; padding-top: 12px; color: #9ca3af; font-size: 12px; letter-spacing: 2px; }
+</style>
+</head>
+<body>
+
+<!-- SCREENSHOT 1: Landing Page -->
+<div class="sep">SCREENSHOT 1 — LANDING PAGE (1270 x auto)</div>
+<div class="screenshot landing">
+  <h1>SCALA Sites</h1>
+  <p class="sub">Beautiful, industry-optimized websites that connect natively to your business system. Open source, free forever.</p>
+  <div class="badges">
+    <span class="badge">Next.js 14</span>
+    <span class="badge">TypeScript</span>
+    <span class="badge">Tailwind CSS</span>
+    <span class="badge">MIT License</span>
+    <span class="badge">&lt;2s LCP</span>
+  </div>
+  <div class="grid6">
+    <div class="vcard"><span class="icon">🍽</span><h3>DineOS</h3><p>Restaurant, pizzeria, cafe</p><div class="bar" style="background:#78350f"></div></div>
+    <div class="vcard"><span class="icon">🏠</span><h3>PropertyOS</h3><p>Real estate agency</p><div class="bar" style="background:#1e3a5f"></div></div>
+    <div class="vcard"><span class="icon">💇</span><h3>BeautyOS</h3><p>Hair salon, spa, barber</p><div class="bar" style="background:#9f1239"></div></div>
+    <div class="vcard"><span class="icon">🏋</span><h3>GymOS</h3><p>Gym, CrossFit, yoga studio</p><div class="bar" style="background:#18181b"></div></div>
+    <div class="vcard"><span class="icon">🏨</span><h3>TravelOS</h3><p>Hotel, B&amp;B, resort</p><div class="bar" style="background:#0f172a"></div></div>
+    <div class="vcard"><span class="icon">🎨</span><h3>StudioOS</h3><p>Creative studio, agency</p><div class="bar" style="background:#111"></div></div>
+  </div>
+</div>
+
+<!-- SCREENSHOT 2: DineOS Demo -->
+<div class="sep">SCREENSHOT 2 — DINEOS DEMO (1270 x auto)</div>
+<div class="screenshot dineos">
+  <div class="dineos-hero">
+    <h2>The Garden Kitchen</h2>
+    <p>Fresh pasta made daily. Wood-fired pizza. Seasonal ingredients from local farms. In the heart of London since 1998.</p>
+    <a class="cta">Reserve a Table</a>
+    <a class="cta-sec">View Menu</a>
+  </div>
+
+  <div class="dineos-menu">
+    <h3>Our Menu</h3>
+    <div class="menu-tabs">
+      <span class="menu-tab active">Antipasti</span>
+      <span class="menu-tab">Primi Piatti</span>
+      <span class="menu-tab">Secondi</span>
+      <span class="menu-tab">Pizze</span>
+      <span class="menu-tab">Dolci</span>
+    </div>
+    <div class="menu-items">
+      <div class="menu-item"><div><div class="name">Bruschetta al Pomodoro</div><div class="desc">Grilled bread with fresh tomatoes, basil, EVOO</div><span class="tag">vegan</span></div><div class="price">£8</div></div>
+      <div class="menu-item"><div><div class="name">Burrata con Prosciutto</div><div class="desc">Creamy burrata with San Daniele prosciutto</div></div><div class="price">£14</div></div>
+      <div class="menu-item"><div><div class="name">Carpaccio di Manzo</div><div class="desc">Thinly sliced raw beef with rocket &amp; parmesan</div><span class="tag">gluten-free</span></div><div class="price">£16</div></div>
+      <div class="menu-item"><div><div class="name">Frittura di Calamari</div><div class="desc">Crispy fried squid with lemon aioli</div><span class="tag sold">86'd</span></div><div class="price">£12</div></div>
+    </div>
+  </div>
+
+  <div class="dineos-booking">
+    <div class="left">
+      <h3>Reserve Your Table</h3>
+      <p>Book directly — no commission, no redirect, no middleman. We confirm via WhatsApp within minutes.</p>
+    </div>
+    <div class="booking-widget">
+      <div class="field"><label>Date</label><input type="text" value="Today, Aug 6" readonly></div>
+      <div class="field"><label>Guests</label><select><option>2 guests</option></select></div>
+      <div class="field">
+        <label>Available times</label>
+        <div class="slots">
+          <span class="slot">12:00<span class="spots">4 spots</span></span>
+          <span class="slot sel">12:30<span class="spots" style="color:#fff">2 spots</span></span>
+          <span class="slot">19:00<span class="spots">5 spots</span></span>
+          <span class="slot">19:30<span class="spots">1 spot!</span></span>
+          <span class="slot">20:00<span class="spots">3 spots</span></span>
+        </div>
+      </div>
+      <button class="book-btn">Confirm Reservation</button>
+      <div class="social-proof">347 guests booked this month</div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREENSHOT 3: Theme Comparison -->
+<div class="sep">SCREENSHOT 3 — 3 THEMES (1270 x auto)</div>
+<div class="screenshot theme-compare">
+  <h3>3 Built-in Themes, Fully Customizable</h3>
+  <div class="theme-row">
+    <div class="theme-card">
+      <div class="preview minimal-preview">
+        <h5>Elegant Simplicity</h5>
+        <p>Clean lines, subtle borders, generous whitespace. Perfect for luxury brands and professionals.</p>
+        <span class="btn">Learn More</span>
+      </div>
+      <div class="label"><h4>Minimal</h4><p>Inter · White · Subtle borders</p></div>
+    </div>
+    <div class="theme-card">
+      <div class="preview bold-preview">
+        <h5>MAKE A STATEMENT</h5>
+        <p>Dark backgrounds, sharp edges, high contrast. Built for energy and impact.</p>
+        <span class="btn">JOIN NOW</span>
+      </div>
+      <div class="label"><h4>Bold</h4><p>Bebas Neue · Dark · Sharp edges</p></div>
+    </div>
+    <div class="theme-card">
+      <div class="preview classic-preview">
+        <h5>Timeless Warmth</h5>
+        <p>Warm amber tones, elegant serif headings, soft radius. For heritage and tradition.</p>
+        <span class="btn">Discover</span>
+      </div>
+      <div class="label"><h4>Classic</h4><p>Playfair Display · Warm · Soft radius</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREENSHOT 4: Feature comparison table -->
+<div class="sep">SCREENSHOT 4 — COMPARISON TABLE (1270 x auto)</div>
+<div class="screenshot multi-vert">
+  <h3>Every Feature a Business Website Needs</h3>
+  <p class="sub">SCALA Sites vs. regular templates — the difference is integration</p>
+  <table class="feature-table">
+    <thead>
+      <tr><th>Feature</th><th>Regular Templates</th><th>SCALA Sites</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Online booking</td><td class="x">Redirects to OpenTable / Fresha</td><td class="check">✓ Native widget, stays on your site</td></tr>
+      <tr><td>Real-time availability</td><td class="x">Static text</td><td class="check">✓ Live spots count ("3 left!")</td></tr>
+      <tr><td>WhatsApp integration</td><td class="x">None</td><td class="check">✓ Floating CTA + confirmation</td></tr>
+      <tr><td>Pricing transparency</td><td class="x">Often hidden / "Call us"</td><td class="check">✓ Always visible with filters</td></tr>
+      <tr><td>Social proof in flow</td><td class="x">Badge in footer</td><td class="check">✓ Inside the booking widget</td></tr>
+      <tr><td>Multilingual</td><td class="x">Manual translation</td><td class="check">✓ 5 languages built-in</td></tr>
+      <tr><td>Menu / Catalog</td><td class="x">Static PDF download</td><td class="check">✓ Interactive with dietary filters</td></tr>
+      <tr><td>Staff booking</td><td class="x">"Call us"</td><td class="check">✓ Pick-your-professional widget</td></tr>
+      <tr><td>Loyalty / Retention</td><td class="x">None</td><td class="check">✓ Phone capture for WhatsApp loyalty</td></tr>
+      <tr><td>SEO schema</td><td class="x">Basic meta tags</td><td class="check">✓ JSON-LD for LocalBusiness + FAQ</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="sep" style="padding-bottom: 40px;">
+  Open this page in browser at 1280px width → take 4 screenshots (one per section).<br>
+  Crop each at the "SCREENSHOT N" separator line.
+</div>
+
+</body>
+</html>
