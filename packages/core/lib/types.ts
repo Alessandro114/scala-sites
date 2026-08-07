@@ -45,8 +45,26 @@ export type VerticalType =
   | 'petos' | 'eduos' | 'cleanos' | 'dermalyos'
   | 'praxisos' | 'shopos' | 'coworkos' | 'plumberos'
   | 'photoos' | 'pizzeriaos' | 'nurseryos' | 'accountos'
+  | 'bakeryos' | 'cafeos' | 'gelateriaos' | 'winebaros' | 'breweryos' | 'sushios' | 'cateringos'
+  | 'physioos' | 'psychos' | 'nutritos' | 'chiroos' | 'pharmacyos' | 'opticos' | 'yogaos'
+  | 'electricos' | 'landscapeos' | 'painteros' | 'pestcos' | 'poolos' | 'roofos' | 'movingos'
+  | 'carwashos' | 'carrentos' | 'bikeos' | 'drivingos' | 'barberos' | 'tattooos' | 'tailoros'
+  | 'jeweleros' | 'floristos' | 'laundryos' | 'danceos' | 'tutoros' | 'surfos'
+  | 'eventos' | 'djos' | 'escapeos' | 'bowlingos' | 'cinemaos'
+  | 'bnbos' | 'campingos' | 'marinaos' | 'travelaos' | 'touros'
+  | 'insureos' | 'notaryos' | 'itos' | 'consultos' | 'recruitos' | 'printos'
+  | 'interioros' | 'finadvos' | 'petshopos' | 'bookstoreos' | 'farmos' | 'butcheros'
+  | 'vineyardos' | 'nonprofitos' | 'churchos' | 'galleryos'
+  | 'bookos' | 'bowlos' | 'campositions' | 'driveos' | 'financeos' | 'jewelelos'
+  | 'mindos' | 'moveos' | 'nutritiosos' | 'recruitmentos' | 'rentos' | 'tradeos' | 'wellnessos'
+  | (string & {})
 
 export type ThemeType = 'minimal' | 'bold' | 'classic' | 'dark' | 'industrial' | 'warm' | 'playful'
+  | 'zen' | 'luxury' | 'rustic' | 'neon' | 'organic' | 'retro' | 'editorial'
+  | 'modern' | 'cozy' | 'clinical' | 'calm' | 'fresh' | 'precision' | 'community'
+  | 'elegant' | 'literary' | 'summer' | 'nautical' | 'outdoor' | 'impact' | 'light'
+  | 'authority' | 'academic' | 'professional' | 'coastal' | 'clean'
+  | (string & {})
 
 // Booking
 export interface BookingSlot {

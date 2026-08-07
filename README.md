@@ -1,160 +1,297 @@
-# SCALA Sites
+<div align="center">
 
-**Open source vertical website templates powered by SCALA AI OS.**
+[![GitHub Stars](https://img.shields.io/github/stars/Alessandro114/scala-sites?style=flat-square&logo=github&label=Stars)](https://github.com/Alessandro114/scala-sites/stargazers)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
+[![Templates](https://img.shields.io/badge/Templates-100-brightgreen?style=flat-square)](https://scala-sites.vercel.app)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Alessandro114/scala-sites)
+[![Analyze your site](https://img.shields.io/badge/Analyze%20your%20site-analyze.get--scala.com-orange?style=flat-square)](https://analyze.get-scala.com)
 
-**[Live Demo](https://scala-sites.vercel.app)** | [Get SCALA](https://get-scala.com) | [Contributing](CONTRIBUTING.md)
+# 🚀 100 Industry Website Templates. Zero Cost.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FAlessandro114%2Fscala-sites&project-name=scala-sites&repository-name=scala-sites)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/Alessandro114/scala-sites?style=social)](https://github.com/Alessandro114/scala-sites)
+**Your website costs €6,660/year.**
+**We built 100 free alternatives. For every industry.**
 
-Pre-built, industry-optimized websites for restaurants, real estate agencies, salons, gyms, hotels, creative studios, and more. Each template connects natively to [SCALA](https://get-scala.com) for live booking, WhatsApp, CRM, and AI-powered features — or works standalone with mock data.
+[**→ Browse all 100 live demos**](https://scala-sites.vercel.app)
 
-## Why SCALA Sites?
+</div>
 
-The gap in every vertical is not design — beautiful templates already exist. The gap is that **the website doesn't talk to the business system.** Every template on the market redirects to third-party booking, hides pricing, has no WhatsApp, no real-time availability, and no post-conversion flow.
+---
 
-SCALA Sites solves this:
+## Deploy in 30 seconds
 
-| Feature | Regular Templates | SCALA Sites |
-|---|---|---|
-| Booking | Redirects to OpenTable/Fresha | Native widget, stays on your site |
-| Availability | Static | Real-time ("3 spots left") |
-| WhatsApp | None | SARA-connected confirmations |
-| Pricing | Often hidden | Always transparent |
-| Social proof | Badge in footer | Inside the booking flow |
-| Multilingual | Manual | 5 languages built-in |
-
-## Verticals
-
-| Vertical | Components | Demo |
-|---|---|---|
-| **DineOS** (Restaurant) | MenuSection, StorySection, UpsellBanner | [Demo](https://scala-sites.vercel.app/restaurant) |
-| **PropertyOS** (Real Estate) | ListingSearch, AgentCard, ValuationWidget | [Demo](https://scala-sites.vercel.app/property) |
-| **BeautyOS** (Salon/Spa) | StylistBooking, BeforeAfter, ServiceMenu | [Demo](https://scala-sites.vercel.app/beauty) |
-| **GymOS** (Gym/CrossFit) | ClassSchedule, MembershipTiers, TrainerCard | [Demo](https://scala-sites.vercel.app/gym) |
-| **TravelOS** (Hotel/Resort) | RoomShowcase, ExperienceGrid, AvailabilityChecker | [Demo](https://scala-sites.vercel.app/hotel) |
-| **StudioOS** (Creative Agency) | PortfolioShowcase, ServicePackages, ProjectInquiry | [Demo](https://scala-sites.vercel.app/studio) |
-| **ClinicoOS** (Medical Clinic) | DoctorBooking, TreatmentMenu, InsuranceChecker | [Demo](https://scala-sites.vercel.app/clinic) |
-| **LegalOS** (Law Firm) | LawyerDirectory, CaseEvaluator, PracticeAreas | [Demo](https://scala-sites.vercel.app/law) |
-| **AutoOS** (Car Dealership) | VehicleInventory, TestDriveBooking, FinanceCalculator | [Demo](https://scala-sites.vercel.app/auto) |
-| **WeddingOS** (Wedding Venue) | VenueShowcase, WeddingPlanner, VendorDirectory | [Demo](https://scala-sites.vercel.app/wedding) |
-| **PetOS** (Veterinary) | VetBooking, ServicePackages, PetProfile | [Demo](https://scala-sites.vercel.app/vet) |
-| **EduOS** (School/Academy) | CourseCatalog, EnrollmentForm, InstructorGrid | [Demo](https://scala-sites.vercel.app/school) |
-
-## Shared Components (Core)
-
-Every vertical gets these out of the box:
-
-- **Hero** — Full-width with image/video, overlay, dual CTAs
-- **BookingWidget** — Multi-step, real-time slots, urgency badges, social proof
-- **ReviewCarousel** — Auto-advancing, aggregate rating, verified badges
-- **WhatsAppCTA** — Floating button with pulse animation
-- **TeamGrid** — Staff profiles with individual booking
-- **Gallery** — Filterable masonry with keyboard-accessible lightbox
-- **FAQAccordion** — Schema markup for SEO
-- **LoyaltyPrompt** — Phone capture for WhatsApp loyalty
-- **Footer** — Contact, map, social, "Powered by SCALA"
-
-## Themes
-
-Three built-in themes, each fully customizable via CSS variables:
-
-- **Minimal** — Clean white, Inter font, subtle borders (luxury, professional)
-- **Bold** — Dark background, Bebas Neue headings, sharp edges (gyms, bars)
-- **Classic** — Warm tones, Playfair Display serif, soft radius (traditional, heritage)
-
-Use `createCustomTheme()` to override any color in a base theme:
-
-```typescript
-import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
-
-const myTheme = createCustomTheme('classic', {
-  primary: '#1e3a5f',
-  accent: '#c9a84c',
-  background: '#ffffff',
-})
-```
-
-## Quick Start
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Alessandro114/scala-sites)
 
 ```bash
-git clone https://github.com/Alessandro114/scala-sites.git
+git clone https://github.com/Alessandro114/scala-sites
 cd scala-sites
 npm install
 npm run dev
 ```
 
-Open `http://localhost:3099` to see all demos.
-
-## Project Structure
-
-```
-scala-sites/
-  packages/
-    core/           # Shared components, API client, i18n, SEO, analytics
-    themes/         # 3 theme presets (minimal, bold, classic) + createCustomTheme
-    verticals/
-      dineos/       # Restaurant components
-      propertyos/   # Real estate components
-      beautyos/     # Salon/spa components
-      gymos/        # Gym/fitness components
-      travelos/     # Hotel/resort components
-      studioos/     # Creative studio components
-      clinicoos/    # Medical clinic components
-      legalos/      # Law firm components
-      autoos/       # Car dealership components
-      weddingos/    # Wedding venue components
-      petos/        # Veterinary components
-      eduos/        # School/academy components
-  apps/
-    demo/           # Next.js demo with all verticals
-```
-
-## Tech Stack
-
-- **Next.js 14** (App Router, SSG + ISR)
-- **Tailwind CSS** with CSS variable theming
-- **TypeScript** throughout
-- **Zero dependencies** beyond React and Next.js
-
-## Using with SCALA
-
-These templates work standalone with mock data. To connect to SCALA:
-
-```typescript
-import { createScalaAPI } from '@scala-sites/core/lib/scala-api'
-
-const api = createScalaAPI({
-  baseUrl: 'https://api.get-scala.com',
-  apiKey: 'your-api-key',
-  tenantId: 'your-tenant-id',
-})
-
-// Real-time booking slots
-const slots = await api.getAvailableSlots('2026-08-10')
-
-// Live menu with 86'd items
-const menu = await api.getMenu()
-
-// Reviews from all sources
-const reviews = await api.getReviews()
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/my-vertical`)
-3. Build components following the existing patterns in `packages/core/`
-4. Add a demo page in `apps/demo/app/`
-5. Submit a pull request
-
-New verticals are welcome! Check the [issues](https://github.com/Alessandro114/scala-sites/issues) for requested verticals.
-
-## License
-
-MIT — use freely for any project. The SCALA API is a separate proprietary service.
+Pick your vertical. Ship it. Done.
 
 ---
 
-Built with care by [SCALA AI OS](https://get-scala.com) — the agentic AI operating system for every business vertical.
+## The Problem
+
+The average SMB pays **€6,660/year** for:
+
+- Website builder + hosting
+- CRM
+- Booking system
+- Live chat
+- Email marketing
+- SEO tools
+- Review management
+
+Most of it is unnecessary in 2026. We built the whole thing into 100 free templates.
+
+---
+
+## The Solution — 100 Verticals, All Free
+
+Every template ships with booking, WhatsApp, reviews, FAQ with JSON-LD, and SEO out of the box. Not as plugins. Not as paid add-ons. Built in.
+
+### Food & Drink
+| Template | Demo |
+|---|---|
+| Bakery | [bakery](https://scala-sites.vercel.app/bakery) |
+| Café | [café](https://scala-sites.vercel.app/cafe) |
+| Gelateria | [gelateria](https://scala-sites.vercel.app/gelateria) |
+| Wine Bar | [wine-bar](https://scala-sites.vercel.app/wine-bar) |
+| Brewery | [brewery](https://scala-sites.vercel.app/brewery) |
+| Sushi | [sushi](https://scala-sites.vercel.app/sushi) |
+| Catering | [catering](https://scala-sites.vercel.app/catering) |
+| Pizzeria | [pizzeria](https://scala-sites.vercel.app/pizzeria) |
+| Restaurant | [restaurant](https://scala-sites.vercel.app/restaurant) |
+| Restaurant Modern | [restaurant-modern](https://scala-sites.vercel.app/restaurant-modern) |
+
+### Health & Wellness
+| Template | Demo |
+|---|---|
+| Physiotherapy | [physiotherapy](https://scala-sites.vercel.app/physiotherapy) |
+| Psychologist | [psychologist](https://scala-sites.vercel.app/psychologist) |
+| Nutritionist | [nutritionist](https://scala-sites.vercel.app/nutritionist) |
+| Chiropractor | [chiropractor](https://scala-sites.vercel.app/chiropractor) |
+| Pharmacy | [pharmacy](https://scala-sites.vercel.app/pharmacy) |
+| Optician | [optician](https://scala-sites.vercel.app/optician) |
+| Yoga | [yoga](https://scala-sites.vercel.app/yoga) |
+| Clinic | [clinic](https://scala-sites.vercel.app/clinic) |
+| Dental Clinic | [clinic-dental](https://scala-sites.vercel.app/clinic-dental) |
+| Dermatology | [dermaly](https://scala-sites.vercel.app/dermaly) |
+| Skin Clinic | [dermaly-skin](https://scala-sites.vercel.app/dermaly-skin) |
+| Beauty | [beauty](https://scala-sites.vercel.app/beauty) |
+| Beauty Spa | [beauty-spa](https://scala-sites.vercel.app/beauty-spa) |
+
+### Home Services
+| Template | Demo |
+|---|---|
+| Electrician | [electrician](https://scala-sites.vercel.app/electrician) |
+| Landscaping | [landscaping](https://scala-sites.vercel.app/landscaping) |
+| Painter | [painter](https://scala-sites.vercel.app/painter) |
+| Pest Control | [pest-control](https://scala-sites.vercel.app/pest-control) |
+| Pool Service | [pool-service](https://scala-sites.vercel.app/pool-service) |
+| Roofing | [roofing](https://scala-sites.vercel.app/roofing) |
+| Plumber | [plumber](https://scala-sites.vercel.app/plumber) |
+| Cleaning | [clean](https://scala-sites.vercel.app/clean) |
+| Commercial Cleaning | [clean-commercial](https://scala-sites.vercel.app/clean-commercial) |
+| Moving | [moving](https://scala-sites.vercel.app/moving) |
+| Laundry | [laundry](https://scala-sites.vercel.app/laundry) |
+
+### Automotive
+| Template | Demo |
+|---|---|
+| Auto Repair | [auto](https://scala-sites.vercel.app/auto) |
+| Dealership | [dealership](https://scala-sites.vercel.app/dealership) |
+| Car Wash | [car-wash](https://scala-sites.vercel.app/car-wash) |
+| Car Rental | [car-rental](https://scala-sites.vercel.app/car-rental) |
+| Bike Shop | [bike-shop](https://scala-sites.vercel.app/bike-shop) |
+| Driving School | [driving-school](https://scala-sites.vercel.app/driving-school) |
+
+### Personal Services
+| Template | Demo |
+|---|---|
+| Barber | [barber](https://scala-sites.vercel.app/barber) |
+| Tattoo | [tattoo](https://scala-sites.vercel.app/tattoo) |
+| Tailor | [tailor](https://scala-sites.vercel.app/tailor) |
+| Jeweler | [jeweler](https://scala-sites.vercel.app/jeweler) |
+| Florist | [florist](https://scala-sites.vercel.app/florist) |
+| Photographer | [photographer](https://scala-sites.vercel.app/photographer) |
+
+### Education
+| Template | Demo |
+|---|---|
+| School | [school](https://scala-sites.vercel.app/school) |
+| Music School | [school-music](https://scala-sites.vercel.app/school-music) |
+| Dance School | [dance-school](https://scala-sites.vercel.app/dance-school) |
+| Tutoring | [tutoring](https://scala-sites.vercel.app/tutoring) |
+| Surf School | [surf-school](https://scala-sites.vercel.app/surf-school) |
+| Daycare | [daycare](https://scala-sites.vercel.app/daycare) |
+
+### Entertainment
+| Template | Demo |
+|---|---|
+| Escape Room | [escape-room](https://scala-sites.vercel.app/escape-room) |
+| Bowling | [bowling](https://scala-sites.vercel.app/bowling) |
+| Cinema | [cinema](https://scala-sites.vercel.app/cinema) |
+| DJ | [dj](https://scala-sites.vercel.app/dj) |
+| Event Planner | [event-planner](https://scala-sites.vercel.app/event-planner) |
+
+### Travel & Hospitality
+| Template | Demo |
+|---|---|
+| Hotel | [hotel](https://scala-sites.vercel.app/hotel) |
+| Boutique Hotel | [hotel-boutique](https://scala-sites.vercel.app/hotel-boutique) |
+| B&B | [bnb](https://scala-sites.vercel.app/bnb) |
+| Camping | [camping](https://scala-sites.vercel.app/camping) |
+| Marina | [marina](https://scala-sites.vercel.app/marina) |
+| Travel Agency | [travel-agency](https://scala-sites.vercel.app/travel-agency) |
+| Tour Guide | [tour-guide](https://scala-sites.vercel.app/tour-guide) |
+| Wedding | [wedding](https://scala-sites.vercel.app/wedding) |
+| Wedding Barn | [wedding-barn](https://scala-sites.vercel.app/wedding-barn) |
+
+### Professional Services
+| Template | Demo |
+|---|---|
+| Law Firm | [law](https://scala-sites.vercel.app/law) |
+| IP Law | [law-ip](https://scala-sites.vercel.app/law-ip) |
+| Accountant | [accountant](https://scala-sites.vercel.app/accountant) |
+| Startup Accountant | [accountant-startup](https://scala-sites.vercel.app/accountant-startup) |
+| Insurance | [insurance](https://scala-sites.vercel.app/insurance) |
+| Notary | [notary](https://scala-sites.vercel.app/notary) |
+| IT Services | [it-services](https://scala-sites.vercel.app/it-services) |
+| Consulting | [consulting](https://scala-sites.vercel.app/consulting) |
+| Recruitment | [recruitment](https://scala-sites.vercel.app/recruitment) |
+| Printing | [printing](https://scala-sites.vercel.app/printing) |
+| Interior Designer | [interior-designer](https://scala-sites.vercel.app/interior-designer) |
+| Financial Advisor | [financial-advisor](https://scala-sites.vercel.app/financial-advisor) |
+| Agency | [agency](https://scala-sites.vercel.app/agency) |
+| Creative Agency | [agency-creative](https://scala-sites.vercel.app/agency-creative) |
+
+### Retail
+| Template | Demo |
+|---|---|
+| Shop | [shop](https://scala-sites.vercel.app/shop) |
+| Local Shop | [shop-local](https://scala-sites.vercel.app/shop-local) |
+| Pet Shop | [pet-shop](https://scala-sites.vercel.app/pet-shop) |
+| Bookstore | [bookstore](https://scala-sites.vercel.app/bookstore) |
+| Farm Shop | [farm-shop](https://scala-sites.vercel.app/farm-shop) |
+| Butcher | [butcher](https://scala-sites.vercel.app/butcher) |
+| Vineyard | [vineyard](https://scala-sites.vercel.app/vineyard) |
+
+### Property
+| Template | Demo |
+|---|---|
+| Property | [property](https://scala-sites.vercel.app/property) |
+| Luxury Property | [property-luxury](https://scala-sites.vercel.app/property-luxury) |
+| Coworking | [coworking](https://scala-sites.vercel.app/coworking) |
+
+### Community
+| Template | Demo |
+|---|---|
+| Nonprofit | [nonprofit](https://scala-sites.vercel.app/nonprofit) |
+| Church | [church](https://scala-sites.vercel.app/church) |
+| Art Gallery | [art-gallery](https://scala-sites.vercel.app/art-gallery) |
+
+### Creative
+| Template | Demo |
+|---|---|
+| Studio | [studio](https://scala-sites.vercel.app/studio) |
+| Architecture Studio | [studio-architecture](https://scala-sites.vercel.app/studio-architecture) |
+
+---
+
+## What You Get for Free
+
+- ✅ 100 unique templates (not 100 copies of the same layout)
+- ✅ Unique hero design per template — parallax, video, typewriter, split, glassmorphism, and more
+- ✅ Built-in booking widget
+- ✅ WhatsApp integration
+- ✅ Review carousel
+- ✅ FAQ accordion with JSON-LD structured data
+- ✅ SEO optimized — JSON-LD on every page, out of the box
+- ✅ Mobile responsive
+- ✅ Lighthouse 90+ scores
+- ✅ CSS variable theming — change 9 values, get a new brand
+- ✅ Zero dependencies beyond React/Next.js
+- ✅ Works standalone OR connects to any API
+
+---
+
+## Analyze Your Current Site
+
+**→ [analyze.get-scala.com](https://analyze.get-scala.com)**
+
+Enter any URL. Get Lighthouse scores, tech stack detection, and see exactly how much your current site costs per year. Free, instant, no signup.
+
+---
+
+## The Real Cost of Your Website
+
+| What you need | Traditional cost | With scala-sites |
+|---|---|---|
+| Website design | €2,000–8,000 | **€0** (MIT template) |
+| Hosting | €120–600/yr | **€0** (Vercel free tier) |
+| SSL | €50–300/yr | **€0** (automatic) |
+| CRM | €180–1,200/yr | **€0** (built-in) |
+| Booking | €120–360/yr | **€0** (built-in) |
+| Live chat | €228–1,800/yr | **€0** (WhatsApp) |
+| SEO tools | €120–2,400/yr | **€0** (JSON-LD built-in) |
+| **Total** | **€4,000–22,000/yr** | **€0** |
+
+---
+
+## Tech Stack
+
+- **Next.js 14** — App Router, SSG, ISR
+- **TypeScript** — strict mode throughout
+- **Tailwind CSS** — utility-first, no fighting the cascade
+- **CSS variable theming** — rebrand in 9 lines
+- **Zero external dependencies** — no Stripe, no Calendly, no widget hell
+
+---
+
+## Quick Start
+
+```bash
+git clone https://github.com/Alessandro114/scala-sites
+cd scala-sites
+npm install
+npm run dev
+```
+
+Open `http://localhost:3099`. Pick a vertical. Customize. Ship.
+
+---
+
+## Want AI superpowers?
+
+These templates work perfectly standalone. But if you want AI-powered booking, WhatsApp automation, CRM, and analytics — check out **[SCALA AI OS](https://get-scala.com)**. From €97/mo.
+
+---
+
+## Contributing
+
+PRs for new verticals are welcome.
+
+Each vertical needs:
+- Unique hero design (not a copy of an existing one)
+- 5+ sections
+- JSON-LD structured data
+- `layout.tsx` with full metadata
+
+Check [open issues](https://github.com/Alessandro114/scala-sites/issues) for requested verticals.
+
+---
+
+## License
+
+MIT — do whatever you want with it. No attribution required. No strings attached.
+
+---
+
+<div align="center">
+
+Built with ❤️ by [SCALA](https://get-scala.com) — the AI Operating System for every business.
+
+</div>

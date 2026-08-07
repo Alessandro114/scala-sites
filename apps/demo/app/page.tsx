@@ -12,6 +12,11 @@ type Category =
   | 'Professional Services'
   | 'Education'
   | 'Automotive'
+  | 'Entertainment'
+  | 'Home Services'
+  | 'Travel'
+  | 'Retail'
+  | 'Community'
 
 interface Vertical {
   name: string
@@ -24,7 +29,7 @@ interface Vertical {
 }
 
 const verticals: Vertical[] = [
-  // Food & Drink
+  // ── Food & Drink ──────────────────────────────────────────────────────────
   {
     name: 'DineOS',
     slug: '/restaurant',
@@ -52,7 +57,97 @@ const verticals: Vertical[] = [
     category: 'Food & Drink',
     icon: '🍕',
   },
-  // Property
+  {
+    name: 'CaféOS',
+    slug: '/cafe',
+    tagline: 'Specialty coffee & brunch café',
+    color: '#3b2005',
+    colorEnd: '#92400e',
+    category: 'Food & Drink',
+    icon: '☕',
+  },
+  {
+    name: 'BakeryOS',
+    slug: '/bakery',
+    tagline: 'Artisan bakery, sourdough & patisserie',
+    color: '#7c2d12',
+    colorEnd: '#c2410c',
+    category: 'Food & Drink',
+    icon: '🍞',
+  },
+  {
+    name: 'GelateriaOS',
+    slug: '/gelateria',
+    tagline: 'Artisan gelato & dessert parlour',
+    color: '#701a75',
+    colorEnd: '#db2777',
+    category: 'Food & Drink',
+    icon: '🍦',
+  },
+  {
+    name: 'SushiOS',
+    slug: '/sushi',
+    tagline: 'Modern Japanese sushi restaurant',
+    color: '#0f172a',
+    colorEnd: '#dc2626',
+    category: 'Food & Drink',
+    icon: '🍱',
+  },
+  {
+    name: 'BreweryOS',
+    slug: '/brewery',
+    tagline: 'Craft brewery & taproom experience',
+    color: '#1c1202',
+    colorEnd: '#d97706',
+    category: 'Food & Drink',
+    icon: '🍺',
+  },
+  {
+    name: 'WineBarOS',
+    slug: '/winebar',
+    tagline: 'Natural wine bar & small plates',
+    color: '#4c0519',
+    colorEnd: '#9f1239',
+    category: 'Food & Drink',
+    icon: '🍷',
+  },
+  {
+    name: 'FarmOS',
+    slug: '/farm-shop',
+    tagline: 'Organic farm shop & weekly veg boxes',
+    color: '#4a6218',
+    colorEnd: '#8b6914',
+    category: 'Food & Drink',
+    icon: '🌿',
+  },
+  {
+    name: 'ButcherOS',
+    slug: '/butcher',
+    tagline: 'Traditional family butchers since 1954',
+    color: '#3c1f0a',
+    colorEnd: '#8b0000',
+    category: 'Food & Drink',
+    icon: '🥩',
+  },
+  {
+    name: 'VineyardOS',
+    slug: '/vineyard',
+    tagline: 'Estate winery, tours & tastings',
+    color: '#4a1942',
+    colorEnd: '#c9a84c',
+    category: 'Food & Drink',
+    icon: '🍇',
+  },
+  {
+    name: 'CateringOS',
+    slug: '/catering',
+    tagline: 'Event catering & private dining',
+    color: '#14532d',
+    colorEnd: '#059669',
+    category: 'Food & Drink',
+    icon: '🍴',
+  },
+  // ── Property ──────────────────────────────────────────────────────────────
   {
     name: 'PropertyOS',
     slug: '/property',
@@ -90,6 +185,15 @@ const verticals: Vertical[] = [
     icon: '🌿',
   },
   {
+    name: 'BnBOS',
+    slug: '/bnb',
+    tagline: 'Bed & breakfast, host-led experience',
+    color: '#1e2832',
+    colorEnd: '#4f6f8f',
+    category: 'Property',
+    icon: '🛏',
+  },
+  {
     name: 'CoworkOS',
     slug: '/coworking',
     tagline: 'Coworking space, desks & meeting rooms',
@@ -98,7 +202,16 @@ const verticals: Vertical[] = [
     category: 'Property',
     icon: '🖥',
   },
-  // Health & Beauty
+  {
+    name: 'MarinaOS',
+    slug: '/marina',
+    tagline: 'Marina & boat berth management',
+    color: '#0c1a2e',
+    colorEnd: '#0369a1',
+    category: 'Property',
+    icon: '⛵',
+  },
+  // ── Health & Beauty ───────────────────────────────────────────────────────
   {
     name: 'BeautyOS',
     slug: '/beauty',
@@ -115,7 +228,16 @@ const verticals: Vertical[] = [
     color: '#3d2b24',
     colorEnd: '#a07860',
     category: 'Health & Beauty',
-    icon: '🌿',
+    icon: '🌸',
+  },
+  {
+    name: 'BarberOS',
+    slug: '/barber',
+    tagline: 'Premium barbershop with booking & loyalty',
+    color: '#1c1c1c',
+    colorEnd: '#b45309',
+    category: 'Health & Beauty',
+    icon: '✂',
   },
   {
     name: 'GymOS',
@@ -134,6 +256,15 @@ const verticals: Vertical[] = [
     colorEnd: '#cc2200',
     category: 'Health & Beauty',
     icon: '🔥',
+  },
+  {
+    name: 'YogaOS',
+    slug: '/yoga',
+    tagline: 'Yoga studio, classes & retreats',
+    color: '#2d1654',
+    colorEnd: '#7c3aed',
+    category: 'Health & Beauty',
+    icon: '🧘',
   },
   {
     name: 'ClinicoOS',
@@ -169,7 +300,7 @@ const verticals: Vertical[] = [
     color: '#2c1a12',
     colorEnd: '#9a6652',
     category: 'Health & Beauty',
-    icon: '🌸',
+    icon: '✨',
   },
   {
     name: 'PetOS',
@@ -189,7 +320,61 @@ const verticals: Vertical[] = [
     category: 'Health & Beauty',
     icon: '🦎',
   },
-  // Creative
+  {
+    name: 'NutritionOS',
+    slug: '/nutritionist',
+    tagline: 'Nutritionist & dietitian consultations',
+    color: '#14532d',
+    colorEnd: '#4ade80',
+    category: 'Health & Beauty',
+    icon: '🥗',
+  },
+  {
+    name: 'PhysioOS',
+    slug: '/physiotherapy',
+    tagline: 'Physiotherapy & sports rehab clinic',
+    color: '#1e3a5f',
+    colorEnd: '#38bdf8',
+    category: 'Health & Beauty',
+    icon: '🦾',
+  },
+  {
+    name: 'ChiroOS',
+    slug: '/chiropractor',
+    tagline: 'Chiropractic clinic, spinal & joint care',
+    color: '#1a2e4a',
+    colorEnd: '#3b82f6',
+    category: 'Health & Beauty',
+    icon: '🦴',
+  },
+  {
+    name: 'PsychoOS',
+    slug: '/psychologist',
+    tagline: 'Psychology & therapy, online & in-person',
+    color: '#1e1b4b',
+    colorEnd: '#818cf8',
+    category: 'Health & Beauty',
+    icon: '🧠',
+  },
+  {
+    name: 'OpticOS',
+    slug: '/optician',
+    tagline: 'Optician & eyewear boutique',
+    color: '#0c1a2e',
+    colorEnd: '#06b6d4',
+    category: 'Health & Beauty',
+    icon: '👓',
+  },
+  {
+    name: 'PharmaOS',
+    slug: '/pharmacy',
+    tagline: 'Independent pharmacy & health products',
+    color: '#042f2e',
+    colorEnd: '#0f766e',
+    category: 'Health & Beauty',
+    icon: '💊',
+  },
+  // ── Creative ──────────────────────────────────────────────────────────────
   {
     name: 'StudioOS',
     slug: '/studio',
@@ -245,6 +430,15 @@ const verticals: Vertical[] = [
     icon: '🌾',
   },
   {
+    name: 'EventOS',
+    slug: '/event-planner',
+    tagline: 'Event planner & production company',
+    color: '#1a0a2e',
+    colorEnd: '#9333ea',
+    category: 'Creative',
+    icon: '🎪',
+  },
+  {
     name: 'PhotographerOS',
     slug: '/photographer',
     tagline: 'Photography portfolio with booking & prints',
@@ -254,24 +448,51 @@ const verticals: Vertical[] = [
     icon: '📷',
   },
   {
-    name: 'ShopOS',
-    slug: '/shop',
-    tagline: 'Luxury fashion & lifestyle boutique',
-    color: '#1c1410',
-    colorEnd: '#c8956c',
+    name: 'TattooOS',
+    slug: '/tattoo',
+    tagline: 'Tattoo studio & piercing, book artists',
+    color: '#0a0a0a',
+    colorEnd: '#dc2626',
     category: 'Creative',
-    icon: '🛍',
+    icon: '🖋',
   },
   {
-    name: 'ShopOS — Local',
-    slug: '/shop-local',
-    tagline: 'Artisan grocery & deli, conversion-first',
-    color: '#0f2008',
-    colorEnd: '#4ade80',
+    name: 'DanceOS',
+    slug: '/dance-school',
+    tagline: 'Dance school — classes for all levels',
+    color: '#1e0a2e',
+    colorEnd: '#ec4899',
     category: 'Creative',
-    icon: '🥦',
+    icon: '💃',
   },
-  // Professional Services
+  {
+    name: 'DJOS',
+    slug: '/dj',
+    tagline: 'DJ & music producer — bookings & mixes',
+    color: '#0a0a14',
+    colorEnd: '#6c63ff',
+    category: 'Creative',
+    icon: '🎧',
+  },
+  {
+    name: 'InteriorOS',
+    slug: '/interior-designer',
+    tagline: 'Interior design studio & consultancy',
+    color: '#1c1410',
+    colorEnd: '#d4a96a',
+    category: 'Creative',
+    icon: '🛋',
+  },
+  {
+    name: 'GalleryOS',
+    slug: '/art-gallery',
+    tagline: 'Contemporary art gallery & exhibitions',
+    color: '#1a1a1a',
+    colorEnd: '#e11d48',
+    category: 'Creative',
+    icon: '🖼',
+  },
+  // ── Professional Services ─────────────────────────────────────────────────
   {
     name: 'LegalOS',
     slug: '/law',
@@ -309,33 +530,87 @@ const verticals: Vertical[] = [
     icon: '🚀',
   },
   {
-    name: 'CleanOS',
-    slug: '/clean',
-    tagline: 'Luxury home cleaning, Knightsbridge',
-    color: '#0c2233',
-    colorEnd: '#1a5276',
-    category: 'Professional Services',
-    icon: '✨',
-  },
-  {
-    name: 'CleanOS — Commercial',
-    slug: '/clean-commercial',
-    tagline: 'B2B contract cleaning, City of London',
-    color: '#050d14',
-    colorEnd: '#1e4976',
-    category: 'Professional Services',
-    icon: '🏢',
-  },
-  {
-    name: 'PlumberOS',
-    slug: '/plumber',
-    tagline: 'Emergency plumbing & heating, local trust',
-    color: '#0a1628',
+    name: 'InsuranceOS',
+    slug: '/insurance',
+    tagline: 'Independent insurance broker & advisor',
+    color: '#0f1e3c',
     colorEnd: '#2563eb',
     category: 'Professional Services',
-    icon: '🔧',
+    icon: '🛡',
   },
-  // Education
+  {
+    name: 'FinanceOS',
+    slug: '/financial-advisor',
+    tagline: 'Financial planning & wealth management',
+    color: '#0a1628',
+    colorEnd: '#1d4ed8',
+    category: 'Professional Services',
+    icon: '💰',
+  },
+  {
+    name: 'ConsultingOS',
+    slug: '/consulting',
+    tagline: 'Management consulting & strategy',
+    color: '#0f1e3c',
+    colorEnd: '#3730a3',
+    category: 'Professional Services',
+    icon: '📊',
+  },
+  {
+    name: 'RecruitOS',
+    slug: '/recruitment',
+    tagline: 'Recruitment agency & talent search',
+    color: '#1a1028',
+    colorEnd: '#7c3aed',
+    category: 'Professional Services',
+    icon: '👔',
+  },
+  {
+    name: 'NotaryOS',
+    slug: '/notary',
+    tagline: 'Notary public & document services',
+    color: '#1a1a2e',
+    colorEnd: '#4338ca',
+    category: 'Professional Services',
+    icon: '📜',
+  },
+  {
+    name: 'ITServOS',
+    slug: '/it-services',
+    tagline: 'IT support, cybersecurity & managed services',
+    color: '#0a1420',
+    colorEnd: '#0ea5e9',
+    category: 'Professional Services',
+    icon: '💻',
+  },
+  {
+    name: 'PrintOS',
+    slug: '/printing',
+    tagline: 'Commercial printing & signage studio',
+    color: '#0a1428',
+    colorEnd: '#1d4ed8',
+    category: 'Professional Services',
+    icon: '🖨',
+  },
+  {
+    name: 'MovingOS',
+    slug: '/moving',
+    tagline: 'Removal company & storage services',
+    color: '#1c1408',
+    colorEnd: '#d97706',
+    category: 'Professional Services',
+    icon: '🚚',
+  },
+  {
+    name: 'TailorOS',
+    slug: '/tailor',
+    tagline: 'Bespoke tailoring & alterations',
+    color: '#1a1210',
+    colorEnd: '#92400e',
+    category: 'Professional Services',
+    icon: '🧵',
+  },
+  // ── Education ─────────────────────────────────────────────────────────────
   {
     name: 'EduOS',
     slug: '/school',
@@ -363,7 +638,34 @@ const verticals: Vertical[] = [
     category: 'Education',
     icon: '🧒',
   },
-  // Automotive
+  {
+    name: 'TutoringOS',
+    slug: '/tutoring',
+    tagline: 'Private tutoring & exam preparation',
+    color: '#1e1b4b',
+    colorEnd: '#a855f7',
+    category: 'Education',
+    icon: '📐',
+  },
+  {
+    name: 'DrivingOS',
+    slug: '/driving-school',
+    tagline: 'Driving school — theory & practical lessons',
+    color: '#1a1800',
+    colorEnd: '#ca8a04',
+    category: 'Education',
+    icon: '🚘',
+  },
+  {
+    name: 'SurfOS',
+    slug: '/surf-school',
+    tagline: 'Surf school & ocean sports academy',
+    color: '#0c2240',
+    colorEnd: '#0ea5e9',
+    category: 'Education',
+    icon: '🏄',
+  },
+  // ── Automotive ────────────────────────────────────────────────────────────
   {
     name: 'AutoOS',
     slug: '/auto',
@@ -382,6 +684,253 @@ const verticals: Vertical[] = [
     category: 'Automotive',
     icon: '🚘',
   },
+  {
+    name: 'CarRentalOS',
+    slug: '/car-rental',
+    tagline: 'Car rental & fleet management',
+    color: '#0c1620',
+    colorEnd: '#0369a1',
+    category: 'Automotive',
+    icon: '🔑',
+  },
+  {
+    name: 'CarWashOS',
+    slug: '/car-wash',
+    tagline: 'Premium car wash & detailing studio',
+    color: '#0a1428',
+    colorEnd: '#2563eb',
+    category: 'Automotive',
+    icon: '✨',
+  },
+  {
+    name: 'BikeOS',
+    slug: '/bike-shop',
+    tagline: 'Bicycle shop, repair & custom builds',
+    color: '#1a2810',
+    colorEnd: '#65a30d',
+    category: 'Automotive',
+    icon: '🚲',
+  },
+  // ── Entertainment ─────────────────────────────────────────────────────────
+  {
+    name: 'CinemaOS',
+    slug: '/cinema',
+    tagline: 'Independent cinema, showtimes & events',
+    color: '#0a0a14',
+    colorEnd: '#dc2626',
+    category: 'Entertainment',
+    icon: '🎬',
+  },
+  {
+    name: 'EscapeOS',
+    slug: '/escape-room',
+    tagline: 'Escape room experience & team bookings',
+    color: '#0a0a0a',
+    colorEnd: '#7c3aed',
+    category: 'Entertainment',
+    icon: '🔐',
+  },
+  {
+    name: 'BowlingOS',
+    slug: '/bowling',
+    tagline: 'Bowling alley, lanes & party packages',
+    color: '#1a0820',
+    colorEnd: '#9333ea',
+    category: 'Entertainment',
+    icon: '🎳',
+  },
+  {
+    name: 'CampingOS',
+    slug: '/camping',
+    tagline: 'Campsite & glamping — pitch booking',
+    color: '#0a2010',
+    colorEnd: '#16a34a',
+    category: 'Entertainment',
+    icon: '⛺',
+  },
+  {
+    name: 'TravelAgencyOS',
+    slug: '/travel-agency',
+    tagline: 'Travel agency — bespoke & group trips',
+    color: '#0a1428',
+    colorEnd: '#0ea5e9',
+    category: 'Travel',
+    icon: '✈',
+  },
+  {
+    name: 'TourOS',
+    slug: '/tour-guide',
+    tagline: 'Tour guide & local experiences',
+    color: '#1a2810',
+    colorEnd: '#84cc16',
+    category: 'Travel',
+    icon: '🗺',
+  },
+  // ── Home Services ─────────────────────────────────────────────────────────
+  {
+    name: 'CleanOS',
+    slug: '/clean',
+    tagline: 'Luxury home cleaning, Knightsbridge',
+    color: '#0c2233',
+    colorEnd: '#1a5276',
+    category: 'Home Services',
+    icon: '🧹',
+  },
+  {
+    name: 'CleanOS — Commercial',
+    slug: '/clean-commercial',
+    tagline: 'B2B contract cleaning, City of London',
+    color: '#050d14',
+    colorEnd: '#1e4976',
+    category: 'Home Services',
+    icon: '🏢',
+  },
+  {
+    name: 'PlumberOS',
+    slug: '/plumber',
+    tagline: 'Emergency plumbing & heating, local trust',
+    color: '#0a1628',
+    colorEnd: '#2563eb',
+    category: 'Home Services',
+    icon: '🔧',
+  },
+  {
+    name: 'ElectricOS',
+    slug: '/electrician',
+    tagline: 'Electrician & electrical services',
+    color: '#14100a',
+    colorEnd: '#eab308',
+    category: 'Home Services',
+    icon: '⚡',
+  },
+  {
+    name: 'PainterOS',
+    slug: '/painter',
+    tagline: 'Painters & decorators, residential & commercial',
+    color: '#1a1228',
+    colorEnd: '#a855f7',
+    category: 'Home Services',
+    icon: '🎨',
+  },
+  {
+    name: 'RoofingOS',
+    slug: '/roofing',
+    tagline: 'Roofing contractor, repair & replacement',
+    color: '#1a1010',
+    colorEnd: '#dc2626',
+    category: 'Home Services',
+    icon: '🏠',
+  },
+  {
+    name: 'LandscapeOS',
+    slug: '/landscaping',
+    tagline: 'Landscaping, garden design & maintenance',
+    color: '#0a1e08',
+    colorEnd: '#16a34a',
+    category: 'Home Services',
+    icon: '🌳',
+  },
+  {
+    name: 'PoolOS',
+    slug: '/pool-service',
+    tagline: 'Swimming pool installation & maintenance',
+    color: '#0a1e38',
+    colorEnd: '#0ea5e9',
+    category: 'Home Services',
+    icon: '🏊',
+  },
+  {
+    name: 'PestOS',
+    slug: '/pest-control',
+    tagline: 'Pest control & extermination services',
+    color: '#0a1a0a',
+    colorEnd: '#4d7c0f',
+    category: 'Home Services',
+    icon: '🐛',
+  },
+  {
+    name: 'LaundryOS',
+    slug: '/laundry',
+    tagline: 'Laundry & dry cleaning collection',
+    color: '#0c1e38',
+    colorEnd: '#0369a1',
+    category: 'Home Services',
+    icon: '👕',
+  },
+  // ── Retail ────────────────────────────────────────────────────────────────
+  {
+    name: 'ShopOS',
+    slug: '/shop',
+    tagline: 'Luxury fashion & lifestyle boutique',
+    color: '#1c1410',
+    colorEnd: '#c8956c',
+    category: 'Retail',
+    icon: '🛍',
+  },
+  {
+    name: 'ShopOS — Local',
+    slug: '/shop-local',
+    tagline: 'Artisan grocery & deli, conversion-first',
+    color: '#0f2008',
+    colorEnd: '#4ade80',
+    category: 'Retail',
+    icon: '🥦',
+  },
+  {
+    name: 'BookOS',
+    slug: '/bookstore',
+    tagline: 'Independent bookshop & events programme',
+    color: '#1a1410',
+    colorEnd: '#a16207',
+    category: 'Retail',
+    icon: '📚',
+  },
+  {
+    name: 'PetShopOS',
+    slug: '/pet-shop',
+    tagline: 'Pet shop, food & accessories',
+    color: '#0a2010',
+    colorEnd: '#16a34a',
+    category: 'Retail',
+    icon: '🐶',
+  },
+  {
+    name: 'JewelOS',
+    slug: '/jeweler',
+    tagline: 'Jeweller — bespoke & luxury pieces',
+    color: '#1a1200',
+    colorEnd: '#d4af37',
+    category: 'Retail',
+    icon: '💎',
+  },
+  {
+    name: 'FloristOS',
+    slug: '/florist',
+    tagline: 'Florist — bouquets, events & subscriptions',
+    color: '#1a0a28',
+    colorEnd: '#ec4899',
+    category: 'Retail',
+    icon: '💐',
+  },
+  // ── Community ─────────────────────────────────────────────────────────────
+  {
+    name: 'NonprofitOS',
+    slug: '/nonprofit',
+    tagline: 'Charity & nonprofit — donate & volunteer',
+    color: '#b45309',
+    colorEnd: '#dc2626',
+    category: 'Community',
+    icon: '❤',
+  },
+  {
+    name: 'ChurchOS',
+    slug: '/church',
+    tagline: 'Community church — services & ministries',
+    color: '#4a1942',
+    colorEnd: '#b5942a',
+    category: 'Community',
+    icon: '✝',
+  },
 ]
 
 const CATEGORIES: Category[] = [
@@ -393,6 +942,11 @@ const CATEGORIES: Category[] = [
   'Professional Services',
   'Education',
   'Automotive',
+  'Entertainment',
+  'Home Services',
+  'Travel',
+  'Retail',
+  'Community',
 ]
 
 const CATEGORY_COLORS: Record<Category, string> = {
@@ -404,6 +958,11 @@ const CATEGORY_COLORS: Record<Category, string> = {
   'Professional Services': 'from-slate-600 to-blue-700',
   Education: 'from-violet-600 to-purple-500',
   Automotive: 'from-zinc-600 to-slate-500',
+  Entertainment: 'from-red-600 to-purple-600',
+  'Home Services': 'from-teal-600 to-blue-500',
+  Travel: 'from-sky-500 to-indigo-500',
+  Retail: 'from-amber-500 to-orange-500',
+  Community: 'from-rose-500 to-amber-500',
 }
 
 export default function Home() {
@@ -468,9 +1027,9 @@ export default function Home() {
 
           <h1 className="text-5xl sm:text-7xl font-extrabold text-white leading-tight tracking-tight mb-6"
             style={{ letterSpacing: '-0.03em' }}>
-            <span className="block">38+ Industry Templates.</span>
+            <span className="block">100 Industry Templates.</span>
             <span className="block" style={{ background: 'linear-gradient(135deg,#6c63ff 0%,#a855f7 40%,#06b6d4 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-              One Platform.
+              Zero Cost.
             </span>
           </h1>
 
@@ -480,7 +1039,7 @@ export default function Home() {
           </p>
 
           <div className="flex flex-wrap justify-center gap-3 mb-10">
-            {['Next.js 15', 'TypeScript', 'Tailwind CSS', '39 Verticals', 'MIT License'].map((tag) => (
+            {['Next.js 15', 'TypeScript', 'Tailwind CSS', '100 Verticals', 'MIT License'].map((tag) => (
               <span key={tag} className="px-3 py-1.5 text-xs font-medium rounded-full"
                 style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.5)' }}>
                 {tag}
@@ -507,25 +1066,49 @@ export default function Home() {
       <section className="sticky top-16 z-40 px-4 py-3" style={{ background: 'rgba(8,12,20,0.85)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
         <div className="max-w-6xl mx-auto overflow-x-auto">
           <div className="flex gap-2 min-w-max pb-1">
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActive(cat)}
-                className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
-                  active === cat ? 'text-white scale-105' : 'hover:opacity-80'
-                }`}
-                style={
-                  active === cat
-                    ? { background: `linear-gradient(135deg, ${CATEGORY_COLORS[cat].replace('from-','').replace(' to-','').split(' ').join(', ')})`, boxShadow: '0 2px 12px rgba(108,99,255,0.3)' }
-                    : { background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.5)' }
-                }
-              >
-                {cat}
-                <span className="ml-1.5 opacity-60">
-                  {cat === 'All' ? verticals.length : verticals.filter(v => v.category === cat).length}
-                </span>
-              </button>
-            ))}
+            {CATEGORIES.map((cat) => {
+              const isActive = active === cat
+              // Extract the two Tailwind color names for inline gradient
+              const gradParts = CATEGORY_COLORS[cat].replace('from-', '').replace(' to-', ' ').split(' ')
+              // We use inline style for the active state using a simple mapping
+              const gradMap: Record<string, string> = {
+                'violet-600': '#7c3aed', 'indigo-600': '#4f46e5',
+                'orange-500': '#f97316', 'red-500': '#ef4444',
+                'blue-600': '#2563eb', 'cyan-500': '#06b6d4',
+                'pink-500': '#ec4899', 'rose-400': '#fb7185',
+                'purple-600': '#9333ea', 'fuchsia-500': '#d946ef',
+                'slate-600': '#475569', 'blue-700': '#1d4ed8',
+                'purple-500': '#a855f7',
+                'zinc-600': '#52525b', 'slate-500': '#64748b',
+                'red-600': '#dc2626',
+                'teal-600': '#0d9488', 'blue-500': '#3b82f6',
+                'sky-500': '#0ea5e9', 'indigo-500': '#6366f1',
+                'amber-500': '#f59e0b', 'amber-500-2': '#f59e0b',
+                'rose-500': '#f43f5e',
+              }
+              const fromColor = gradMap[gradParts[0]] || '#6c63ff'
+              const toColor = gradMap[gradParts[1]] || '#a855f7'
+
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setActive(cat)}
+                  className={`px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
+                    isActive ? 'text-white scale-105' : 'hover:opacity-80'
+                  }`}
+                  style={
+                    isActive
+                      ? { background: `linear-gradient(135deg, ${fromColor}, ${toColor})`, boxShadow: '0 2px 12px rgba(108,99,255,0.3)' }
+                      : { background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.5)' }
+                  }
+                >
+                  {cat}
+                  <span className="ml-1.5 opacity-60">
+                    {cat === 'All' ? verticals.length : verticals.filter((v) => v.category === cat).length}
+                  </span>
+                </button>
+              )
+            })}
           </div>
         </div>
       </section>
