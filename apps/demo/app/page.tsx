@@ -2,10 +2,15 @@ import Link from 'next/link'
 
 const verticals = [
   { name: 'DineOS', slug: '/restaurant', description: 'Restaurant, pizzeria, cafe', color: '#78350f', icon: '🍽' },
+  { name: 'DineOS — Modern', slug: '/restaurant-modern', description: 'Contemporary Japanese, dark minimalist', color: '#e8c547', icon: '🍣' },
   { name: 'PropertyOS', slug: '/property', description: 'Real estate agency', color: '#1e3a5f', icon: '🏠' },
+  { name: 'PropertyOS — Luxury', slug: '/property-luxury', description: 'Ultra-prime & luxury real estate', color: '#c9a84c', icon: '🏛' },
   { name: 'BeautyOS', slug: '/beauty', description: 'Hair salon, spa, barber', color: '#9f1239', icon: '💇' },
+  { name: 'BeautyOS — Spa', slug: '/beauty-spa', description: 'Luxury day spa & wellness, Chelsea', color: '#8b6f5e', icon: '🌿' },
   { name: 'GymOS', slug: '/gym', description: 'Gym, CrossFit, yoga studio', color: '#18181b', icon: '🏋' },
+  { name: 'GymOS — CrossFit', slug: '/gym-crossfit', description: 'CrossFit box, bold dark theme', color: '#cc2200', icon: '🔥' },
   { name: 'TravelOS', slug: '/hotel', description: 'Hotel, B&B, resort', color: '#0f172a', icon: '🏨' },
+  { name: 'TravelOS — Boutique', slug: '/hotel-boutique', description: 'Boutique hotel & spa, Cotswolds', color: '#4a3728', icon: '🌿' },
   { name: 'StudioOS', slug: '/studio', description: 'Creative studio, agency, photography', color: '#111111', icon: '🎨' },
   { name: 'ClinicoOS', slug: '/clinic', description: 'Medical clinic, dental, physio', color: '#0d5c63', icon: '🏥' },
   { name: 'LegalOS', slug: '/law', description: 'Law firm, solicitors', color: '#1a1a3e', icon: '⚖️' },
@@ -38,7 +43,7 @@ export default function Home() {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Beautiful websites for every business</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            12 industry-optimized templates that connect natively to your business system.
+            17 industry-optimized templates that connect natively to your business system.
             Booking, WhatsApp, reviews, real-time availability — all built in.
           </p>
           <div className="flex justify-center gap-3 mt-6 text-sm text-gray-500">
