@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
-import { Hero } from '@scala-sites/core/components/hero'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
 import { Footer } from '@scala-sites/core/components/footer'
@@ -353,15 +352,253 @@ export default function ClinicDentalDemo() {
     <div style={themeToStyleObject(theme) as React.CSSProperties} className="bg-white">
       <Navbar />
 
-      {/* Hero */}
-      <Hero
-        title="Modern Dentistry in Chelsea"
-        subtitle="Smile Studio — GDC registered dentists, 0% finance, and same-day emergency appointments on King's Road."
-        backgroundImage="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1600&h=800&fit=crop"
-        ctaPrimary={{ label: 'Book a Checkup', href: '#book' }}
-        ctaSecondary={{ label: 'See All Treatments', href: '#services' }}
-        overlayOpacity={0.65}
+      {/* ── JSON-LD: MedicalBusiness + FAQ ── */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            {
+              '@context': 'https://schema.org',
+              '@type': 'Dentist',
+              name: 'Smile Studio',
+              description: 'Modern dentistry in Chelsea. GDC registered, 0% finance, same-day emergency appointments.',
+              url: 'https://smilestudio.example.com',
+              telephone: '+44 20 7946 0593',
+              email: 'hello@smilestudio.example.com',
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: "48 King's Road",
+                addressLocality: 'London',
+                postalCode: 'SW3 4UD',
+                addressCountry: 'GB',
+              },
+              openingHours: ['Mo-Fr 08:00-19:00', 'Sa 09:00-17:00'],
+              priceRange: '££',
+              aggregateRating: {
+                '@type': 'AggregateRating',
+                ratingValue: '4.9',
+                reviewCount: '620',
+              },
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: faqs.map((f) => ({
+                '@type': 'Question',
+                name: f.question,
+                acceptedAnswer: { '@type': 'Answer', text: f.answer },
+              })),
+            },
+          ]),
+        }}
       />
+
+      {/* ══════════════════════════════════════════════
+          CUSTOM HERO — Trust Builder
+          White / light-blue gradient, large portrait image right,
+          text left-aligned, trust badges below.
+          Calming blue palette, smooth tooth icon accent.
+          ══════════════════════════════════════════════ */}
+      <section
+        className="relative overflow-hidden pt-20"
+        style={{
+          background: 'linear-gradient(135deg, #ffffff 0%, #e8f4fd 50%, #d0eaf8 100%)',
+          minHeight: '92vh',
+        }}
+        aria-label="Hero — Smile Studio Chelsea"
+      >
+        {/* Background blue circles — soft, calming */}
+        <div
+          className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full pointer-events-none"
+          style={{ background: 'radial-gradient(circle, #bde0f544 0%, transparent 70%)' }}
+        />
+        <div
+          className="absolute bottom-0 -left-16 w-[350px] h-[350px] rounded-full pointer-events-none"
+          style={{ background: 'radial-gradient(circle, #0077b611 0%, transparent 70%)' }}
+        />
+
+        <div className="max-w-7xl mx-auto px-6 md:px-12 min-h-[calc(92vh-5rem)] flex items-center">
+          <div className="w-full grid grid-cols-1 md:grid-cols-[1fr_420px] gap-8 lg:gap-16 items-center py-12">
+
+            {/* LEFT — Text content */}
+            <div className="order-2 md:order-1">
+              {/* GDC badge pill */}
+              <div
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold mb-8"
+                style={{ backgroundColor: '#e8f4fd', color: '#0077b6', border: '1.5px solid #bde0f5' }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0077b6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+                GDC Registered &ensp;&middot;&ensp; CQC Inspected
+              </div>
+
+              {/* Headline */}
+              <h1
+                className="font-bold leading-tight mb-6"
+                style={{ color: '#0a1628', fontSize: 'clamp(2.4rem, 5vw, 4rem)' }}
+              >
+                Modern Dentistry<br />
+                You Can Actually<br />
+                <span style={{ color: '#0077b6' }}>Trust.</span>
+              </h1>
+
+              {/* Subheadline */}
+              <p
+                className="text-base md:text-lg leading-relaxed mb-10 max-w-lg"
+                style={{ color: '#4b6280' }}
+              >
+                Smile Studio Chelsea — GDC registered dentists, 0% finance options,
+                and same-day emergency appointments on King&apos;s Road. Gentle care,
+                transparent pricing, exceptional results.
+              </p>
+
+              {/* CTA row */}
+              <div className="flex flex-wrap gap-4 mb-12">
+                <a
+                  href="#book"
+                  className="px-8 py-4 rounded-full text-sm font-bold text-white transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0"
+                  style={{
+                    backgroundColor: '#0077b6',
+                    boxShadow: '0 4px 20px rgba(0,119,182,0.3)',
+                  }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = '#005f92' }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = '#0077b6' }}
+                >
+                  Book a Checkup — £95
+                </a>
+                <a
+                  href="#services"
+                  className="px-8 py-4 rounded-full text-sm font-bold border transition-all duration-300"
+                  style={{ borderColor: '#bde0f5', color: '#0077b6' }}
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget as HTMLElement
+                    el.style.borderColor = '#0077b6'
+                    el.style.backgroundColor = '#e8f4fd'
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget as HTMLElement
+                    el.style.borderColor = '#bde0f5'
+                    el.style.backgroundColor = 'transparent'
+                  }}
+                >
+                  See All Treatments
+                </a>
+              </div>
+
+              {/* Trust badges row */}
+              <div className="flex flex-wrap gap-3">
+                {[
+                  {
+                    icon: (
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      </svg>
+                    ),
+                    label: 'CQC Registered',
+                  },
+                  {
+                    icon: (
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                        <polyline points="22 4 12 14.01 9 11.01" />
+                      </svg>
+                    ),
+                    label: 'GDC Approved',
+                  },
+                  {
+                    icon: (
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="#fbbc04" stroke="#fbbc04" strokeWidth="1.5">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                      </svg>
+                    ),
+                    label: '4.9 Google (620+)',
+                  },
+                  {
+                    icon: (
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                      </svg>
+                    ),
+                    label: '0% Finance Available',
+                  },
+                ].map(({ icon, label }) => (
+                  <div
+                    key={label}
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold"
+                    style={{
+                      backgroundColor: 'rgba(255,255,255,0.8)',
+                      color: '#0077b6',
+                      border: '1px solid #bde0f5',
+                      backdropFilter: 'blur(8px)',
+                    }}
+                  >
+                    <span style={{ color: '#0077b6' }}>{icon}</span>
+                    {label}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* RIGHT — Portrait image with tooth icon accent */}
+            <div className="order-1 md:order-2 flex justify-center md:justify-end">
+              <div className="relative">
+                {/* Image frame */}
+                <div
+                  className="relative overflow-hidden"
+                  style={{
+                    borderRadius: '40% 60% 60% 40% / 50% 50% 50% 50%',
+                    width: 380,
+                    height: 460,
+                    boxShadow: '0 24px 60px rgba(0,119,182,0.2), 0 8px 20px rgba(0,119,182,0.1)',
+                  }}
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=760&h=920&fit=crop&q=85"
+                    alt="Smile Studio — modern dental practice Chelsea"
+                    className="w-full h-full object-cover"
+                  />
+                  {/* Subtle blue overlay */}
+                  <div
+                    className="absolute inset-0"
+                    style={{ background: 'linear-gradient(to bottom, transparent 60%, rgba(0,119,182,0.08) 100%)' }}
+                  />
+                </div>
+
+                {/* Floating tooth icon accent */}
+                <div
+                  className="absolute -top-4 -left-4 w-14 h-14 flex items-center justify-center rounded-full shadow-lg"
+                  style={{ backgroundColor: '#0077b6' }}
+                >
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2C8.5 2 5 5 5 8.5c0 1.5.5 3 1.5 4.5l2 5.5c.5 1.5 1 3 2 4 .5 1 1.5 1.5 1.5 0 0-1 .5-2 .5-3V18c0-1 .5-2 .5-3 0 1 .5 2 .5 3v1.5c0 1.5 1 1 1.5 0 1-1 1.5-2.5 2-4l2-5.5C19.5 11.5 20 10 20 8.5 20 5 16.5 2 12 2z" />
+                  </svg>
+                </div>
+
+                {/* Rating chip */}
+                <div
+                  className="absolute -bottom-4 -right-4 px-4 py-3 rounded-2xl shadow-lg text-center"
+                  style={{ backgroundColor: 'white', border: '1.5px solid #bde0f5' }}
+                >
+                  <p className="text-xl font-black" style={{ color: '#0077b6', lineHeight: 1 }}>4.9★</p>
+                  <p className="text-[10px] text-gray-400 mt-0.5">620 reviews</p>
+                </div>
+
+                {/* Same-day chip */}
+                <div
+                  className="absolute top-1/2 -right-8 -translate-y-1/2 px-3 py-2 rounded-xl shadow-lg"
+                  style={{ backgroundColor: '#0077b6' }}
+                >
+                  <p className="text-[10px] font-bold text-white whitespace-nowrap">Same-Day</p>
+                  <p className="text-[9px] text-blue-200 whitespace-nowrap">Emergency Slots</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Trust bar */}
       <TrustBar />

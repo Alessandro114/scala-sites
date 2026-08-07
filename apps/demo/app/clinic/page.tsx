@@ -314,6 +314,34 @@ const siteConfig = {
   social: { instagram: '#', facebook: '#' },
 }
 
+const clinicJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalClinic',
+  name: 'Harley Health Clinic',
+  description: 'Expert private healthcare in the heart of London. Same-day appointments available. All major insurers accepted.',
+  telephone: '+44 20 7946 0800',
+  email: 'appointments@harleyhealth.example.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '45 Harley Street',
+    addressLocality: 'London',
+    postalCode: 'W1G 8QR',
+    addressCountry: 'GB',
+  },
+}
+
+const clinicFaqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'Do you accept walk-in appointments?', acceptedAnswer: { '@type': 'Answer', text: 'We strongly recommend booking in advance. However, we do reserve same-day urgent slots. Call us on +44 20 7946 0800 and we will do our utmost to accommodate you.' } },
+    { '@type': 'Question', name: 'Which insurance providers do you work with?', acceptedAnswer: { '@type': 'Answer', text: 'We are recognised by all major UK private medical insurers including Bupa, AXA Health, Aviva, Cigna, Vitality, WPA, and Allianz Care. We also welcome self-pay patients.' } },
+    { '@type': 'Question', name: 'How quickly can I get an appointment?', acceptedAnswer: { '@type': 'Answer', text: 'Many of our practitioners have same-day and next-day availability. Emergency or urgent medical concerns are typically seen within hours.' } },
+    { '@type': 'Question', name: 'Where are you located and is there parking nearby?', acceptedAnswer: { '@type': 'Answer', text: 'We are located at 45 Harley Street, London W1G 8QR. The nearest Underground stations are Regent\'s Park and Oxford Circus. Several NCP car parks are within a 5-minute walk.' } },
+    { '@type': 'Question', name: 'Can I get a second opinion at Harley Health?', acceptedAnswer: { '@type': 'Answer', text: 'Absolutely. We welcome second opinion consultations. Please bring any existing test results, scans, or letters from your current treating physician.' } },
+  ],
+}
+
 export default function ClinicDemo() {
   return (
     <div
@@ -333,6 +361,8 @@ export default function ClinicDemo() {
         ) as React.CSSProperties
       }
     >
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(clinicJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(clinicFaqJsonLd) }} />
       <SplitHero
         title="World-Class Healthcare on Harley Street"
         subtitle="Expert private GP, specialist consultations, and wellness care — same-day appointments available. All major insurers accepted."

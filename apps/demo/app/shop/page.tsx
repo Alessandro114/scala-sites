@@ -1,8 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
-import { Hero } from '@scala-sites/core/components/hero'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
 import { Footer } from '@scala-sites/core/components/footer'
@@ -323,7 +322,43 @@ export default function ShopPage() {
   return (
     <div style={{ ...themeToStyleObject(theme) as React.CSSProperties, backgroundColor: '#0a0a0a', color: '#f5f0eb', fontFamily: '"Inter", system-ui, sans-serif' }}>
 
-      {/* Nav */}
+      {/* ── JSON-LD: LocalBusiness + FAQ ── */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            {
+              '@context': 'https://schema.org',
+              '@type': 'ClothingStore',
+              name: 'MAISON',
+              description: 'A considered edit of fashion, accessories and homeware. Marylebone, London.',
+              url: 'https://maison.example.com',
+              telephone: '+44 20 7935 4820',
+              email: 'hello@maisonlondon.co.uk',
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: '14 Marylebone High Street',
+                addressLocality: 'London',
+                postalCode: 'W1U 4QU',
+                addressCountry: 'GB',
+              },
+              openingHours: ['Mo-Sa 10:00-18:30', 'Su 11:00-17:00'],
+              priceRange: '££££',
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: faqs.map((f) => ({
+                '@type': 'Question',
+                name: f.question,
+                acceptedAnswer: { '@type': 'Answer', text: f.answer },
+              })),
+            },
+          ]),
+        }}
+      />
+
+      {/* ── NAVBAR ── */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-5" style={{ backgroundColor: 'rgba(10,10,10,0.92)', backdropFilter: 'blur(12px)', borderBottom: '1px solid #1a1a1a' }}>
         <div className="flex gap-8 text-xs tracking-widest uppercase text-[#8a8078]">
           <a href="#collection" className="hover:text-[#c8956c] transition-colors">Collection</a>
@@ -338,19 +373,191 @@ export default function ShopPage() {
         </div>
       </nav>
 
-      {/* Hero — full viewport, editorial */}
-      <div className="pt-0">
-        <Hero
-          title="Curated Fashion &amp; Lifestyle"
-          subtitle="Marylebone, London — A considered edit of clothing, accessories and homeware. Nothing excess. Everything essential."
-          backgroundImage="https://images.unsplash.com/photo-1558171813-bb6a4bccaae1?w=1800"
-          ctaPrimary={{ label: 'Explore the Collection', href: '#collection' }}
-          ctaSecondary={{ label: 'Book a Styling Session', href: '#styling' }}
-          overlayOpacity={0.55}
-          textAlign="left"
-          height="full"
+      {/* ══════════════════════════════════════════════
+          CUSTOM HERO — Fashion Editorial
+          Full-bleed dark canvas. Asymmetric serif type.
+          Diagonal product image strip. Hover reveals colour.
+          ══════════════════════════════════════════════ */}
+      <section
+        className="relative min-h-screen overflow-hidden"
+        style={{ backgroundColor: '#080808' }}
+        aria-label="Hero — MAISON fashion editorial"
+      >
+        {/* Subtle noise grain overlay */}
+        <div
+          className="absolute inset-0 pointer-events-none z-10 opacity-[0.035]"
+          style={{
+            backgroundImage:
+              'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E")',
+            backgroundSize: '180px',
+          }}
         />
-      </div>
+
+        {/* DIAGONAL IMAGE STRIP — runs across the full viewport at ~40deg */}
+        <div
+          className="absolute pointer-events-none z-0"
+          style={{
+            top: '-20%',
+            left: '25%',
+            width: '55%',
+            height: '140%',
+            transform: 'rotate(-12deg)',
+            transformOrigin: 'center center',
+          }}
+        >
+          {/* Three product panels stacked in the strip */}
+          {[
+            'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=700&h=900&fit=crop&q=80',
+            'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=700&h=900&fit=crop&q=80',
+            'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=700&h=900&fit=crop&q=80',
+          ].map((src, i) => (
+            <div
+              key={i}
+              className="absolute w-[42%] overflow-hidden group"
+              style={{
+                top: `${i * 33}%`,
+                left: `${i % 2 === 0 ? 0 : 58}%`,
+                height: '36%',
+                transition: 'filter 0.7s ease',
+              }}
+            >
+              <img
+                src={src}
+                alt=""
+                aria-hidden="true"
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
+              />
+              {/* Each panel gets a dark gradient to blend into bg */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    'linear-gradient(135deg, #08080888 0%, transparent 40%, #08080888 100%)',
+                }}
+              />
+            </div>
+          ))}
+          {/* Strip border lines — architectural feel */}
+          <div
+            className="absolute inset-y-0 left-0 w-px"
+            style={{ background: 'linear-gradient(to bottom, transparent, #c8956c44, transparent)' }}
+          />
+          <div
+            className="absolute inset-y-0 right-0 w-px"
+            style={{ background: 'linear-gradient(to bottom, transparent, #c8956c22, transparent)' }}
+          />
+        </div>
+
+        {/* LARGE TITLE — top-left, massive, overlapping the strip */}
+        <div className="relative z-20 flex flex-col justify-between min-h-screen px-8 md:px-16 pt-32 pb-16">
+          <div>
+            {/* Category label */}
+            <p
+              className="text-[10px] tracking-[0.5em] uppercase mb-6"
+              style={{ color: '#c8956c' }}
+            >
+              Autumn / Winter 2026 &ensp;&mdash;&ensp; Marylebone, London
+            </p>
+
+            {/* Giant editorial headline — serif, ultra-light, staggered */}
+            <h1
+              className="font-serif leading-[0.88] tracking-[-0.02em] select-none"
+              style={{ color: '#f5f0eb' }}
+            >
+              <span
+                className="block text-[clamp(4rem,10vw,10rem)] font-extralight"
+                style={{ textShadow: '0 0 120px #c8956c18' }}
+              >
+                Nothing
+              </span>
+              <span
+                className="block text-[clamp(4rem,10vw,10rem)] font-extralight ml-[8vw]"
+                style={{ color: '#c8956c' }}
+              >
+                Excess.
+              </span>
+              <span
+                className="block text-[clamp(4rem,10vw,10rem)] font-extralight ml-[2vw]"
+              >
+                Everything
+              </span>
+              <span
+                className="block text-[clamp(4rem,10vw,10rem)] font-extralight ml-[12vw]"
+                style={{ opacity: 0.35 }}
+              >
+                Essential.
+              </span>
+            </h1>
+          </div>
+
+          {/* BOTTOM — subtitle bottom-right + CTAs */}
+          <div className="flex flex-col md:flex-row items-end justify-between gap-8 mt-auto">
+            {/* Left: accent line + issue number */}
+            <div className="flex items-center gap-4">
+              <div
+                className="w-12 h-px"
+                style={{ backgroundColor: '#c8956c' }}
+              />
+              <span
+                className="text-[10px] tracking-[0.4em] uppercase"
+                style={{ color: '#8a8078' }}
+              >
+                Issue No. 07
+              </span>
+            </div>
+
+            {/* Right: subtitle + CTAs */}
+            <div className="text-right max-w-sm">
+              <p
+                className="text-sm font-light leading-relaxed mb-8"
+                style={{ color: '#8a8078' }}
+              >
+                A considered edit of clothing, accessories and homeware.<br />
+                Crafted slowly. Made to outlast every season.
+              </p>
+              <div className="flex gap-4 justify-end flex-wrap">
+                <a
+                  href="#collection"
+                  className="px-8 py-3.5 text-xs tracking-[0.25em] uppercase font-medium transition-all duration-500"
+                  style={{ backgroundColor: '#c8956c', color: '#080808' }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = '#f5f0eb' }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = '#c8956c' }}
+                >
+                  Explore Collection
+                </a>
+                <a
+                  href="#styling"
+                  className="px-8 py-3.5 text-xs tracking-[0.25em] uppercase font-light transition-all duration-500 border"
+                  style={{ borderColor: '#333', color: '#8a8078' }}
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget as HTMLElement
+                    el.style.borderColor = '#c8956c'
+                    el.style.color = '#c8956c'
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget as HTMLElement
+                    el.style.borderColor = '#333'
+                    el.style.color = '#8a8078'
+                  }}
+                >
+                  Book Styling
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Horizontal rule at bottom */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-px"
+          style={{ background: 'linear-gradient(to right, transparent, #c8956c33, transparent)' }}
+        />
+
+        <style>{`
+          @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400&display=swap');
+          .font-serif { font-family: 'Playfair Display', Georgia, serif; }
+        `}</style>
+      </section>
 
       {/* Editorial banner */}
       <div className="py-6 overflow-hidden" style={{ backgroundColor: '#111' }}>

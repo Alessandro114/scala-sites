@@ -247,6 +247,34 @@ const siteConfig = {
   social: { instagram: '#', facebook: '#' },
 }
 
+const weddingJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Ashworth Manor',
+  description: 'A Grade II listed Surrey estate offering four breathtaking spaces for intimate celebrations to grand receptions of 300 guests.',
+  telephone: '+44 1372 555 890',
+  email: 'weddings@ashworthmanor.co.uk',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Ashworth Lane',
+    addressLocality: 'Surrey',
+    postalCode: 'KT11 3QW',
+    addressCountry: 'GB',
+  },
+}
+
+const weddingFaqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'How far in advance should we book Ashworth Manor?', acceptedAnswer: { '@type': 'Answer', text: 'We recommend booking at least 12–18 months in advance, especially for Saturday dates between May and September. However, we do occasionally have cancellations — contact us for last-minute availability.' } },
+    { '@type': 'Question', name: 'Can we bring our own caterers or must we use your preferred list?', acceptedAnswer: { '@type': 'Answer', text: 'All catering at Ashworth Manor must be provided by our approved catering partner, Harvest Fine Catering. We offer fully bespoke menus with a complimentary tasting session for all bookings.' } },
+    { '@type': 'Question', name: 'Is exclusive use of the manor available?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — exclusive use packages are available that include the manor house, all four venue spaces, the grounds, and private accommodation for the wedding party.' } },
+    { '@type': 'Question', name: 'Do you accommodate international and multicultural weddings?', acceptedAnswer: { '@type': 'Answer', text: 'Absolutely. We have hosted weddings with Hindu, Jewish, Muslim, and civil ceremonies. Our team has experience coordinating with officiants of all faiths.' } },
+    { '@type': 'Question', name: 'What is your payment and cancellation policy?', acceptedAnswer: { '@type': 'Answer', text: 'A 25% deposit secures your date, with the balance due 90 days before your wedding. Deposits are non-refundable but transferable to a new date within 18 months, subject to availability.' } },
+  ],
+}
+
 export default function WeddingDemo() {
   return (
     <div style={themeToStyleObject(createCustomTheme('classic', {
@@ -260,6 +288,8 @@ export default function WeddingDemo() {
       textMuted: '#8a6070',
       border: '#ddb8a8',
     })) as React.CSSProperties}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(weddingJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(weddingFaqJsonLd) }} />
       <VideoHero
         title="Where Love Stories Begin"
         subtitle="Ashworth Manor — a Grade II listed Surrey estate offering four breathtaking spaces for intimate celebrations to grand receptions of 300 guests"

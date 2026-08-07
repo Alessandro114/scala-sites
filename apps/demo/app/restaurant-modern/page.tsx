@@ -670,9 +670,83 @@ function BookingSection() {
 
 // --- PAGE ---
 
+const noriJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Restaurant',
+  name: 'NORI',
+  description: 'Omakase and seasonal kaiseki in the heart of Mayfair. NORI redefines Japanese fine dining with an emphasis on precision, provenance, and restraint.',
+  url: 'https://nori-london.example.com',
+  telephone: '+44 20 7946 0311',
+  email: 'reservations@nori-london.com',
+  servesCuisine: 'Japanese',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '18 Heddon Street',
+    addressLocality: 'London',
+    postalCode: 'W1B 4BG',
+    addressCountry: 'GB',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 51.5113,
+    longitude: -0.1406,
+  },
+  sameAs: [
+    'https://instagram.com/nori.london',
+    'https://facebook.com/norilondon',
+  ],
+  hasMenu: {
+    '@type': 'Menu',
+    hasMenuSection: [
+      {
+        '@type': 'MenuSection',
+        name: 'Omakase',
+        hasMenuItem: [
+          { '@type': 'MenuItem', name: 'Omakase — 8 Course', description: 'Chef-curated eight-course journey.', offers: { '@type': 'Offer', price: '145', priceCurrency: 'GBP' } },
+          { '@type': 'MenuItem', name: 'Omakase — 12 Course', description: 'The full expression. Twelve courses with optional sake pairing.', offers: { '@type': 'Offer', price: '225', priceCurrency: 'GBP' } },
+          { '@type': 'MenuItem', name: 'Vegetable Kaiseki', description: 'A plant-forward kaiseki menu. Eight courses.', offers: { '@type': 'Offer', price: '115', priceCurrency: 'GBP' } },
+        ],
+      },
+      {
+        '@type': 'MenuSection',
+        name: 'Small Plates',
+        hasMenuItem: [
+          { '@type': 'MenuItem', name: 'Otoro Nigiri', description: 'Bluefin tuna belly from Tsukiji market. Two pieces.', offers: { '@type': 'Offer', price: '32', priceCurrency: 'GBP' } },
+          { '@type': 'MenuItem', name: 'Wagyu Tataki', description: 'A5 Kagoshima wagyu, lightly seared, ponzu gel, micro shiso.', offers: { '@type': 'Offer', price: '38', priceCurrency: 'GBP' } },
+          { '@type': 'MenuItem', name: 'Sea Urchin Toast', description: 'Bafun uni from Hokkaido on toasted brioche.', offers: { '@type': 'Offer', price: '28', priceCurrency: 'GBP' } },
+        ],
+      },
+      {
+        '@type': 'MenuSection',
+        name: 'Main Plates',
+        hasMenuItem: [
+          { '@type': 'MenuItem', name: 'Dry-Aged Duck Breast', description: 'Gressingham duck aged 14 days, miso caramel.', offers: { '@type': 'Offer', price: '46', priceCurrency: 'GBP' } },
+          { '@type': 'MenuItem', name: 'Miso Black Cod', description: 'Classic black cod, three-day saikyo miso marinade.', offers: { '@type': 'Offer', price: '52', priceCurrency: 'GBP' } },
+          { '@type': 'MenuItem', name: 'Wagyu Sirloin A5', description: 'Kagoshima A5 wagyu, 200g.', offers: { '@type': 'Offer', price: '120', priceCurrency: 'GBP' } },
+        ],
+      },
+    ],
+  },
+}
+
+const noriFaqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'How far in advance should I book?', acceptedAnswer: { '@type': 'Answer', text: 'We recommend booking the omakase menus at least 2–3 weeks in advance. Weekend slots often fill 4 weeks ahead. Cancellation is free up to 48 hours before your reservation.' } },
+    { '@type': 'Question', name: 'Can you accommodate dietary restrictions?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Please inform us of all allergies and dietary requirements at the time of booking. The vegetable kaiseki is our dedicated plant-based menu.' } },
+    { '@type': 'Question', name: 'Is there a dress code?', acceptedAnswer: { '@type': 'Answer', text: 'Smart casual. We ask that guests avoid sportswear, shorts, and trainers.' } },
+    { '@type': 'Question', name: 'Do you offer private dining?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Our private dining room seats up to 12 guests and is available for exclusive hire.' } },
+    { '@type': 'Question', name: 'What is your cancellation policy?', acceptedAnswer: { '@type': 'Answer', text: 'Cancellations made more than 48 hours before the reservation are fully refunded. Within 48 hours, a 50% charge applies. No-shows are charged in full.' } },
+    { '@type': 'Question', name: 'Do you offer gift vouchers?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Gift vouchers are available in any denomination from £50. Valid for 12 months from purchase.' } },
+  ],
+}
+
 export default function RestaurantModernPage() {
   return (
     <div className="bg-[#0a0a0a]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(noriJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(noriFaqJsonLd) }} />
       <Navbar />
 
       {/* Hero */}

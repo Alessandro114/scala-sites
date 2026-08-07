@@ -670,9 +670,48 @@ function ContactSection() {
 
 // --- PAGE ---
 
+const agencyJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Orbit Digital',
+  description: 'Award-winning digital marketing agency in Soho. Paid media, SEO, brand strategy, and creative production for ambitious brands.',
+  url: 'https://orbitdigital.example.com',
+  telephone: '+44 20 7946 0382',
+  email: 'hello@orbitdigital.example.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '14 Ingestre Place, Soho',
+    addressLocality: 'London',
+    postalCode: 'W1F 0JL',
+    addressCountry: 'GB',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 51.5133,
+    longitude: -0.1367,
+  },
+  sameAs: [
+    'https://instagram.com/orbitdigital.agency',
+    'https://facebook.com/orbitdigital',
+  ],
+}
+
+const agencyFaqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'What services does Orbit Digital offer?', acceptedAnswer: { '@type': 'Answer', text: 'We offer Paid Media (Meta, Google, TikTok, LinkedIn), Brand Strategy, SEO & Content, Email & CRM, Creative Production, and Analytics & CRO.' } },
+    { '@type': 'Question', name: 'What is your average client ROAS?', acceptedAnswer: { '@type': 'Answer', text: 'Our average client ROAS on paid media is 4.1x. We build, manage, and scale performance campaigns with rigorous attribution.' } },
+    { '@type': 'Question', name: 'How do I start a project with Orbit Digital?', acceptedAnswer: { '@type': 'Answer', text: 'Use the Start a Project form on this page — tell us about your brand, your goals, and your budget. We respond within one working day.' } },
+    { '@type': 'Question', name: 'Do you outsource any creative work?', acceptedAnswer: { '@type': 'Answer', text: 'No. Our creative production is entirely in-house. Our senior creative team produces 40+ assets per month per client.' } },
+  ],
+}
+
 export default function AgencyDemo() {
   return (
     <div className="bg-[#0a0a0a] text-white overflow-x-hidden">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(agencyJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(agencyFaqJsonLd) }} />
       {/* Scroll progress bar */}
       <div className="scroll-progress" style={{ '--color-accent': '#ffffff' } as React.CSSProperties} />
 

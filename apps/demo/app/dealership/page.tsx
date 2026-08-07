@@ -289,6 +289,35 @@ function UrgencyBanner() {
 
 // --- PAGE ---
 
+const dealershipJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AutoDealer',
+  name: 'AutoSelect',
+  description: '200+ certified pre-owned vehicles. Transparent pricing, flexible finance, and zero-pressure service in East London.',
+  telephone: '+44 20 7946 0851',
+  email: 'sales@autoselect.example.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '240 Mile End Road',
+    addressLocality: 'London',
+    postalCode: 'E1 4LJ',
+    addressCountry: 'GB',
+  },
+}
+
+const dealershipFaqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'What does Certified Pre-Owned mean at AutoSelect?', acceptedAnswer: { '@type': 'Answer', text: 'Every Certified Pre-Owned vehicle passes our 120-point inspection, includes a minimum 12-month warranty, full HPI clear certificate, and a fresh MOT where applicable.' } },
+    { '@type': 'Question', name: 'Can I part-exchange my current car?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. We accept all makes and models. We provide a formal written offer within 30 minutes of inspection.' } },
+    { '@type': 'Question', name: 'What finance deals are available?', acceptedAnswer: { '@type': 'Answer', text: 'We offer HP, PCP, and personal loan products through our FCA-authorised panel. Representative APR 9.9%. Decisions in minutes for most customers.' } },
+    { '@type': 'Question', name: 'How long does a test drive take?', acceptedAnswer: { '@type': 'Answer', text: 'Standard test drives are 30 minutes. Extended 60-minute slots are available for vehicles over £20,000 — just request when booking.' } },
+    { '@type': 'Question', name: 'Do you offer home delivery?', acceptedAnswer: { '@type': 'Answer', text: 'We deliver across Greater London at no extra cost. UK-wide delivery is available for a flat fee of £149.' } },
+    { '@type': 'Question', name: 'Is 0% finance really available?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — selected certified vehicles are eligible for 0% APR on terms of 12–24 months. Subject to status and a minimum 20% deposit.' } },
+  ],
+}
+
 export default function DealershipDemo() {
   const theme = createCustomTheme('bold', {
     primary: '#1a1a2e',
@@ -304,6 +333,8 @@ export default function DealershipDemo() {
 
   return (
     <div style={themeToStyleObject(theme) as React.CSSProperties} className="bg-[#0f0f1e]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dealershipJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(dealershipFaqJsonLd) }} />
       <Navbar />
 
       {/* Hero */}

@@ -1,7 +1,6 @@
 'use client'
 
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
-import { Hero } from '@scala-sites/core/components/hero'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
 import { Footer } from '@scala-sites/core/components/footer'
@@ -263,16 +262,362 @@ const theme = createCustomTheme('minimal', {
   border: '#e9d5ff',
 })
 
+// ─── JSON-LD DATA ───────────────────────────────────────────────────────────
+const schoolJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  additionalType: 'EducationalOrganization',
+  name: 'The Camden Academy',
+  description: 'Expert-led courses in languages, music, art, business, tech & cooking — small groups, vibrant community, real results.',
+  url: 'https://camdenacademy.example.com',
+  telephone: '+44 20 7946 0123',
+  email: 'hello@camdenacademy.example',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '18 Camden High Street',
+    addressLocality: 'London',
+    postalCode: 'NW1 0JH',
+    addressCountry: 'GB',
+  },
+  foundingDate: '1965',
+  openingHours: 'Mo-Sa 09:00-21:00',
+}
+
+const schoolFaqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.question,
+    acceptedAnswer: { '@type': 'Answer', text: f.answer },
+  })),
+}
+
+// ─── CUSTOM SCHOOL HERO ──────────────────────────────────────────────────────
+function SchoolHero() {
+  // Scattered geometric shapes config
+  const shapes = [
+    // Circles
+    { type: 'circle', color: '#3b82f6', size: 48,  top: '12%', left: '6%',   delay: '0s',    dur: '6s'  },
+    { type: 'circle', color: '#ec4899', size: 28,  top: '70%', left: '4%',   delay: '1.2s',  dur: '7s'  },
+    { type: 'circle', color: '#f59e0b', size: 64,  top: '55%', right: '5%',  delay: '0.6s',  dur: '8s'  },
+    { type: 'circle', color: '#10b981', size: 20,  top: '18%', right: '12%', delay: '2s',    dur: '5s'  },
+    { type: 'circle', color: '#8b5cf6', size: 36,  top: '82%', right: '18%', delay: '1.5s',  dur: '9s'  },
+    // Squares
+    { type: 'square', color: '#f59e0b', size: 32,  top: '30%', left: '8%',   delay: '0.8s',  dur: '7s'  },
+    { type: 'square', color: '#3b82f6', size: 22,  top: '65%', left: '14%',  delay: '2.4s',  dur: '6s'  },
+    { type: 'square', color: '#ec4899', size: 44,  top: '20%', right: '8%',  delay: '1.0s',  dur: '8s'  },
+    { type: 'square', color: '#10b981', size: 18,  top: '78%', right: '10%', delay: '3.0s',  dur: '7s'  },
+    // Triangles (CSS border trick)
+    { type: 'triangle', color: '#3b82f6', size: 36, top: '44%', left: '3%',  delay: '1.8s',  dur: '9s'  },
+    { type: 'triangle', color: '#ec4899', size: 28, top: '88%', left: '22%', delay: '0.4s',  dur: '6s'  },
+    { type: 'triangle', color: '#f59e0b', size: 40, top: '35%', right: '4%', delay: '2.2s',  dur: '8s'  },
+    { type: 'triangle', color: '#8b5cf6', size: 24, top: '10%', left: '28%', delay: '1.4s',  dur: '7s'  },
+  ]
+
+  return (
+    <section
+      style={{
+        position: 'relative',
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden',
+        background: '#ffffff',
+      }}
+    >
+      <style>{`
+        @keyframes shapeFloat {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          33%       { transform: translateY(-12px) rotate(6deg); }
+          66%       { transform: translateY(-6px) rotate(-4deg); }
+        }
+        .geo-shape {
+          position: absolute;
+          animation: shapeFloat var(--dur, 6s) ease-in-out infinite;
+          animation-delay: var(--delay, 0s);
+          opacity: 0.18;
+          pointer-events: none;
+        }
+        @keyframes schoolFadeUp {
+          from { opacity: 0; transform: translateY(28px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .school-fade-up {
+          opacity: 0;
+          animation: schoolFadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes crestGlow {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(139,92,246,0.3); }
+          50%       { box-shadow: 0 0 0 14px rgba(139,92,246,0); }
+        }
+        @keyframes tagSlide {
+          from { opacity: 0; transform: translateX(-14px); }
+          to   { opacity: 1; transform: translateX(0); }
+        }
+      `}</style>
+
+      {/* Geometric shapes */}
+      {shapes.map((s, i) => {
+        const sharedStyle: React.CSSProperties = {
+          position: 'absolute',
+          top: s.top,
+          bottom: (s as { bottom?: string }).bottom,
+          left: s.left,
+          right: s.right,
+          ['--dur' as string]: s.dur,
+          ['--delay' as string]: s.delay,
+          opacity: 0.15,
+          pointerEvents: 'none',
+          animation: `shapeFloat ${s.dur} ease-in-out ${s.delay} infinite`,
+        }
+        if (s.type === 'circle') {
+          return (
+            <div
+              key={i}
+              style={{
+                ...sharedStyle,
+                width: s.size,
+                height: s.size,
+                borderRadius: '50%',
+                background: s.color,
+              }}
+            />
+          )
+        }
+        if (s.type === 'square') {
+          return (
+            <div
+              key={i}
+              style={{
+                ...sharedStyle,
+                width: s.size,
+                height: s.size,
+                borderRadius: '4px',
+                background: s.color,
+                transform: `rotate(15deg)`,
+              }}
+            />
+          )
+        }
+        // Triangle
+        return (
+          <div
+            key={i}
+            style={{
+              ...sharedStyle,
+              width: 0,
+              height: 0,
+              background: 'transparent',
+              borderLeft: `${s.size / 2}px solid transparent`,
+              borderRight: `${s.size / 2}px solid transparent`,
+              borderBottom: `${s.size}px solid ${s.color}`,
+            }}
+          />
+        )
+      })}
+
+      {/* Content */}
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 10,
+          textAlign: 'center',
+          maxWidth: '800px',
+          margin: '0 auto',
+          padding: '120px 24px 80px',
+        }}
+      >
+        {/* School Crest / Shield Placeholder */}
+        <div
+          className="school-fade-up"
+          style={{
+            animationDelay: '0.05s',
+            display: 'flex',
+            justifyContent: 'center',
+            marginBottom: '28px',
+          }}
+        >
+          <div
+            style={{
+              width: '72px',
+              height: '80px',
+              background: 'linear-gradient(160deg, #4c1d95 0%, #7c3aed 100%)',
+              clipPath: 'polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              animation: 'crestGlow 3s ease-in-out infinite',
+              boxShadow: '0 4px 24px rgba(124,58,237,0.35)',
+            }}
+          >
+            <span style={{ color: '#fbbf24', fontSize: '1.8rem', lineHeight: 1, marginTop: '-12px' }}>&#10022;</span>
+          </div>
+        </div>
+
+        {/* Tagline above title */}
+        <p
+          className="school-fade-up"
+          style={{
+            animationDelay: '0.15s',
+            fontSize: '0.72rem',
+            letterSpacing: '0.22em',
+            textTransform: 'uppercase',
+            color: '#7c3aed',
+            fontWeight: 700,
+            marginBottom: '16px',
+          }}
+        >
+          Inspiring Futures Since 1965
+        </p>
+
+        {/* Main heading — large playful sans-serif */}
+        <h1
+          className="school-fade-up"
+          style={{
+            animationDelay: '0.25s',
+            fontFamily: '"Arial Rounded MT Bold", "Nunito", "Helvetica Neue", sans-serif',
+            fontSize: 'clamp(2.8rem, 7vw, 5.5rem)',
+            fontWeight: 900,
+            color: '#1c1917',
+            lineHeight: 1.1,
+            letterSpacing: '-0.03em',
+            marginBottom: '10px',
+          }}
+        >
+          Learn Something
+        </h1>
+        <h1
+          className="school-fade-up"
+          style={{
+            animationDelay: '0.35s',
+            fontFamily: '"Arial Rounded MT Bold", "Nunito", "Helvetica Neue", sans-serif',
+            fontSize: 'clamp(2.8rem, 7vw, 5.5rem)',
+            fontWeight: 900,
+            lineHeight: 1.1,
+            letterSpacing: '-0.03em',
+            marginBottom: '32px',
+            background: 'linear-gradient(90deg, #7c3aed 0%, #ec4899 50%, #f59e0b 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}
+        >
+          Extraordinary
+        </h1>
+
+        {/* Subtitle */}
+        <p
+          className="school-fade-up"
+          style={{
+            animationDelay: '0.45s',
+            fontSize: '1.1rem',
+            color: '#78716c',
+            lineHeight: 1.7,
+            maxWidth: '560px',
+            margin: '0 auto 36px',
+            fontWeight: 400,
+          }}
+        >
+          Expert-led courses in languages, music, art, business, tech &amp; cooking —
+          small groups, vibrant community, real results.
+        </p>
+
+        {/* Subject tags */}
+        <div
+          className="school-fade-up"
+          style={{
+            animationDelay: '0.55s',
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '10px',
+            justifyContent: 'center',
+            marginBottom: '44px',
+          }}
+        >
+          {[
+            { label: 'Languages', color: '#3b82f6' },
+            { label: 'Music',     color: '#ec4899' },
+            { label: 'Art',       color: '#f59e0b' },
+            { label: 'Business',  color: '#10b981' },
+            { label: 'Tech',      color: '#8b5cf6' },
+            { label: 'Cooking',   color: '#ef4444' },
+          ].map(({ label, color }) => (
+            <span
+              key={label}
+              style={{
+                padding: '7px 16px',
+                borderRadius: '30px',
+                fontSize: '0.8rem',
+                fontWeight: 700,
+                color,
+                background: `${color}18`,
+                border: `1.5px solid ${color}40`,
+                animation: 'tagSlide 0.6s ease-out both',
+              }}
+            >
+              {label}
+            </span>
+          ))}
+        </div>
+
+        {/* CTAs */}
+        <div
+          className="school-fade-up"
+          style={{ animationDelay: '0.65s', display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}
+        >
+          <a
+            href="#courses"
+            style={{
+              padding: '15px 38px',
+              background: 'linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%)',
+              color: '#ffffff',
+              borderRadius: '12px',
+              fontSize: '0.95rem',
+              fontWeight: 700,
+              textDecoration: 'none',
+              letterSpacing: '-0.01em',
+              boxShadow: '0 6px 28px rgba(124,58,237,0.35)',
+            }}
+          >
+            Browse Courses
+          </a>
+          <a
+            href="#enrol"
+            style={{
+              padding: '15px 34px',
+              background: 'transparent',
+              color: '#4c1d95',
+              border: '2px solid #e9d5ff',
+              borderRadius: '12px',
+              fontSize: '0.95rem',
+              fontWeight: 600,
+              textDecoration: 'none',
+            }}
+          >
+            Enrol Now
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default function SchoolDemo() {
   return (
     <div style={themeToStyleObject(theme) as React.CSSProperties}>
-      <Hero
-        title="Learn Something Extraordinary"
-        subtitle="Expert-led courses in languages, music, art, business, tech & cooking — small groups, vibrant community, real results"
-        backgroundImage="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1600"
-        ctaPrimary={{ label: 'Browse Courses', href: '#courses' }}
-        ctaSecondary={{ label: 'Enrol Now', href: '#enrol' }}
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schoolJsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schoolFaqJsonLd) }}
+      />
+
+      <SchoolHero />
 
       <div id="courses">
         <CourseCatalog courses={courses} locale="en" />

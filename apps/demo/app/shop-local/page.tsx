@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
-import { Hero } from '@scala-sites/core/components/hero'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
 import { Footer } from '@scala-sites/core/components/footer'
@@ -322,7 +321,43 @@ export default function ShopLocalPage() {
   return (
     <div style={{ ...themeToStyleObject(theme) as React.CSSProperties, backgroundColor: '#faf8f5', color: '#1c1a17', fontFamily: '"Inter", system-ui, sans-serif' }}>
 
-      {/* Nav */}
+      {/* ── JSON-LD: LocalBusiness + FAQ ── */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            {
+              '@context': 'https://schema.org',
+              '@type': 'GroceryStore',
+              name: 'The Corner Store',
+              description: 'Artisan groceries and deli in Notting Hill. Fresh bread, real cheese, seasonal produce.',
+              url: 'https://cornerstorenotting.example.com',
+              telephone: '+44 20 7229 3841',
+              email: 'hello@cornerstorenotting.co.uk',
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: '83 Westbourne Grove',
+                addressLocality: 'London',
+                postalCode: 'W2 4UL',
+                addressCountry: 'GB',
+              },
+              openingHours: ['Mo-Fr 07:00-19:00', 'Sa 07:00-18:00', 'Su 09:00-16:00'],
+              priceRange: '££',
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: faqs.map((f) => ({
+                '@type': 'Question',
+                name: f.question,
+                acceptedAnswer: { '@type': 'Answer', text: f.answer },
+              })),
+            },
+          ]),
+        }}
+      />
+
+      {/* ── NAVBAR ── */}
       <nav className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 border-b" style={{ backgroundColor: '#faf8f5', borderColor: '#ddd8cf' }}>
         <div>
           <p className="font-bold text-lg text-[#1c1a17] leading-none">The Corner Store</p>
@@ -343,17 +378,141 @@ export default function ShopLocalPage() {
         </a>
       </nav>
 
-      {/* Hero */}
-      <Hero
-        title="Artisan Groceries &amp; Deli"
-        subtitle="Your neighbourhood store in Notting Hill. Fresh bread every morning, real cheese, seasonal produce and the people who know where it all comes from."
-        backgroundImage="https://images.unsplash.com/photo-1542838132-92c53300491e?w=1600"
-        ctaPrimary={{ label: 'Order Now — Click & Collect', href: '#collect' }}
-        ctaSecondary={{ label: "Today's Specials", href: '#specials' }}
-        overlayOpacity={0.4}
-        textAlign="left"
-        height="large"
-      />
+      {/* ══════════════════════════════════════════════
+          CUSTOM HERO — Handcrafted / Kraft Paper
+          Warm beige gradient, dashed rotated border,
+          floating illustrated icons with CSS animation.
+          ══════════════════════════════════════════════ */}
+      <section
+        className="relative overflow-hidden py-24 md:py-36 px-6"
+        style={{
+          background: 'linear-gradient(145deg, #f5ead8 0%, #ede0c4 40%, #e8d5ae 100%)',
+        }}
+        aria-label="Hero — The Corner Store"
+      >
+        {/* Subtle paper texture via repeating SVG pattern */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-20"
+          style={{
+            backgroundImage:
+              'repeating-linear-gradient(0deg, transparent, transparent 28px, #c4a97022 28px, #c4a97022 29px), repeating-linear-gradient(90deg, transparent, transparent 28px, #c4a97022 28px, #c4a97022 29px)',
+          }}
+        />
+
+        {/* Floating illustrated icons */}
+        {[
+          { emoji: '🌿', top: '12%', left: '6%', delay: '0s', duration: '6s' },
+          { emoji: '🧺', top: '20%', right: '8%', delay: '1.5s', duration: '7s' },
+          { emoji: '🫙', bottom: '18%', left: '10%', delay: '0.8s', duration: '5.5s' },
+          { emoji: '☕', top: '60%', right: '12%', delay: '2.2s', duration: '8s' },
+          { emoji: '🍞', bottom: '25%', right: '6%', delay: '0.4s', duration: '6.5s' },
+          { emoji: '🌻', top: '8%', right: '25%', delay: '3s', duration: '7.5s' },
+        ].map(({ emoji, delay, duration, ...pos }, i) => (
+          <span
+            key={i}
+            className="absolute text-3xl md:text-4xl select-none pointer-events-none"
+            style={{
+              ...pos as React.CSSProperties,
+              animation: `floatIcon ${duration} ease-in-out ${delay} infinite`,
+              filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.08))',
+            }}
+          >
+            {emoji}
+          </span>
+        ))}
+
+        {/* Centre card with dashed rotated border */}
+        <div className="relative z-10 max-w-2xl mx-auto">
+          {/* Outer rotated dashed frame */}
+          <div
+            className="absolute -inset-6 md:-inset-10 rounded-2xl pointer-events-none"
+            style={{
+              border: '2px dashed #8b6914',
+              transform: 'rotate(-1.5deg)',
+              opacity: 0.5,
+            }}
+          />
+          {/* Inner counter-rotated card */}
+          <div
+            className="relative rounded-2xl px-10 py-14 md:px-16 md:py-20 text-center"
+            style={{
+              backgroundColor: 'rgba(255,252,245,0.85)',
+              backdropFilter: 'blur(4px)',
+              boxShadow: '0 8px 40px rgba(139,105,20,0.12), 0 2px 8px rgba(139,105,20,0.06)',
+            }}
+          >
+            {/* Stamp badge */}
+            <div
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase mb-8"
+              style={{ backgroundColor: '#e8f0e0', color: '#2d5016', border: '1.5px solid #2d5016' }}
+            >
+              <span className="w-2 h-2 rounded-full bg-green-600 inline-block animate-pulse" />
+              Est. 2016 &ensp;&middot;&ensp; Notting Hill
+            </div>
+
+            {/* Headline — friendly rounded feel */}
+            <h1
+              className="text-4xl md:text-6xl font-bold leading-tight mb-6"
+              style={{
+                color: '#2c1e10',
+                fontFamily: '"Georgia", serif',
+                letterSpacing: '-0.02em',
+              }}
+            >
+              Your Proper<br />
+              <span style={{ color: '#2d5016' }}>Neighbourhood</span><br />
+              Shop
+            </h1>
+
+            {/* Subtitle */}
+            <p
+              className="text-base md:text-lg leading-relaxed mb-10 max-w-md mx-auto"
+              style={{ color: '#6b6458' }}
+            >
+              Fresh bread from 7&thinsp;AM. Real cheese. Seasonal produce
+              direct from British farms. And the people who know exactly
+              where it all comes from.
+            </p>
+
+            {/* Hand-drawn-style divider */}
+            <div className="flex items-center gap-4 justify-center mb-10">
+              <div className="flex-1 h-px" style={{ background: 'linear-gradient(to right, transparent, #b87333)' }} />
+              <span className="text-xl" style={{ color: '#b87333' }}>✦</span>
+              <div className="flex-1 h-px" style={{ background: 'linear-gradient(to left, transparent, #b87333)' }} />
+            </div>
+
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="#collect"
+                className="px-8 py-4 rounded-xl text-sm font-bold text-white transition-all duration-300 hover:scale-[1.03] active:scale-100"
+                style={{ backgroundColor: '#2d5016', boxShadow: '0 4px 16px rgba(45,80,22,0.3)' }}
+              >
+                Order Now &mdash; Click &amp; Collect
+              </a>
+              <a
+                href="#specials"
+                className="px-8 py-4 rounded-xl text-sm font-bold transition-all duration-300 hover:scale-[1.03] active:scale-100 border-2"
+                style={{ borderColor: '#2d5016', color: '#2d5016', backgroundColor: 'transparent' }}
+              >
+                Today&apos;s Specials
+              </a>
+            </div>
+
+            {/* Trust micro-line */}
+            <p className="text-xs mt-8" style={{ color: '#a09070' }}>
+              4.9&thinsp;★ on Google &ensp;&middot;&ensp; 2,847 orders this month &ensp;&middot;&ensp; Same-day collection
+            </p>
+          </div>
+        </div>
+
+        <style>{`
+          @keyframes floatIcon {
+            0%, 100% { transform: translateY(0px) rotate(-4deg); }
+            50% { transform: translateY(-16px) rotate(4deg); }
+          }
+        `}</style>
+      </section>
 
       {/* Social proof bar */}
       <div className="border-b" style={{ backgroundColor: '#fff', borderColor: '#ddd8cf' }}>

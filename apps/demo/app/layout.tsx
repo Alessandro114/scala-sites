@@ -4,10 +4,40 @@ import './globals.css'
 export const metadata: Metadata = {
   title: {
     template: '%s | SCALA Sites',
-    default: 'SCALA Sites — Open Source Vertical Website Templates',
+    default: 'SCALA Sites — 39 Industry Website Templates, Open Source',
   },
   description:
-    'Industry-optimized website templates with native booking, WhatsApp, and AI. Open source, powered by SCALA AI OS.',
+    '39 production-ready, industry-optimized website templates. Restaurant, hotel, clinic, gym, law firm and more. Free, open source, built with Next.js + TypeScript.',
+  keywords: [
+    'website templates',
+    'next.js templates',
+    'industry templates',
+    'restaurant website',
+    'hotel website',
+    'open source',
+    'SCALA AI OS',
+    'vertical SaaS',
+    'business website',
+  ],
+  authors: [{ name: 'SCALA AI OS', url: 'https://get-scala.com' }],
+  openGraph: {
+    title: 'SCALA Sites — 39 Industry Website Templates',
+    description:
+      '39 production-ready website templates for every industry. Restaurant, hotel, clinic, gym, law firm and more. Free & open source.',
+    url: 'https://sites.get-scala.com',
+    siteName: 'SCALA Sites',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'SCALA Sites — 39 Industry Website Templates',
+    description:
+      '39 production-ready website templates for every industry. Free & open source.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

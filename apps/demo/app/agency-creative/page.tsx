@@ -477,6 +477,44 @@ function AboutSection() {
 
 // --- PAGE ---
 
+const fluxJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Flux Creative',
+  description: 'Independent brand and content agency in Fitzrovia. We build distinctive brand identities, run retainer content programmes, and deliver creative direction that converts.',
+  url: 'https://fluxcreative.example.com',
+  telephone: '+44 20 7946 0570',
+  email: 'hello@fluxcreative.example.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '32 Charlotte Street, Fitzrovia',
+    addressLocality: 'London',
+    postalCode: 'W1T 2NB',
+    addressCountry: 'GB',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 51.5198,
+    longitude: -0.1356,
+  },
+  sameAs: [
+    'https://instagram.com/fluxcreative.london',
+    'https://facebook.com/fluxcreative',
+  ],
+}
+
+const fluxFaqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'How do I start a brief with Flux Creative?', acceptedAnswer: { '@type': 'Answer', text: 'Use the "Start a Brief" form on this page. We review every brief personally and respond within one working day with an honest initial take and next steps.' } },
+    { '@type': 'Question', name: 'What types of brands do you work with?', acceptedAnswer: { '@type': 'Answer', text: 'We work primarily with growth-stage B2B and B2C brands, start-ups preparing for investment, and established businesses going through a repositioning.' } },
+    { '@type': 'Question', name: 'Do you offer standalone copywriting or design?', acceptedAnswer: { '@type': 'Answer', text: 'Yes, though we are most effective when we own both strategy and execution. Standalone copy or design projects are available from our Project tier.' } },
+    { '@type': 'Question', name: 'What does the retainer include and how is it structured?', acceptedAnswer: { '@type': 'Answer', text: 'Retainers are monthly partnerships covering strategic content planning, production, and creative direction. Each retainer client has a dedicated creative director and strategist. Minimum three months, then rolling monthly.' } },
+    { '@type': 'Question', name: 'Do ad spend or media budgets come out of your fees?', acceptedAnswer: { '@type': 'Answer', text: 'No. Our fees cover strategy, creative production, and direction. Media spend is managed directly by the client or their media agency.' } },
+  ],
+}
+
 export default function AgencyCreativeDemo() {
   const theme = createCustomTheme('minimal', {
     primary: '#1a1a1a',
@@ -492,6 +530,8 @@ export default function AgencyCreativeDemo() {
 
   return (
     <div style={themeToStyleObject(theme) as React.CSSProperties}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(fluxJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(fluxFaqJsonLd) }} />
       <Navbar />
 
       <TypewriterHero

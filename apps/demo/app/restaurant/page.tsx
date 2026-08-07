@@ -292,9 +292,77 @@ function Navbar() {
 // ═══════════════════════════════════════════════
 //  PAGE
 // ═══════════════════════════════════════════════
+const restaurantJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Restaurant',
+  name: 'The Garden Kitchen',
+  description: 'Traditional Italian cuisine in the heart of Mayfair, London.',
+  url: 'https://thegardenkitchen.example.com',
+  telephone: '+44 20 7946 0958',
+  email: 'info@thegardenkitchen.com',
+  servesCuisine: 'Italian',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '42 Neal Street, Mayfair',
+    addressLocality: 'London',
+    postalCode: 'W1K 3PS',
+    addressCountry: 'GB',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 51.5094,
+    longitude: -0.1478,
+  },
+  sameAs: [
+    'https://instagram.com/thegardenkitchen',
+    'https://facebook.com/thegardenkitchen',
+  ],
+  hasMenu: {
+    '@type': 'Menu',
+    hasMenuSection: [
+      {
+        '@type': 'MenuSection',
+        name: 'Mains',
+        hasMenuItem: [
+          { '@type': 'MenuItem', name: 'Ossobuco alla Milanese', description: 'Braised veal shank, gremolata, saffron risotto', offers: { '@type': 'Offer', price: '28', priceCurrency: 'GBP' } },
+          { '@type': 'MenuItem', name: 'Tagliatelle al Ragu', description: 'Fresh egg pasta, 6-hour Bolognese', offers: { '@type': 'Offer', price: '16', priceCurrency: 'GBP' } },
+          { '@type': 'MenuItem', name: 'Margherita DOC', description: 'San Marzano, buffalo mozzarella, basil', offers: { '@type': 'Offer', price: '12', priceCurrency: 'GBP' } },
+          { '@type': 'MenuItem', name: 'Burrata con Prosciutto', description: 'San Daniele prosciutto, arugula, EVOO', offers: { '@type': 'Offer', price: '14', priceCurrency: 'GBP' } },
+          { '@type': 'MenuItem', name: 'Risotto ai Funghi Porcini', description: 'Carnaroli rice, wild porcini, aged parmesan', offers: { '@type': 'Offer', price: '18', priceCurrency: 'GBP' } },
+          { '@type': 'MenuItem', name: 'Spaghetti alle Vongole', description: 'Fresh clams, garlic, white wine, parsley', offers: { '@type': 'Offer', price: '17', priceCurrency: 'GBP' } },
+          { '@type': 'MenuItem', name: 'Branzino al Forno', description: 'Oven-roasted sea bass, cherry tomatoes, olives', offers: { '@type': 'Offer', price: '24', priceCurrency: 'GBP' } },
+          { '@type': 'MenuItem', name: 'Carpaccio di Manzo', description: 'Thinly sliced raw beef, rocket, parmesan, lemon', offers: { '@type': 'Offer', price: '16', priceCurrency: 'GBP' } },
+        ],
+      },
+      {
+        '@type': 'MenuSection',
+        name: 'Desserts',
+        hasMenuItem: [
+          { '@type': 'MenuItem', name: 'Tiramisu della Casa', description: 'Our signature — mascarpone, espresso, cocoa', offers: { '@type': 'Offer', price: '9', priceCurrency: 'GBP' } },
+          { '@type': 'MenuItem', name: 'Panna Cotta', description: 'Vanilla, seasonal berry compote', offers: { '@type': 'Offer', price: '8', priceCurrency: 'GBP' } },
+        ],
+      },
+    ],
+  },
+}
+
+const restaurantFaqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'Do you take reservations?', acceptedAnswer: { '@type': 'Answer', text: 'Yes! Book directly on this page or send us a WhatsApp message. We confirm within minutes.' } },
+    { '@type': 'Question', name: 'Do you cater for dietary requirements?', acceptedAnswer: { '@type': 'Answer', text: 'Absolutely. Our menu includes vegan, vegetarian, and gluten-free options. Let us know about any allergies when booking.' } },
+    { '@type': 'Question', name: 'Is there parking nearby?', acceptedAnswer: { '@type': 'Answer', text: 'Valet parking is available Friday-Sunday. On weekdays, the nearest car park is on Avery Row (2 min walk). Green Park station is 4 minutes away.' } },
+    { '@type': 'Question', name: 'Can you host private events?', acceptedAnswer: { '@type': 'Answer', text: 'Yes, our upstairs room seats up to 40 guests. Perfect for birthdays, corporate dinners, and celebrations. Contact us for a custom menu.' } },
+    { '@type': 'Question', name: 'Do you offer takeaway?', acceptedAnswer: { '@type': 'Answer', text: 'Yes, order takeaway directly through our menu. We deliver within 3km via our own riders — no commission apps.' } },
+  ],
+}
+
 export default function DineOSDemoPage() {
   return (
     <div style={S.pageBg}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(restaurantJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(restaurantFaqJsonLd) }} />
       {/* Scroll progress bar */}
       <div className="scroll-progress" style={{ background: C.amber }} />
 

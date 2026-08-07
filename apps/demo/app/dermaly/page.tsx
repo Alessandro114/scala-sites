@@ -1,7 +1,6 @@
 'use client'
 
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
-import { Hero } from '@scala-sites/core/components/hero'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
 import { Footer } from '@scala-sites/core/components/footer'
@@ -9,6 +8,58 @@ import { Gallery } from '@scala-sites/core/components/gallery'
 import { FAQAccordion } from '@scala-sites/core/components/faq-accordion'
 import { TreatmentMenu } from '@scala-sites/clinicoos/components/treatment-menu'
 import { AppointmentForm } from '@scala-sites/clinicoos/components/appointment-form'
+
+// ─── JSON-LD ──────────────────────────────────────────────────────────────────
+
+const localBusinessJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalClinic',
+  name: 'The Aesthetic Clinic — Harley Street',
+  description: 'Advanced dermatology & cosmetic medicine on Harley Street. GMC-registered doctors performing Botox, fillers, laser resurfacing, and advanced skin science.',
+  url: 'https://aestheticclinic.example.com',
+  telephone: '+44 20 7935 8800',
+  email: 'consultations@aestheticclinic.example.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '72 Harley Street',
+    addressLocality: 'London',
+    postalCode: 'W1G 7HG',
+    addressCountry: 'GB',
+  },
+  priceRange: '££££',
+  medicalSpecialty: ['Dermatology', 'Cosmetic Medicine', 'Laser Medicine'],
+}
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Are all treatments performed by qualified doctors?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, without exception. Every injectable and laser treatment is performed by GMC-registered doctors with postgraduate dermatology qualifications.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Are you CQC registered?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. The Aesthetic Clinic is registered with and regulated by the Care Quality Commission (CQC). Our most recent inspection received an overall "Good" rating.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long do injectable results last?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Anti-wrinkle injections typically last 3–4 months. Dermal fillers: lip fillers 6–9 months, cheek fillers 12–18 months.',
+      },
+    },
+  ],
+}
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -132,7 +183,7 @@ const doctors = [
     nextSlotUrgent: false,
     rating: 5.0,
     reviewCount: 418,
-    bio: 'Lead consultant and founder of The Aesthetic Clinic. 14 years in cosmetic dermatology, trained at King\'s College Hospital and the Karolinska Institute. Specialist in natural facial aesthetics and complex skin conditions.',
+    bio: 'Lead consultant and founder of The Aesthetic Clinic. 14 years in cosmetic dermatology, trained at King\'s College Hospital and the Karolinska Institute.',
     consultationFee: 150,
     currency: 'GBP',
     bookingUrl: '#booking',
@@ -147,7 +198,7 @@ const doctors = [
     nextSlotUrgent: false,
     rating: 4.9,
     reviewCount: 312,
-    bio: 'Specialist in advanced injectables and facial anatomy. Trained by the British College of Aesthetic Medicine. Known for his conservative, highly natural approach to facial rejuvenation.',
+    bio: 'Specialist in advanced injectables and facial anatomy. Trained by the British College of Aesthetic Medicine.',
     consultationFee: 150,
     currency: 'GBP',
     bookingUrl: '#booking',
@@ -162,7 +213,7 @@ const doctors = [
     nextSlotUrgent: true,
     rating: 4.9,
     reviewCount: 276,
-    bio: 'Laser dermatology specialist with expertise in pigmentation disorders, acne scarring, and photodamage. Published researcher in fractional laser techniques. Fitzpatrick types I–VI experience.',
+    bio: 'Laser dermatology specialist with expertise in pigmentation disorders, acne scarring, and photodamage.',
     consultationFee: 150,
     currency: 'GBP',
     bookingUrl: '#booking',
@@ -183,7 +234,7 @@ const reviews = [
     id: '1',
     author: 'Harriet F.',
     rating: 5,
-    text: 'I was nervous about my first aesthetic consultation, but Dr. Forsythe completely put me at ease. She was honest about what I needed — and what I didn\'t. The results were natural and genuinely transformative. I look like myself, just better.',
+    text: 'I was nervous about my first aesthetic consultation, but Dr. Forsythe completely put me at ease. The results were natural and genuinely transformative. I look like myself, just better.',
     date: '2026-07-28',
     source: 'Google',
     verified: true,
@@ -192,7 +243,7 @@ const reviews = [
     id: '2',
     author: 'Victoria A.',
     rating: 5,
-    text: 'Had CO2 laser with Dr. Anand for acne scarring I\'d lived with for 10 years. Six weeks on, my skin texture has completely changed. The clinical team were exceptional throughout — clear on aftercare, responsive, and genuinely expert.',
+    text: 'Had CO2 laser with Dr. Anand for acne scarring I\'d lived with for 10 years. Six weeks on, my skin texture has completely changed.',
     date: '2026-07-14',
     source: 'Google',
     verified: true,
@@ -201,7 +252,7 @@ const reviews = [
     id: '3',
     author: 'Catherine M.',
     rating: 5,
-    text: 'The Full Face Rejuvenation with Dr. Pemberton was the best decision I\'ve made. He took 20 minutes in the consultation explaining exactly what he was going to do and why. Result: completely natural, nobody guessed I\'d had anything done.',
+    text: 'The Full Face Rejuvenation with Dr. Pemberton was the best decision I\'ve made. Result: completely natural, nobody guessed I\'d had anything done.',
     date: '2026-07-02',
     source: 'Trustpilot',
     verified: true,
@@ -210,7 +261,7 @@ const reviews = [
     id: '4',
     author: 'Sophie K.',
     rating: 5,
-    text: 'The Medical HydraFacial is unlike any facial I\'ve had elsewhere. Dr. Anand added a bespoke booster cocktail for my rosacea and the results lasted weeks. The clinic itself feels like a private members club — immaculate and serene.',
+    text: 'The Medical HydraFacial is unlike any facial I\'ve had elsewhere. The clinic itself feels like a private members club — immaculate and serene.',
     date: '2026-06-20',
     source: 'Google',
     verified: true,
@@ -219,7 +270,7 @@ const reviews = [
     id: '5',
     author: 'Natasha W.',
     rating: 5,
-    text: 'I drove from Bristol after a recommendation from my GP. Worth every mile. The level of medical rigour here is what separates The Aesthetic Clinic from every high-street aesthetics provider. GMC-registered doctors, proper consultations, real results.',
+    text: 'The level of medical rigour here is what separates The Aesthetic Clinic from every high-street aesthetics provider. GMC-registered doctors, proper consultations, real results.',
     date: '2026-06-05',
     source: 'Google',
     verified: true,
@@ -233,23 +284,23 @@ const faqs = [
   },
   {
     question: 'What happens at the initial consultation?',
-    answer: 'Your 30-minute consultation (£150, redeemable against treatment) covers a full facial and skin assessment, medical history review, and an honest discussion of treatment options including realistic expectations, downtime, and alternatives. We never recommend treatments that are not appropriate.',
+    answer: 'Your 30-minute consultation (£150, redeemable against treatment) covers a full facial and skin assessment, medical history review, and an honest discussion of treatment options including realistic expectations, downtime, and alternatives.',
   },
   {
     question: 'How long do injectable results last?',
-    answer: 'Anti-wrinkle injections typically last 3–4 months. Dermal fillers depend on the product and area: lip fillers 6–9 months, cheek fillers 12–18 months. Longevity varies between individuals based on metabolism, lifestyle, and treatment zone.',
+    answer: 'Anti-wrinkle injections typically last 3–4 months. Dermal fillers depend on the product and area: lip fillers 6–9 months, cheek fillers 12–18 months.',
   },
   {
     question: 'Is there downtime after laser treatments?',
-    answer: 'Fractional CO2 laser involves 5–7 days of healing (redness, peeling). IPL has minimal downtime — mild redness for 24–48 hours. Laser hair removal has no downtime. We provide detailed pre- and post-treatment instructions and a full aftercare kit.',
+    answer: 'Fractional CO2 laser involves 5–7 days of healing (redness, peeling). IPL has minimal downtime — mild redness for 24–48 hours. Laser hair removal has no downtime.',
   },
   {
     question: 'Are you CQC registered?',
-    answer: 'Yes. The Aesthetic Clinic is registered with and regulated by the Care Quality Commission (CQC). Our most recent inspection received an overall "Good" rating. CQC registration is a legal requirement for any clinic performing certain medical procedures — we strongly advise patients to verify this before choosing any provider.',
+    answer: 'Yes. The Aesthetic Clinic is registered with and regulated by the Care Quality Commission (CQC). Our most recent inspection received an overall "Good" rating.',
   },
   {
     question: 'Can I see before-and-after results before booking?',
-    answer: 'Yes. During your consultation, Dr. Forsythe or a colleague will show you anonymised clinical photography relevant to your concerns and planned treatment. We believe informed consent is the foundation of safe aesthetics practice.',
+    answer: 'Yes. During your consultation, Dr. Forsythe or a colleague will show you anonymised clinical photography relevant to your concerns and planned treatment.',
   },
 ]
 
@@ -262,26 +313,360 @@ const siteConfig = {
   social: { instagram: '#', facebook: '#' },
 }
 
-// ─── Trust Badge Component ─────────────────────────────────────────────────
+// ─── Custom Hero — Clinical Luxury ──────────────────────────────────────────
 
-function TrustBadges() {
-  const badges = [
-    { icon: '🏛', label: 'GMC Registered Doctors' },
-    { icon: '✦', label: 'CQC Rated Good' },
-    { icon: '◈', label: 'BCAM Members' },
-    { icon: '🔬', label: 'Medical-Grade Devices' },
+function ClinicalLuxuryHero() {
+  // Gold constellation dots
+  const constellationDots = [
+    { top: '18%', left: '8%', r: 3 },
+    { top: '32%', left: '14%', r: 2 },
+    { top: '22%', left: '20%', r: 1.5 },
+    { top: '55%', left: '6%', r: 2.5 },
+    { top: '70%', left: '15%', r: 2 },
+    { top: '60%', left: '22%', r: 1 },
+    { top: '12%', right: '10%', r: 2 },
+    { top: '28%', right: '7%', r: 3 },
+    { top: '45%', right: '12%', r: 1.5 },
+    { top: '75%', right: '8%', r: 2 },
+    { top: '82%', right: '18%', r: 1 },
   ]
+
   return (
-    <div style={{ padding: '40px 24px', background: 'var(--color-surface)', borderBottom: '1px solid var(--color-border)' }}>
-      <div style={{ maxWidth: '900px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '24px' }}>
-        {badges.map(b => (
-          <div key={b.label} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '12px 22px', border: '1px solid var(--color-border)', borderRadius: '40px', background: 'var(--color-background)' }}>
-            <span style={{ fontSize: '1.1rem' }}>{b.icon}</span>
-            <span style={{ fontSize: '0.825rem', fontWeight: 600, color: 'var(--color-text)' }}>{b.label}</span>
-          </div>
-        ))}
+    <section
+      style={{
+        position: 'relative',
+        minHeight: '100vh',
+        overflow: 'hidden',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      {/* JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
+      <style>{`
+        @keyframes clinicFade {
+          from { opacity: 0; transform: translateY(24px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes constellationPulse {
+          0%, 100% { opacity: 0.3; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.4); }
+        }
+        @keyframes skinTextureDrift {
+          0% { transform: scale(1.05) translate(0, 0); }
+          50% { transform: scale(1.08) translate(-8px, -4px); }
+          100% { transform: scale(1.05) translate(0, 0); }
+        }
+        .clinic-a0 { animation: clinicFade 0.9s ease both; }
+        .clinic-a1 { animation: clinicFade 0.9s 0.15s ease both; }
+        .clinic-a2 { animation: clinicFade 0.9s 0.3s ease both; }
+        .clinic-a3 { animation: clinicFade 0.9s 0.45s ease both; }
+        .clinic-a4 { animation: clinicFade 0.9s 0.6s ease both; }
+        .constellation-dot { animation: constellationPulse 4s ease-in-out infinite; }
+        .skin-bg { animation: skinTextureDrift 14s ease-in-out infinite; }
+      `}</style>
+
+      {/* Background: macro skin texture with heavy blur */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: '-10%',
+          zIndex: 0,
+        }}
+      >
+        <div
+          className="skin-bg"
+          style={{
+            width: '100%',
+            height: '100%',
+            backgroundImage: 'url(https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=1800&h=1200&fit=crop&q=80)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            filter: 'blur(24px) brightness(0.45) saturate(0.6)',
+          }}
+        />
       </div>
-    </div>
+
+      {/* Nude/blush gradient overlay */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(135deg, rgba(30,18,15,0.88) 0%, rgba(80,48,40,0.72) 40%, rgba(120,80,70,0.6) 70%, rgba(160,120,100,0.5) 100%)',
+          zIndex: 1,
+        }}
+      />
+
+      {/* Vignette */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'radial-gradient(ellipse at center, transparent 30%, rgba(10,5,3,0.7) 100%)',
+          zIndex: 2,
+        }}
+      />
+
+      {/* Gold constellation / molecular pattern */}
+      <svg
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', zIndex: 3, pointerEvents: 'none' }}
+        viewBox="0 0 1200 800"
+        preserveAspectRatio="xMidYMid slice"
+      >
+        {/* Connection lines */}
+        <line x1="96" y1="144" x2="168" y2="256" stroke="#c9a84c" strokeWidth="0.6" strokeOpacity="0.25" />
+        <line x1="168" y1="256" x2="240" y2="176" stroke="#c9a84c" strokeWidth="0.6" strokeOpacity="0.25" />
+        <line x1="72" y1="440" x2="180" y2="560" stroke="#c9a84c" strokeWidth="0.6" strokeOpacity="0.25" />
+        <line x1="1080" y1="96" x2="1116" y2="224" stroke="#c9a84c" strokeWidth="0.6" strokeOpacity="0.25" />
+        <line x1="1116" y1="224" x2="1056" y2="360" stroke="#c9a84c" strokeWidth="0.6" strokeOpacity="0.25" />
+        {/* Dots */}
+        {[
+          [96, 144], [168, 256], [240, 176], [72, 440], [132, 528],
+          [180, 560], [1080, 96], [1116, 224], [1056, 360], [960, 600],
+        ].map(([cx, cy], i) => (
+          <circle
+            key={i}
+            cx={cx}
+            cy={cy}
+            r={i % 3 === 0 ? 3.5 : 2}
+            fill="#c9a84c"
+            opacity="0.5"
+            className="constellation-dot"
+            style={{ animationDelay: `${i * 0.4}s` }}
+          />
+        ))}
+      </svg>
+
+      {/* Harley Street badge */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '28px',
+          right: '36px',
+          zIndex: 20,
+          background: 'rgba(201,168,76,0.12)',
+          border: '1px solid rgba(201,168,76,0.4)',
+          borderRadius: '40px',
+          padding: '8px 20px',
+          backdropFilter: 'blur(12px)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+        }}
+        className="clinic-a0"
+      >
+        <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#c9a84c', display: 'block' }} />
+        <span style={{ fontSize: '0.72rem', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#c9a84c' }}>
+          Harley Street · W1G
+        </span>
+      </div>
+
+      {/* Main content */}
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 10,
+          textAlign: 'center',
+          maxWidth: '820px',
+          padding: '120px 32px 100px',
+        }}
+      >
+        {/* Thin serif firm name */}
+        <p
+          className="clinic-a0"
+          style={{
+            fontFamily: '"Georgia", "Garamond", serif',
+            fontSize: '0.85rem',
+            fontWeight: 400,
+            letterSpacing: '0.35em',
+            textTransform: 'uppercase',
+            color: '#c9a84c',
+            marginBottom: '28px',
+          }}
+        >
+          The Aesthetic Clinic
+        </p>
+
+        <h1
+          className="clinic-a1"
+          style={{
+            fontFamily: '"Georgia", "Garamond", serif',
+            fontSize: 'clamp(2.4rem, 5.5vw, 4.4rem)',
+            fontWeight: 300,
+            lineHeight: 1.15,
+            color: '#fdf6f0',
+            marginBottom: '28px',
+            letterSpacing: '-0.01em',
+          }}
+        >
+          Where Medicine
+          <br />
+          Meets Aesthetics
+        </h1>
+
+        <p
+          className="clinic-a2"
+          style={{
+            fontFamily: '"Georgia", "Garamond", serif',
+            fontSize: '1.0625rem',
+            fontWeight: 400,
+            fontStyle: 'italic',
+            color: 'rgba(253,246,240,0.72)',
+            lineHeight: 1.75,
+            marginBottom: '44px',
+            maxWidth: '600px',
+            margin: '0 auto 44px',
+          }}
+        >
+          GMC-registered dermatologists and aesthetic physicians. Botox, fillers,
+          laser resurfacing, and advanced skin science — performed with medical precision.
+        </p>
+
+        {/* Trust badges row */}
+        <div
+          className="clinic-a3"
+          style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '12px', marginBottom: '44px' }}
+        >
+          {[
+            { abbr: 'GMC', label: 'Registered Doctors' },
+            { abbr: 'CQC', label: 'Rated Good' },
+            { abbr: 'BAD', label: 'Member Clinic' },
+          ].map(badge => (
+            <div
+              key={badge.abbr}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '4px',
+                padding: '14px 22px',
+                background: 'rgba(253,246,240,0.07)',
+                border: '1px solid rgba(201,168,76,0.25)',
+                borderRadius: '10px',
+                backdropFilter: 'blur(10px)',
+                minWidth: '100px',
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: '"Georgia", serif',
+                  fontSize: '1.1rem',
+                  fontWeight: 700,
+                  color: '#c9a84c',
+                  letterSpacing: '0.06em',
+                }}
+              >
+                {badge.abbr}
+              </span>
+              <span
+                style={{
+                  fontSize: '0.65rem',
+                  color: 'rgba(253,246,240,0.6)',
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
+                }}
+              >
+                {badge.label}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* CTAs */}
+        <div
+          className="clinic-a4"
+          style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}
+        >
+          <a
+            href="#booking"
+            style={{
+              display: 'inline-block',
+              padding: '16px 36px',
+              background: '#c9a84c',
+              color: '#1a0e08',
+              borderRadius: '8px',
+              fontWeight: 700,
+              fontSize: '0.9375rem',
+              textDecoration: 'none',
+              letterSpacing: '0.02em',
+              boxShadow: '0 4px 24px rgba(201,168,76,0.35)',
+            }}
+          >
+            Book a Consultation — £150
+          </a>
+          <a
+            href="#treatments"
+            style={{
+              display: 'inline-block',
+              padding: '16px 36px',
+              background: 'rgba(253,246,240,0.08)',
+              color: '#fdf6f0',
+              border: '1px solid rgba(253,246,240,0.25)',
+              borderRadius: '8px',
+              fontWeight: 500,
+              fontSize: '0.9375rem',
+              textDecoration: 'none',
+              backdropFilter: 'blur(10px)',
+            }}
+          >
+            Our Treatments
+          </a>
+        </div>
+
+        {/* Micro stats */}
+        <div
+          className="clinic-a4"
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: '36px',
+            marginTop: '52px',
+            paddingTop: '36px',
+            borderTop: '1px solid rgba(201,168,76,0.2)',
+          }}
+        >
+          {[
+            { num: '3', label: 'Specialist Physicians' },
+            { num: '14+', label: 'Treatments' },
+            { num: '2,000+', label: 'Patients' },
+          ].map(stat => (
+            <div key={stat.label} style={{ textAlign: 'center' }}>
+              <div
+                style={{
+                  fontFamily: '"Georgia", serif',
+                  fontSize: '1.6rem',
+                  fontWeight: 300,
+                  color: '#c9a84c',
+                  lineHeight: 1,
+                }}
+              >
+                {stat.num}
+              </div>
+              <div
+                style={{
+                  fontSize: '0.65rem',
+                  color: 'rgba(253,246,240,0.5)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                  marginTop: '5px',
+                }}
+              >
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }
 
@@ -365,16 +750,24 @@ export default function DermalyShowcase() {
     <div style={themeToStyleObject(theme) as React.CSSProperties}>
 
       {/* Hero */}
-      <Hero
-        title="Where Medicine Meets Aesthetics"
-        subtitle="GMC-registered dermatologists and aesthetic physicians on Harley Street. Botox, fillers, laser resurfacing, and advanced skin science — performed with medical precision."
-        backgroundImage="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1600"
-        ctaPrimary={{ label: 'Book a Consultation', href: '#booking' }}
-        ctaSecondary={{ label: 'Our Treatments', href: '#treatments' }}
-      />
+      <ClinicalLuxuryHero />
 
-      {/* Trust badges */}
-      <TrustBadges />
+      {/* Trust badges strip */}
+      <div style={{ padding: '32px 24px', background: 'var(--color-surface)', borderBottom: '1px solid var(--color-border)' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '16px' }}>
+          {[
+            { icon: '🏛', label: 'GMC Registered Doctors' },
+            { icon: '✦', label: 'CQC Rated Good' },
+            { icon: '◈', label: 'BCAM Members' },
+            { icon: '🔬', label: 'Medical-Grade Devices' },
+          ].map(b => (
+            <div key={b.label} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '12px 22px', border: '1px solid var(--color-border)', borderRadius: '40px', background: 'var(--color-background)' }}>
+              <span style={{ fontSize: '1.1rem' }}>{b.icon}</span>
+              <span style={{ fontSize: '0.825rem', fontWeight: 600, color: 'var(--color-text)' }}>{b.label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* Welcome */}
       <section style={{ padding: '72px 24px', background: 'var(--color-background)', textAlign: 'center' }}>
@@ -386,17 +779,8 @@ export default function DermalyShowcase() {
             Medical Standards. Aesthetic Artistry.
           </h2>
           <p style={{ color: 'var(--color-text-muted)', lineHeight: 1.75, fontSize: '1.0625rem', marginBottom: '28px' }}>
-            Founded by Dr. Amelia Forsythe, The Aesthetic Clinic brings together the medical rigour of NHS-trained doctors with the artistry of world-class cosmetic practice. Every treatment plan begins with an honest consultation — and an outcome that looks completely natural.
+            Founded by Dr. Amelia Forsythe, The Aesthetic Clinic brings together the medical rigour of NHS-trained doctors with the artistry of world-class cosmetic practice.
           </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '20px', fontSize: '0.875rem', color: 'var(--color-text-muted)' }}>
-            <span>3 Specialist Physicians</span>
-            <span style={{ color: 'var(--color-border)' }}>·</span>
-            <span>14+ Treatments</span>
-            <span style={{ color: 'var(--color-border)' }}>·</span>
-            <span>2,000+ Patients</span>
-            <span style={{ color: 'var(--color-border)' }}>·</span>
-            <span>CQC Registered</span>
-          </div>
         </div>
       </section>
 

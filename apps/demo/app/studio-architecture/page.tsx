@@ -1,8 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
-import { Hero } from '@scala-sites/core/components/hero'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
 import { Footer } from '@scala-sites/core/components/footer'
@@ -342,6 +341,68 @@ function TeamSection() {
 
 // --- PAGE ---
 
+// ── Animated wireframe cube via CSS 3D transforms ──
+function WireframeCube() {
+  return (
+    <div
+      aria-hidden="true"
+      className="relative"
+      style={{ width: 140, height: 140, perspective: '600px' }}
+    >
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          position: 'relative',
+          transformStyle: 'preserve-3d',
+          animation: 'rotateCube 14s linear infinite',
+        }}
+      >
+        {/* Six faces, all transparent with just a border */}
+        {[
+          { transform: 'rotateY(0deg) translateZ(70px)' },
+          { transform: 'rotateY(180deg) translateZ(70px)' },
+          { transform: 'rotateY(90deg) translateZ(70px)' },
+          { transform: 'rotateY(-90deg) translateZ(70px)' },
+          { transform: 'rotateX(90deg) translateZ(70px)' },
+          { transform: 'rotateX(-90deg) translateZ(70px)' },
+        ].map(({ transform }, i) => (
+          <div
+            key={i}
+            style={{
+              position: 'absolute',
+              width: 140,
+              height: 140,
+              border: '1px solid #e8631a',
+              opacity: 0.35,
+              transform,
+              backgroundColor: 'rgba(232,99,26,0.02)',
+            }}
+          />
+        ))}
+        {/* Cross-hair lines on front face */}
+        <div
+          style={{
+            position: 'absolute',
+            width: 140,
+            height: 140,
+            transform: 'rotateY(0deg) translateZ(70px)',
+          }}
+        >
+          <div style={{ position: 'absolute', top: '50%', left: 0, right: 0, height: 1, backgroundColor: '#e8631a', opacity: 0.2 }} />
+          <div style={{ position: 'absolute', left: '50%', top: 0, bottom: 0, width: 1, backgroundColor: '#e8631a', opacity: 0.2 }} />
+        </div>
+      </div>
+      <style>{`
+        @keyframes rotateCube {
+          0% { transform: rotateX(10deg) rotateY(0deg); }
+          100% { transform: rotateX(10deg) rotateY(360deg); }
+        }
+      `}</style>
+    </div>
+  )
+}
+
 export default function StudioArchitectureDemo() {
   const theme = createCustomTheme('minimal', {
     primary: '#2c2c2c',
@@ -355,20 +416,235 @@ export default function StudioArchitectureDemo() {
     border: '#d5d5cc',
   })
 
+  // Tick counter for live "project coordinates" feel
+  const [tick, setTick] = useState(0)
+  useEffect(() => {
+    const id = setInterval(() => setTick((t) => t + 1), 3000)
+    return () => clearInterval(id)
+  }, [])
+
   return (
     <div style={themeToStyleObject(theme) as React.CSSProperties} className="bg-[#f5f5f0]">
       <Navbar />
 
-      {/* Hero */}
-      <Hero
-        title="Architecture & Interior Design"
-        subtitle="Atelier One — Clerkenwell, London. Residential, commercial, and heritage projects crafted with precision and restraint."
-        backgroundImage="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1800&h=900&fit=crop"
-        ctaPrimary={{ label: 'View Our Work', href: '#portfolio' }}
-        ctaSecondary={{ label: 'Start a Conversation', href: '#contact' }}
-        overlayOpacity={0.55}
-        height="full"
+      {/* ── JSON-LD: LocalBusiness + FAQ ── */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            {
+              '@context': 'https://schema.org',
+              '@type': 'ProfessionalService',
+              name: 'Atelier One',
+              description: 'Award-winning architecture and interior design practice based in Clerkenwell, London.',
+              url: 'https://atelierone.example.com',
+              telephone: '+44 20 7946 0174',
+              email: 'studio@atelierone.example.com',
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: '22 St John Street',
+                addressLocality: 'London',
+                postalCode: 'EC1M 4AY',
+                addressCountry: 'GB',
+              },
+              priceRange: '££££',
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: faqs.map((f) => ({
+                '@type': 'Question',
+                name: f.question,
+                acceptedAnswer: { '@type': 'Answer', text: f.answer },
+              })),
+            },
+          ]),
+        }}
       />
+
+      {/* ══════════════════════════════════════════════
+          CUSTOM HERO — Blueprint Grid
+          Dark navy background with CSS grid pattern.
+          Thin extended sans-serif title.
+          Rotating CSS wireframe cube.
+          Architect-orange accent line.
+          ══════════════════════════════════════════════ */}
+      <section
+        className="relative min-h-screen flex flex-col justify-center overflow-hidden"
+        style={{ backgroundColor: '#0e1320' }}
+        aria-label="Hero — Atelier One Architecture"
+      >
+        {/* Blueprint grid pattern */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(100,120,160,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(100,120,160,0.08) 1px, transparent 1px)',
+            backgroundSize: '48px 48px',
+          }}
+        />
+        {/* Larger grid overlay — double-grid feel */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(100,120,160,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(100,120,160,0.04) 1px, transparent 1px)',
+            backgroundSize: '240px 240px',
+          }}
+        />
+        {/* Corner registration marks */}
+        {[
+          { top: 24, left: 24 },
+          { top: 24, right: 24 },
+          { bottom: 24, left: 24 },
+          { bottom: 24, right: 24 },
+        ].map((pos, i) => (
+          <div
+            key={i}
+            aria-hidden="true"
+            className="absolute w-6 h-6 pointer-events-none"
+            style={{ ...pos as React.CSSProperties }}
+          >
+            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, backgroundColor: '#e8631a', opacity: 0.4 }} />
+            <div style={{ position: 'absolute', top: 0, bottom: 0, left: 0, width: 1, backgroundColor: '#e8631a', opacity: 0.4 }} />
+          </div>
+        ))}
+
+        <div className="relative z-10 max-w-7xl mx-auto px-8 md:px-16 pt-32 pb-20 grid grid-cols-1 md:grid-cols-[1fr_auto] gap-12 items-center">
+          {/* LEFT — Typography block */}
+          <div>
+            {/* Studio label with blinking cursor */}
+            <div className="flex items-center gap-3 mb-10">
+              <div
+                className="w-2 h-2 rounded-full"
+                style={{ backgroundColor: '#e8631a', animation: 'blink 1.4s step-end infinite' }}
+              />
+              <p
+                className="text-[10px] tracking-[0.55em] uppercase"
+                style={{ color: '#4a6080', fontFamily: 'monospace' }}
+              >
+                ATELIER ONE &ensp;//&ensp; CLERKENWELL · LONDON &ensp;//&ensp; EST. 2009
+              </p>
+            </div>
+
+            {/* Headline — thin extended sans */}
+            <h1
+              className="font-light leading-[0.92] tracking-[-0.03em] mb-10"
+              style={{
+                color: '#e8edf5',
+                fontFamily: '"Arial Narrow", "Helvetica Neue", sans-serif',
+              }}
+            >
+              <span
+                className="block text-[clamp(3.5rem,8vw,7.5rem)]"
+                style={{ letterSpacing: '0.08em', fontWeight: 100 }}
+              >
+                ARCHITECTURE
+              </span>
+              <span
+                className="block text-[clamp(3.5rem,8vw,7.5rem)] pl-[3vw]"
+                style={{ letterSpacing: '0.08em', fontWeight: 100, color: '#b8c8d8' }}
+              >
+                &amp; INTERIOR
+              </span>
+              <span
+                className="block text-[clamp(3.5rem,8vw,7.5rem)] pl-[6vw]"
+                style={{ letterSpacing: '0.08em', fontWeight: 100 }}
+              >
+                DESIGN
+              </span>
+            </h1>
+
+            {/* Architect-orange accent line */}
+            <div className="flex items-center gap-0 mb-10">
+              <div
+                className="h-px flex-1 max-w-[320px]"
+                style={{ background: 'linear-gradient(to right, #e8631a, #e8631a44)' }}
+              />
+              <div
+                className="w-2 h-2 rotate-45 flex-shrink-0"
+                style={{ backgroundColor: '#e8631a', margin: '0 -4px' }}
+              />
+            </div>
+
+            {/* Description */}
+            <p
+              className="text-sm font-light leading-relaxed max-w-lg mb-12"
+              style={{ color: '#6a8090', fontFamily: 'monospace', lineHeight: '1.8' }}
+            >
+              Residential, commercial, and heritage projects crafted with precision and restraint.
+              Award-winning practice. RIBA chartered. 22 St John Street, Clerkenwell.
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-wrap gap-4">
+              <a
+                href="#portfolio"
+                className="px-8 py-4 text-xs tracking-[0.3em] uppercase font-medium transition-all duration-300"
+                style={{ backgroundColor: '#e8631a', color: '#0e1320' }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = '#ff7d36' }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = '#e8631a' }}
+              >
+                View Our Work
+              </a>
+              <a
+                href="#contact"
+                className="px-8 py-4 text-xs tracking-[0.3em] uppercase font-light transition-all duration-300 border"
+                style={{ borderColor: '#2a3a50', color: '#6a8090' }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget as HTMLElement
+                  el.style.borderColor = '#e8631a'
+                  el.style.color = '#e8631a'
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget as HTMLElement
+                  el.style.borderColor = '#2a3a50'
+                  el.style.color = '#6a8090'
+                }}
+              >
+                Start a Conversation
+              </a>
+            </div>
+          </div>
+
+          {/* RIGHT — Wireframe cube + data readout */}
+          <div className="flex flex-col items-center gap-8 md:pr-8">
+            <WireframeCube />
+
+            {/* Coordinate / stat readout — blueprint data panel */}
+            <div
+              className="text-[10px] font-mono leading-loose"
+              style={{ color: '#3a5070' }}
+            >
+              {[
+                ['PROJ.REF', `AO-20${25 + (tick % 3)}-0${(tick % 9) + 1}`],
+                ['LAT', '51.5225° N'],
+                ['LNG', '0.1016° W'],
+                ['STATUS', 'ACTIVE'],
+                ['TEAM', '12 ARCHITECTS'],
+              ].map(([k, v]) => (
+                <div key={k} className="flex gap-4 justify-between">
+                  <span style={{ color: '#2a3a50' }}>{k}</span>
+                  <span style={{ color: '#4a6090' }}>{v}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom rule */}
+        <div
+          className="absolute bottom-0 left-0 right-0 h-px"
+          style={{ background: 'linear-gradient(to right, transparent, #e8631a44, transparent)' }}
+        />
+
+        <style>{`
+          @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+          }
+        `}</style>
+      </section>
 
       {/* Portfolio */}
       <div id="portfolio" className="bg-[#f5f5f0]">

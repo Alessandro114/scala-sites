@@ -424,9 +424,46 @@ function TrustBar() {
 
 // --- PAGE ---
 
+const greyHartJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LegalService',
+  name: 'Grey & Hart LLP',
+  description: 'Specialist IP law firm in Holborn. Advice on patents, trade marks, copyright, licensing, and IP litigation for innovators, brands, and creative businesses.',
+  url: 'https://greyandhart.example.com',
+  telephone: '+44 20 7405 8800',
+  email: 'enquiries@greyandhart.example.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '4 Gray\'s Inn Square, Holborn',
+    addressLocality: 'London',
+    postalCode: 'WC1R 5AH',
+    addressCountry: 'GB',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 51.5193,
+    longitude: -0.1127,
+  },
+  sameAs: ['https://facebook.com/grey-hart-llp'],
+}
+
+const greyHartFaqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'What is included in a Free IP Assessment?', acceptedAnswer: { '@type': 'Answer', text: 'Our Free IP Assessment is a 30-minute confidential consultation — by phone or video — with one of our IP solicitors or attorneys. We will review your IP and outline the most appropriate protection strategy. There is no obligation to instruct us.' } },
+    { '@type': 'Question', name: 'How long does a patent application take?', acceptedAnswer: { '@type': 'Answer', text: 'A UK national patent application typically takes 3–5 years from filing to grant, though provisional protection applies from the filing date. An EP application via the EPO takes a similar timeframe.' } },
+    { '@type': 'Question', name: 'Can you file trade marks internationally?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. We handle UK (UKIPO), EU (EUIPO), and international trade mark filings via the Madrid System, which allows a single application to cover up to 130+ countries.' } },
+    { '@type': 'Question', name: 'Do you advise on AI-generated content and ownership?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — this is a rapidly evolving area and one in which Priya Sharma has published academic work. We advise technology companies, publishers, and creative businesses on copyright subsistence in AI-generated outputs.' } },
+    { '@type': 'Question', name: 'What does IP due diligence for a funding round involve?', acceptedAnswer: { '@type': 'Answer', text: 'IP due diligence involves auditing your IP assets, identifying any third-party IP embedded in your product, reviewing employment and contractor agreements for IP assignment clauses, and producing an investor-ready IP schedule.' } },
+  ],
+}
+
 export default function LawIPDemoPage() {
   return (
     <div style={themeToStyleObject(greyHartTheme) as React.CSSProperties}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(greyHartJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(greyHartFaqJsonLd) }} />
       <Navbar />
 
       <SplitHero

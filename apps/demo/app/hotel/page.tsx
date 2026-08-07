@@ -238,9 +238,44 @@ const theme = createCustomTheme('classic', {
   error: '#dc2626',
 })
 
+const hotelJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Hotel',
+  name: 'The Meridian Grand',
+  description: 'A singular address in Mayfair — where understated luxury meets the warmth of a private home. London\'s most discreet five-star experience.',
+  telephone: '+44 20 7123 9000',
+  email: 'reservations@meridian-grand.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '14 Berkeley Square',
+    addressLocality: 'London',
+    postalCode: 'W1J 6BR',
+    addressCountry: 'GB',
+  },
+  starRating: {
+    '@type': 'Rating',
+    ratingValue: '5',
+  },
+}
+
+const hotelFaqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'What time is check-in and check-out?', acceptedAnswer: { '@type': 'Answer', text: 'Standard check-in is from 3:00 PM and check-out is by 12:00 noon. Early arrival and late departure can be arranged subject to availability.' } },
+    { '@type': 'Question', name: 'Is valet parking available?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. We offer 24-hour valet parking for guests at £45 per night. Electric vehicle charging is available upon request.' } },
+    { '@type': 'Question', name: 'Are pets welcome at The Meridian Grand?', acceptedAnswer: { '@type': 'Answer', text: 'We welcome well-behaved dogs of any size in our Deluxe rooms and selected Suites. A pet amenity kit and dedicated dog-walking service are included.' } },
+    { '@type': 'Question', name: 'What is your cancellation policy?', acceptedAnswer: { '@type': 'Answer', text: 'Reservations may be cancelled free of charge up to 48 hours prior to arrival. Cancellations within 48 hours incur a charge of one night\'s accommodation.' } },
+    { '@type': 'Question', name: 'Do you cater to dietary requirements?', acceptedAnswer: { '@type': 'Answer', text: 'Absolutely. Our kitchen accommodates all dietary needs including vegan, vegetarian, coeliac, halal, kosher and complex allergy profiles.' } },
+    { '@type': 'Question', name: 'Is there an airport transfer service?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. We offer a complimentary Rolls-Royce transfer from Heathrow for guests staying in our Suite or Penthouse categories. Standard transfers from £95 one way.' } },
+  ],
+}
+
 export default function HotelDemo() {
   return (
     <div style={themeToStyleObject(theme) as React.CSSProperties}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(hotelJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(hotelFaqJsonLd) }} />
       <VideoHero
         title="The Meridian Grand"
         subtitle="A singular address in Mayfair — where understated luxury meets the warmth of a private home. London's most discreet five-star experience awaits."

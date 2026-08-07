@@ -384,9 +384,46 @@ function Navbar() {
 
 // --- PAGE ---
 
+const sterlingJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LegalService',
+  name: 'Chambers & Sterling LLP',
+  description: 'Distinguished full-service law firm at 1 Temple Avenue, London. Corporate, Litigation, Real Estate, Employment, IP and Private Client counsel.',
+  url: 'https://chambersandsterling.example.com',
+  telephone: '+44 20 7353 4400',
+  email: 'enquiries@chambersandsterling.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '1 Temple Avenue',
+    addressLocality: 'London',
+    postalCode: 'EC4Y 0HA',
+    addressCountry: 'GB',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 51.5117,
+    longitude: -0.1093,
+  },
+  sameAs: ['https://facebook.com/chambers-sterling-llp'],
+}
+
+const sterlingFaqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'What does a free initial assessment involve?', acceptedAnswer: { '@type': 'Answer', text: 'Our free initial assessment is a confidential conversation — typically 30 minutes by telephone or video call — during which one of our lawyers will listen to your matter and provide a preliminary view on the legal position. There is no obligation to instruct us.' } },
+    { '@type': 'Question', name: 'How are your fees structured?', acceptedAnswer: { '@type': 'Answer', text: 'We offer a range of fee structures: hourly rates, fixed fees, capped fees, and conditional fee arrangements. We provide a clear written estimate at the outset of every engagement.' } },
+    { '@type': 'Question', name: 'Is everything I tell you confidential?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. From your very first contact with us, all communications are protected by legal professional privilege and our strict professional duty of confidentiality as solicitors.' } },
+    { '@type': 'Question', name: 'Do you advise international clients?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — a significant proportion of our work is international in nature. Our lawyers are admitted in England & Wales, Ireland, New York, and the Cayman Islands.' } },
+    { '@type': 'Question', name: 'How quickly can you take on a new matter?', acceptedAnswer: { '@type': 'Answer', text: 'We respond to new enquiries within one business day for standard matters, and within hours for urgent situations. We operate a 24/7 response capability for time-critical matters.' } },
+  ],
+}
+
 export default function LawDemoPage() {
   return (
     <div style={themeToStyleObject(sterlingTheme) as React.CSSProperties}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(sterlingJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(sterlingFaqJsonLd) }} />
       <Navbar />
 
       <SplitHero

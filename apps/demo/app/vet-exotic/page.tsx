@@ -1,7 +1,6 @@
 'use client'
 
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
-import { Hero } from '@scala-sites/core/components/hero'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
 import { Footer } from '@scala-sites/core/components/footer'
@@ -476,6 +475,330 @@ function EmergencyBanner() {
   )
 }
 
+// ─── JSON-LD DATA ───────────────────────────────────────────────────────────
+const exoticVetJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  additionalType: 'VeterinaryCare',
+  name: 'Creature Comforts Veterinary',
+  description: "London's leading exotic and small animal veterinary clinic — reptiles, birds, rabbits, and small mammals. 24/7 emergency specialist care.",
+  url: 'https://creaturecomforts.example.com',
+  telephone: '+44 20 7435 8822',
+  email: 'hello@creaturecomforts.example.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '18 Pond Street',
+    addressLocality: 'Hampstead, London',
+    postalCode: 'NW3 2PN',
+    addressCountry: 'GB',
+  },
+  openingHours: 'Mo-Fr 08:00-21:00, Sa 09:00-18:00, Su 10:00-17:00',
+}
+
+const exoticFaqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.question,
+    acceptedAnswer: { '@type': 'Answer', text: f.answer },
+  })),
+}
+
+// ─── CUSTOM EXOTIC VET HERO ──────────────────────────────────────────────────
+function ExoticVetHero() {
+  // Animal silhouette icon paths (inline SVG text chars for decorative use)
+  const animalIcons = [
+    { symbol: '&#x1F98E;', label: 'lizard',  top: '14%', left: '7%',   size: '2.2rem', rotate: '-15deg', delay: '0.6s' },
+    { symbol: '&#x1F99C;', label: 'parrot',  top: '22%', right: '8%',  size: '2.4rem', rotate: '12deg',  delay: '0.75s' },
+    { symbol: '&#x1F422;', label: 'turtle',  bottom: '28%', left: '5%', size: '2rem',  rotate: '8deg',   delay: '0.9s' },
+    { symbol: '&#x1F40D;', label: 'snake',   bottom: '20%', right: '6%', size: '2.2rem', rotate: '-20deg', delay: '1.05s' },
+    { symbol: '&#x1F407;', label: 'rabbit',  top: '60%', left: '10%',  size: '1.9rem', rotate: '0deg',   delay: '1.2s' },
+    { symbol: '&#x1F438;', label: 'frog',    top: '40%', right: '5%',  size: '1.8rem', rotate: '10deg',  delay: '1.35s' },
+  ]
+
+  return (
+    <section
+      style={{
+        position: 'relative',
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden',
+        background: 'linear-gradient(145deg, #0d2b1f 0%, #0a3d2b 30%, #07524a 65%, #0a6e60 100%)',
+      }}
+    >
+      <style>{`
+        /* Large botanical leaf overlay shapes */
+        .leaf-overlay {
+          position: absolute;
+          border-radius: 50% 10% 50% 10%;
+          pointer-events: none;
+        }
+        @keyframes leafSway {
+          0%, 100% { transform: rotate(-3deg) scale(1); }
+          50%       { transform: rotate(3deg) scale(1.02); }
+        }
+        @keyframes exoticFadeUp {
+          from { opacity: 0; transform: translateY(30px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .exotic-fade-up {
+          opacity: 0;
+          animation: exoticFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes animalFloat {
+          0%, 100% { transform: translateY(0px) rotate(var(--rot, 0deg)); }
+          50%       { transform: translateY(-8px) rotate(var(--rot, 0deg)); }
+        }
+        .animal-icon {
+          animation: animalFloat 3s ease-in-out infinite;
+          animation-delay: var(--float-delay, 0s);
+        }
+        @keyframes tropicalShimmer {
+          0%, 100% { opacity: 0.12; }
+          50%       { opacity: 0.2; }
+        }
+      `}</style>
+
+      {/* Botanical leaf shapes — large SVG-like CSS shapes */}
+      {/* Leaf 1 — top left, giant */}
+      <div
+        className="leaf-overlay"
+        style={{
+          top: '-120px',
+          left: '-80px',
+          width: '420px',
+          height: '580px',
+          background: 'linear-gradient(140deg, rgba(52,211,153,0.12) 0%, rgba(16,185,129,0.06) 100%)',
+          transform: 'rotate(-30deg)',
+          animation: 'leafSway 8s ease-in-out infinite',
+          animationDelay: '0s',
+        }}
+      />
+      {/* Leaf 2 — bottom right */}
+      <div
+        className="leaf-overlay"
+        style={{
+          bottom: '-100px',
+          right: '-60px',
+          width: '380px',
+          height: '500px',
+          background: 'linear-gradient(320deg, rgba(20,184,166,0.14) 0%, rgba(5,150,105,0.07) 100%)',
+          transform: 'rotate(25deg)',
+          animation: 'leafSway 10s ease-in-out infinite',
+          animationDelay: '2s',
+        }}
+      />
+      {/* Leaf 3 — mid left */}
+      <div
+        className="leaf-overlay"
+        style={{
+          top: '30%',
+          left: '-120px',
+          width: '280px',
+          height: '400px',
+          background: 'linear-gradient(110deg, rgba(34,197,94,0.09) 0%, transparent 100%)',
+          transform: 'rotate(-45deg)',
+          animation: 'leafSway 12s ease-in-out infinite',
+          animationDelay: '4s',
+        }}
+      />
+
+      {/* Tropical mesh/grid overlay */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(52,211,153,0.05) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(52,211,153,0.05) 40px)',
+          pointerEvents: 'none',
+          animation: 'tropicalShimmer 5s ease-in-out infinite',
+        }}
+      />
+
+      {/* Animal silhouette icons (decorative, positioned around hero) */}
+      {animalIcons.map((icon, i) => (
+        <div
+          key={i}
+          className="animal-icon exotic-fade-up"
+          style={{
+            position: 'absolute',
+            top: icon.top,
+            bottom: icon.bottom,
+            left: icon.left,
+            right: icon.right,
+            fontSize: icon.size,
+            opacity: 0,
+            animationDelay: icon.delay,
+            ['--rot' as string]: icon.rotate,
+            ['--float-delay' as string]: `${i * 0.4}s`,
+            filter: 'drop-shadow(0 2px 8px rgba(0,0,0,0.4))',
+            userSelect: 'none',
+          }}
+          dangerouslySetInnerHTML={{ __html: icon.symbol }}
+        />
+      ))}
+
+      {/* Central content */}
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 10,
+          textAlign: 'center',
+          maxWidth: '820px',
+          margin: '0 auto',
+          padding: '120px 24px 80px',
+        }}
+      >
+        {/* Eyebrow */}
+        <div
+          className="exotic-fade-up"
+          style={{
+            animationDelay: '0.1s',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '12px',
+            marginBottom: '32px',
+          }}
+        >
+          <div style={{ width: '32px', height: '1px', background: 'rgba(52,211,153,0.6)' }} />
+          <span style={{ color: '#34d399', fontSize: '0.68rem', letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 700 }}>
+            Hampstead, London &middot; Est. 2008
+          </span>
+          <div style={{ width: '32px', height: '1px', background: 'rgba(52,211,153,0.6)' }} />
+        </div>
+
+        {/* Main title — bold condensed */}
+        <h1
+          className="exotic-fade-up"
+          style={{
+            animationDelay: '0.22s',
+            fontFamily: '"Arial Black", "Impact", "Helvetica Neue", sans-serif',
+            fontSize: 'clamp(2.4rem, 7vw, 5.5rem)',
+            fontWeight: 900,
+            color: '#f0fdf4',
+            lineHeight: 1.0,
+            letterSpacing: '-0.02em',
+            textTransform: 'uppercase',
+            marginBottom: '6px',
+            textShadow: '0 4px 40px rgba(0,0,0,0.5)',
+          }}
+        >
+          Exotic Animal
+        </h1>
+        <h1
+          className="exotic-fade-up"
+          style={{
+            animationDelay: '0.32s',
+            fontFamily: '"Arial Black", "Impact", "Helvetica Neue", sans-serif',
+            fontSize: 'clamp(2.4rem, 7vw, 5.5rem)',
+            fontWeight: 900,
+            lineHeight: 1.0,
+            letterSpacing: '-0.02em',
+            textTransform: 'uppercase',
+            marginBottom: '32px',
+            background: 'linear-gradient(90deg, #34d399 0%, #fb923c 55%, #fbbf24 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}
+        >
+          Specialists
+        </h1>
+
+        {/* Subtitle */}
+        <p
+          className="exotic-fade-up"
+          style={{
+            animationDelay: '0.44s',
+            fontSize: '1.1rem',
+            color: 'rgba(209,250,229,0.8)',
+            lineHeight: 1.7,
+            maxWidth: '580px',
+            margin: '0 auto 40px',
+            fontWeight: 300,
+          }}
+        >
+          Creature Comforts — London&rsquo;s leading exotic veterinary clinic.
+          Reptile, avian, rabbit, and small mammal specialists.
+          24/7 emergency service staffed by exotic vets.
+        </p>
+
+        {/* Species tags — coral/amber accent chips */}
+        <div
+          className="exotic-fade-up"
+          style={{
+            animationDelay: '0.55s',
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '10px',
+            justifyContent: 'center',
+            marginBottom: '44px',
+          }}
+        >
+          {['Reptiles', 'Exotic Birds', 'Rabbits', 'Small Mammals', 'Amphibians', '24/7 Emergency'].map((sp, i) => (
+            <span
+              key={sp}
+              style={{
+                padding: '6px 14px',
+                borderRadius: '20px',
+                fontSize: '0.75rem',
+                fontWeight: 700,
+                letterSpacing: '0.04em',
+                border: '1px solid',
+                borderColor: i < 2 ? 'rgba(251,146,60,0.5)' : i < 4 ? 'rgba(251,191,36,0.5)' : 'rgba(52,211,153,0.5)',
+                color: i < 2 ? '#fb923c' : i < 4 ? '#fbbf24' : '#34d399',
+                background: i < 2 ? 'rgba(251,146,60,0.1)' : i < 4 ? 'rgba(251,191,36,0.1)' : 'rgba(52,211,153,0.1)',
+              }}
+            >
+              {sp}
+            </span>
+          ))}
+        </div>
+
+        {/* CTAs */}
+        <div
+          className="exotic-fade-up"
+          style={{ animationDelay: '0.65s', display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}
+        >
+          <a
+            href="#booking"
+            style={{
+              padding: '15px 36px',
+              background: 'linear-gradient(135deg, #059669 0%, #0d9488 100%)',
+              color: '#ffffff',
+              borderRadius: '8px',
+              fontSize: '0.9rem',
+              fontWeight: 700,
+              textDecoration: 'none',
+              letterSpacing: '0.03em',
+              boxShadow: '0 4px 24px rgba(5,150,105,0.4)',
+            }}
+          >
+            Book an Appointment
+          </a>
+          <a
+            href="#plans"
+            style={{
+              padding: '15px 32px',
+              background: 'rgba(52,211,153,0.1)',
+              color: '#34d399',
+              border: '1.5px solid rgba(52,211,153,0.4)',
+              borderRadius: '8px',
+              fontSize: '0.9rem',
+              fontWeight: 600,
+              textDecoration: 'none',
+            }}
+          >
+            View Wellness Plans
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // --- PAGE ---
 
 export default function VetExoticDemo() {
@@ -493,17 +816,19 @@ export default function VetExoticDemo() {
 
   return (
     <div style={themeToStyleObject(theme) as React.CSSProperties}>
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(exoticVetJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(exoticFaqJsonLd) }}
+      />
+
       <Navbar />
 
-      <Hero
-        title="Specialist Care for Every Scale, Feather & Paw."
-        subtitle="Creature Comforts — London's leading exotic and small animal veterinary clinic in Hampstead. Reptile, avian, rabbit, and small mammal specialists. 24/7 emergency service."
-        backgroundImage="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1800&h=900&fit=crop"
-        ctaPrimary={{ label: 'Book an Appointment', href: '#booking' }}
-        ctaSecondary={{ label: 'View Wellness Plans', href: '#plans' }}
-        overlayOpacity={0.72}
-        height="full"
-      />
+      <ExoticVetHero />
 
       <EmergencyBanner />
 

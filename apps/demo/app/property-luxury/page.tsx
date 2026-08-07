@@ -735,6 +735,33 @@ function ConsultationBooking() {
 
 // ─── PAGE ────────────────────────────────────────────────────────────────────
 
+const propertyJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Mayfair & Partners',
+  description: 'Ultra-Prime Real Estate Since 1987. Discreet sales, lettings, and property management for prime central London.',
+  telephone: '+44 20 7493 8000',
+  email: 'prime@mayfairandpartners.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '40 Berkeley Square',
+    addressLocality: 'London',
+    postalCode: 'W1J 5AL',
+    addressCountry: 'GB',
+  },
+}
+
+const propertyFaqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'What types of properties does Mayfair & Partners handle?', acceptedAnswer: { '@type': 'Answer', text: 'We specialise in prime and super-prime residential property across Mayfair, Belgravia, Knightsbridge, and Chelsea — sales, lettings, and investment portfolios above £2m.' } },
+    { '@type': 'Question', name: 'Do you handle off-market transactions?', acceptedAnswer: { '@type': 'Answer', text: 'Over 60% of our transactions never reach a public portal. Our buyer network of 3,200+ qualified UHNWI ensures discreet, competitive outcomes.' } },
+    { '@type': 'Question', name: 'Do you work with international clients?', acceptedAnswer: { '@type': 'Answer', text: '70% of our clients are international. We speak Mandarin, Arabic, French, Italian and Russian in-house, bridging global capital with London property.' } },
+    { '@type': 'Question', name: 'How do I book a private consultation?', acceptedAnswer: { '@type': 'Answer', text: 'Our directors are available for a private consultation at your convenience — in Berkeley Square or by secure video call. Use the booking form or contact us directly.' } },
+  ],
+}
+
 export default function PropertyLuxuryDemo() {
   return (
     <div
@@ -752,6 +779,8 @@ export default function PropertyLuxuryDemo() {
         '--font-heading': 'Georgia, "Times New Roman", serif',
       } as React.CSSProperties}
     >
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(propertyJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(propertyFaqJsonLd) }} />
       {/* Scroll progress */}
       <div className="scroll-progress" />
 

@@ -373,6 +373,46 @@ function Navbar() {
 
 // --- PAGE ---
 
+const prismJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Prism Creative Studio',
+  description: 'Award-winning creative studio in Shoreditch. Brand identity, web design, photography and film for ambitious brands.',
+  url: 'https://prismcreativestudio.example.com',
+  telephone: '+44 20 3915 7240',
+  email: 'hello@prismcreativestudio.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '14 Redchurch Street, Shoreditch',
+    addressLocality: 'London',
+    postalCode: 'E2 7DD',
+    addressCountry: 'GB',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 51.5237,
+    longitude: -0.0726,
+  },
+  sameAs: [
+    'https://instagram.com/prismcreativestudio',
+    'https://facebook.com/prismcreativestudio',
+  ],
+}
+
+const prismFaqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'How does a typical project start?', acceptedAnswer: { '@type': 'Answer', text: 'Every project begins with a discovery call where we learn about your business, goals, audience, and competitors. From there we send a tailored proposal with a fixed scope, timeline, and fee.' } },
+    { '@type': 'Question', name: 'How many rounds of revisions do I get?', acceptedAnswer: { '@type': 'Answer', text: 'Our packages include 2–3 structured rounds of revisions. Minor tweaks after sign-off are always accommodated.' } },
+    { '@type': 'Question', name: 'What if my project does not fit a standard package?', acceptedAnswer: { '@type': 'Answer', text: 'Most projects do, but if yours is larger or more specialist, we build custom scopes. Use the inquiry form to describe your needs and we will put together a bespoke proposal within 48 hours.' } },
+    { '@type': 'Question', name: 'Do you work with clients outside London?', acceptedAnswer: { '@type': 'Answer', text: 'Absolutely. We have delivered projects for clients across the UK, Europe, and North America. Brand and web projects are fully remote.' } },
+    { '@type': 'Question', name: 'How long does a brand identity project take?', acceptedAnswer: { '@type': 'Answer', text: 'A Brand Starter typically takes 3–4 weeks from kick-off to final delivery. The Brand & Web package runs 6–8 weeks.' } },
+    { '@type': 'Question', name: 'Do I own all the files at the end?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — 100%. On final payment you receive all source files (AI, EPS, SVG, PNG, Figma), a full brand guidelines PDF, and perpetual usage rights.' } },
+    { '@type': 'Question', name: 'What is your payment structure?', acceptedAnswer: { '@type': 'Answer', text: 'We take a 50% deposit to begin and the remaining 50% on final delivery. For retainers, invoices are issued on the first of each month.' } },
+  ],
+}
+
 export default function StudioOSDemoPage() {
   return (
     <div
@@ -380,6 +420,8 @@ export default function StudioOSDemoPage() {
         themeToStyleObject(studioTheme) as React.CSSProperties
       }
     >
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(prismJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(prismFaqJsonLd) }} />
       <Navbar />
 
       <TypewriterHero

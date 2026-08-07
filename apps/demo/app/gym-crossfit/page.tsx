@@ -224,6 +224,36 @@ const siteConfig = {
   social: { instagram: '#', facebook: '#' },
 }
 
+const gymJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SportsActivityLocation',
+  name: 'Iron Republic CrossFit',
+  description: 'Elite coaching, smart programming, and a community that shows up for you. Shoreditch, London.',
+  telephone: '+44 20 7613 0044',
+  email: 'hello@yourdomain.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '7 Corsham Street, Shoreditch',
+    addressLocality: 'London',
+    postalCode: 'N1 6DR',
+    addressCountry: 'GB',
+  },
+}
+
+const gymFaqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: 'Do I need CrossFit experience to join?', acceptedAnswer: { '@type': 'Answer', text: 'Not at all. Every new member starts with our Fundamentals course — 3 sessions covering all foundational movements. It\'s included free with any membership.' } },
+    { '@type': 'Question', name: 'What\'s included in the free trial week?', acceptedAnswer: { '@type': 'Answer', text: 'Unlimited classes for 7 days — CrossFit WODs, Barbell Club, Gymnastics, Metcon, and Mobility sessions. You also get full open-gym access. No card required to start.' } },
+    { '@type': 'Question', name: 'How is Iron Republic different from a regular gym?', acceptedAnswer: { '@type': 'Answer', text: 'Every session is coached, never just supervised. We cap class sizes at 18 so coaches can give real attention to every athlete.' } },
+    { '@type': 'Question', name: 'What equipment do I need to bring?', acceptedAnswer: { '@type': 'Answer', text: 'Just yourself and a water bottle. We provide all barbells, ropes, rigs, boxes, kettlebells, sleds, and accessories.' } },
+    { '@type': 'Question', name: 'Is there a shower and changing facility?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. We have separate male and female changing rooms with showers, lockers, and hair dryers. Towels are available for £1 or bring your own.' } },
+    { '@type': 'Question', name: 'Can I train if I have an injury?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — our coaches are trained to scale every movement safely. Let your coach know before class and they will modify the WOD accordingly.' } },
+    { '@type': 'Question', name: 'What are your opening hours?', acceptedAnswer: { '@type': 'Answer', text: 'Monday-Friday: 05:30 AM – 9:00 PM. Saturday: 08:30 AM – 1:00 PM. Sunday: 09:30 AM – 12:30 PM.' } },
+  ],
+}
+
 export default function GymCrossfitDemo() {
   const theme = createCustomTheme('bold', {
     primary: '#cc2200',
@@ -239,6 +269,8 @@ export default function GymCrossfitDemo() {
 
   return (
     <div style={themeToStyleObject(theme) as React.CSSProperties}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(gymJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(gymFaqJsonLd) }} />
 
       {/* Hero */}
       <StatsHero

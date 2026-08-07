@@ -1,7 +1,7 @@
 'use client'
 
+import { useRef, useEffect } from 'react'
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
-import { Hero } from '@scala-sites/core/components/hero'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
 import { Footer } from '@scala-sites/core/components/footer'
@@ -260,16 +260,218 @@ const theme = createCustomTheme('classic', {
   error: '#c0392b',
 })
 
+// ── Parallax hook ──
+function useParallax(strength: number = 0.25) {
+  const ref = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const onScroll = () => {
+      const { top } = el.getBoundingClientRect()
+      const offset = top * strength
+      const img = el.querySelector<HTMLElement>('[data-parallax]')
+      if (img) img.style.transform = `translateY(${offset}px) scale(1.12)`
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [strength])
+  return ref
+}
+
 export default function HotelBoutiqueDemo() {
+  const parallaxRef = useParallax(0.18)
+
   return (
     <div style={themeToStyleObject(theme) as React.CSSProperties}>
-      <Hero
-        title="The Ivy House"
-        subtitle="A 17th-century Cotswold manor restored as a boutique hotel and spa. Ten rooms, one walled garden, a kitchen that grows its own food — and the kind of quiet that city life forgets exists."
-        backgroundImage="https://images.unsplash.com/photo-1585543805890-6051f7829f98?w=1600"
-        ctaPrimary={{ label: 'Check Availability', href: '#availability' }}
-        ctaSecondary={{ label: 'Explore Experiences', href: '#experiences' }}
+
+      {/* ── JSON-LD: LocalBusiness + FAQ ── */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            {
+              '@context': 'https://schema.org',
+              '@type': 'LodgingBusiness',
+              name: 'The Ivy House',
+              description: 'A 17th-century Cotswold manor restored as a boutique hotel and spa.',
+              url: 'https://ivyhousecotswolds.example.com',
+              telephone: '+44 1451 820 440',
+              email: 'hello@ivyhousecotswolds.co.uk',
+              address: {
+                '@type': 'PostalAddress',
+                streetAddress: 'Mill Lane',
+                addressLocality: 'Bourton-on-the-Water',
+                addressRegion: 'Gloucestershire',
+                postalCode: 'GL54 2HU',
+                addressCountry: 'GB',
+              },
+              starRating: { '@type': 'Rating', ratingValue: '5' },
+              priceRange: '££££',
+            },
+            {
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: faqs.map((f) => ({
+                '@type': 'Question',
+                name: f.question,
+                acceptedAnswer: { '@type': 'Answer', text: f.answer },
+              })),
+            },
+          ]),
+        }}
       />
+
+      {/* ══════════════════════════════════════════════
+          CUSTOM HERO — Magazine Editorial / Cotswold Manor
+          Horizontal image strip at 60vh with parallax.
+          Text below on cream with gold separator.
+          "Since 1842" corner badge.
+          ══════════════════════════════════════════════ */}
+      <section
+        className="relative bg-[#fdf8f3]"
+        aria-label="Hero — The Ivy House Cotswolds"
+      >
+        {/* "Since 1842" corner badge */}
+        <div
+          className="absolute top-6 right-6 z-30 flex flex-col items-center justify-center w-20 h-20 rounded-full border-2"
+          style={{
+            borderColor: '#8b6914',
+            backgroundColor: 'rgba(253,248,243,0.92)',
+            backdropFilter: 'blur(4px)',
+          }}
+        >
+          <span
+            className="text-[9px] tracking-[0.18em] uppercase text-center leading-snug"
+            style={{ color: '#8b6914' }}
+          >
+            Since<br />1842
+          </span>
+        </div>
+
+        {/* ── HORIZONTAL IMAGE STRIP — 60vh, parallax ── */}
+        <div
+          ref={parallaxRef}
+          className="relative w-full overflow-hidden"
+          style={{ height: '60vh', minHeight: '360px', maxHeight: '680px' }}
+        >
+          <img
+            data-parallax="true"
+            src="https://images.unsplash.com/photo-1585543805890-6051f7829f98?w=1800&h=1000&fit=crop&q=90"
+            alt="The Ivy House — 17th-century Cotswold manor"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ transform: 'translateY(0px) scale(1.12)', transformOrigin: 'center 40%', transition: 'transform 0.05s linear' }}
+          />
+          {/* Bottom gradient — bleeds into cream below */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: 'linear-gradient(to bottom, rgba(253,248,243,0) 50%, #fdf8f3 100%)',
+            }}
+          />
+          {/* Top vignette */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: 'linear-gradient(to bottom, rgba(44,30,20,0.35) 0%, transparent 35%)',
+            }}
+          />
+          {/* Horizontal rule lines — editorial feel */}
+          <div
+            className="absolute left-0 right-0 bottom-0 h-px"
+            style={{ backgroundColor: '#8b691422' }}
+          />
+        </div>
+
+        {/* ── TEXT BLOCK — cream background, elegant serif ── */}
+        <div className="max-w-5xl mx-auto px-6 md:px-12 pb-20 pt-4 text-center">
+          {/* Gold line separator */}
+          <div className="flex items-center justify-center gap-6 mb-10">
+            <div className="flex-1 h-px max-w-[120px]" style={{ backgroundColor: '#8b691455' }} />
+            <div className="flex gap-2 items-center">
+              {['◆', '◇', '◆'].map((d, i) => (
+                <span key={i} className="text-xs" style={{ color: '#8b6914', opacity: i === 1 ? 0.4 : 1 }}>
+                  {d}
+                </span>
+              ))}
+            </div>
+            <div className="flex-1 h-px max-w-[120px]" style={{ backgroundColor: '#8b691455' }} />
+          </div>
+
+          {/* Kicker */}
+          <p
+            className="text-[10px] tracking-[0.5em] uppercase mb-5"
+            style={{ color: '#8b6914' }}
+          >
+            Bourton-on-the-Water &ensp;&middot;&ensp; The Cotswolds
+          </p>
+
+          {/* Main headline — elegant serif */}
+          <h1
+            className="text-5xl md:text-7xl font-light leading-tight mb-7"
+            style={{
+              color: '#2c1e14',
+              fontFamily: '"Georgia", "Times New Roman", serif',
+              letterSpacing: '-0.01em',
+            }}
+          >
+            The Ivy House
+          </h1>
+
+          {/* Deck — editorial magazine caption style */}
+          <p
+            className="text-base md:text-lg font-light leading-loose max-w-2xl mx-auto mb-12"
+            style={{ color: '#7a6152' }}
+          >
+            A 17th-century Cotswold manor restored as a boutique hotel and spa.
+            Ten rooms, one walled garden, a kitchen that grows its own food —
+            and the kind of quiet that city life forgets exists.
+          </p>
+
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="#availability"
+              className="px-10 py-4 text-sm tracking-[0.18em] uppercase font-light transition-all duration-500"
+              style={{ backgroundColor: '#4a3728', color: '#fdf8f3' }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = '#2c1e14' }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.backgroundColor = '#4a3728' }}
+            >
+              Check Availability
+            </a>
+            <a
+              href="#experiences"
+              className="px-10 py-4 text-sm tracking-[0.18em] uppercase font-light transition-all duration-500 border"
+              style={{ borderColor: '#4a3728', color: '#4a3728' }}
+              onMouseEnter={(e) => {
+                const el = e.currentTarget as HTMLElement
+                el.style.backgroundColor = '#4a3728'
+                el.style.color = '#fdf8f3'
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget as HTMLElement
+                el.style.backgroundColor = 'transparent'
+                el.style.color = '#4a3728'
+              }}
+            >
+              Explore Experiences
+            </a>
+          </div>
+
+          {/* Bottom meta strip */}
+          <div
+            className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 mt-14 pt-8 text-[11px] tracking-[0.3em] uppercase"
+            style={{ color: '#b8a898', borderTop: '1px solid #eddfd1' }}
+          >
+            <span>10 Rooms &amp; Suites</span>
+            <span style={{ color: '#8b691466' }}>◆</span>
+            <span>Award-Winning Spa</span>
+            <span style={{ color: '#8b691466' }}>◆</span>
+            <span>Kitchen Garden</span>
+            <span style={{ color: '#8b691466' }}>◆</span>
+            <span>Walled Cottage Garden</span>
+          </div>
+        </div>
+      </section>
 
       <div id="availability">
         <AvailabilityChecker

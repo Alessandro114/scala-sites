@@ -1,7 +1,6 @@
 'use client'
 
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
-import { Hero } from '@scala-sites/core/components/hero'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
 import { Footer } from '@scala-sites/core/components/footer'
@@ -525,6 +524,316 @@ function SeasonalPackages() {
 
 // --- PAGE ---
 
+// ─── JSON-LD DATA ───────────────────────────────────────────────────────────
+const localBusinessJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Oakwood Barn',
+  description: 'Rustic wedding venue in the heart of Hampshire — 17th-century estate with four breathtaking spaces.',
+  url: 'https://oakwoodbarn.example.com',
+  telephone: '+44 1962 555 234',
+  email: 'weddings@oakwoodbarn.example.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Oakwood Farm, Itchen Valley',
+    addressLocality: 'Hampshire',
+    postalCode: 'SO21 1RQ',
+    addressCountry: 'GB',
+  },
+  priceRange: '£££',
+  openingHours: 'Mo-Su 09:00-18:00',
+}
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.question,
+    acceptedAnswer: { '@type': 'Answer', text: f.answer },
+  })),
+}
+
+// ─── CUSTOM WEDDING HERO ─────────────────────────────────────────────────────
+function WeddingHero() {
+  return (
+    <section
+      style={{
+        position: 'relative',
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden',
+        background: '#1a0f0a',
+      }}
+    >
+      {/* Background image */}
+      <img
+        src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1800&h=1200&fit=crop&q=85"
+        alt="Oakwood Barn wedding venue"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          objectPosition: 'center',
+          filter: 'sepia(40%) brightness(0.55)',
+        }}
+      />
+
+      {/* Heavy vignette overlay */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background:
+            'radial-gradient(ellipse at center, transparent 15%, rgba(15,8,4,0.55) 50%, rgba(10,5,2,0.92) 100%)',
+          pointerEvents: 'none',
+        }}
+      />
+
+      {/* Warm sepia colour overlay */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(160deg, rgba(120,60,20,0.18) 0%, rgba(40,15,5,0.45) 100%)',
+          pointerEvents: 'none',
+        }}
+      />
+
+      {/* Falling petals CSS animation */}
+      <style>{`
+        @keyframes petalFall {
+          0%   { transform: translateY(-30px) translateX(0px) rotate(0deg); opacity: 0; }
+          10%  { opacity: 0.7; }
+          90%  { opacity: 0.4; }
+          100% { transform: translateY(110vh) translateX(40px) rotate(360deg); opacity: 0; }
+        }
+        @keyframes petalDrift {
+          0%   { transform: translateY(-20px) translateX(0px) rotate(20deg); opacity: 0; }
+          10%  { opacity: 0.6; }
+          50%  { transform: translateY(50vh) translateX(-25px) rotate(180deg); }
+          90%  { opacity: 0.3; }
+          100% { transform: translateY(110vh) translateX(15px) rotate(400deg); opacity: 0; }
+        }
+        .petal {
+          position: absolute;
+          top: 0;
+          border-radius: 50% 0 50% 0;
+          background: rgba(212,175,55,0.55);
+          pointer-events: none;
+        }
+        @keyframes weddingFadeUp {
+          from { opacity: 0; transform: translateY(28px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .wedding-fade-up {
+          opacity: 0;
+          animation: weddingFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes goldPulse {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.4); }
+          50%       { box-shadow: 0 0 0 12px rgba(212,175,55,0); }
+        }
+      `}</style>
+
+      {/* Petals (12 small circles drifting at different speeds/positions) */}
+      {[
+        { left: '8%',  size: 6,  delay: 0,    dur: 7  },
+        { left: '18%', size: 4,  delay: 1.2,  dur: 9  },
+        { left: '28%', size: 8,  delay: 0.4,  dur: 6  },
+        { left: '38%', size: 5,  delay: 2.1,  dur: 8  },
+        { left: '48%', size: 7,  delay: 0.8,  dur: 10 },
+        { left: '57%', size: 4,  delay: 3.0,  dur: 7  },
+        { left: '65%', size: 6,  delay: 1.5,  dur: 9  },
+        { left: '72%', size: 5,  delay: 0.2,  dur: 8  },
+        { left: '80%', size: 8,  delay: 2.6,  dur: 6  },
+        { left: '88%', size: 4,  delay: 1.0,  dur: 11 },
+        { left: '93%', size: 6,  delay: 3.5,  dur: 8  },
+        { left: '5%',  size: 5,  delay: 4.0,  dur: 9  },
+      ].map((p, i) => (
+        <div
+          key={i}
+          className="petal"
+          style={{
+            left: p.left,
+            width: p.size,
+            height: p.size,
+            animationName: i % 2 === 0 ? 'petalFall' : 'petalDrift',
+            animationDuration: `${p.dur}s`,
+            animationDelay: `${p.delay}s`,
+            animationIterationCount: 'infinite',
+            animationTimingFunction: 'linear',
+          }}
+        />
+      ))}
+
+      {/* Hero content */}
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 10,
+          textAlign: 'center',
+          padding: '120px 24px 80px',
+          maxWidth: '860px',
+          margin: '0 auto',
+        }}
+      >
+        {/* Decorative rule */}
+        <div
+          className="wedding-fade-up"
+          style={{ animationDelay: '0.1s', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginBottom: '28px' }}
+        >
+          <div style={{ width: '48px', height: '1px', background: '#d4af37' }} />
+          <span style={{ color: '#d4af37', fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase', fontWeight: 600 }}>
+            Hampshire &middot; Est. 1987
+          </span>
+          <div style={{ width: '48px', height: '1px', background: '#d4af37' }} />
+        </div>
+
+        {/* Venue name — elegant script feel via letter-spacing + weight */}
+        <h1
+          className="wedding-fade-up"
+          style={{
+            animationDelay: '0.25s',
+            fontFamily: '"Georgia", "Palatino Linotype", "Book Antiqua", serif',
+            fontSize: 'clamp(3rem, 8vw, 6.5rem)',
+            fontWeight: 400,
+            color: '#faf6f0',
+            lineHeight: 1.05,
+            letterSpacing: '-0.01em',
+            marginBottom: '12px',
+            textShadow: '0 2px 40px rgba(0,0,0,0.6)',
+          }}
+        >
+          Oakwood Barn
+        </h1>
+
+        {/* Tagline */}
+        <p
+          className="wedding-fade-up"
+          style={{
+            animationDelay: '0.4s',
+            fontFamily: '"Georgia", serif',
+            fontStyle: 'italic',
+            fontSize: 'clamp(1rem, 2.5vw, 1.4rem)',
+            color: '#d4af37',
+            marginBottom: '28px',
+            letterSpacing: '0.02em',
+          }}
+        >
+          &ldquo;Your Day Starts Here&rdquo;
+        </p>
+
+        {/* Subtitle */}
+        <p
+          className="wedding-fade-up"
+          style={{
+            animationDelay: '0.55s',
+            fontSize: '1.05rem',
+            color: 'rgba(250,246,240,0.75)',
+            lineHeight: 1.7,
+            maxWidth: '580px',
+            margin: '0 auto 44px',
+            fontWeight: 300,
+          }}
+        >
+          A 17th-century Hampshire estate with four breathtaking spaces. Rustic charm,
+          modern comfort, and a team who makes every detail feel effortless.
+        </p>
+
+        {/* Date counter / trust badge */}
+        <div
+          className="wedding-fade-up"
+          style={{
+            animationDelay: '0.65s',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '10px',
+            border: '1px solid rgba(212,175,55,0.45)',
+            borderRadius: '40px',
+            padding: '10px 24px',
+            marginBottom: '44px',
+            background: 'rgba(212,175,55,0.07)',
+            backdropFilter: 'blur(8px)',
+          }}
+        >
+          <span style={{ color: '#d4af37', fontSize: '1rem' }}>&#10022;</span>
+          <span style={{ color: 'rgba(250,246,240,0.85)', fontSize: '0.82rem', letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 500 }}>
+            Over 400 Weddings Hosted &middot; Exclusive Hire
+          </span>
+          <span style={{ color: '#d4af37', fontSize: '1rem' }}>&#10022;</span>
+        </div>
+
+        {/* CTAs */}
+        <div
+          className="wedding-fade-up"
+          style={{ animationDelay: '0.78s', display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}
+        >
+          <a
+            href="#availability"
+            style={{
+              padding: '15px 38px',
+              background: '#d4af37',
+              color: '#1a0f0a',
+              borderRadius: '4px',
+              fontSize: '0.85rem',
+              fontWeight: 700,
+              textDecoration: 'none',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              animation: 'goldPulse 2.5s ease-in-out 2s infinite',
+              transition: 'transform 0.2s',
+            }}
+          >
+            Check Date Availability
+          </a>
+          <a
+            href="#venues"
+            style={{
+              padding: '15px 38px',
+              background: 'transparent',
+              color: '#faf6f0',
+              border: '1px solid rgba(250,246,240,0.4)',
+              borderRadius: '4px',
+              fontSize: '0.85rem',
+              fontWeight: 500,
+              textDecoration: 'none',
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+            }}
+          >
+            Explore Our Spaces
+          </a>
+        </div>
+      </div>
+
+      {/* Bottom scroll cue */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '32px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '6px',
+          zIndex: 10,
+        }}
+      >
+        <span style={{ color: 'rgba(212,175,55,0.6)', fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+          Scroll
+        </span>
+        <div style={{ width: '1px', height: '36px', background: 'linear-gradient(to bottom, rgba(212,175,55,0.6), transparent)' }} />
+      </div>
+    </section>
+  )
+}
+
 export default function WeddingBarnDemo() {
   const theme = createCustomTheme('minimal', {
     primary: '#5c4a3a',
@@ -540,17 +849,19 @@ export default function WeddingBarnDemo() {
 
   return (
     <div style={themeToStyleObject(theme) as React.CSSProperties}>
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
       <Navbar />
 
-      <Hero
-        title="Where Countryside Weddings Come Alive."
-        subtitle="Oakwood Barn — a 17th-century Hampshire estate with four breathtaking spaces. Rustic charm, modern comfort, and a team who makes every detail feel effortless."
-        backgroundImage="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1800&h=900&fit=crop"
-        ctaPrimary={{ label: 'Check Date Availability', href: '#availability' }}
-        ctaSecondary={{ label: 'Explore Our Spaces', href: '#venues' }}
-        overlayOpacity={0.55}
-        height="full"
-      />
+      <WeddingHero />
 
       <div id="venues">
         <VenueShowcase venues={venues} />

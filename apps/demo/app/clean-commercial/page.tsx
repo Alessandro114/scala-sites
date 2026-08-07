@@ -2,11 +2,62 @@
 
 import { useState } from 'react'
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
-import { Hero } from '@scala-sites/core/components/hero'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
 import { Footer } from '@scala-sites/core/components/footer'
 import { FAQAccordion } from '@scala-sites/core/components/faq-accordion'
+
+// ─── JSON-LD ──────────────────────────────────────────────────────────────────
+
+const localBusinessJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'SparkForce Commercial Cleaning',
+  description: 'SLA-backed contract cleaning for City of London offices, retail spaces, and mixed-use developments.',
+  url: 'https://sparkforce.example.com',
+  telephone: '+44 20 7638 9200',
+  email: 'contracts@sparkforce.example.com',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '1 Bartholomew Lane',
+    addressLocality: 'City of London',
+    postalCode: 'EC2N 2AX',
+    addressCountry: 'GB',
+  },
+  priceRange: '££',
+  areaServed: ['City of London', 'Canary Wharf', 'Shoreditch', 'Southwark'],
+}
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How quickly can you mobilise a new contract?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'For standard commercial contracts, we typically mobilise within 5–10 working days. Emergency or interim cover can be arranged within 24–48 hours.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Are your operatives directly employed?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. All SparkForce operatives are directly employed, DBS-checked, and trained in-house to our standards. We do not use agency staff for ongoing contracts.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'What is your minimum contract term?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Our Weekly and Daily contracts have a minimum initial term of 3 months, then rolling monthly. Our Monthly contract is 30-day rolling from day one.',
+      },
+    },
+  ],
+}
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -89,7 +140,7 @@ const reviews = [
     id: '2',
     author: 'Rachel K., Operations Director — EC2',
     rating: 5,
-    text: 'We switched from a national FM provider to SparkForce and the difference was immediate. Responsive, professional, and genuinely invested in quality. The 4-hour emergency callout has saved us twice.',
+    text: 'We switched from a national FM provider to SparkForce and the difference was immediate. Responsive, professional, and genuinely invested in quality.',
     date: '2026-07-08',
     source: 'Google',
     verified: true,
@@ -98,7 +149,7 @@ const reviews = [
     id: '3',
     author: 'Patrick W., Building Manager — Canary Wharf',
     rating: 5,
-    text: 'Managing a mixed-use development of 40 units requires complete reliability. SparkForce has been flawless for 18 months — their digital sign-off system integrates perfectly with our facilities software.',
+    text: 'Managing a mixed-use development of 40 units requires complete reliability. SparkForce has been flawless for 18 months.',
     date: '2026-06-28',
     source: 'Trustpilot',
     verified: true,
@@ -107,7 +158,7 @@ const reviews = [
     id: '4',
     author: 'Nadia L., Head of Workplace — City of London',
     rating: 5,
-    text: 'Best commercial cleaning tender we have ever issued. Pricing was transparent, mobilisation took 5 days, and quality has been consistently excellent. Highly recommend for City offices.',
+    text: 'Best commercial cleaning tender we have ever issued. Pricing was transparent, mobilisation took 5 days, and quality has been consistently excellent.',
     date: '2026-06-14',
     source: 'Google',
     verified: true,
@@ -285,6 +336,358 @@ function QuoteForm() {
   )
 }
 
+// ─── Custom Hero — Corporate Navy Diagonal Split ───────────────────────────
+
+function CorporateHero() {
+  return (
+    <section
+      style={{
+        position: 'relative',
+        minHeight: '100vh',
+        overflow: 'hidden',
+        display: 'flex',
+        alignItems: 'stretch',
+      }}
+    >
+      {/* JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
+      <style>{`
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(32px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInLeft {
+          from { opacity: 0; transform: translateX(-40px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+        .corp-a0 { animation: slideInLeft 0.8s ease both; }
+        .corp-a1 { animation: fadeUp 0.7s 0.1s ease both; }
+        .corp-a2 { animation: fadeUp 0.7s 0.25s ease both; }
+        .corp-a3 { animation: fadeUp 0.7s 0.4s ease both; }
+        .corp-a4 { animation: fadeUp 0.7s 0.55s ease both; }
+        .stat-card:hover { transform: translateY(-3px); }
+        .stat-card { transition: transform 0.2s; }
+      `}</style>
+
+      {/* Navy top-left panel */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: '#0d1b2a',
+          clipPath: 'polygon(0 0, 62% 0, 50% 100%, 0 100%)',
+          zIndex: 0,
+        }}
+      />
+
+      {/* White bottom-right panel */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: '#f2f2f0',
+          clipPath: 'polygon(62% 0, 100% 0, 100% 100%, 50% 100%)',
+          zIndex: 0,
+        }}
+      />
+
+      {/* Subtle navy texture on left side */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '62%',
+          height: '100%',
+          backgroundImage: 'repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 12px)',
+          zIndex: 1,
+        }}
+      />
+
+      {/* Building silhouette graphic on right */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          right: '4%',
+          zIndex: 2,
+          opacity: 0.07,
+        }}
+      >
+        <svg width="280" height="400" viewBox="0 0 280 400" fill="#0d1b2a">
+          <rect x="60" y="80" width="60" height="320" />
+          <rect x="130" y="20" width="80" height="380" />
+          <rect x="220" y="120" width="40" height="280" />
+          <rect x="10" y="160" width="40" height="240" />
+        </svg>
+      </div>
+
+      {/* Stats bar across diagonal intersection */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '80px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 10,
+          display: 'flex',
+          gap: '0',
+          background: '#e0e1dd',
+          borderRadius: '12px',
+          overflow: 'hidden',
+          boxShadow: '0 8px 40px rgba(0,0,0,0.2)',
+          whiteSpace: 'nowrap',
+        }}
+        className="corp-a4"
+      >
+        {[
+          { value: '500+', label: 'Contracts' },
+          { value: '2M sqft', label: 'Cleaned/Week' },
+          { value: 'ISO 14001', label: 'Certified' },
+          { value: '99.4%', label: 'SLA Rate' },
+        ].map((stat, i) => (
+          <div
+            key={stat.label}
+            className="stat-card"
+            style={{
+              padding: '18px 28px',
+              textAlign: 'center',
+              borderRight: i < 3 ? '1px solid rgba(13,27,42,0.12)' : 'none',
+            }}
+          >
+            <div style={{ fontSize: '1.35rem', fontWeight: 900, color: '#0d1b2a', letterSpacing: '-0.02em' }}>
+              {stat.value}
+            </div>
+            <div style={{ fontSize: '0.65rem', color: '#4a5a6a', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600, marginTop: '2px' }}>
+              {stat.label}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Content grid */}
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 10,
+          width: '100%',
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: '140px 40px 180px',
+          display: 'grid',
+          gridTemplateColumns: '1.1fr 0.9fr',
+          gap: '60px',
+          alignItems: 'center',
+        }}
+      >
+        {/* Left: Title on navy */}
+        <div>
+          {/* Briefcase icon */}
+          <div
+            className="corp-a0"
+            style={{
+              width: '52px',
+              height: '52px',
+              borderRadius: '12px',
+              background: 'rgba(255,255,255,0.1)',
+              border: '1px solid rgba(255,255,255,0.15)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '28px',
+              fontSize: '1.5rem',
+            }}
+          >
+            🏢
+          </div>
+
+          <p
+            className="corp-a1"
+            style={{
+              fontSize: '0.7rem',
+              fontWeight: 700,
+              letterSpacing: '0.22em',
+              textTransform: 'uppercase',
+              color: '#4da6d9',
+              marginBottom: '18px',
+            }}
+          >
+            Contract Cleaning · City of London
+          </p>
+
+          <h1
+            className="corp-a2"
+            style={{
+              fontFamily: '"Arial Narrow", "Arial", sans-serif',
+              fontSize: 'clamp(2.6rem, 5vw, 4.2rem)',
+              fontWeight: 900,
+              lineHeight: 1.0,
+              color: '#e0e1dd',
+              marginBottom: '28px',
+              letterSpacing: '-0.01em',
+              textTransform: 'uppercase',
+            }}
+          >
+            Commercial
+            <br />
+            Cleaning
+            <br />
+            <span style={{ color: '#4da6d9' }}>That Won&rsquo;t</span>
+            <br />
+            Let You Down
+          </h1>
+
+          <p
+            className="corp-a3"
+            style={{
+              fontSize: '1rem',
+              color: '#8a9db0',
+              lineHeight: 1.65,
+              maxWidth: '400px',
+              marginBottom: '36px',
+            }}
+          >
+            SLA-backed contract cleaning for City of London offices, retail spaces,
+            and mixed-use developments. Daily, weekly, and monthly contracts from £13/hr.
+          </p>
+
+          <div className="corp-a3" style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
+            <a
+              href="#quote"
+              style={{
+                display: 'inline-block',
+                padding: '15px 32px',
+                background: '#e0e1dd',
+                color: '#0d1b2a',
+                borderRadius: '8px',
+                fontWeight: 800,
+                fontSize: '0.9375rem',
+                textDecoration: 'none',
+              }}
+            >
+              Get a Free Quote
+            </a>
+            <a
+              href="#tiers"
+              style={{
+                display: 'inline-block',
+                padding: '15px 32px',
+                background: 'transparent',
+                color: '#e0e1dd',
+                border: '1.5px solid rgba(224,225,221,0.3)',
+                borderRadius: '8px',
+                fontWeight: 600,
+                fontSize: '0.9375rem',
+                textDecoration: 'none',
+              }}
+            >
+              View Contracts
+            </a>
+          </div>
+        </div>
+
+        {/* Right: trust proof on lighter bg */}
+        <div style={{ paddingLeft: '20px' }}>
+          <p
+            className="corp-a2"
+            style={{
+              fontSize: '0.7rem',
+              fontWeight: 700,
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              color: '#4a5a6a',
+              marginBottom: '20px',
+            }}
+          >
+            Trusted by Property &amp; FM Leaders
+          </p>
+
+          <div
+            className="corp-a3"
+            style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '36px' }}
+          >
+            {trustLogos.map(name => (
+              <span
+                key={name}
+                style={{
+                  fontSize: '0.8125rem',
+                  fontWeight: 700,
+                  color: '#2d3f52',
+                  padding: '9px 16px',
+                  border: '1px solid rgba(13,27,42,0.15)',
+                  borderRadius: '8px',
+                  background: '#ffffff',
+                  letterSpacing: '0.02em',
+                }}
+              >
+                {name}
+              </span>
+            ))}
+          </div>
+
+          {/* SLA promise card */}
+          <div
+            className="corp-a4"
+            style={{
+              background: '#ffffff',
+              borderRadius: '16px',
+              padding: '28px',
+              border: '1px solid rgba(13,27,42,0.1)',
+              boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+              <div
+                style={{
+                  width: '36px',
+                  height: '36px',
+                  borderRadius: '50%',
+                  background: '#f0fdf4',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '1.1rem',
+                  flexShrink: 0,
+                }}
+              >
+                ✓
+              </div>
+              <span style={{ fontSize: '1rem', fontWeight: 700, color: '#0d1b2a' }}>
+                Our SLA Promise
+              </span>
+            </div>
+            {[
+              'Response within 4 hours — guaranteed',
+              '99.4% SLA adherence in 2026',
+              'Zero contract breaches this year',
+              'Directly employed, DBS-checked operatives',
+            ].map(line => (
+              <div key={line} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', marginBottom: '10px' }}>
+                <span style={{ color: '#16a34a', fontWeight: 700, flexShrink: 0, marginTop: '1px', fontSize: '0.85rem' }}>✓</span>
+                <span style={{ fontSize: '0.875rem', color: '#3a4f60', lineHeight: 1.4 }}>{line}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function CleanCommercial() {
@@ -304,13 +707,7 @@ export default function CleanCommercial() {
     <div style={themeToStyleObject(theme) as React.CSSProperties}>
 
       {/* Hero */}
-      <Hero
-        title="Commercial Cleaning That Won't Let You Down"
-        subtitle="SLA-backed contract cleaning for City of London offices, retail spaces, and mixed-use developments. Daily, weekly, and monthly contracts from £13/hr."
-        backgroundImage="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=1600"
-        ctaPrimary={{ label: 'Get a Free Quote', href: '#quote' }}
-        ctaSecondary={{ label: 'View Contracts', href: '#tiers' }}
-      />
+      <CorporateHero />
 
       {/* Repeat CTA bar */}
       <div style={{ background: '#e0e1dd', padding: '20px 24px', textAlign: 'center' }}>
@@ -331,30 +728,6 @@ export default function CleanCommercial() {
           No commitment. Tailored to your premises.
         </span>
       </div>
-
-      {/* Trust Logos */}
-      <section style={{ padding: '56px 24px', background: 'var(--color-surface)', borderBottom: '1px solid var(--color-border)' }}>
-        <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
-          <p style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: '28px' }}>
-            Trusted by property managers, FM teams, and operators across the City
-          </p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '12px 32px' }}>
-            {trustLogos.map(name => (
-              <span key={name} style={{
-                fontSize: '0.9375rem',
-                fontWeight: 700,
-                color: 'var(--color-text-muted)',
-                padding: '10px 20px',
-                border: '1px solid var(--color-border)',
-                borderRadius: '8px',
-                letterSpacing: '0.04em',
-              }}>
-                {name}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* SLA Stats */}
       <section style={{ padding: '72px 24px', background: '#0a1520' }}>

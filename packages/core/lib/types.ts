@@ -43,9 +43,10 @@ export type VerticalType =
   | 'travelos' | 'studioos' | 'legalos' | 'clinicos'
   | 'agencyos' | 'retailos' | 'autoos' | 'weddingos'
   | 'petos' | 'eduos' | 'cleanos' | 'dermalyos'
-  | 'praxisos' | 'shopos'
+  | 'praxisos' | 'shopos' | 'coworkos' | 'plumberos'
+  | 'photoos' | 'pizzeriaos' | 'nurseryos' | 'accountos'
 
-export type ThemeType = 'minimal' | 'bold' | 'classic'
+export type ThemeType = 'minimal' | 'bold' | 'classic' | 'dark' | 'industrial' | 'warm' | 'playful'
 
 // Booking
 export interface BookingSlot {
