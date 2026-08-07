@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
-import { Hero } from '@scala-sites/core/components/hero'
+import { TypewriterHero } from '@scala-sites/core/components/typewriter-hero'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
 import { Footer } from '@scala-sites/core/components/footer'
@@ -463,14 +463,13 @@ export default function AgencyDemo() {
       <Navbar />
 
       {/* Hero */}
-      <Hero
-        title="We grow brands."
+      <TypewriterHero
+        staticText="We deliver"
+        rotatingWords={['brands', 'growth', 'revenue', 'market share']}
         subtitle="Orbit Digital — performance marketing and brand strategy for ambitious companies. Data-driven, creatively led, Soho, London."
-        backgroundImage="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1800&h=900&fit=crop"
         ctaPrimary={{ label: 'See Our Work', href: '#portfolio' }}
-        ctaSecondary={{ label: 'Get a Brief', href: '#brief' }}
-        overlayOpacity={0.82}
-        height="full"
+        backgroundColor="#0f0f0f"
+        textColor="#ffffff"
       />
 
       {/* Metrics ticker */}

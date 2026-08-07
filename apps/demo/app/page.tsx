@@ -33,6 +33,8 @@ const verticals = [
   { name: 'WeddingOS — Barn', slug: '/wedding-barn', description: 'Oakwood Barn rustic wedding venue, Hampshire', color: '#5c4a3a', icon: '🌾' },
   { name: 'PetOS — Exotic', slug: '/vet-exotic', description: 'Creature Comforts exotic & small animal specialists, Hampstead', color: '#2d6a4f', icon: '🦎' },
   { name: 'EduOS — Music', slug: '/school-music', description: 'Resonance Music Academy, learn any instrument, Islington', color: '#2b2d42', icon: '🎸' },
+  { name: 'AccountantOS — Showcase', slug: '/accountant', description: 'Sterling & Cole chartered accountants, Canary Wharf — trust-heavy', color: '#1e3a5f', icon: '📒' },
+  { name: 'AccountantOS — Startup', slug: '/accountant-startup', description: 'NumbrCrunch accountants for startups & freelancers, Shoreditch', color: '#00b4d8', icon: '🚀' },
 ]
 
 export const metadata = {
@@ -58,7 +60,7 @@ export default function Home() {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Beautiful websites for every business</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            32 industry-optimized templates that connect natively to your business system.
+            34 industry-optimized templates that connect natively to your business system.
             Booking, WhatsApp, reviews, real-time availability — all built in.
           </p>
           <div className="flex justify-center gap-3 mt-6 text-sm text-gray-500">

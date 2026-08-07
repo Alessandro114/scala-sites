@@ -1,7 +1,7 @@
 'use client'
 
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
-import { Hero } from '@scala-sites/core/components/hero'
+import { SplitHero } from '@scala-sites/core/components/split-hero'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
 import { Footer } from '@scala-sites/core/components/footer'
@@ -389,14 +389,14 @@ export default function LawDemoPage() {
     <div style={themeToStyleObject(sterlingTheme) as React.CSSProperties}>
       <Navbar />
 
-      <Hero
+      <SplitHero
         title="The Standard of Excellence in English Law."
         subtitle="Chambers & Sterling LLP provides distinguished legal counsel to institutions, corporations and private individuals from our chambers at 1 Temple Avenue, London."
-        backgroundImage="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&h=900&fit=crop"
+        imageSrc="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&h=1400&fit=crop"
+        imageAlt="Chambers & Sterling LLP — Temple Avenue, London"
         ctaPrimary={{ label: 'Request Free Assessment', href: '#case-evaluator' }}
         ctaSecondary={{ label: 'Our Practice Areas', href: '#practice-areas' }}
-        overlayOpacity={0.7}
-        height="full"
+        accentColor="#c9a84c"
       />
 
       {/* Credibility bar */}

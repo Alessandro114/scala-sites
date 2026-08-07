@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { themes, themeToStyleObject } from '@scala-sites/themes'
-import { Hero } from '@scala-sites/core/components/hero'
+import { VideoHero } from '@scala-sites/core/components/video-hero'
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
@@ -676,14 +676,12 @@ export default function RestaurantModernPage() {
       <Navbar />
 
       {/* Hero */}
-      <Hero
+      <VideoHero
         title="Contemporary Japanese"
         subtitle="Omakase · Kaiseki · Mayfair, London"
-        backgroundImage="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1800&h=1000&fit=crop"
+        posterImage="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=1800&h=1000&fit=crop"
         ctaPrimary={{ label: 'Reserve a Table', href: '#booking' }}
         ctaSecondary={{ label: 'Explore Menu', href: '#menu' }}
-        overlayOpacity={0.72}
-        height="full"
       />
 
       {/* Stats bar */}

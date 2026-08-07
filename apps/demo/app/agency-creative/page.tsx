@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
-import { Hero } from '@scala-sites/core/components/hero'
+import { TypewriterHero } from '@scala-sites/core/components/typewriter-hero'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
 import { Footer } from '@scala-sites/core/components/footer'
@@ -494,14 +494,13 @@ export default function AgencyCreativeDemo() {
     <div style={themeToStyleObject(theme) as React.CSSProperties}>
       <Navbar />
 
-      <Hero
-        title="We build brands that mean something."
+      <TypewriterHero
+        staticText="We build"
+        rotatingWords={['brands', 'identities', 'campaigns', 'futures']}
         subtitle="Flux Creative — independent brand strategy and content agency in Fitzrovia, London. Sharp thinking, uncompromising craft, measurable results."
-        backgroundImage="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1800&h=900&fit=crop"
         ctaPrimary={{ label: 'Start a Brief', href: '#brief' }}
-        ctaSecondary={{ label: 'View Our Work', href: '#work' }}
-        overlayOpacity={0.78}
-        height="full"
+        backgroundColor="#111111"
+        textColor="#ffffff"
       />
 
       <CredibilityStrip />

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
-import { Hero } from '@scala-sites/core/components/hero'
+import { StatsHero } from '@scala-sites/core/components/stats-hero'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
 import { Footer } from '@scala-sites/core/components/footer'
@@ -307,14 +307,17 @@ export default function DealershipDemo() {
       <Navbar />
 
       {/* Hero */}
-      <Hero
+      <StatsHero
         title="Find Your Next Car"
         subtitle="200+ certified pre-owned vehicles. Transparent pricing, flexible finance, and zero-pressure service in East London."
         backgroundImage="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1600&q=80"
+        stats={[
+          { value: '500+', label: 'Cars Sold' },
+          { value: '4.9★', label: 'Customer Rating' },
+          { value: '12 yrs', label: 'In Business' },
+          { value: '98%', label: 'Satisfaction' },
+        ]}
         ctaPrimary={{ label: 'Browse All Cars', href: '#inventory' }}
-        ctaSecondary={{ label: 'Book a Test Drive', href: '#test-drive' }}
-        overlayOpacity={0.75}
-        height="full"
       />
 
       {/* Trust bar */}

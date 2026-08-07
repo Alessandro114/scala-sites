@@ -5,3 +5,311 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* ============================================
+   SCALA SITES — WOW EFFECTS ENGINE
+   CSS-only, zero JS deps, 60fps
+   ============================================ */
+
+/* --- SCROLL-DRIVEN REVEAL ANIMATIONS --- */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(60px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeSlideLeft {
+  from { opacity: 0; transform: translateX(80px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeSlideRight {
+  from { opacity: 0; transform: translateX(-80px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleReveal {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes clipRevealUp {
+  from { clip-path: inset(100% 0 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+@keyframes clipRevealLeft {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+.reveal-up { animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+.reveal-left { animation: fadeSlideLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+.reveal-right { animation: fadeSlideRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+.reveal-scale { animation: scaleReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+.reveal-clip-up { animation: clipRevealUp 1s cubic-bezier(0.16, 1, 0.3, 1) both; animation-timeline: view(); animation-range: entry 0% entry 35%; }
+.reveal-clip-left { animation: clipRevealLeft 1s cubic-bezier(0.16, 1, 0.3, 1) both; animation-timeline: view(); animation-range: entry 0% entry 35%; }
+
+/* Staggered children */
+.stagger-children > *:nth-child(1) { animation-delay: 0s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.08s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.16s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.24s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.32s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.4s; }
+.stagger-children > *:nth-child(7) { animation-delay: 0.48s; }
+.stagger-children > *:nth-child(8) { animation-delay: 0.56s; }
+
+/* --- ANIMATED GRADIENT BACKGROUNDS --- */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.gradient-animate {
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+}
+.gradient-warm { background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #667eea 75%, #764ba2 100%); }
+.gradient-sunset { background: linear-gradient(135deg, #fa709a 0%, #fee140 25%, #fa709a 50%, #fee140 75%, #fa709a 100%); }
+.gradient-ocean { background: linear-gradient(135deg, #0c3547 0%, #1a5276 25%, #2e86ab 50%, #1a5276 75%, #0c3547 100%); }
+.gradient-dark { background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #1a1a2e 75%, #0a0a0a 100%); }
+.gradient-gold { background: linear-gradient(135deg, #8B6914 0%, #c9a84c 25%, #e8d5a3 50%, #c9a84c 75%, #8B6914 100%); }
+
+/* --- GLASSMORPHISM --- */
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.glass-dark {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.glass-card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+/* --- FLOATING BLOB SHAPES --- */
+@keyframes blobMorph {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50% { border-radius: 50% 60% 30% 60% / 30% 50% 70% 60%; }
+  75% { border-radius: 60% 30% 60% 40% / 70% 40% 50% 60%; }
+}
+@keyframes blobFloat {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(30px, -50px) rotate(5deg); }
+  66% { transform: translate(-20px, 20px) rotate(-3deg); }
+}
+.blob {
+  animation: blobMorph 8s ease-in-out infinite, blobFloat 12s ease-in-out infinite;
+  will-change: border-radius, transform;
+}
+.blob-slow { animation-duration: 12s, 18s; }
+
+/* --- GRAIN/NOISE TEXTURE OVERLAY --- */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+}
+
+/* --- MARQUEE TICKER --- */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.marquee > * {
+  animation: marquee 30s linear infinite;
+  display: flex;
+  flex-shrink: 0;
+}
+
+/* --- TEXT EFFECTS --- */
+@keyframes typewriter {
+  0%, 100% { width: 0; }
+  20%, 80% { width: 100%; }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-glow {
+  text-shadow: 0 0 40px rgba(255,255,255,0.15), 0 0 80px rgba(255,255,255,0.05);
+}
+.text-outline {
+  -webkit-text-stroke: 1px currentColor;
+  -webkit-text-fill-color: transparent;
+}
+
+/* --- MAGNETIC CARD HOVER --- */
+.magnetic-card {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.magnetic-card:hover {
+  transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-8px);
+  box-shadow: 0 30px 80px -10px rgba(0,0,0,0.3), 0 10px 20px -5px rgba(0,0,0,0.15);
+}
+
+/* --- IMAGE REVEAL ON HOVER --- */
+.image-reveal {
+  overflow: hidden;
+}
+.image-reveal img {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.image-reveal:hover img {
+  transform: scale(1.08);
+}
+
+/* --- SPLIT SCREEN --- */
+.split-screen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+@media (max-width: 768px) {
+  .split-screen { grid-template-columns: 1fr; }
+}
+
+/* --- SCROLL PROGRESS BAR --- */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--color-accent, #c9a84c);
+  transform-origin: left;
+  animation: scrollProgress linear;
+  animation-timeline: scroll();
+  z-index: 9999;
+}
+@keyframes scrollProgress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* --- HORIZONTAL SCROLL SECTION --- */
+.horizontal-scroll {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.horizontal-scroll::-webkit-scrollbar { display: none; }
+.horizontal-scroll > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* --- BENTO GRID --- */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 200px;
+  gap: 16px;
+}
+.bento-grid > *:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+.bento-grid > *:nth-child(4) { grid-column: span 2; }
+.bento-grid > *:nth-child(7) { grid-column: span 2; grid-row: span 2; }
+@media (max-width: 768px) {
+  .bento-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+  .bento-grid > * { grid-column: span 1 !important; grid-row: span 1 !important; }
+  .bento-grid > *:nth-child(1) { grid-column: span 2; }
+}
+
+/* --- CURSOR GLOW (CSS only, follows last hover position) --- */
+.cursor-glow {
+  position: relative;
+  overflow: hidden;
+}
+.cursor-glow::before {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s;
+  opacity: 0;
+  z-index: 1;
+}
+.cursor-glow:hover::before {
+  opacity: 1;
+}
+
+/* --- SHIMMER LOADING EFFECT --- */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* --- BORDER GLOW ANIMATION --- */
+@keyframes borderGlow {
+  0%, 100% { border-color: rgba(201, 168, 76, 0.3); box-shadow: 0 0 20px rgba(201, 168, 76, 0.1); }
+  50% { border-color: rgba(201, 168, 76, 0.8); box-shadow: 0 0 40px rgba(201, 168, 76, 0.2); }
+}
+.border-glow {
+  animation: borderGlow 3s ease-in-out infinite;
+}
+
+/* --- COUNTER ANIMATION (for stats) --- */
+@property --num {
+  syntax: '<integer>';
+  initial-value: 0;
+  inherits: false;
+}
+.counter-animate {
+  animation: countUp 2s ease-out forwards;
+  animation-timeline: view();
+  animation-range: entry 0% entry 50%;
+  counter-reset: num var(--num);
+}
+@keyframes countUp {
+  from { --num: 0; }
+}
+
+/* --- DIAGONAL SECTION DIVIDERS --- */
+.diagonal-top {
+  clip-path: polygon(0 8%, 100% 0, 100% 100%, 0 100%);
+  margin-top: -4%;
+}
+.diagonal-bottom {
+  clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+}
+.wave-top {
+  clip-path: polygon(0 12%, 25% 4%, 50% 10%, 75% 2%, 100% 8%, 100% 100%, 0 100%);
+  margin-top: -6%;
+}

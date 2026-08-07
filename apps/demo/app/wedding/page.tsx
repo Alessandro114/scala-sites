@@ -1,7 +1,7 @@
 'use client'
 
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
-import { Hero } from '@scala-sites/core/components/hero'
+import { VideoHero } from '@scala-sites/core/components/video-hero'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
 import { Footer } from '@scala-sites/core/components/footer'
@@ -260,10 +260,10 @@ export default function WeddingDemo() {
       textMuted: '#8a6070',
       border: '#ddb8a8',
     })) as React.CSSProperties}>
-      <Hero
+      <VideoHero
         title="Where Love Stories Begin"
         subtitle="Ashworth Manor — a Grade II listed Surrey estate offering four breathtaking spaces for intimate celebrations to grand receptions of 300 guests"
-        backgroundImage="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1600"
+        posterImage="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1600"
         ctaPrimary={{ label: 'Explore Our Spaces', href: '#venues' }}
         ctaSecondary={{ label: 'Start Planning', href: '#planner' }}
       />

@@ -1,7 +1,7 @@
 'use client'
 
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
-import { Hero } from '@scala-sites/core/components/hero'
+import { StatsHero } from '@scala-sites/core/components/stats-hero'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
 import { Footer } from '@scala-sites/core/components/footer'
@@ -241,12 +241,17 @@ export default function GymCrossfitDemo() {
     <div style={themeToStyleObject(theme) as React.CSSProperties}>
 
       {/* Hero */}
-      <Hero
+      <StatsHero
         title="NO EXCUSES. JUST REPS."
         subtitle="Iron Republic CrossFit — elite coaching, smart programming, and a community that shows up for you. Shoreditch, London."
         backgroundImage="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1600"
+        stats={[
+          { value: '800+', label: 'Members' },
+          { value: '4.8★', label: 'Google Rating' },
+          { value: '6 yrs', label: 'Est. 2018' },
+          { value: '95%', label: 'Retention Rate' },
+        ]}
         ctaPrimary={{ label: 'Claim Your Free Week', href: '#pricing' }}
-        ctaSecondary={{ label: 'View the Schedule', href: '#schedule' }}
       />
 
       {/* Stats bar */}

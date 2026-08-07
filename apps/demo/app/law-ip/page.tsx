@@ -1,7 +1,7 @@
 'use client'
 
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
-import { Hero } from '@scala-sites/core/components/hero'
+import { SplitHero } from '@scala-sites/core/components/split-hero'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
 import { Footer } from '@scala-sites/core/components/footer'
@@ -429,14 +429,15 @@ export default function LawIPDemoPage() {
     <div style={themeToStyleObject(greyHartTheme) as React.CSSProperties}>
       <Navbar />
 
-      <Hero
+      <SplitHero
         title="The IP Firm for Innovators and Brands."
         subtitle="Grey & Hart LLP — specialist intellectual property counsel in Holborn since 2001. Patents, trade marks, copyright, and licensing for the businesses that build tomorrow."
-        backgroundImage="https://images.unsplash.com/photo-1568992688065-536aad8a12f6?w=1600&h=900&fit=crop"
+        imageSrc="https://images.unsplash.com/photo-1568992688065-536aad8a12f6?w=1200&h=1400&fit=crop"
+        imageAlt="Grey & Hart LLP — intellectual property law, Holborn"
         ctaPrimary={{ label: 'Free IP Assessment', href: '#case-evaluator' }}
         ctaSecondary={{ label: 'Our Practice Areas', href: '#practice-areas' }}
-        overlayOpacity={0.72}
-        height="full"
+        reversed={true}
+        accentColor="#b8a070"
       />
 
       <TrustBar />

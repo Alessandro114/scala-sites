@@ -1,7 +1,7 @@
 'use client'
 
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
-import { Hero } from '@scala-sites/core/components/hero'
+import { TypewriterHero } from '@scala-sites/core/components/typewriter-hero'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
 import { Footer } from '@scala-sites/core/components/footer'
@@ -382,14 +382,13 @@ export default function StudioOSDemoPage() {
     >
       <Navbar />
 
-      <Hero
-        title="We Build Brands That Mean Something"
+      <TypewriterHero
+        staticText="We craft"
+        rotatingWords={['identities', 'websites', 'experiences', 'legacies']}
         subtitle="Brand identity, web design, photography and film for ambitious businesses. Based in Shoreditch, working globally."
-        backgroundImage="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&h=900&fit=crop"
         ctaPrimary={{ label: 'Start a Project', href: '#contact' }}
-        ctaSecondary={{ label: 'View Our Work', href: '#portfolio' }}
-        overlayOpacity={0.6}
-        height="full"
+        backgroundColor="#0a0a0a"
+        textColor="#ffffff"
       />
 
       <PortfolioShowcase

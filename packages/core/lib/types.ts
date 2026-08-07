@@ -41,7 +41,9 @@ export interface SiteConfig {
 export type VerticalType =
   | 'dineos' | 'propertyos' | 'beautyos' | 'gymos'
   | 'travelos' | 'studioos' | 'legalos' | 'clinicos'
-  | 'agencyos' | 'retailos'
+  | 'agencyos' | 'retailos' | 'autoos' | 'weddingos'
+  | 'petos' | 'eduos' | 'cleanos' | 'dermalyos'
+  | 'praxisos' | 'shopos'
 
 export type ThemeType = 'minimal' | 'bold' | 'classic'
 

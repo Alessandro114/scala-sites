@@ -1,7 +1,7 @@
 'use client'
 
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
-import { Hero } from '@scala-sites/core/components/hero'
+import { SplitHero } from '@scala-sites/core/components/split-hero'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
 import { Footer } from '@scala-sites/core/components/footer'
@@ -333,10 +333,11 @@ export default function ClinicDemo() {
         ) as React.CSSProperties
       }
     >
-      <Hero
+      <SplitHero
         title="World-Class Healthcare on Harley Street"
         subtitle="Expert private GP, specialist consultations, and wellness care — same-day appointments available. All major insurers accepted."
-        backgroundImage="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1600"
+        imageSrc="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=1200&h=1400&fit=crop"
+        imageAlt="Harley Street Clinic — private healthcare, London"
         ctaPrimary={{ label: 'Book a Consultation', href: '#doctors' }}
         ctaSecondary={{ label: 'Check Insurance Cover', href: '#insurance' }}
       />

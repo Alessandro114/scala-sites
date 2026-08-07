@@ -1,7 +1,7 @@
 'use client'
 
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
-import { Hero } from '@scala-sites/core/components/hero'
+import { VideoHero } from '@scala-sites/core/components/video-hero'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
 import { Footer } from '@scala-sites/core/components/footer'
@@ -241,10 +241,10 @@ const theme = createCustomTheme('classic', {
 export default function HotelDemo() {
   return (
     <div style={themeToStyleObject(theme) as React.CSSProperties}>
-      <Hero
+      <VideoHero
         title="The Meridian Grand"
         subtitle="A singular address in Mayfair — where understated luxury meets the warmth of a private home. London's most discreet five-star experience awaits."
-        backgroundImage="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1600"
+        posterImage="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1600"
         ctaPrimary={{ label: 'Reserve a Room', href: '#rooms' }}
         ctaSecondary={{ label: 'Explore Experiences', href: '#experiences' }}
       />
