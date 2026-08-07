@@ -55,7 +55,7 @@ const siteConfig = {
   name: 'Studio Luxe Hair',
   tagline: 'Expert color, cut & care — Soho, London',
   phone: '+44 20 7432 1098',
-  email: 'hello@example.com',
+  email: 'hello@yourdomain.com',
   address: '28 Brewer Street, London W1F 0SR',
   social: { instagram: '#', facebook: '#', tiktok: '#' },
 }
@@ -84,7 +84,7 @@ export default function BeautyDemo() {
         <StylistBooking stylists={stylists} />
       </div>
       <div id="services">
-        <ServiceMenu services={services} locale="en-GB" />
+        <ServiceMenu services={services} locale="en" />
       </div>
       <BeforeAfter items={beforeAfterItems} />
       <ReviewCarousel reviews={reviews} locale="en" />

@@ -263,7 +263,7 @@ export default function HotelDemo() {
       <div id="rooms">
         <RoomShowcase
           rooms={rooms}
-          locale="en-GB"
+          locale="en"
           title="Rooms & Suites"
           subtitle="Each of our rooms is a sanctuary — designed with care and furnished with the finest British craftsmanship"
           onBook={(id) => { /* Replace with booking handler */ }}
@@ -273,7 +273,7 @@ export default function HotelDemo() {
       <div id="experiences">
         <ExperienceGrid
           experiences={experiences}
-          locale="en-GB"
+          locale="en"
           title="Curated Experiences"
           subtitle="From private dining to twilight river cruises — moments crafted exclusively for our guests"
           onBook={(id) => { /* Replace with booking handler */ }}

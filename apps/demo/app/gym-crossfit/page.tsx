@@ -219,7 +219,7 @@ const siteConfig = {
   name: 'Iron Republic CrossFit',
   tagline: 'Community. Coaching. Results. — Shoreditch, London',
   phone: '+44 20 7613 0044',
-  email: 'train@example.com',
+  email: 'hello@yourdomain.com',
   address: '7 Corsham Street, Shoreditch, London N1 6DR',
   social: { instagram: '#', facebook: '#' },
 }
@@ -273,7 +273,7 @@ export default function GymCrossfitDemo() {
 
       {/* Membership Tiers */}
       <div id="pricing" style={{ background: 'var(--color-surface)' }}>
-        <MembershipTiers tiers={tiers} locale="en-GB" />
+        <MembershipTiers tiers={tiers} locale="en" />
       </div>
 
       {/* Trainers */}

@@ -2,9 +2,12 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Trattoria da Marco | Authentic Italian Kitchen',
+  title: {
+    template: '%s | SCALA Sites',
+    default: 'SCALA Sites — Open Source Vertical Website Templates',
+  },
   description:
-    'Traditional Italian cuisine in the heart of the city. Fresh pasta, wood-fired pizza, and seasonal ingredients. Book your table today.',
+    'Industry-optimized website templates with native booking, WhatsApp, and AI. Open source, powered by SCALA AI OS.',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

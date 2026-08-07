@@ -659,7 +659,7 @@ export default function PropertyLuxuryDemo() {
 
       {/* Featured listings */}
       <div id="listings">
-        <ListingSearch listings={listings} locale="en-GB" whatsappNumber="442074938000" />
+        <ListingSearch listings={listings} locale="en" whatsappNumber="442074938000" />
       </div>
 
       {/* Map */}

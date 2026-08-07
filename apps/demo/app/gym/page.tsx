@@ -51,7 +51,7 @@ const siteConfig = {
   name: 'Forge Athletics',
   tagline: 'Strength, community, results — since 2018',
   phone: '+44 20 7555 7890',
-  email: 'info@example.com',
+  email: 'hello@yourdomain.com',
   address: '84 Hackney Road, London E2 7QZ',
   social: { instagram: '#', facebook: '#' },
 }
@@ -75,7 +75,7 @@ export default function GymDemo() {
         <ClassSchedule classes={classes} />
       </div>
       <div id="pricing">
-        <MembershipTiers tiers={tiers} locale="en-GB" />
+        <MembershipTiers tiers={tiers} locale="en" />
       </div>
       <TrainerCard trainers={trainers} />
       <ReviewCarousel reviews={reviews} locale="en" />

@@ -275,7 +275,7 @@ export default function SchoolDemo() {
       />
 
       <div id="courses">
-        <CourseCatalog courses={courses} locale="en-GB" />
+        <CourseCatalog courses={courses} locale="en" />
       </div>
 
       <InstructorGrid instructors={instructors} />
@@ -283,7 +283,7 @@ export default function SchoolDemo() {
       <div id="enrol">
         <EnrollmentForm
           courses={courses.map(c => ({ id: c.id, title: c.title, price: c.price, currency: c.currency }))}
-          locale="en-GB"
+          locale="en"
         />
       </div>
 

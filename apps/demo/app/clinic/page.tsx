@@ -344,7 +344,7 @@ export default function ClinicDemo() {
       <div id="doctors">
         <DoctorBooking
           doctors={doctors}
-          locale="en-GB"
+          locale="en"
           title="Our Specialist Team"
           subtitle="Board-certified doctors and allied health professionals — see same-day availability and book in seconds"
         />
@@ -353,7 +353,7 @@ export default function ClinicDemo() {
       <div id="treatments">
         <TreatmentMenu
           treatments={treatments}
-          locale="en-GB"
+          locale="en"
           title="Treatments & Procedures"
           subtitle="Transparent pricing across all specialties. No hidden fees. All treatments led by fully qualified practitioners."
         />

@@ -18,6 +18,12 @@ const verticals = [
   { name: 'WeddingOS', slug: '/wedding', description: 'Wedding venue, planner', color: '#8b2252', icon: '💒' },
   { name: 'PetOS', slug: '/vet', description: 'Veterinary, pet grooming', color: '#166534', icon: '🐾' },
   { name: 'EduOS', slug: '/school', description: 'School, academy, courses', color: '#4c1d95', icon: '🎓' },
+  { name: 'ShopOS — Boutique', slug: '/shop', description: 'Luxury fashion & lifestyle, dark editorial', color: '#c8956c', icon: '🛍' },
+  { name: 'ShopOS — Local', slug: '/shop-local', description: 'Artisan grocery & deli, conversion-focused', color: '#2d5016', icon: '🥦' },
+  { name: 'MotorOS — Dealership', slug: '/dealership', description: 'Certified pre-owned car dealership, East London', color: '#e63946', icon: '🚘' },
+  { name: 'StudioOS — Architecture', slug: '/studio-architecture', description: 'Architecture & interior design firm, Clerkenwell', color: '#b8a898', icon: '🏛' },
+  { name: 'PraxisOS — Dental', slug: '/clinic-dental', description: 'Modern dental practice, conversion-focused, Chelsea', color: '#0077b6', icon: '🦷' },
+  { name: 'AgencyOS', slug: '/agency', description: 'Performance marketing & brand strategy agency, Soho', color: '#6c63ff', icon: '📈' },
 ]
 
 export const metadata = {
@@ -43,7 +49,7 @@ export default function Home() {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Beautiful websites for every business</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            17 industry-optimized templates that connect natively to your business system.
+            23 industry-optimized templates that connect natively to your business system.
             Booking, WhatsApp, reviews, real-time availability — all built in.
           </p>
           <div className="flex justify-center gap-3 mt-6 text-sm text-gray-500">

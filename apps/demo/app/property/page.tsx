@@ -40,7 +40,7 @@ const siteConfig = {
   name: 'Kensington & Partners',
   tagline: 'Your trusted partner in London real estate since 2010',
   phone: '+44 20 7123 4567',
-  email: 'info@example.com',
+  email: 'hello@yourdomain.com',
   address: '15 Mayfair Lane, London W1K 3QT',
   social: { instagram: '#', facebook: '#' },
 }
@@ -61,7 +61,7 @@ export default function PropertyDemo() {
         ctaSecondary={{ label: 'Free Valuation', href: '#valuation' }}
       />
       <div id="listings">
-        <ListingSearch listings={listings} locale="en-GB" whatsappNumber="442071234567" />
+        <ListingSearch listings={listings} locale="en" whatsappNumber="442071234567" />
       </div>
       <div id="valuation">
         <ValuationWidget />

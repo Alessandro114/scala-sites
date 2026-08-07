@@ -170,7 +170,7 @@ const siteConfig = {
   name: 'Serenity Spa & Wellness',
   tagline: 'A sanctuary of calm in the heart of Chelsea, London',
   phone: '+44 20 7351 4820',
-  email: 'hello@example.com',
+  email: 'hello@yourdomain.com',
   address: '14 Cale Street, Chelsea, London SW3 3QU',
   social: { instagram: '#', facebook: '#' },
 }
@@ -231,7 +231,7 @@ export default function BeautySpaDemo() {
 
       {/* Services */}
       <div id="services" style={{ background: 'var(--color-surface)' }}>
-        <ServiceMenu services={services} locale="en-GB" />
+        <ServiceMenu services={services} locale="en" />
       </div>
 
       {/* Gallery */}

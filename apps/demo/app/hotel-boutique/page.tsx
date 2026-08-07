@@ -285,7 +285,7 @@ export default function HotelBoutiqueDemo() {
       <div id="rooms">
         <RoomShowcase
           rooms={rooms}
-          locale="en-GB"
+          locale="en"
           title="Rooms & Suites"
           subtitle="Ten rooms, each one different — all dressed in natural materials, locally made furniture and the honest beauty of the Cotswold countryside"
           onBook={(id) => { /* Replace with booking handler */ }}
@@ -295,7 +295,7 @@ export default function HotelBoutiqueDemo() {
       <div id="experiences">
         <ExperienceGrid
           experiences={experiences}
-          locale="en-GB"
+          locale="en"
           title="Experiences & Activities"
           subtitle="From foraging in ancient woodland to painting the valley at dawn — days here are shaped around what you love"
           onBook={(id) => { /* Replace with booking handler */ }}

@@ -236,7 +236,7 @@ export default function AutoDemo() {
       <div id="inventory">
         <VehicleInventory
           vehicles={vehicles}
-          locale="en-GB"
+          locale="en"
           onViewDetails={id => console.log('View details', id)}
           onBookTestDrive={id => {
             const el = document.getElementById('test-drive')
@@ -248,7 +248,7 @@ export default function AutoDemo() {
       <FinanceCalculator
         vehiclePrice={32000}
         currency="GBP"
-        locale="en-GB"
+        locale="en"
         defaultApr={9.9}
       />
 

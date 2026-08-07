@@ -183,7 +183,7 @@ const siteConfig = {
   name: 'Pawsitive Care Veterinary',
   tagline: 'Caring for your family — paws and all',
   phone: '+44 20 8332 5500',
-  email: 'hello@pawsitivecarevetexample.com',
+  email: 'hello@pawsitivecarevet.co.uk',
   address: '22 Richmond Road, London TW1 3AB',
   social: { instagram: '#', facebook: '#' },
 }
@@ -216,7 +216,7 @@ export default function VetDemo() {
       </div>
 
       <div id="packages">
-        <ServicePackages packages={packages} locale="en-GB" title="Care Packages" />
+        <ServicePackages packages={packages} locale="en" title="Care Packages" />
       </div>
 
       <div id="register">
