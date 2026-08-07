@@ -4,6 +4,10 @@
 
 **[Live Demo](https://scala-sites.vercel.app)** | [Get SCALA](https://get-scala.com) | [Contributing](CONTRIBUTING.md)
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FAlessandro114%2Fscala-sites&project-name=scala-sites&repository-name=scala-sites)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/Alessandro114/scala-sites?style=social)](https://github.com/Alessandro114/scala-sites)
+
 Pre-built, industry-optimized websites for restaurants, real estate agencies, salons, gyms, hotels, creative studios, and more. Each template connects natively to [SCALA](https://get-scala.com) for live booking, WhatsApp, CRM, and AI-powered features — or works standalone with mock data.
 
 ## Why SCALA Sites?
