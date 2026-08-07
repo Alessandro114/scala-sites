@@ -2,6 +2,8 @@
 
 **Open source vertical website templates powered by SCALA AI OS.**
 
+**[Live Demo](https://scala-sites.vercel.app)** | [Get SCALA](https://get-scala.com) | [Contributing](CONTRIBUTING.md)
+
 Pre-built, industry-optimized websites for restaurants, real estate agencies, salons, gyms, hotels, creative studios, and more. Each template connects natively to [SCALA](https://get-scala.com) for live booking, WhatsApp, CRM, and AI-powered features — or works standalone with mock data.
 
 ## Why SCALA Sites?
@@ -23,18 +25,18 @@ SCALA Sites solves this:
 
 | Vertical | Components | Demo |
 |---|---|---|
-| **DineOS** (Restaurant) | MenuSection, StorySection, UpsellBanner | `/restaurant` |
-| **PropertyOS** (Real Estate) | ListingSearch, AgentCard, ValuationWidget | `/property` |
-| **BeautyOS** (Salon/Spa) | StylistBooking, BeforeAfter, ServiceMenu | `/beauty` |
-| **GymOS** (Gym/CrossFit) | ClassSchedule, MembershipTiers, TrainerCard | `/gym` |
-| **TravelOS** (Hotel/Resort) | RoomShowcase, ExperienceGrid, AvailabilityChecker | `/hotel` |
-| **StudioOS** (Creative Agency) | PortfolioShowcase, ServicePackages, ProjectInquiry | `/studio` |
-| **ClinicoOS** (Medical Clinic) | DoctorBooking, TreatmentMenu, InsuranceChecker | `/clinic` |
-| **LegalOS** (Law Firm) | LawyerDirectory, CaseEvaluator, PracticeAreas | `/law` |
-| **AutoOS** (Car Dealership) | VehicleInventory, TestDriveBooking, FinanceCalculator | `/auto` |
-| **WeddingOS** (Wedding Venue) | VenueShowcase, WeddingPlanner, VendorDirectory | `/wedding` |
-| **PetOS** (Veterinary) | VetBooking, ServicePackages, PetProfile | `/vet` |
-| **EduOS** (School/Academy) | CourseCatalog, EnrollmentForm, InstructorGrid | `/school` |
+| **DineOS** (Restaurant) | MenuSection, StorySection, UpsellBanner | [Demo](https://scala-sites.vercel.app/restaurant) |
+| **PropertyOS** (Real Estate) | ListingSearch, AgentCard, ValuationWidget | [Demo](https://scala-sites.vercel.app/property) |
+| **BeautyOS** (Salon/Spa) | StylistBooking, BeforeAfter, ServiceMenu | [Demo](https://scala-sites.vercel.app/beauty) |
+| **GymOS** (Gym/CrossFit) | ClassSchedule, MembershipTiers, TrainerCard | [Demo](https://scala-sites.vercel.app/gym) |
+| **TravelOS** (Hotel/Resort) | RoomShowcase, ExperienceGrid, AvailabilityChecker | [Demo](https://scala-sites.vercel.app/hotel) |
+| **StudioOS** (Creative Agency) | PortfolioShowcase, ServicePackages, ProjectInquiry | [Demo](https://scala-sites.vercel.app/studio) |
+| **ClinicoOS** (Medical Clinic) | DoctorBooking, TreatmentMenu, InsuranceChecker | [Demo](https://scala-sites.vercel.app/clinic) |
+| **LegalOS** (Law Firm) | LawyerDirectory, CaseEvaluator, PracticeAreas | [Demo](https://scala-sites.vercel.app/law) |
+| **AutoOS** (Car Dealership) | VehicleInventory, TestDriveBooking, FinanceCalculator | [Demo](https://scala-sites.vercel.app/auto) |
+| **WeddingOS** (Wedding Venue) | VenueShowcase, WeddingPlanner, VendorDirectory | [Demo](https://scala-sites.vercel.app/wedding) |
+| **PetOS** (Veterinary) | VetBooking, ServicePackages, PetProfile | [Demo](https://scala-sites.vercel.app/vet) |
+| **EduOS** (School/Academy) | CourseCatalog, EnrollmentForm, InstructorGrid | [Demo](https://scala-sites.vercel.app/school) |
 
 ## Shared Components (Core)
 
