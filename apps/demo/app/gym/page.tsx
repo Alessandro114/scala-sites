@@ -504,11 +504,6 @@ function GymHero() {
 // ─────────────────────────────────────────────
 // PAGE
 // ─────────────────────────────────────────────
-export const metadata = {
-  title: 'Forge Athletics — CrossFit, Strength & Yoga in London',
-  description: 'CrossFit, strength training, HIIT, and yoga classes. Expert coaches, real community. First class free. Book your trial today.',
-}
-
 export default function GymDemo() {
   return (
     <div style={themeToStyleObject(createCustomTheme('bold', { primary: '#18181b', primaryHover: '#27272a', accent: '#ef4444', background: '#ffffff', surface: '#fafafa', text: '#18181b', secondary: '#f4f4f5', textMuted: '#71717a', border: '#e4e4e7' })) as React.CSSProperties}>

@@ -486,11 +486,6 @@ function PropertyHero() {
 // ─────────────────────────────────────────────
 // PAGE
 // ─────────────────────────────────────────────
-export const metadata = {
-  title: 'Kensington & Partners — Premium Properties in London',
-  description: 'Find your dream property in London. Luxury apartments, houses, and commercial spaces with expert guidance from our experienced team.',
-}
-
 export default function PropertyDemo() {
   return (
     <div style={themeToStyleObject(createCustomTheme('classic', { primary: '#1e3a5f', primaryHover: '#2a4f7f', secondary: '#f0f4f8', accent: '#c9a84c', background: '#ffffff', surface: '#f8fafc', text: '#1a1a2e', textMuted: '#64748b', border: '#e2e8f0' })) as React.CSSProperties}>
