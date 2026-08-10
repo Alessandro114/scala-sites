@@ -8,3 +8,15 @@ dist/
 .turbo
 .vercel
 .env*
+
+# Internal strategy/marketing documents - NEVER commit to public repos
+VIRAL-LAUNCH-KIT*.md
+LAUNCH-KIT*.md
+*-STRATEGY*.md
+*-PITCH*.md
+*-OUTREACH*.md
+*-PROSPECT*.md
+INTERNAL-*.md
+STRATEGY/
+PROSPECTS/
+outreach/
