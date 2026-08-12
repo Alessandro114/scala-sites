@@ -754,6 +754,7 @@ const propertyJsonLd = {
 const propertyFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: [
     { '@type': 'Question', name: 'What types of properties does Mayfair & Partners handle?', acceptedAnswer: { '@type': 'Answer', text: 'We specialise in prime and super-prime residential property across Mayfair, Belgravia, Knightsbridge, and Chelsea — sales, lettings, and investment portfolios above £2m.' } },
     { '@type': 'Question', name: 'Do you handle off-market transactions?', acceptedAnswer: { '@type': 'Answer', text: 'Over 60% of our transactions never reach a public portal. Our buyer network of 3,200+ qualified UHNWI ensures discreet, competitive outcomes.' } },

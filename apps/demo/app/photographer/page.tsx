@@ -1010,7 +1010,7 @@ export default function PhotographerPage() {
             </h2>
           </div>
           <div className="reveal-up" style={{ animationDelay: '0.1s' }}>
-            <FAQAccordion items={faqs} locale="en" />
+            <FAQAccordion items={faqs} verticalName="PhotographerOS" locale="en" />
           </div>
         </div>
       </section>

@@ -234,6 +234,7 @@ const sushiJsonLd = {
 const sushiFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: faqs.map((f) => ({
     '@type': 'Question',
     name: f.question,
@@ -911,7 +912,7 @@ export default function SushiPage() {
             </p>
             <h2 style={{ fontFamily: 'Georgia, serif', color: C.ink, fontSize: '2.5rem', fontWeight: 300 }}>FAQ</h2>
           </div>
-          <FAQAccordion items={faqs} locale="en" />
+          <FAQAccordion items={faqs} verticalName="SushiOS" locale="en" />
         </div>
       </section>
 

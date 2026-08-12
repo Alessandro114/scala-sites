@@ -450,6 +450,7 @@ const greyHartJsonLd = {
 const greyHartFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: [
     { '@type': 'Question', name: 'What is included in a Free IP Assessment?', acceptedAnswer: { '@type': 'Answer', text: 'Our Free IP Assessment is a 30-minute confidential consultation — by phone or video — with one of our IP solicitors or attorneys. We will review your IP and outline the most appropriate protection strategy. There is no obligation to instruct us.' } },
     { '@type': 'Question', name: 'How long does a patent application take?', acceptedAnswer: { '@type': 'Answer', text: 'A UK national patent application typically takes 3–5 years from filing to grant, though provisional protection applies from the filing date. An EP application via the EPO takes a similar timeframe.' } },
@@ -503,7 +504,7 @@ export default function LawIPDemoPage() {
         <ReviewCarousel reviews={reviews} locale="en" />
       </div>
 
-      <FAQAccordion items={faqs} locale="en" />
+      <FAQAccordion items={faqs} verticalName="LegalOS — IP" locale="en" />
 
       <div id="case-evaluator">
         <CaseEvaluator

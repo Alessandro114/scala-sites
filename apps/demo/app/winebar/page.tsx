@@ -248,6 +248,7 @@ const winebarJsonLd = {
 const winebarFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: faqs.map((f) => ({
     '@type': 'Question',
     name: f.question,
@@ -846,7 +847,7 @@ export default function WineBarPage() {
             </p>
             <h2 style={{ fontFamily: 'Georgia, serif', color: C.cream, fontSize: '2.5rem', fontWeight: 300 }}>FAQ</h2>
           </div>
-          <FAQAccordion items={faqs} locale="en" />
+          <FAQAccordion items={faqs} verticalName="WineBarOS" locale="en" />
         </div>
       </section>
 

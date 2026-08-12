@@ -1484,7 +1484,7 @@ export default function CoworkOSDemoPage() {
             </h2>
           </div>
           <div className="reveal-up" style={{ animationDelay: '0.1s' }}>
-            <FAQAccordion items={faqs} locale="en" />
+            <FAQAccordion items={faqs} verticalName="CoworkOS" locale="en" />
           </div>
         </div>
       </section>

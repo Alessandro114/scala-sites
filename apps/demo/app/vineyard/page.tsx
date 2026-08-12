@@ -228,6 +228,7 @@ const vineyardJsonLd = {
 const vineyardFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: faqs.map((f) => ({
     '@type': 'Question',
     name: f.question,
@@ -768,7 +769,7 @@ export default function VineyardPage() {
               Frequently Asked
             </h2>
           </div>
-          <FAQAccordion items={faqs} locale="en" />
+          <FAQAccordion items={faqs} verticalName="VineyardOS" locale="en" />
         </div>
       </section>
 

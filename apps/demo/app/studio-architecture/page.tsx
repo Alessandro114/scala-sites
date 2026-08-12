@@ -452,6 +452,7 @@ export default function StudioArchitectureDemo() {
             {
               '@context': 'https://schema.org',
               '@type': 'FAQPage',
+  dateModified: '2026-08-11',
               mainEntity: faqs.map((f) => ({
                 '@type': 'Question',
                 name: f.question,
@@ -692,7 +693,7 @@ export default function StudioArchitectureDemo() {
 
       {/* FAQ */}
       <div className="bg-[#f5f5f0]">
-        <FAQAccordion items={faqs} locale="en" />
+        <FAQAccordion items={faqs} verticalName="StudioOS — Architecture" locale="en" />
       </div>
 
       {/* Footer */}

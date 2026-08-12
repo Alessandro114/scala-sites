@@ -307,6 +307,7 @@ const breweryJsonLd = {
 const breweryFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: faqs.map((f) => ({
     '@type': 'Question',
     name: f.question,
@@ -940,7 +941,7 @@ export default function BreweryPage() {
             </p>
             <h2 style={{ color: C.cream, fontSize: '2.5rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '-0.02em' }}>FAQ</h2>
           </div>
-          <FAQAccordion items={faqs} locale="en" />
+          <FAQAccordion items={faqs} verticalName="BreweryOS" locale="en" />
         </div>
       </section>
 

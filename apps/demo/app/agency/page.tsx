@@ -699,6 +699,7 @@ const agencyJsonLd = {
 const agencyFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: [
     { '@type': 'Question', name: 'What services does Orbit Digital offer?', acceptedAnswer: { '@type': 'Answer', text: 'We offer Paid Media (Meta, Google, TikTok, LinkedIn), Brand Strategy, SEO & Content, Email & CRM, Creative Production, and Analytics & CRO.' } },
     { '@type': 'Question', name: 'What is your average client ROAS?', acceptedAnswer: { '@type': 'Answer', text: 'Our average client ROAS on paid media is 4.1x. We build, manage, and scale performance campaigns with rigorous attribution.' } },

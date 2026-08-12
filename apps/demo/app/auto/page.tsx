@@ -49,6 +49,7 @@ const localBusinessJsonLd = {
 const faqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: [
     {
       '@type': 'Question',
@@ -646,7 +647,7 @@ export default function AutoDemo() {
 
       <ReviewCarousel reviews={reviews} locale="en" />
 
-      <FAQAccordion items={faqs} locale="en" />
+      <FAQAccordion items={faqs} verticalName="AutoOS" locale="en" />
 
       <Footer config={siteConfig} locale="en" />
 

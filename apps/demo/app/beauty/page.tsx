@@ -44,6 +44,7 @@ const localBusinessJsonLd = {
 const faqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: [
     {
       '@type': 'Question',
@@ -525,7 +526,7 @@ export default function BeautyDemo() {
       </div>
       <BeforeAfter items={beforeAfterItems} />
       <ReviewCarousel reviews={reviews} locale="en" />
-      <FAQAccordion items={faqs} locale="en" />
+      <FAQAccordion items={faqs} verticalName="BeautyOS" locale="en" />
       <Footer config={siteConfig} locale="en" />
       <WhatsAppCTA phoneNumber="442074321098" message="Hi, I'd like to book an appointment" />
     </div>

@@ -2,6 +2,7 @@
 
 import type { SiteConfig, Locale } from '../../lib/types'
 import { t } from '../../lib/i18n'
+import { AeoFooterBlock } from '../aeo-footer-block'
 
 interface FooterConfig {
   name: string
@@ -18,10 +19,16 @@ interface FooterConfig {
 interface FooterProps {
   config: FooterConfig
   locale?: Locale
+  /** Optional accent color passed through to AeoFooterBlock. Defaults to violet. */
+  accentColor?: string
 }
 
-export function Footer({ config, locale = 'en' }: FooterProps) {
+export function Footer({ config, locale = 'en', accentColor }: FooterProps) {
   return (
+    <>
+      {/* AEO elements: Proof Block + Last-Updated Stamp — propagates to ALL pages */}
+      <AeoFooterBlock accentColor={accentColor} />
+
     <footer className="bg-gray-950 text-white py-16 px-6">
       <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-12">
         {/* Brand column */}
@@ -140,5 +147,6 @@ export function Footer({ config, locale = 'en' }: FooterProps) {
         </a>
       </div>
     </footer>
+    </>
   )
 }

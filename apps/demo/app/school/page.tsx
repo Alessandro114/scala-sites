@@ -286,6 +286,7 @@ const schoolJsonLd = {
 const schoolFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: faqs.map((f) => ({
     '@type': 'Question',
     name: f.question,
@@ -634,7 +635,7 @@ export default function SchoolDemo() {
 
       <ReviewCarousel reviews={reviews} locale="en" />
 
-      <FAQAccordion items={faqs} locale="en" />
+      <FAQAccordion items={faqs} verticalName="EduOS" locale="en" />
 
       <Footer config={siteConfig} locale="en" />
 

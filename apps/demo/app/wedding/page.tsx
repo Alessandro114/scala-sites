@@ -266,6 +266,7 @@ const weddingJsonLd = {
 const weddingFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: [
     { '@type': 'Question', name: 'How far in advance should we book Ashworth Manor?', acceptedAnswer: { '@type': 'Answer', text: 'We recommend booking at least 12–18 months in advance, especially for Saturday dates between May and September. However, we do occasionally have cancellations — contact us for last-minute availability.' } },
     { '@type': 'Question', name: 'Can we bring our own caterers or must we use your preferred list?', acceptedAnswer: { '@type': 'Answer', text: 'All catering at Ashworth Manor must be provided by our approved catering partner, Harvest Fine Catering. We offer fully bespoke menus with a complimentary tasting session for all bookings.' } },
@@ -310,7 +311,7 @@ export default function WeddingDemo() {
 
       <ReviewCarousel reviews={reviews} locale="en" />
 
-      <FAQAccordion items={faqs} locale="en" />
+      <FAQAccordion items={faqs} verticalName="WeddingOS" locale="en" />
 
       <Footer config={siteConfig} locale="en" />
 

@@ -35,6 +35,7 @@ const localBusinessJsonLd = {
 const faqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: [
     {
       '@type': 'Question',
@@ -891,7 +892,7 @@ export default function AccountantDemoPage() {
 
       {/* FAQ */}
       <div id="faq" style={{ background: white }}>
-        <FAQAccordion items={faqs} locale="en" />
+        <FAQAccordion items={faqs} verticalName="AccountantOS" locale="en" />
       </div>
 
       <Footer config={siteConfig} locale="en" />

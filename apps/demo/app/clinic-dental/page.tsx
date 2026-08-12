@@ -383,6 +383,7 @@ export default function ClinicDentalDemo() {
             {
               '@context': 'https://schema.org',
               '@type': 'FAQPage',
+  dateModified: '2026-08-11',
               mainEntity: faqs.map((f) => ({
                 '@type': 'Question',
                 name: f.question,
@@ -647,7 +648,7 @@ export default function ClinicDentalDemo() {
 
       {/* FAQ */}
       <div className="bg-white">
-        <FAQAccordion items={faqs} locale="en" />
+        <FAQAccordion items={faqs} verticalName="PraxisOS — Dental" locale="en" />
       </div>
 
       {/* Footer */}

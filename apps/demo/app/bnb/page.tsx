@@ -215,6 +215,7 @@ const jsonLd = {
 const faqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })),
 }
 
@@ -572,7 +573,7 @@ export default function BnBPage() {
             <h2 className="text-4xl md:text-5xl font-extralight" style={{ ...S.textDark, fontFamily: 'Georgia, serif' }}>Frequently Asked</h2>
           </div>
           <div className="reveal-up" style={{ animationDelay: '0.1s' }}>
-            <FAQAccordion items={faqs} locale="en" />
+            <FAQAccordion items={faqs} verticalName="BnBOS" locale="en" />
           </div>
         </div>
       </section>

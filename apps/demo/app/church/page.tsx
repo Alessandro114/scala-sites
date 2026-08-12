@@ -202,6 +202,7 @@ const churchJsonLd = {
 const churchFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: faqs.map((f) => ({
     '@type': 'Question',
     name: f.question,
@@ -654,7 +655,7 @@ export default function ChurchPage() {
               Frequently Asked
             </h2>
           </div>
-          <FAQAccordion items={faqs} locale="en" />
+          <FAQAccordion items={faqs} verticalName="ChurchOS" locale="en" />
         </div>
       </section>
 

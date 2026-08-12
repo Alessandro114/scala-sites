@@ -261,6 +261,7 @@ const hotelJsonLd = {
 const hotelFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: [
     { '@type': 'Question', name: 'What time is check-in and check-out?', acceptedAnswer: { '@type': 'Answer', text: 'Standard check-in is from 3:00 PM and check-out is by 12:00 noon. Early arrival and late departure can be arranged subject to availability.' } },
     { '@type': 'Question', name: 'Is valet parking available?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. We offer 24-hour valet parking for guests at £45 per night. Electric vehicle charging is available upon request.' } },
@@ -317,7 +318,7 @@ export default function HotelDemo() {
 
       <ReviewCarousel reviews={reviews} locale="en" />
 
-      <FAQAccordion items={faqs} locale="en" />
+      <FAQAccordion items={faqs} verticalName="TravelOS" locale="en" />
 
       <Footer config={siteConfig} locale="en" />
 

@@ -732,6 +732,7 @@ const noriJsonLd = {
 const noriFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: [
     { '@type': 'Question', name: 'How far in advance should I book?', acceptedAnswer: { '@type': 'Answer', text: 'We recommend booking the omakase menus at least 2–3 weeks in advance. Weekend slots often fill 4 weeks ahead. Cancellation is free up to 48 hours before your reservation.' } },
     { '@type': 'Question', name: 'Can you accommodate dietary restrictions?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Please inform us of all allergies and dietary requirements at the time of booking. The vegetable kaiseki is our dedicated plant-based menu.' } },
@@ -815,7 +816,7 @@ export default function RestaurantModernPage() {
 
       {/* FAQ */}
       <div id="faq" className="bg-[#0f0f0f]">
-        <FAQAccordion items={faqs} locale="en" />
+        <FAQAccordion items={faqs} verticalName="DineOS — Modern" locale="en" />
       </div>
 
       {/* Footer */}

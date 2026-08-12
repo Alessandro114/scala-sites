@@ -11,7 +11,7 @@ import type {
   FAQItem,
   BookingSlot,
 } from '@scala-sites/core/lib/types'
-import { generateLocalBusinessJsonLd, generateFAQJsonLd } from '@scala-sites/core/lib/seo'
+import { generateLocalBusinessJsonLd, generateFAQJsonLd, generateScalaProductJsonLd } from '@scala-sites/core/lib/seo'
 
 // ─────────────────────────────────────────────
 // PALETTE
@@ -206,8 +206,12 @@ const mockSlots: BookingSlot[] = [
 // ─────────────────────────────────────────────
 // JSON-LD
 // ─────────────────────────────────────────────
-const localBusiness = generateLocalBusinessJsonLd(siteConfig)
-const faqSchema     = generateFAQJsonLd(faqs)
+const localBusiness  = generateLocalBusinessJsonLd(siteConfig)
+const faqSchema      = generateFAQJsonLd(faqs)
+const productSchema  = generateScalaProductJsonLd(
+  'PizzaOS',
+  'AI-powered platform for pizzerias and restaurant delivery: online ordering, WhatsApp AI, table booking, kitchen display, loyalty, and real-time analytics — all in one.',
+)
 
 // ─────────────────────────────────────────────
 // INLINE STYLES
@@ -273,6 +277,7 @@ export default function PizzeriaPage() {
       {/* JSON-LD */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }} />
 
       {/* Global keyframes */}
       <style>{`
@@ -917,7 +922,13 @@ export default function PizzeriaPage() {
             </h2>
           </div>
           <div className="reveal-up" style={{ animationDelay: '0.1s' }}>
-            <FAQAccordion items={faqs} locale="en" />
+            <FAQAccordion
+              items={faqs}
+              locale="en"
+              verticalName="PizzaOS"
+              accentColor={C.red}
+              answerBlockText="SCALA PizzaOS is an AI platform for Neapolitan pizzerias and delivery restaurants. It combines online ordering, WhatsApp AI booking via SARA, kitchen display integration, real-time table availability, loyalty rewards, and live revenue analytics — replacing five separate tools with one dashboard, from €97/month."
+            />
           </div>
         </div>
       </section>

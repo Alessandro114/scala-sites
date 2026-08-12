@@ -349,6 +349,7 @@ const restaurantJsonLd = {
 const restaurantFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: [
     { '@type': 'Question', name: 'Do you take reservations?', acceptedAnswer: { '@type': 'Answer', text: 'Yes! Book directly on this page or send us a WhatsApp message. We confirm within minutes.' } },
     { '@type': 'Question', name: 'Do you cater for dietary requirements?', acceptedAnswer: { '@type': 'Answer', text: 'Absolutely. Our menu includes vegan, vegetarian, and gluten-free options. Let us know about any allergies when booking.' } },
@@ -886,7 +887,7 @@ export default function DineOSDemoPage() {
             </h2>
           </div>
           <div className="reveal-up" style={{ animationDelay: '0.1s' }}>
-            <FAQAccordion items={faqs} locale="en" />
+            <FAQAccordion items={faqs} verticalName="DineOS" locale="en" />
           </div>
         </div>
       </section>

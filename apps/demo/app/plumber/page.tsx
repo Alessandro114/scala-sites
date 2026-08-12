@@ -1426,7 +1426,7 @@ export default function PlumberOSDemoPage() {
             </h2>
           </div>
           <div className="reveal-up" style={{ animationDelay: '0.1s' }}>
-            <FAQAccordion items={faqs} locale="en" />
+            <FAQAccordion items={faqs} verticalName="PlumberOS" locale="en" />
           </div>
         </div>
       </section>

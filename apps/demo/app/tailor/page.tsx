@@ -152,6 +152,7 @@ const localBusinessJsonLd = {
 const faqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: faqs.map((f) => ({
     '@type': 'Question',
     name: f.question,
@@ -568,7 +569,7 @@ export default function TailorOSDemoPage() {
             <h2 className="text-4xl md:text-5xl font-extralight" style={S.chalk}>Common Questions</h2>
           </div>
           <div className="reveal-up" style={{ animationDelay: '0.1s' }}>
-            <FAQAccordion items={faqs} locale="en" />
+            <FAQAccordion items={faqs} verticalName="TailorOS" locale="en" />
           </div>
         </div>
       </section>

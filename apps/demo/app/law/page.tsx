@@ -410,6 +410,7 @@ const sterlingJsonLd = {
 const sterlingFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: [
     { '@type': 'Question', name: 'What does a free initial assessment involve?', acceptedAnswer: { '@type': 'Answer', text: 'Our free initial assessment is a confidential conversation — typically 30 minutes by telephone or video call — during which one of our lawyers will listen to your matter and provide a preliminary view on the legal position. There is no obligation to instruct us.' } },
     { '@type': 'Question', name: 'How are your fees structured?', acceptedAnswer: { '@type': 'Answer', text: 'We offer a range of fee structures: hourly rates, fixed fees, capped fees, and conditional fee arrangements. We provide a clear written estimate at the outset of every engagement.' } },
@@ -506,7 +507,7 @@ export default function LawDemoPage() {
       </div>
 
       {/* FAQ */}
-      <FAQAccordion items={faqs} locale="en" />
+      <FAQAccordion items={faqs} verticalName="LegalOS" locale="en" />
 
       {/* Case Evaluator (lead capture) */}
       <CaseEvaluator

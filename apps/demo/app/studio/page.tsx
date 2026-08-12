@@ -402,6 +402,7 @@ const prismJsonLd = {
 const prismFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: [
     { '@type': 'Question', name: 'How does a typical project start?', acceptedAnswer: { '@type': 'Answer', text: 'Every project begins with a discovery call where we learn about your business, goals, audience, and competitors. From there we send a tailored proposal with a fixed scope, timeline, and fee.' } },
     { '@type': 'Question', name: 'How many rounds of revisions do I get?', acceptedAnswer: { '@type': 'Answer', text: 'Our packages include 2–3 structured rounds of revisions. Minor tweaks after sign-off are always accommodated.' } },
@@ -451,7 +452,7 @@ export default function StudioOSDemoPage() {
 
       <ReviewCarousel reviews={reviews} locale="en" />
 
-      <FAQAccordion items={faqs} locale="en" />
+      <FAQAccordion items={faqs} verticalName="StudioOS" locale="en" />
 
       <ProjectInquiry
         projectTypes={projectTypes}

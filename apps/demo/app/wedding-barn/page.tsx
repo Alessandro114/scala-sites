@@ -547,6 +547,7 @@ const localBusinessJsonLd = {
 const faqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: faqs.map((f) => ({
     '@type': 'Question',
     name: f.question,
@@ -881,7 +882,7 @@ export default function WeddingBarnDemo() {
         <ReviewCarousel reviews={reviews} locale="en" />
       </div>
 
-      <FAQAccordion items={faqs} locale="en" />
+      <FAQAccordion items={faqs} verticalName="WeddingOS — Barn" locale="en" />
 
       <Footer config={siteConfig} locale="en" />
 

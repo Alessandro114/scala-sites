@@ -197,6 +197,7 @@ const jsonLd = {
 const faqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.question, acceptedAnswer: { '@type': 'Answer', text: f.answer } })),
 }
 
@@ -533,7 +534,7 @@ export default function NutritionistPage() {
             <h2 className="text-4xl font-bold" style={{ color: C.textDark }}>Common Questions</h2>
           </div>
           <div className="reveal-up" style={{ animationDelay: '0.1s' }}>
-            <FAQAccordion items={faqs} locale="en" />
+            <FAQAccordion items={faqs} verticalName="NutritionOS" locale="en" />
           </div>
         </div>
       </section>

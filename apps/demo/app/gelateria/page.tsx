@@ -205,6 +205,7 @@ const gelateriaJsonLd = {
 const gelateriaFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: faqs.map((f) => ({
     '@type': 'Question',
     name: f.question,
@@ -880,7 +881,7 @@ export default function GelateriaPage() {
             </p>
             <h2 style={{ color: C.chocolate, fontSize: '2.5rem', fontWeight: 800 }}>FAQ</h2>
           </div>
-          <FAQAccordion items={faqs} locale="it" />
+          <FAQAccordion items={faqs} verticalName="GelateriaOS" locale="it" />
         </div>
       </section>
 

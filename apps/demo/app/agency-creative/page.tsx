@@ -506,6 +506,7 @@ const fluxJsonLd = {
 const fluxFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: [
     { '@type': 'Question', name: 'How do I start a brief with Flux Creative?', acceptedAnswer: { '@type': 'Answer', text: 'Use the "Start a Brief" form on this page. We review every brief personally and respond within one working day with an honest initial take and next steps.' } },
     { '@type': 'Question', name: 'What types of brands do you work with?', acceptedAnswer: { '@type': 'Answer', text: 'We work primarily with growth-stage B2B and B2C brands, start-ups preparing for investment, and established businesses going through a repositioning.' } },
@@ -600,7 +601,7 @@ export default function AgencyCreativeDemo() {
         <ReviewCarousel reviews={reviews} locale="en" />
       </div>
 
-      <FAQAccordion items={faqs} locale="en" />
+      <FAQAccordion items={faqs} verticalName="AgencyOS — Creative" locale="en" />
 
       <Footer config={siteConfig} locale="en" />
 

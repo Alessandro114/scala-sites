@@ -47,6 +47,7 @@ const localBusinessJsonLd = {
 const faqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: [
     {
       '@type': 'Question',
@@ -511,7 +512,7 @@ export default function PropertyDemo() {
       </div>
       <AgentCard agents={agents} whatsappNumber="442071234567" />
       <ReviewCarousel reviews={reviews} locale="en" />
-      <FAQAccordion items={faqs} locale="en" />
+      <FAQAccordion items={faqs} verticalName="PropertyOS" locale="en" />
       <Footer config={siteConfig} locale="en" />
       <WhatsAppCTA phoneNumber="442071234567" message="Hi, I'm interested in a property in London" />
     </div>

@@ -348,6 +348,7 @@ export default function ShopPage() {
             {
               '@context': 'https://schema.org',
               '@type': 'FAQPage',
+  dateModified: '2026-08-11',
               mainEntity: faqs.map((f) => ({
                 '@type': 'Question',
                 name: f.question,
@@ -675,7 +676,7 @@ export default function ShopPage() {
 
       {/* FAQ */}
       <section className="py-8" style={{ backgroundColor: '#111' }}>
-        <FAQAccordion items={faqs} locale="en" />
+        <FAQAccordion items={faqs} verticalName="ShopOS" locale="en" />
       </section>
 
       {/* Footer */}

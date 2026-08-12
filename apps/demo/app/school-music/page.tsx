@@ -670,6 +670,7 @@ const musicSchoolJsonLd = {
 const musicFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: faqs.map((f) => ({
     '@type': 'Question',
     name: f.question,
@@ -1107,7 +1108,7 @@ export default function SchoolMusicDemo() {
         <ReviewCarousel reviews={reviews} locale="en" />
       </div>
 
-      <FAQAccordion items={faqs} locale="en" />
+      <FAQAccordion items={faqs} verticalName="EduOS — Music" locale="en" />
 
       <Footer config={siteConfig} locale="en" />
 

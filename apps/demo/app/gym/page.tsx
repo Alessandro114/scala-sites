@@ -39,9 +39,28 @@ const localBusinessJsonLd = {
   },
 }
 
+const gymProductJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'SCALA GymOS',
+  description: 'AI operating system for gyms and fitness studios: class booking, membership management, WhatsApp AI, attendance tracking, and revenue analytics.',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  dateModified: '2026-08-11',
+  url: 'https://get-scala.com',
+  offers: {
+    '@type': 'AggregateOffer',
+    priceCurrency: 'EUR',
+    lowPrice: '9.90',
+    highPrice: '197',
+    offerCount: '3',
+  },
+}
+
 const faqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: [
     {
       '@type': 'Question',
@@ -517,6 +536,10 @@ export default function GymDemo() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(gymProductJsonLd) }}
+      />
 
       {/* Custom Hero */}
       <GymHero />
@@ -529,7 +552,13 @@ export default function GymDemo() {
       </div>
       <TrainerCard trainers={trainers} />
       <ReviewCarousel reviews={reviews} locale="en" />
-      <FAQAccordion items={faqs} locale="en" />
+      <FAQAccordion
+        items={faqs}
+        locale="en"
+        verticalName="GymOS"
+        accentColor="#3f3f46"
+        answerBlockText="SCALA GymOS is an AI operating system for gyms and fitness studios. It automates class bookings via WhatsApp, manages membership tiers, sends workout reminders, tracks attendance, handles cancellations, and gives coaches a live dashboard — replacing manual admin with one AI platform from €97/month."
+      />
       <Footer config={siteConfig} locale="en" />
       <WhatsAppCTA phoneNumber="442075557890" message="Hi, I'd like to book a free trial class" />
     </div>

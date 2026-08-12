@@ -243,6 +243,7 @@ const gymJsonLd = {
 const gymFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: [
     { '@type': 'Question', name: 'Do I need CrossFit experience to join?', acceptedAnswer: { '@type': 'Answer', text: 'Not at all. Every new member starts with our Fundamentals course — 3 sessions covering all foundational movements. It\'s included free with any membership.' } },
     { '@type': 'Question', name: 'What\'s included in the free trial week?', acceptedAnswer: { '@type': 'Answer', text: 'Unlimited classes for 7 days — CrossFit WODs, Barbell Club, Gymnastics, Metcon, and Mobility sessions. You also get full open-gym access. No card required to start.' } },
@@ -325,7 +326,7 @@ export default function GymCrossfitDemo() {
 
       {/* FAQ */}
       <div style={{ background: 'var(--color-background)' }}>
-        <FAQAccordion items={faqs} locale="en" />
+        <FAQAccordion items={faqs} verticalName="GymOS — CrossFit" locale="en" />
       </div>
 
       {/* Footer */}

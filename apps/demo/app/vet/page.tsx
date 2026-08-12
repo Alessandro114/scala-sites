@@ -210,6 +210,7 @@ const vetLocalBusinessJsonLd = {
 const vetFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: faqs.map((f) => ({
     '@type': 'Question',
     name: f.question,
@@ -534,7 +535,7 @@ export default function VetDemo() {
       </div>
 
       <ReviewCarousel reviews={reviews} locale="en" />
-      <FAQAccordion items={faqs} locale="en" />
+      <FAQAccordion items={faqs} verticalName="PetOS" locale="en" />
       <Footer config={siteConfig} locale="en" />
       <WhatsAppCTA phoneNumber="442083325500" message="Hi, I'd like to book an appointment at Pawsitive Care" />
     </div>

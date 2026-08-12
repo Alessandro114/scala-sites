@@ -333,6 +333,7 @@ const clinicJsonLd = {
 const clinicFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: [
     { '@type': 'Question', name: 'Do you accept walk-in appointments?', acceptedAnswer: { '@type': 'Answer', text: 'We strongly recommend booking in advance. However, we do reserve same-day urgent slots. Call us on +44 20 7946 0800 and we will do our utmost to accommodate you.' } },
     { '@type': 'Question', name: 'Which insurance providers do you work with?', acceptedAnswer: { '@type': 'Answer', text: 'We are recognised by all major UK private medical insurers including Bupa, AXA Health, Aviva, Cigna, Vitality, WPA, and Allianz Care. We also welcome self-pay patients.' } },
@@ -400,7 +401,7 @@ export default function ClinicDemo() {
 
       <ReviewCarousel reviews={reviews} locale="en" />
 
-      <FAQAccordion items={faqs} locale="en" />
+      <FAQAccordion items={faqs} verticalName="ClinicoOS" locale="en" />
 
       <Footer config={siteConfig} locale="en" />
 

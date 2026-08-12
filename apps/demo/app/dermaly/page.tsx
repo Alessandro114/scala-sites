@@ -33,6 +33,7 @@ const localBusinessJsonLd = {
 const faqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: [
     {
       '@type': 'Question',
@@ -833,7 +834,7 @@ export default function DermalyShowcase() {
 
       {/* FAQ */}
       <div style={{ background: 'var(--color-surface)' }}>
-        <FAQAccordion items={faqs} locale="en" />
+        <FAQAccordion items={faqs} verticalName="DermalyOS" locale="en" />
       </div>
 
       {/* Footer */}

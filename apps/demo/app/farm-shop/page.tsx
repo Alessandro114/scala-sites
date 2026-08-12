@@ -200,6 +200,7 @@ const farmJsonLd = {
 const farmFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: faqs.map((f) => ({
     '@type': 'Question',
     name: f.question,
@@ -764,7 +765,7 @@ export default function FarmShopPage() {
               Frequently Asked
             </h2>
           </div>
-          <FAQAccordion items={faqs} locale="en" />
+          <FAQAccordion items={faqs} verticalName="FarmOS" locale="en" />
         </div>
       </section>
 

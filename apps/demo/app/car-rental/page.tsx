@@ -190,6 +190,7 @@ const businessJsonLd = {
 const faqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: faqs.map((f) => ({
     '@type': 'Question',
     name: f.question,
@@ -686,7 +687,7 @@ export default function CarRentalPage() {
             <h2 className="text-4xl md:text-5xl font-extralight" style={S.white}>Frequently Asked</h2>
           </div>
           <div className="reveal-up" style={{ animationDelay: '0.1s' }}>
-            <FAQAccordion items={faqs} locale="en" />
+            <FAQAccordion items={faqs} verticalName="CarRentalOS" locale="en" />
           </div>
         </div>
       </section>

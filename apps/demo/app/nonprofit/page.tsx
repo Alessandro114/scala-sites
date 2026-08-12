@@ -225,6 +225,7 @@ const nonprofitJsonLd = {
 const nonprofitFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: faqs.map((f) => ({
     '@type': 'Question',
     name: f.question,
@@ -662,7 +663,7 @@ export default function NonprofitPage() {
             <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: C.amber }}>Questions</p>
             <h2 className="text-4xl md:text-5xl font-black" style={{ color: C.dark }}>Frequently Asked</h2>
           </div>
-          <FAQAccordion items={faqs} locale="en" />
+          <FAQAccordion items={faqs} verticalName="NonprofitOS" locale="en" />
         </div>
       </section>
 

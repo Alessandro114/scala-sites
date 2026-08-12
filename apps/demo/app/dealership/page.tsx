@@ -308,6 +308,7 @@ const dealershipJsonLd = {
 const dealershipFaqJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  dateModified: '2026-08-11',
   mainEntity: [
     { '@type': 'Question', name: 'What does Certified Pre-Owned mean at AutoSelect?', acceptedAnswer: { '@type': 'Answer', text: 'Every Certified Pre-Owned vehicle passes our 120-point inspection, includes a minimum 12-month warranty, full HPI clear certificate, and a fresh MOT where applicable.' } },
     { '@type': 'Question', name: 'Can I part-exchange my current car?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. We accept all makes and models. We provide a formal written offer within 30 minutes of inspection.' } },
@@ -401,7 +402,7 @@ export default function DealershipDemo() {
 
       {/* FAQ */}
       <div className="bg-[#0f0f1e]">
-        <FAQAccordion items={faqs} locale="en" />
+        <FAQAccordion items={faqs} verticalName="MotorOS — Dealership" locale="en" />
       </div>
 
       {/* Footer */}
