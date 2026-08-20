@@ -320,7 +320,7 @@ function PropertyHero() {
               opacity: 0,
             }}
           >
-            Premium residential and commercial properties across London's most desirable
+            Premium residential and commercial properties across London&apos;s most desirable
             neighbourhoods. Expert guidance from search to completion.
           </p>
 

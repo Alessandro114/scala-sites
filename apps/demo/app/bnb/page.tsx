@@ -409,7 +409,7 @@ export default function BnBPage() {
       <section id="experiences" className="py-24 md:py-32 px-6 md:px-16" style={S.warmWhite}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 reveal-up">
-            <p className="text-xs tracking-[0.4em] uppercase mb-4" style={S.forest}>While You're Here</p>
+            <p className="text-xs tracking-[0.4em] uppercase mb-4" style={S.forest}>While You&apos;re Here</p>
             <h2 className="text-4xl md:text-6xl font-extralight" style={{ ...S.textDark, fontFamily: 'Georgia, serif' }}>The Experience</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 stagger-children">

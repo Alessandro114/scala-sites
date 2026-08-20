@@ -385,7 +385,7 @@ export default function ITServicesPage() {
       <section id="services" className="py-24 md:py-32 px-6 md:px-16" style={{ backgroundColor: C.darkMid }}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 reveal-up">
-            <p className="text-xs tracking-[0.4em] uppercase mb-4 font-mono" style={S.green}>// Services</p>
+            <p className="text-xs tracking-[0.4em] uppercase mb-4 font-mono" style={S.green}>{'// Services'}</p>
             <h2 className="text-4xl md:text-6xl font-light" style={S.white}>What We Deliver</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 stagger-children">
@@ -430,7 +430,7 @@ export default function ITServicesPage() {
       <section id="sla" className="py-24 px-6 md:px-16" style={{ backgroundColor: C.dark }}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 reveal-up">
-            <p className="text-xs tracking-[0.4em] uppercase mb-4 font-mono" style={S.blue}>// SLA Tiers</p>
+            <p className="text-xs tracking-[0.4em] uppercase mb-4 font-mono" style={S.blue}>{'// SLA Tiers'}</p>
             <h2 className="text-4xl md:text-5xl font-light" style={S.white}>Choose Your Level of Cover</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 stagger-children">
@@ -494,7 +494,7 @@ export default function ITServicesPage() {
       <section id="cases" className="py-24 px-6 md:px-16" style={{ backgroundColor: C.darkMid }}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 reveal-up">
-            <p className="text-xs tracking-[0.4em] uppercase mb-4 font-mono" style={S.blue}>// Case Studies</p>
+            <p className="text-xs tracking-[0.4em] uppercase mb-4 font-mono" style={S.blue}>{'// Case Studies'}</p>
             <h2 className="text-4xl md:text-5xl font-light" style={S.white}>Results We&rsquo;ve Delivered</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 stagger-children">
@@ -533,7 +533,7 @@ export default function ITServicesPage() {
           ═══════════════════════════════════════ */}
       <section className="py-20 px-6" style={{ background: `linear-gradient(135deg, ${C.darkCard}, ${C.darkSurface})` }}>
         <div className="max-w-4xl mx-auto text-center reveal-up">
-          <div className="font-mono text-xs mb-4" style={S.green}>// 24 / 7 / 365</div>
+          <div className="font-mono text-xs mb-4" style={S.green}>{'// 24 / 7 / 365'}</div>
           <h2 className="text-3xl md:text-5xl font-light mb-4" style={S.white}>IT Issue Right Now?</h2>
           <p className="text-lg font-light mb-8" style={S.muted}>
             Our Gold clients get a 1-hour response guarantee — day or night, weekend or bank holiday.
@@ -555,7 +555,7 @@ export default function ITServicesPage() {
       <section id="contact" className="py-24 md:py-32 px-6 md:px-16" style={{ backgroundColor: C.darkMid }}>
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
           <div className="reveal-left">
-            <p className="text-xs tracking-[0.4em] uppercase mb-4 font-mono" style={S.green}>// Free IT Audit</p>
+            <p className="text-xs tracking-[0.4em] uppercase mb-4 font-mono" style={S.green}>{'// Free IT Audit'}</p>
             <h2 className="text-4xl font-light mb-6" style={S.white}>Get a Free<br />IT Health Check</h2>
             <p className="font-light leading-relaxed mb-8" style={S.muted}>
               Book a 30-minute discovery call. We&rsquo;ll review your current setup,
@@ -590,7 +590,7 @@ export default function ITServicesPage() {
           ═══════════════════════════════════════ */}
       <section className="py-24 md:py-32 overflow-hidden" style={{ backgroundColor: C.dark }}>
         <div className="max-w-7xl mx-auto px-6 md:px-16 mb-12 reveal-up">
-          <p className="text-xs tracking-[0.4em] uppercase mb-4 font-mono" style={S.green}>// Client Feedback</p>
+          <p className="text-xs tracking-[0.4em] uppercase mb-4 font-mono" style={S.green}>{'// Client Feedback'}</p>
           <h2 className="text-4xl md:text-5xl font-light" style={S.white}>What Our Clients Say</h2>
         </div>
         <div className="reveal-up" style={{ animationDelay: '0.15s' }}>
@@ -604,7 +604,7 @@ export default function ITServicesPage() {
       <section className="py-24 md:py-32 px-6 md:px-16" style={{ backgroundColor: C.darkMid }}>
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12 reveal-up">
-            <p className="text-xs tracking-[0.4em] uppercase mb-4 font-mono" style={S.blue}>// FAQ</p>
+            <p className="text-xs tracking-[0.4em] uppercase mb-4 font-mono" style={S.blue}>{'// FAQ'}</p>
             <h2 className="text-4xl md:text-5xl font-light" style={S.white}>Common Questions</h2>
           </div>
           <div className="reveal-up" style={{ animationDelay: '0.1s' }}>

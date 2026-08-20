@@ -307,7 +307,7 @@ function InlineReview({ review }: { review: typeof inlineReviews[0] }) {
           </span>
         )}
       </div>
-      <p className="text-sm text-[#1c1a17] leading-relaxed mb-3">"{review.text}"</p>
+      <p className="text-sm text-[#1c1a17] leading-relaxed mb-3">&quot;{review.text}&quot;</p>
       <p className="text-sm font-bold text-[#1c1a17]">{review.author}</p>
     </div>
   )
@@ -365,7 +365,7 @@ export default function ShopLocalPage() {
           <p className="text-xs text-[#6b6458]">Notting Hill, London</p>
         </div>
         <div className="hidden md:flex gap-6 text-sm text-[#6b6458]">
-          <a href="#specials" className="hover:text-[#2d5016] transition-colors font-medium">Today's Specials</a>
+          <a href="#specials" className="hover:text-[#2d5016] transition-colors font-medium">Today&apos;s Specials</a>
           <a href="#categories" className="hover:text-[#2d5016] transition-colors font-medium">Shop</a>
           <a href="#collect" className="hover:text-[#2d5016] transition-colors font-medium">Click & Collect</a>
           <a href="#about" className="hover:text-[#2d5016] transition-colors font-medium">About</a>
@@ -556,8 +556,8 @@ export default function ShopLocalPage() {
                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse inline-block" />
                 Updated Today
               </div>
-              <h2 className="text-3xl font-bold text-[#1c1a17]">Today's Specials</h2>
-              <p className="text-[#6b6458] mt-1">Fresh arrivals and limited daily selections. Order before they're gone.</p>
+              <h2 className="text-3xl font-bold text-[#1c1a17]">Today&apos;s Specials</h2>
+              <p className="text-[#6b6458] mt-1">Fresh arrivals and limited daily selections. Order before they&apos;re gone.</p>
             </div>
             <a href="#collect" className="hidden md:block text-sm font-bold" style={{ color: '#2d5016' }}>
               Order Now →
@@ -727,7 +727,7 @@ export default function ShopLocalPage() {
             <p className="text-[#6b6458] leading-relaxed mb-5">
               Tom and Sarah opened The Corner Store in 2016 with one ambition: to be the shop that Notting Hill was missing.
               Somewhere you could buy exceptional bread, a serious cheese, a bottle of natural wine, and a bunch of farm
-              flowers — all within 200 square feet and five minutes' walk from home.
+              flowers — all within 200 square feet and five minutes&apos; walk from home.
             </p>
             <p className="text-[#6b6458] leading-relaxed mb-8">
               Every supplier is visited in person before they reach our shelves. We do not stock anything that has to

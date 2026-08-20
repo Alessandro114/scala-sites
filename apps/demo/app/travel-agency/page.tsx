@@ -546,7 +546,7 @@ export default function TravelAgencyPage() {
       <section className="py-20 px-6" style={{ backgroundColor: C.coral }}>
         <div className="max-w-4xl mx-auto text-center reveal-up">
           <div className="text-4xl mb-4">✈</div>
-          <h2 className="text-3xl md:text-5xl font-extralight mb-4" style={S.white}>Can't Find Your Dream Trip?</h2>
+          <h2 className="text-3xl md:text-5xl font-extralight mb-4" style={S.white}>Can&apos;t Find Your Dream Trip?</h2>
           <p className="text-lg font-light mb-8 max-w-xl mx-auto" style={{ color: 'rgba(255,255,255,0.8)' }}>
             Tell us where you want to go. Our consultants will design a completely
             personalised itinerary — flights, hotels, experiences, transfers.
