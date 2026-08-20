@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -360,11 +361,9 @@ export default function MarinaPage() {
 
         {/* Background marina image */}
         <div className="absolute inset-0 opacity-20">
-          <img
-            src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1800&h=1200&fit=crop&q=85"
+          <Image src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1800&h=1200&fit=crop&q=85"
             alt="Saltwater Marina harbour"
-            className="w-full h-full object-cover"
-          />
+            className="w-full h-full object-cover" width={1200} height={800} />
         </div>
 
         {/* Water shimmer overlay */}
@@ -517,7 +516,7 @@ export default function MarinaPage() {
               <div key={svc.name} className="reveal-up overflow-hidden"
                 style={{ animationDelay: `${i * 0.1}s`, border: `1px solid ${C.ocean}33`, backgroundColor: C.navyDeep }}>
                 <div className="overflow-hidden h-48">
-                  <img src={svc.img} alt={svc.name} className="service-img w-full h-full object-cover" style={{ filter: 'brightness(0.7) saturate(0.8)' }} />
+                  <Image src={svc.img} alt={svc.name} className="service-img w-full h-full object-cover" style={{ filter: 'brightness(0.7) saturate(0.8)' }} width={1200} height={800} />
                 </div>
                 <div className="p-6">
                   <h3 className="text-lg font-extralight mb-3" style={{ color: C.rope, fontFamily: 'Georgia, serif' }}>{svc.name}</h3>
@@ -544,7 +543,7 @@ export default function MarinaPage() {
               <div key={charter.name} className="charter-card reveal-up overflow-hidden"
                 style={{ animationDelay: `${i * 0.1}s`, border: `1px solid ${C.ocean}44`, backgroundColor: `${C.navy}55` }}>
                 <div className="overflow-hidden h-52">
-                  <img src={charter.img} alt={charter.name} className="service-img w-full h-full object-cover" style={{ filter: 'brightness(0.75) saturate(0.9)' }} />
+                  <Image src={charter.img} alt={charter.name} className="service-img w-full h-full object-cover" style={{ filter: 'brightness(0.75) saturate(0.9)' }} width={1200} height={800} />
                 </div>
                 <div className="p-6">
                   <div className="flex items-start justify-between mb-2">

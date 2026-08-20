@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 interface Instructor {
   id: string
@@ -46,7 +47,7 @@ export function InstructorGrid({ instructors, onViewCourses }: InstructorGridPro
               {/* Photo */}
               <div className="w-full sm:w-40 h-48 sm:h-auto flex-shrink-0" style={{ background: 'var(--color-secondary)' }}>
                 {inst.photo ? (
-                  <img src={inst.photo} alt={inst.name} className="w-full h-full object-cover" />
+                  <Image src={inst.photo} alt={inst.name} className="w-full h-full object-cover" width={1200} height={800} />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-4xl font-bold"
                     style={{ color: 'var(--color-primary)' }}>

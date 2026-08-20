@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -415,11 +416,9 @@ function SparkleHero() {
               boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
             }}
           >
-            <img
-              src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop"
+            <Image src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=600&fit=crop"
               alt="Before — kitchen before deep clean"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }} width={1200} height={800} />
           </div>
           {/* Front card — "after" bright and vivid */}
           <div
@@ -435,11 +434,9 @@ function SparkleHero() {
               border: '3px solid rgba(255,255,255,0.9)',
             }}
           >
-            <img
-              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop"
+            <Image src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop"
               alt="After — immaculate kitchen after deep clean"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(1.05) saturate(1.1)' }}
-            />
+              style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(1.05) saturate(1.1)' }} width={1200} height={800} />
             {/* "After" badge */}
             <div
               style={{

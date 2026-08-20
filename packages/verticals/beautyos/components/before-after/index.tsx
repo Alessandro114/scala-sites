@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState } from 'react'
 
@@ -50,11 +51,11 @@ export function BeforeAfter({ items, title = 'Our Work' }: BeforeAfterProps) {
           <div key={item.id} className="rounded-xl overflow-hidden border" style={{ borderColor: 'var(--color-border)' }}>
             <div className="grid grid-cols-2">
               <div className="relative">
-                <img src={item.beforeImage} alt="Before" className="w-full h-64 object-cover" />
+                <Image src={item.beforeImage} alt="Before" className="w-full h-64 object-cover" width={1200} height={800} />
                 <span className="absolute bottom-2 left-2 px-2 py-0.5 text-xs font-bold uppercase bg-black/60 text-white rounded">Before</span>
               </div>
               <div className="relative">
-                <img src={item.afterImage} alt="After" className="w-full h-64 object-cover" />
+                <Image src={item.afterImage} alt="After" className="w-full h-64 object-cover" width={1200} height={800} />
                 <span className="absolute bottom-2 right-2 px-2 py-0.5 text-xs font-bold uppercase text-white rounded" style={{ background: 'var(--color-primary)' }}>After</span>
               </div>
             </div>

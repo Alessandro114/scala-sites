@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState } from 'react'
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
@@ -451,8 +452,7 @@ export default function CoworkOSDemoPage() {
         }}
       >
         {/* Full-bleed background image */}
-        <img
-          src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1800&h=1000&fit=crop&q=85"
+        <Image src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1800&h=1000&fit=crop&q=85"
           alt="Harbour Works coworking space"
           style={{
             position: 'absolute',
@@ -461,8 +461,7 @@ export default function CoworkOSDemoPage() {
             height: '100%',
             objectFit: 'cover',
             objectPosition: 'center 40%',
-          }}
-        />
+          }} width={1200} height={800} />
 
         {/* Gradient mesh behind glassmorphism panel */}
         <div
@@ -671,8 +670,7 @@ export default function CoworkOSDemoPage() {
 
                 {/* Image */}
                 <div style={{ height: '200px', overflow: 'hidden' }}>
-                  <img
-                    src={space.image}
+                  <Image src={space.image}
                     alt={space.name}
                     style={{
                       width: '100%',
@@ -681,8 +679,7 @@ export default function CoworkOSDemoPage() {
                       transition: 'transform 0.5s ease',
                     }}
                     onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.05)' }}
-                    onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)' }}
-                  />
+                    onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)' }} width={1200} height={800} />
                 </div>
 
                 {/* Content */}
@@ -954,11 +951,9 @@ export default function CoworkOSDemoPage() {
               cursor: 'pointer',
             }}
           >
-            <img
-              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1600&h=700&fit=crop&q=85"
+            <Image src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1600&h=700&fit=crop&q=85"
               alt="Harbour Works virtual tour"
-              style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.65)' }}
-            />
+              style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.65)' }} width={1200} height={800} />
             <div
               style={{
                 position: 'absolute',
@@ -1248,11 +1243,9 @@ export default function CoworkOSDemoPage() {
               >
                 {/* Event image */}
                 <div style={{ height: '160px', overflow: 'hidden', position: 'relative' }}>
-                  <img
-                    src={event.image}
+                  <Image src={event.image}
                     alt={event.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} width={1200} height={800} />
                   {/* Date badge */}
                   <div
                     style={{

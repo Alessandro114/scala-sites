@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -384,7 +385,7 @@ export default function NotaryPage() {
                 className="reveal-up group relative overflow-hidden cursor-pointer"
                 style={{ animationDelay: `${i * 0.08}s`, borderRadius: '2px', border: `1px solid ${C.gold}22` }}>
                 <div className="relative h-44 overflow-hidden">
-                  <img src={svc.image} alt={svc.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" />
+                  <Image src={svc.image} alt={svc.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.charcoalDark}dd, transparent 60%)` }} />
                   <span className="absolute bottom-3 left-4 text-2xl">{svc.icon}</span>
                 </div>

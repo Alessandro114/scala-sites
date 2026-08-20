@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useEffect, useRef, useState } from 'react'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
@@ -148,14 +149,12 @@ function HeroCinematic() {
     <section className="relative w-full h-screen overflow-hidden grain">
       {/* Ken Burns background */}
       <div className="absolute inset-0" style={{ zIndex: 0 }}>
-        <img
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&h=1080&fit=crop"
+        <Image src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&h=1080&fit=crop"
           alt="Luxury estate aerial view"
           className="w-full h-full object-cover"
           style={{
             animation: 'kenBurns 10s ease-in-out infinite alternate',
-          }}
-        />
+          }} width={1200} height={800} />
       </div>
 
       {/* Dark gradient overlay */}
@@ -349,12 +348,10 @@ function FeaturedProperties() {
               className="relative overflow-hidden"
               style={{ aspectRatio: '4/3', borderRadius: '2px' }}
             >
-              <img
-                src={p.image}
+              <Image src={p.image}
                 alt={p.title}
                 className="w-full h-full object-cover transition-transform duration-700"
-                style={{}}
-              />
+                style={{}} width={1200} height={800} />
 
               {/* Hover overlay */}
               <div
@@ -450,12 +447,10 @@ function AboutSplit() {
               className="blob absolute -top-8 -left-8 w-72 h-72 opacity-30"
               style={{ background: C.gold, zIndex: 0 }}
             />
-            <img
-              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&h=800&fit=crop"
+            <Image src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&h=800&fit=crop"
               alt="Senior partner portrait"
               className="relative w-full max-w-sm object-cover reveal-scale"
-              style={{ zIndex: 1, borderRadius: '2px', aspectRatio: '3/4' }}
-            />
+              style={{ zIndex: 1, borderRadius: '2px', aspectRatio: '3/4' }} width={1200} height={800} />
             {/* Caption card */}
             <div
               className="absolute -bottom-6 -right-6 px-6 py-4"

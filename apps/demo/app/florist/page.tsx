@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -296,8 +297,8 @@ export default function FloristOSDemoPage() {
                   'https://images.unsplash.com/photo-1548142813-c348350df52b?w=200&h=200&fit=crop',
                 ].map((src, i) => (
                   <div key={i} className="rounded-xl overflow-hidden aspect-square group cursor-pointer">
-                    <img src={src} alt={`Seasonal arrangement ${i + 1}`}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.1]" />
+                    <Image src={src} alt={`Seasonal arrangement ${i + 1}`}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.1]" width={1200} height={800} />
                   </div>
                 ))}
               </div>
@@ -324,11 +325,9 @@ export default function FloristOSDemoPage() {
 
             {/* Hero image */}
             <div className="reveal-right image-reveal rounded-2xl overflow-hidden hidden md:block" style={{ animationDelay: '0.2s' }}>
-              <img
-                src="https://images.unsplash.com/photo-1487530811015-780c53a9f71b?w=900&h=1100&fit=crop"
+              <Image src="https://images.unsplash.com/photo-1487530811015-780c53a9f71b?w=900&h=1100&fit=crop"
                 alt="Fresh seasonal bouquet from Petal & Stem"
-                className="w-full h-[680px] object-cover"
-              />
+                className="w-full h-[680px] object-cover" width={1200} height={800} />
             </div>
           </div>
         </div>
@@ -394,7 +393,7 @@ export default function FloristOSDemoPage() {
             {bouquets.map((b, i) => (
               <div key={b.name} className="reveal-up group cursor-pointer" style={{ animationDelay: `${i * 0.06}s` }}>
                 <div className="image-reveal rounded-xl overflow-hidden mb-3">
-                  <img src={b.img} alt={b.name} className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-[1.06]" />
+                  <Image src={b.img} alt={b.name} className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-[1.06]" width={1200} height={800} />
                 </div>
                 <div className="flex justify-between items-baseline mb-1">
                   <h3 className="text-sm font-light" style={S.forest}>{b.name}</h3>
@@ -465,11 +464,9 @@ export default function FloristOSDemoPage() {
       <section id="weddings" className="py-24 md:py-32 px-6 md:px-16" style={S.cream}>
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
           <div className="reveal-left image-reveal rounded-2xl overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=1000&fit=crop"
+            <Image src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=1000&fit=crop"
               alt="Wedding flowers by Petal & Stem"
-              className="w-full h-[560px] object-cover"
-            />
+              className="w-full h-[560px] object-cover" width={1200} height={800} />
           </div>
           <div className="reveal-right">
             <p className="text-xs tracking-[0.4em] uppercase mb-6" style={S.sage_text}>Wedding Flowers</p>

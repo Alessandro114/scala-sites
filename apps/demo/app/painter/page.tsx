@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -416,12 +417,10 @@ export default function PainterOSDemoPage() {
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'translateY(0)' }}
               >
                 <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={s.image}
+                  <Image src={s.image}
                     alt={s.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
-                    style={{ filter: 'brightness(0.85)' }}
-                  />
+                    style={{ filter: 'brightness(0.85)' }} width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.charcoal}aa, transparent)` }} />
                   <div className="absolute bottom-4 right-4">
                     <span
@@ -458,12 +457,10 @@ export default function PainterOSDemoPage() {
                 className={`reveal-up relative overflow-hidden rounded-xl group cursor-pointer ${img.large ? 'col-span-2 row-span-2' : ''}`}
                 style={{ height: img.large ? undefined : '200px', animationDelay: `${i * 0.07}s` }}
               >
-                <img
-                  src={img.src}
+                <Image src={img.src}
                   alt={img.label}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-                  style={{ minHeight: img.large ? '420px' : '200px' }}
-                />
+                  style={{ minHeight: img.large ? '420px' : '200px' }} width={1200} height={800} />
                 <div
                   className="absolute inset-0 flex items-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-400"
                   style={{ background: `linear-gradient(to top, ${C.charcoal}cc, transparent)` }}

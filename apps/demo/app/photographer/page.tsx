@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -383,12 +384,10 @@ export default function PhotographerPage() {
       >
         {/* Full-bleed background image */}
         <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=1800&h=1200&fit=crop&q=90"
+          <Image src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=1800&h=1200&fit=crop&q=90"
             alt="Elena Vasquez Photography studio"
             className="w-full h-full object-cover"
-            style={{ opacity: 0.25 }}
-          />
+            style={{ opacity: 0.25 }} width={1200} height={800} />
           {/* Radial vignette */}
           <div
             className="absolute inset-0"
@@ -415,11 +414,9 @@ export default function PhotographerPage() {
                 border:        `1px solid ${C.gold}33`,
               }}
             >
-              <img
-                src={p.image}
+              <Image src={p.image}
                 alt={p.title}
-                className="w-full h-full object-cover"
-              />
+                className="w-full h-full object-cover" width={1200} height={800} />
             </div>
           ))}
         </div>
@@ -441,11 +438,9 @@ export default function PhotographerPage() {
                 border:        `1px solid ${C.gold}33`,
               }}
             >
-              <img
-                src={p.image}
+              <Image src={p.image}
                 alt={p.title}
-                className="w-full h-full object-cover"
-              />
+                className="w-full h-full object-cover" width={1200} height={800} />
             </div>
           ))}
         </div>
@@ -634,15 +629,13 @@ export default function PhotographerPage() {
                 className="portfolio-item image-reveal relative group overflow-hidden rounded-sm mb-3 md:mb-4 break-inside-avoid reveal-up"
                 style={{ animationDelay: `${i * 0.05}s` }}
               >
-                <img
-                  src={item.image}
+                <Image src={item.image}
                   alt={item.title}
                   className="w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
                   style={{
                     display:   'block',
                     aspectRatio: item.aspect === 'portrait' ? '3/4' : item.aspect === 'landscape' ? '4/3' : '1/1',
-                  }}
-                />
+                  }} width={1200} height={800} />
                 {/* Category chip */}
                 <span
                   className="absolute top-3 left-3 text-[9px] tracking-widest uppercase px-2 py-0.5 rounded-full z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -829,12 +822,10 @@ export default function PhotographerPage() {
               className="relative rounded-sm overflow-hidden"
               style={{ border: `1px solid ${C.gold}33` }}
             >
-              <img
-                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=700&h=900&fit=crop&q=90"
+              <Image src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=700&h=900&fit=crop&q=90"
                 alt="Elena Vasquez — photographer"
                 className="w-full object-cover"
-                style={{ maxHeight: 600 }}
-              />
+                style={{ maxHeight: 600 }} width={1200} height={800} />
               {/* Gold corner accent */}
               <div
                 className="absolute top-0 left-0 w-12 h-12 pointer-events-none"

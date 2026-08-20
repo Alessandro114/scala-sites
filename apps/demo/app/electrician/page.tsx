@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -479,12 +480,10 @@ export default function ElectricOSDemoPage() {
                 className="reveal-up relative overflow-hidden rounded-xl group cursor-pointer"
                 style={{ height: '260px', animationDelay: `${i * 0.08}s` }}
               >
-                <img
-                  src={p.image}
+                <Image src={p.image}
                   alt={p.label}
                   className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-[1.06]"
-                  style={{ filter: 'brightness(0.65)' }}
-                />
+                  style={{ filter: 'brightness(0.65)' }} width={1200} height={800} />
                 <div
                   className="absolute inset-0 transition-opacity duration-300"
                   style={{ background: `linear-gradient(to top, ${C.black}cc, transparent 60%)` }}

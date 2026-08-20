@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState } from 'react'
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
@@ -378,12 +379,10 @@ function Hero() {
 
       {/* Background car image */}
       <div className="absolute inset-0">
-        <img
-          src="https://images.unsplash.com/photo-1441148345475-03a2e82f9719?w=1800&h=1200&fit=crop&q=85"
+        <Image src="https://images.unsplash.com/photo-1441148345475-03a2e82f9719?w=1800&h=1200&fit=crop&q=85"
           alt="PrimeRent premium car fleet"
           className="w-full h-full object-cover"
-          style={{ opacity: 0.12 }}
-        />
+          style={{ opacity: 0.12 }} width={1200} height={800} />
         <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${C.midnight}f0 0%, ${C.midnight}bb 60%, ${C.dark}cc 100%)` }} />
       </div>
 
@@ -540,7 +539,7 @@ export default function CarRentalPage() {
                 }}
               >
                 <div className="relative h-48 overflow-hidden">
-                  <img src={car.image} alt={car.category} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <Image src={car.image} alt={car.category} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.dark}, transparent)` }} />
                   <div className="absolute top-3 right-3 flex flex-wrap gap-1 justify-end">
                     {car.tags.map((tag) => (

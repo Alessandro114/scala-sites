@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState } from 'react'
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
@@ -556,11 +557,9 @@ export default function ClinicDentalDemo() {
                     boxShadow: '0 24px 60px rgba(0,119,182,0.2), 0 8px 20px rgba(0,119,182,0.1)',
                   }}
                 >
-                  <img
-                    src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=760&h=920&fit=crop&q=85"
+                  <Image src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=760&h=920&fit=crop&q=85"
                     alt="Smile Studio — modern dental practice Chelsea"
-                    className="w-full h-full object-cover"
-                  />
+                    className="w-full h-full object-cover" width={1200} height={800} />
                   {/* Subtle blue overlay */}
                   <div
                     className="absolute inset-0"

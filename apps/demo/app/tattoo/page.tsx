@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -325,7 +326,7 @@ export default function TattooOSDemoPage() {
             'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=120&fit=crop',
           ].map((src, i) => (
             <div key={i} className="flex-1 overflow-hidden relative group">
-              <img src={src} alt={`Portfolio piece ${i + 1}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.08]" />
+              <Image src={src} alt={`Portfolio piece ${i + 1}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.08]" width={1200} height={800} />
               <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.black} 0%, ${C.black}88 40%, transparent 100%)` }} />
             </div>
           ))}
@@ -364,7 +365,7 @@ export default function TattooOSDemoPage() {
               <div key={a.name} className="reveal-up group" style={{ animationDelay: `${i * 0.1}s` }}>
                 <div className="grid grid-cols-[auto_1fr] gap-6 items-start">
                   <div className="relative overflow-hidden rounded-xl image-reveal w-36 flex-shrink-0">
-                    <img src={a.img} alt={a.name} className="w-full h-44 object-cover transition-transform duration-700 group-hover:scale-[1.05]" />
+                    <Image src={a.img} alt={a.name} className="w-full h-44 object-cover transition-transform duration-700 group-hover:scale-[1.05]" width={1200} height={800} />
                     <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.black}aa, transparent 60%)` }} />
                   </div>
                   <div>
@@ -374,7 +375,7 @@ export default function TattooOSDemoPage() {
                     <div className="flex gap-2">
                       {a.gallery.map((src, j) => (
                         <div key={j} className="w-16 h-16 rounded-lg overflow-hidden image-reveal">
-                          <img src={src} alt={`${a.name} work`} className="w-full h-full object-cover transition-transform duration-500 hover:scale-[1.1]" />
+                          <Image src={src} alt={`${a.name} work`} className="w-full h-full object-cover transition-transform duration-500 hover:scale-[1.1]" width={1200} height={800} />
                         </div>
                       ))}
                     </div>

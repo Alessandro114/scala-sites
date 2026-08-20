@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState } from 'react'
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
@@ -546,7 +547,7 @@ export default function MovingPage() {
                 }}
               >
                 <div className="relative h-44 overflow-hidden">
-                  <img src={svc.image} alt={svc.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <Image src={svc.image} alt={svc.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.navy}, transparent)` }} />
                 </div>
                 <div className="p-6">

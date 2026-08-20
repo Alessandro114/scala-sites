@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -308,11 +309,9 @@ export default function GardenOSDemoPage() {
           ═══════════════════════════════════════ */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Full-bleed garden photo */}
-        <img
-          src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=1800&h=1200&fit=crop&q=90"
+        <Image src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=1800&h=1200&fit=crop&q=90"
           alt="GreenCraft Gardens — lush garden design"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+          className="absolute inset-0 w-full h-full object-cover" width={1200} height={800} />
 
         {/* Deep green overlay gradient */}
         <div
@@ -440,11 +439,9 @@ export default function GardenOSDemoPage() {
                 style={{ animationDelay: `${i * 0.08}s` }}
               >
                 <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={s.image}
+                  <Image src={s.image}
                     alt={s.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
-                  />
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]" width={1200} height={800} />
                   <div
                     className="absolute inset-0"
                     style={{ background: `linear-gradient(to top, ${C.charcoal}99, transparent)` }}
@@ -482,12 +479,10 @@ export default function GardenOSDemoPage() {
                 className={`reveal-up relative overflow-hidden rounded-xl group cursor-pointer ${img.large ? 'col-span-2 row-span-2' : ''}`}
                 style={{ height: img.large ? undefined : '220px', animationDelay: `${i * 0.07}s` }}
               >
-                <img
-                  src={img.src}
+                <Image src={img.src}
                   alt={img.label}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-                  style={{ minHeight: img.large ? '460px' : '220px' }}
-                />
+                  style={{ minHeight: img.large ? '460px' : '220px' }} width={1200} height={800} />
                 <div
                   className="absolute inset-0 transition-opacity duration-400 opacity-0 group-hover:opacity-100 flex items-end p-5"
                   style={{ background: `linear-gradient(to top, ${C.charcoal}cc, transparent)` }}

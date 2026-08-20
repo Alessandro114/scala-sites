@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 interface Agent {
   id: string
@@ -31,7 +32,7 @@ export function AgentCard({ agents, whatsappNumber }: AgentCardProps) {
           <div key={agent.id} className="rounded-xl border overflow-hidden" style={{ borderColor: 'var(--color-border)', background: 'var(--color-surface)' }}>
             <div className="h-64 bg-gray-200">
               {agent.photo ? (
-                <img src={agent.photo} alt={agent.name} className="w-full h-full object-cover" />
+                <Image src={agent.photo} alt={agent.name} className="w-full h-full object-cover" width={1200} height={800} />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-5xl font-bold" style={{ color: 'var(--color-text-muted)', background: 'var(--color-secondary)' }}>
                   {agent.name.split(' ').map(n => n[0]).join('')}

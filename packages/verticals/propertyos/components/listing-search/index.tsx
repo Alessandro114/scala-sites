@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState, useMemo } from 'react'
 
@@ -111,7 +112,7 @@ export function ListingSearch({ listings, locale = 'en', onListingClick, whatsap
             onClick={() => onListingClick?.(listing.id)}
           >
             <div className="relative h-56 bg-gray-200">
-              <img src={listing.image} alt={listing.title} className="w-full h-full object-cover" />
+              <Image src={listing.image} alt={listing.title} className="w-full h-full object-cover" width={1200} height={800} />
               {listing.featured && (
                 <span className="absolute top-3 left-3 px-3 py-1 text-xs font-bold uppercase rounded-full text-white"
                   style={{ background: 'var(--color-primary)' }}>Featured</span>

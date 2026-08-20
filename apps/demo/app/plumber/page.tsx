@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -912,11 +913,9 @@ export default function PlumberOSDemoPage() {
                 {/* Before/After image pair */}
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', height: '180px', position: 'relative' }}>
                   <div style={{ position: 'relative', overflow: 'hidden' }}>
-                    <img
-                      src={project.before}
+                    <Image src={project.before}
                       alt={`${project.title} — before`}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'saturate(0.6)' }}
-                    />
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'saturate(0.6)' }} width={1200} height={800} />
                     <span
                       style={{
                         position: 'absolute',
@@ -935,11 +934,9 @@ export default function PlumberOSDemoPage() {
                     </span>
                   </div>
                   <div style={{ position: 'relative', overflow: 'hidden' }}>
-                    <img
-                      src={project.after}
+                    <Image src={project.after}
                       alt={`${project.title} — after`}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    />
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }} width={1200} height={800} />
                     <span
                       style={{
                         position: 'absolute',
@@ -1038,11 +1035,9 @@ export default function PlumberOSDemoPage() {
                 justifyContent: 'center',
               }}
             >
-              <img
-                src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=600&fit=crop&q=80"
+              <Image src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=600&fit=crop&q=80"
                 alt="London coverage map"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.4 }}
-              />
+                style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.4 }} width={1200} height={800} />
               <div
                 style={{
                   position: 'absolute',

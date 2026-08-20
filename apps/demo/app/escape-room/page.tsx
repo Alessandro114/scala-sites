@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -511,11 +512,9 @@ export default function EscapeRoomPage() {
               >
                 {/* Image */}
                 <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={room.image}
+                  <Image src={room.image}
                     alt={room.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                  />
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.darkAlt} 0%, transparent 60%)` }} />
                   {room.tag && (
                     <div
@@ -680,7 +679,7 @@ export default function EscapeRoomPage() {
                   border: `1px solid ${C.purple}22`,
                 }}
               >
-                <img src={img.src} alt={img.label} className="w-full h-full object-cover" />
+                <Image src={img.src} alt={img.label} className="w-full h-full object-cover" width={1200} height={800} />
                 <div
                   className="absolute inset-0 flex items-end p-4"
                   style={{ background: `linear-gradient(to top, ${C.void}bb, transparent 60%)` }}

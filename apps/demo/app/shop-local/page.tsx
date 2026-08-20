@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState } from 'react'
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
@@ -239,7 +240,7 @@ function SpecialCard({ item }: { item: typeof todaysSpecials[0] }) {
   return (
     <div className="rounded-xl overflow-hidden border" style={{ backgroundColor: '#fff', borderColor: '#ddd8cf' }}>
       <div className="relative">
-        <img src={item.image} alt={item.name} className="w-full h-48 object-cover" />
+        <Image src={item.image} alt={item.name} className="w-full h-48 object-cover" width={1200} height={800} />
         <span
           className="absolute top-3 left-3 text-white text-xs font-bold px-2.5 py-1 rounded-full"
           style={{ backgroundColor: item.badgeColor }}
@@ -276,7 +277,7 @@ function CategoryCard({ cat }: { cat: typeof categories[0] }) {
   return (
     <div className="group cursor-pointer rounded-xl overflow-hidden border transition-shadow hover:shadow-md" style={{ backgroundColor: '#fff', borderColor: '#ddd8cf' }}>
       <div className="relative h-40 overflow-hidden">
-        <img src={cat.image} alt={cat.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        <Image src={cat.image} alt={cat.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" width={1200} height={800} />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
         <span className="absolute bottom-3 left-3 text-2xl">{cat.icon}</span>
       </div>
@@ -715,11 +716,9 @@ export default function ShopLocalPage() {
       <section id="about" className="py-20 px-6" style={{ backgroundColor: '#faf8f5' }}>
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           <div>
-            <img
-              src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=800"
+            <Image src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=800"
               alt="Tom and the team at The Corner Store"
-              className="w-full rounded-xl object-cover aspect-[4/3]"
-            />
+              className="w-full rounded-xl object-cover aspect-[4/3]" width={1200} height={800} />
           </div>
           <div>
             <p className="text-xs font-bold tracking-widest uppercase mb-3" style={{ color: '#2d5016' }}>Est. 2016</p>

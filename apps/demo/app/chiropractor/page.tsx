@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -434,7 +435,7 @@ export default function ChiropractorPage() {
             <div className="space-y-5">
               {team.map((member) => (
                 <div key={member.name} className="flex gap-5 p-5 rounded-xl" style={{ background: C.navyLight, border: `1px solid ${C.blue}20` }}>
-                  <img src={member.image} alt={member.name} className="w-16 h-16 rounded-full object-cover flex-shrink-0" />
+                  <Image src={member.image} alt={member.name} className="w-16 h-16 rounded-full object-cover flex-shrink-0" width={1200} height={800} />
                   <div>
                     <div className="font-semibold mb-1" style={S.textWhite}>{member.name}</div>
                     <div className="text-xs mb-1" style={S.textGrey}>{member.credentials}</div>

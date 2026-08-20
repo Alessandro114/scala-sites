@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -307,12 +308,10 @@ export default function DanceOSPage() {
             clipPath: 'polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%)',
           }}
         >
-          <img
-            src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=900&h=1200&fit=crop&q=85"
+          <Image src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=900&h=1200&fit=crop&q=85"
             alt="Dancer in motion"
             className="w-full h-full object-cover"
-            style={{ mixBlendMode: 'luminosity', opacity: 0.45 }}
-          />
+            style={{ mixBlendMode: 'luminosity', opacity: 0.45 }} width={1200} height={800} />
           {/* Gradient overlay */}
           <div
             className="absolute inset-0"
@@ -404,7 +403,7 @@ export default function DanceOSPage() {
                 style={{ animationDelay: `${i * 0.08}s`, border: `1px solid ${cls.color}33` }}
               >
                 <div className="relative h-48 overflow-hidden">
-                  <img src={cls.image} alt={cls.name} className="w-full h-full object-cover" />
+                  <Image src={cls.image} alt={cls.name} className="w-full h-full object-cover" width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.dark}dd, transparent)` }} />
                   <div className="absolute bottom-3 left-4">
                     <span
@@ -526,7 +525,7 @@ export default function DanceOSPage() {
                 style={{ animationDelay: `${i * 0.1}s`, borderColor: `${C.purple}33` }}
               >
                 <div className="h-56 overflow-hidden">
-                  <img src={inst.image} alt={inst.name} className="instructor-img w-full h-full object-cover" />
+                  <Image src={inst.image} alt={inst.name} className="instructor-img w-full h-full object-cover" width={1200} height={800} />
                 </div>
                 <div className="p-5" style={{ backgroundColor: `${C.purple}11` }}>
                   <h3 className="font-black text-base mb-0.5" style={{ color: C.white }}>{inst.name}</h3>
@@ -614,12 +613,10 @@ export default function DanceOSPage() {
                 className={`reveal-up overflow-hidden rounded-xl group cursor-pointer ${img.span}`}
                 style={{ animationDelay: `${i * 0.08}s`, minHeight: 200 }}
               >
-                <img
-                  src={img.src}
+                <Image src={img.src}
                   alt="Dance at Rhythm Studio"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
-                  style={{ minHeight: 200 }}
-                />
+                  style={{ minHeight: 200 }} width={1200} height={800} />
               </div>
             ))}
           </div>

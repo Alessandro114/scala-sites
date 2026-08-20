@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -402,7 +403,7 @@ export default function SurfOSPage() {
                 style={{ animationDelay: `${i * 0.08}s`, borderColor: `${lesson.color}33` }}
               >
                 <div className="relative h-48 overflow-hidden">
-                  <img src={lesson.image} alt={lesson.name} className="w-full h-full object-cover" />
+                  <Image src={lesson.image} alt={lesson.name} className="w-full h-full object-cover" width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.dark}ee, transparent 50%)` }} />
                   <div className="absolute top-4 right-4">
                     <span
@@ -477,12 +478,10 @@ export default function SurfOSPage() {
       <section className="py-24 md:py-32 px-6 md:px-16" style={S.sectionDark}>
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div className="reveal-left">
-            <img
-              src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop&q=90"
+            <Image src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop&q=90"
               alt="Safety briefing on Fistral Beach"
               className="w-full rounded-3xl object-cover"
-              style={{ height: 440 }}
-            />
+              style={{ height: 440 }} width={1200} height={800} />
           </div>
           <div className="reveal-right">
             <p className="text-xs font-bold uppercase tracking-[0.3em] mb-4" style={{ color: C.sunset }}>Safety First</p>
@@ -530,7 +529,7 @@ export default function SurfOSPage() {
                 style={{ animationDelay: `${i * 0.1}s`, borderColor: `${C.seafoam}33` }}
               >
                 <div className="h-64 overflow-hidden">
-                  <img src={inst.image} alt={inst.name} className="w-full h-full object-cover" />
+                  <Image src={inst.image} alt={inst.name} className="w-full h-full object-cover" width={1200} height={800} />
                 </div>
                 <div className="p-6" style={{ backgroundColor: `${C.seafoam}08` }}>
                   <h3 className="font-black text-xl mb-1" style={{ color: C.white }}>{inst.name}</h3>
@@ -560,11 +559,9 @@ export default function SurfOSPage() {
                 className={`reveal-up rounded-xl overflow-hidden group cursor-pointer ${img.large ? 'col-span-2 row-span-2' : 'col-span-1'}`}
                 style={{ animationDelay: `${i * 0.08}s` }}
               >
-                <img
-                  src={img.src}
+                <Image src={img.src}
                   alt={img.label}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
-                />
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]" width={1200} height={800} />
               </div>
             ))}
           </div>
@@ -601,11 +598,9 @@ export default function SurfOSPage() {
             </div>
           </div>
           <div className="reveal-right rounded-3xl overflow-hidden" style={{ height: 440 }}>
-            <img
-              src="https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?w=800&h=600&fit=crop&q=90"
+            <Image src="https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?w=800&h=600&fit=crop&q=90"
               alt="WaveRider surf camp accommodation"
-              className="w-full h-full object-cover"
-            />
+              className="w-full h-full object-cover" width={1200} height={800} />
           </div>
         </div>
       </section>

@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -616,11 +617,9 @@ export default function OpticOSDemoPage() {
                 className="reveal-up relative overflow-hidden rounded-2xl group cursor-pointer"
                 style={{ animationDelay: `${i * 0.1}s`, height: '300px' }}
               >
-                <img
-                  src={cat.image}
+                <Image src={cat.image}
                   alt={`${cat.name} frames`}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-                />
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" width={1200} height={800} />
                 <div
                   className="absolute inset-0"
                   style={{ background: `linear-gradient(to top, ${C.navyDeep}ee 0%, ${C.navyDeep}55 50%, transparent 100%)` }}
@@ -741,11 +740,9 @@ export default function OpticOSDemoPage() {
                 style={{ animationDelay: `${i * 0.1}s` }}
               >
                 <div className="relative mb-6 mx-auto" style={{ width: 180, height: 180 }}>
-                  <img
-                    src={member.image}
+                  <Image src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover rounded-full transition-transform duration-500 group-hover:scale-[1.03]"
-                  />
+                    className="w-full h-full object-cover rounded-full transition-transform duration-500 group-hover:scale-[1.03]" width={1200} height={800} />
                   <div
                     className="absolute inset-0 rounded-full pointer-events-none"
                     style={{ border: `3px solid ${C.gold}66` }}

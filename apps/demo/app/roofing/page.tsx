@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -322,12 +323,10 @@ function Hero() {
 
       {/* Background image with dark overlay */}
       <div className="absolute inset-0">
-        <img
-          src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=1800&h=1200&fit=crop&q=85"
+        <Image src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=1800&h=1200&fit=crop&q=85"
           alt="SteelCap Roofing — professional roofing services"
           className="w-full h-full object-cover"
-          style={{ opacity: 0.15 }}
-        />
+          style={{ opacity: 0.15 }} width={1200} height={800} />
         <div
           className="absolute inset-0"
           style={{ background: `linear-gradient(135deg, ${C.darkAlt}f0 0%, ${C.darkAlt}cc 50%, ${C.dark}e8 100%)` }}
@@ -440,7 +439,7 @@ function Hero() {
               { label: 'After', src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop' },
             ].map((img, i) => (
               <div key={i} className="relative flex-shrink-0 rounded-lg overflow-hidden" style={{ width: 120, height: 80 }}>
-                <img src={img.src} alt={img.label} className="w-full h-full object-cover" />
+                <Image src={img.src} alt={img.label} className="w-full h-full object-cover" width={1200} height={800} />
                 <div
                   className="absolute bottom-1 left-1 text-[10px] tracking-widest uppercase px-2 py-0.5"
                   style={{
@@ -548,7 +547,7 @@ export default function RoofingPage() {
                 }}
               >
                 <div className="relative h-44 overflow-hidden">
-                  <img src={svc.image} alt={svc.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <Image src={svc.image} alt={svc.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.dark}, transparent)` }} />
                 </div>
                 <div className="p-6">
@@ -613,7 +612,7 @@ export default function RoofingPage() {
                 className="reveal-up group relative overflow-hidden rounded-xl"
                 style={{ height: 260, animationDelay: `${i * 0.07}s` }}
               >
-                <img src={img.src} alt={img.label} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <Image src={img.src} alt={img.label} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" width={1200} height={800} />
                 <div
                   className="absolute inset-0 flex items-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-400"
                   style={{ background: `linear-gradient(to top, ${C.darkAlt}dd, transparent)` }}

@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState, useMemo } from 'react'
 
@@ -296,11 +297,9 @@ export function VehicleInventory({ vehicles, locale = 'en-GB', onViewDetails, on
               {/* Photo */}
               <div style={{ position: 'relative', height: '196px', background: 'var(--color-secondary)', flexShrink: 0 }}>
                 {v.image ? (
-                  <img
-                    src={v.image}
+                  <Image src={v.image}
                     alt={`${v.year} ${v.make} ${v.model}`}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} width={1200} height={800} />
                 ) : (
                   <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3.5rem', color: 'var(--color-text-muted)' }}>
                     🚘

@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
@@ -339,11 +340,9 @@ export default function ChurchPage() {
 
         {/* Church photo */}
         <div className="absolute right-0 top-0 w-1/2 h-full hidden md:block overflow-hidden">
-          <img
-            src="https://images.unsplash.com/photo-1438032005730-c779502df39b?w=900&h=1100&fit=crop&q=85"
+          <Image src="https://images.unsplash.com/photo-1438032005730-c779502df39b?w=900&h=1100&fit=crop&q=85"
             alt="St. Andrew's Community Church interior"
-            className="w-full h-full object-cover"
-          />
+            className="w-full h-full object-cover" width={1200} height={800} />
           <div
             className="absolute inset-0"
             style={{
@@ -581,7 +580,7 @@ export default function ChurchPage() {
             {teamMembers.map((member) => (
               <div key={member.name} className="text-center">
                 <div className="w-28 h-28 rounded-full overflow-hidden mx-auto mb-4" style={{ border: `3px solid ${C.gold}40` }}>
-                  <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+                  <Image src={member.image} alt={member.name} className="w-full h-full object-cover" width={1200} height={800} />
                 </div>
                 <h3 className="font-bold text-sm" style={{ color: C.navy }}>{member.name}</h3>
                 <p className="text-xs mt-1" style={{ color: C.gold }}>{member.role}</p>

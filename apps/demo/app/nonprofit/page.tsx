@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState, useEffect } from 'react'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -374,11 +375,9 @@ export default function NonprofitPage() {
 
         {/* Photo overlay */}
         <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&h=900&fit=crop&q=80"
+          <Image src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&h=900&fit=crop&q=80"
             alt="Community members together"
-            className="w-full h-full object-cover mix-blend-multiply opacity-30"
-          />
+            className="w-full h-full object-cover mix-blend-multiply opacity-30" width={1200} height={800} />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-16 w-full py-24">
@@ -517,11 +516,9 @@ export default function NonprofitPage() {
                 style={{ backgroundColor: C.white, boxShadow: '0 1px 3px rgba(0,0,0,0.08)', border: `1px solid ${prog.color}18` }}
               >
                 <div className="relative h-52 overflow-hidden">
-                  <img
-                    src={prog.image}
+                  <Image src={prog.image}
                     alt={prog.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" width={1200} height={800} />
                   <div className="absolute top-4 left-4 text-3xl">{prog.icon}</div>
                   <div
                     className="absolute bottom-0 left-0 right-0 px-5 py-3 flex justify-between items-center"
@@ -612,7 +609,7 @@ export default function NonprofitPage() {
                 className="rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-1"
                 style={{ backgroundColor: C.white, boxShadow: '0 1px 3px rgba(0,0,0,0.07)' }}
               >
-                <img src={event.image} alt={event.name} className="w-full h-44 object-cover" />
+                <Image src={event.image} alt={event.name} className="w-full h-44 object-cover" width={1200} height={800} />
                 <div className="p-6">
                   <div
                     className="inline-block px-3 py-1 rounded-full text-xs font-bold mb-3"

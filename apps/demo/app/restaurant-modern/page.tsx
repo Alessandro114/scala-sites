@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState } from 'react'
 import { themes, themeToStyleObject } from '@scala-sites/themes'
@@ -585,11 +586,9 @@ function PhilosophySection() {
         </div>
         <div className="relative">
           <div className="aspect-[3/4] overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=800&h=1067&fit=crop"
+            <Image src="https://images.unsplash.com/photo-1617196034183-421b4040ed20?w=800&h=1067&fit=crop"
               alt="Chef Yuki Tanaka at work"
-              className="w-full h-full object-cover grayscale contrast-110"
-            />
+              className="w-full h-full object-cover grayscale contrast-110" width={1200} height={800} />
           </div>
           <div className="absolute -bottom-6 -left-6 bg-[#e8c547] p-6 hidden md:block">
             <p className="text-[#0a0a0a] text-xs tracking-[0.15em] uppercase font-semibold">

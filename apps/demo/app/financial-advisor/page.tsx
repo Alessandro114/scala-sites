@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -521,11 +522,9 @@ export default function FinanceOSDemoPage() {
                 }}
               >
                 <div className="h-56 overflow-hidden">
-                  <img
-                    src={member.img}
+                  <Image src={member.img}
                     alt={member.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-                  />
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" width={1200} height={800} />
                 </div>
                 <div className="p-7">
                   <h3 className="text-base font-bold mb-1" style={S.white}>{member.name}</h3>

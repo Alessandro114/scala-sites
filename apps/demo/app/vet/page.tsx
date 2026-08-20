@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -444,11 +445,9 @@ function VetHero() {
 
         {/* Right: image + floating stats */}
         <div style={{ position: 'relative', overflow: 'hidden', background: '#f0fdf4', minHeight: '400px' }}>
-          <img
-            src="https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?w=900&h=1100&fit=crop&q=85"
+          <Image src="https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?w=900&h=1100&fit=crop&q=85"
             alt="Veterinary care at Pawsitive Care"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
-          />
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }} width={1200} height={800} />
           {/* Overlay gradient */}
           <div
             style={{

@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useEffect, useRef, useState } from 'react'
 import { themes, createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
@@ -240,8 +241,7 @@ function GymHero() {
         }}
       >
         {/* Background gym image */}
-        <img
-          src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&q=80"
+        <Image src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&q=80"
           alt="Forge Athletics gym floor"
           style={{
             width: '100%',
@@ -249,8 +249,7 @@ function GymHero() {
             objectFit: 'cover',
             opacity: 0.22,
             transform: 'scaleX(-1)',
-          }}
-        />
+          }} width={1200} height={800} />
         {/* Neon tint overlay */}
         <div
           style={{

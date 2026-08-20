@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState } from 'react'
 
@@ -68,7 +69,7 @@ export function VetBooking({ vets, onBook }: VetBookingProps) {
             {/* Photo */}
             <div className="h-64 relative">
               {vet.photo ? (
-                <img src={vet.photo} alt={vet.name} className="w-full h-full object-cover" />
+                <Image src={vet.photo} alt={vet.name} className="w-full h-full object-cover" width={1200} height={800} />
               ) : (
                 <div
                   className="w-full h-full flex items-center justify-center text-5xl font-bold"

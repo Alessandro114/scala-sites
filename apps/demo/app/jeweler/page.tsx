@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -413,7 +414,7 @@ export default function JewelOSDemoPage() {
             {collections.map((col, i) => (
               <div key={col.name} className="reveal-up group cursor-pointer" style={{ animationDelay: `${i * 0.08}s` }}>
                 <div className="image-reveal rounded-xl overflow-hidden mb-4">
-                  <img src={col.img} alt={col.name} className="w-full h-52 object-cover transition-transform duration-700 group-hover:scale-[1.06]" />
+                  <Image src={col.img} alt={col.name} className="w-full h-52 object-cover transition-transform duration-700 group-hover:scale-[1.06]" width={1200} height={800} />
                 </div>
                 <div className="flex justify-between items-baseline mb-1">
                   <h3 className="text-lg font-light" style={S.diamond}>{col.name}</h3>
@@ -456,11 +457,9 @@ export default function JewelOSDemoPage() {
       <section className="py-24 md:py-32 px-6 md:px-16 grain" style={S.dark}>
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
           <div className="reveal-left image-reveal rounded-xl overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=800&h=1000&fit=crop"
+            <Image src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=800&h=1000&fit=crop"
               alt="Lumière jewellery craftsmanship"
-              className="w-full h-[550px] object-cover"
-            />
+              className="w-full h-[550px] object-cover" width={1200} height={800} />
           </div>
           <div className="reveal-right">
             <p className="text-xs tracking-[0.4em] uppercase mb-6" style={S.gold}>Our Story</p>
@@ -529,7 +528,7 @@ export default function JewelOSDemoPage() {
                 className={`reveal-up image-reveal relative overflow-hidden rounded-xl group cursor-pointer ${p.tall ? 'row-span-2' : ''}`}
                 style={{ animationDelay: `${i * 0.08}s`, height: p.tall ? undefined : '240px', minHeight: p.tall ? '500px' : undefined }}
               >
-                <img src={p.src} alt={p.label} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]" />
+                <Image src={p.src} alt={p.label} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]" width={1200} height={800} />
                 <div className="absolute inset-0 flex items-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{ background: `linear-gradient(to top, ${C.black}cc, transparent)` }}>
                   <span className="text-sm tracking-[0.15em] uppercase font-light" style={S.diamond}>{p.label}</span>

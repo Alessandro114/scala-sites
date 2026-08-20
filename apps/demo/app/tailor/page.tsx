@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -347,11 +348,9 @@ export default function TailorOSDemoPage() {
 
             {/* Right: Hero image */}
             <div className="reveal-right image-reveal rounded-xl overflow-hidden hidden md:block" style={{ animationDelay: '0.2s' }}>
-              <img
-                src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&h=1100&fit=crop"
+              <Image src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&h=1100&fit=crop"
                 alt="Bespoke suit by Ashworth & Sons"
-                className="w-full h-[650px] object-cover"
-              />
+                className="w-full h-[650px] object-cover" width={1200} height={800} />
             </div>
           </div>
         </div>
@@ -425,7 +424,7 @@ export default function TailorOSDemoPage() {
             {fabrics.map((f, i) => (
               <div key={f.name} className="reveal-up group" style={{ animationDelay: `${i * 0.08}s` }}>
                 <div className="image-reveal rounded-xl overflow-hidden mb-4">
-                  <img src={f.img} alt={f.name} className="w-full h-44 object-cover transition-transform duration-700 group-hover:scale-[1.06]" />
+                  <Image src={f.img} alt={f.name} className="w-full h-44 object-cover transition-transform duration-700 group-hover:scale-[1.06]" width={1200} height={800} />
                 </div>
                 <p className="text-[10px] tracking-[0.4em] uppercase mb-1" style={S.gold}>{f.origin}</p>
                 <h3 className="text-base font-light mb-2" style={S.chalk}>{f.name}</h3>
@@ -463,11 +462,9 @@ export default function TailorOSDemoPage() {
       <section className="py-24 md:py-32 px-6 md:px-16" style={S.darker}>
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
           <div className="reveal-left image-reveal rounded-xl overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&h=1000&fit=crop"
+            <Image src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&h=1000&fit=crop"
               alt="William Ashworth, Master Tailor"
-              className="w-full h-[500px] md:h-[680px] object-cover"
-            />
+              className="w-full h-[500px] md:h-[680px] object-cover" width={1200} height={800} />
           </div>
           <div className="reveal-right">
             <p className="text-xs tracking-[0.4em] uppercase mb-6" style={S.gold}>The Master</p>
@@ -500,7 +497,7 @@ export default function TailorOSDemoPage() {
                 className={`reveal-up image-reveal relative overflow-hidden rounded-xl group cursor-pointer ${img.large ? 'row-span-2' : ''}`}
                 style={{ animationDelay: `${i * 0.08}s`, height: img.large ? undefined : '200px', minHeight: img.large ? '420px' : undefined }}
               >
-                <img src={img.src} alt={img.label} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]" />
+                <Image src={img.src} alt={img.label} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]" width={1200} height={800} />
                 <div className="absolute inset-0 flex items-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{ background: `linear-gradient(to top, ${C.navy}cc, transparent)` }}>
                   <span className="text-sm tracking-[0.15em] uppercase font-light" style={S.chalk}>{img.label}</span>

@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -574,12 +575,10 @@ export default function DJOSPage() {
                 style={{ animationDelay: `${i * 0.08}s`, borderColor: `${C.cyan}22` }}
               >
                 <div className="h-40 overflow-hidden">
-                  <img
-                    src={item.image}
+                  <Image src={item.image}
                     alt={item.name}
                     className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-[1.06]"
-                    style={{ filter: 'brightness(0.6) saturate(0.7)' }}
-                  />
+                    style={{ filter: 'brightness(0.6) saturate(0.7)' }} width={1200} height={800} />
                 </div>
                 <div className="p-4" style={{ backgroundColor: `${C.cyan}08` }}>
                   <h3 className="font-black text-sm mb-1" style={{ color: C.cyan }}>{item.name}</h3>

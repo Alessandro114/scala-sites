@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -527,12 +528,10 @@ export default function LaundryOSPage() {
       >
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div className="reveal-left">
-            <img
-              src="https://images.unsplash.com/photo-1545173168-9f1947eebb7f?w=800&h=600&fit=crop&q=90"
+            <Image src="https://images.unsplash.com/photo-1545173168-9f1947eebb7f?w=800&h=600&fit=crop&q=90"
               alt="Eco-friendly laundry products"
               className="w-full rounded-3xl object-cover"
-              style={{ height: 420 }}
-            />
+              style={{ height: 420 }} width={1200} height={800} />
           </div>
           <div className="reveal-right">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] mb-4" style={{ color: C.mint }}>Planet First</p>

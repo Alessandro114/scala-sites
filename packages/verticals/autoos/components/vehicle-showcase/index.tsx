@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState, useMemo } from 'react'
 
@@ -113,11 +114,9 @@ export function VehicleShowcase({ vehicles, locale = 'en-GB', onTestDrive }: Veh
               {/* Image */}
               <div style={{ position: 'relative', height: '200px', background: 'var(--color-secondary)' }}>
                 {v.image ? (
-                  <img
-                    src={v.image}
+                  <Image src={v.image}
                     alt={`${v.year} ${v.make} ${v.model}`}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} width={1200} height={800} />
                 ) : (
                   <div style={{
                     width: '100%', height: '100%', display: 'flex', alignItems: 'center',

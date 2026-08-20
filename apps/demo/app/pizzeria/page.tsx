@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -431,11 +432,9 @@ export default function PizzeriaPage() {
 
         {/* RIGHT: Ingredient photography */}
         <div className="relative min-h-[50vh] md:min-h-screen overflow-hidden">
-          <img
-            src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=900&h=1200&fit=crop&q=90"
+          <Image src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=900&h=1200&fit=crop&q=90"
             alt="Margherita pizza fresh from the wood-fired oven"
-            className="w-full h-full object-cover"
-          />
+            className="w-full h-full object-cover" width={1200} height={800} />
           {/* Left-edge blend to oven glow */}
           <div
             className="absolute inset-0 pointer-events-none"
@@ -556,11 +555,9 @@ export default function PizzeriaPage() {
                 >
                   {item.image ? (
                     <>
-                      <img
-                        src={item.image}
+                      <Image src={item.image}
                         alt={item.name}
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-                      />
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" width={1200} height={800} />
                       <div
                         className="absolute inset-0"
                         style={{
@@ -705,12 +702,10 @@ export default function PizzeriaPage() {
               className="relative rounded-sm overflow-hidden"
               style={{ boxShadow: `0 32px 80px ${C.charcoal}44` }}
             >
-              <img
-                src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=700&h=900&fit=crop&q=90"
+              <Image src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=700&h=900&fit=crop&q=90"
                 alt="Chef Ciro De Luca — pizzaiolo"
                 className="w-full object-cover"
-                style={{ maxHeight: 580 }}
-              />
+                style={{ maxHeight: 580 }} width={1200} height={800} />
               <div
                 className="absolute bottom-0 left-0 right-0 p-6"
                 style={{
@@ -754,11 +749,9 @@ export default function PizzeriaPage() {
                   minHeight:      img.tall ? 460 : 220,
                 }}
               >
-                <img
-                  src={img.src}
+                <Image src={img.src}
                   alt={img.label}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
-                />
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]" width={1200} height={800} />
                 <div
                   className="absolute inset-0 flex items-end p-4"
                   style={{

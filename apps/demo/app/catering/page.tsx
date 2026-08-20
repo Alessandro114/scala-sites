@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -263,12 +264,10 @@ export default function CateringOSPage() {
           ═══════════════════════════════════════ */}
       <section className="relative min-h-screen overflow-hidden flex items-end">
         {/* Background image */}
-        <img
-          src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1800&h=1200&fit=crop&q=90"
+        <Image src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=1800&h=1200&fit=crop&q=90"
           alt="Élite Catering — elegant event setup"
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ filter: 'brightness(0.35)' }}
-        />
+          style={{ filter: 'brightness(0.35)' }} width={1200} height={800} />
 
         {/* Gold diagonal accent lines */}
         <div className="absolute inset-0 pointer-events-none" style={{
@@ -395,7 +394,7 @@ export default function CateringOSPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-children">
             {services.map((svc, i) => (
               <div key={svc.title} className="reveal-up group relative overflow-hidden rounded-sm cursor-pointer" style={{ animationDelay: `${i * 0.1}s`, minHeight: 320 }}>
-                <img src={svc.image} alt={svc.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" style={{ filter: 'brightness(0.4)' }} />
+                <Image src={svc.image} alt={svc.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" style={{ filter: 'brightness(0.4)' }} width={1200} height={800} />
                 <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.charcoal}f0 0%, ${C.charcoal}40 60%, transparent 100%)` }} />
                 {/* Gold corner accent */}
                 <div className="absolute top-6 left-6 pointer-events-none">
@@ -485,7 +484,7 @@ export default function CateringOSPage() {
             {portfolioEvents.map((ev, i) => (
               <div key={i} className={`reveal-up relative overflow-hidden rounded-sm group cursor-pointer ${ev.large ? 'col-span-2 row-span-2' : ''}`}
                 style={{ height: ev.large ? undefined : 220, minHeight: ev.large ? 460 : 220, animationDelay: `${i * 0.07}s` }}>
-                <img src={ev.src} alt={ev.label} className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-[1.06]" />
+                <Image src={ev.src} alt={ev.label} className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-[1.06]" width={1200} height={800} />
                 <div className="absolute inset-0 transition-opacity duration-400 opacity-0 group-hover:opacity-100 flex items-end p-5"
                   style={{ background: `linear-gradient(to top, ${C.charcoal}dd, transparent)` }}>
                   <span className="text-xs tracking-[0.15em] uppercase" style={S.gold}>{ev.label}</span>

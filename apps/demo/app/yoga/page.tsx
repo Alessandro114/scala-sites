@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -323,12 +324,10 @@ export default function YogaOSDemoPage() {
           ═══════════════════════════════════════ */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background image */}
-        <img
-          src="https://images.unsplash.com/photo-1588286840104-8957b019727f?w=1600&h=1200&fit=crop&q=90"
+        <Image src="https://images.unsplash.com/photo-1588286840104-8957b019727f?w=1600&h=1200&fit=crop&q=90"
           alt="Yoga studio interior"
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ filter: 'brightness(0.38) saturate(0.6)' }}
-        />
+          style={{ filter: 'brightness(0.38) saturate(0.6)' }} width={1200} height={800} />
 
         {/* Heavy grain texture overlay */}
         <div
@@ -608,11 +607,9 @@ export default function YogaOSDemoPage() {
                 style={{ animationDelay: `${i * 0.1}s` }}
               >
                 <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={r.image}
+                  <Image src={r.image}
                     alt={r.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-                  />
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.charcoal}cc, transparent)` }} />
                   <div className="absolute bottom-6 left-6">
                     <div
@@ -669,11 +666,9 @@ export default function YogaOSDemoPage() {
                 style={{ animationDelay: `${i * 0.1}s` }}
               >
                 <div className="relative mb-5 mx-auto overflow-hidden rounded-xl" style={{ height: 200 }}>
-                  <img
-                    src={t.image}
+                  <Image src={t.image}
                     alt={t.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.06]"
-                  />
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.06]" width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.charcoal}66, transparent)` }} />
                 </div>
                 <h3 className="text-base font-light mb-1" style={{ color: C.charcoal }}>{t.name}</h3>
@@ -701,12 +696,10 @@ export default function YogaOSDemoPage() {
                 className={`reveal-up relative overflow-hidden rounded-xl group cursor-pointer ${img.large ? 'col-span-2 row-span-2' : ''}`}
                 style={{ height: img.large ? undefined : '220px', animationDelay: `${i * 0.08}s` }}
               >
-                <img
-                  src={img.src}
+                <Image src={img.src}
                   alt="Stillwater yoga studio"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-                  style={{ minHeight: img.large ? '460px' : '220px' }}
-                />
+                  style={{ minHeight: img.large ? '460px' : '220px' }} width={1200} height={800} />
                 <div
                   className="absolute inset-0 transition-opacity duration-500 opacity-0 group-hover:opacity-100"
                   style={{ background: `linear-gradient(to top, ${C.charcoal}88, transparent)` }}

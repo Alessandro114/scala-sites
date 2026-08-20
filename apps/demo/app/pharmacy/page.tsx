@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
@@ -339,12 +340,10 @@ export default function PharmacyPage() {
 
             {/* Right: Photo */}
             <div className="reveal-right relative hidden md:block" style={{ zIndex: 2 }}>
-              <img
-                src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=700&h=800&fit=crop"
+              <Image src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=700&h=800&fit=crop"
                 alt="Greenleaf Pharmacy — your community pharmacy"
                 className="w-full rounded-3xl object-cover"
-                style={{ maxHeight: 520 }}
-              />
+                style={{ maxHeight: 520 }} width={1200} height={800} />
               {/* Trust badge overlay */}
               <div className="absolute -bottom-4 -left-4 px-5 py-4 rounded-2xl shadow-lg"
                 style={{ backgroundColor: C.white, border: `1px solid ${C.midGrey}` }}>
@@ -404,7 +403,7 @@ export default function PharmacyPage() {
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = `0 12px 32px ${C.green}14` }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.boxShadow = 'none' }}>
                 <div className="relative h-44 overflow-hidden">
-                  <img src={cat.image} alt={cat.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.05]" />
+                  <Image src={cat.image} alt={cat.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.05]" width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.charcoal}aa, transparent)` }} />
                   <h3 className="absolute bottom-4 left-4 font-bold text-white text-sm">{cat.title}</h3>
                 </div>

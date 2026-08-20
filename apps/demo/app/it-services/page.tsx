@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -397,7 +398,7 @@ export default function ITServicesPage() {
                 onMouseLeave={(e) => (e.currentTarget.style.borderColor = `${C.matrixGreen}22`)}
               >
                 <div className="relative h-40 overflow-hidden">
-                  <img src={svc.image} alt={svc.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" style={{ opacity: 0.6 }} />
+                  <Image src={svc.image} alt={svc.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" style={{ opacity: 0.6 }} width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.darkCard} 30%, transparent)` }} />
                   <div className="absolute top-4 left-4">
                     <span className="text-2xl">{svc.icon}</span>

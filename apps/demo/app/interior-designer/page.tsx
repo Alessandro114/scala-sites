@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -323,33 +324,27 @@ export default function InteriorOSDemoPage() {
               className="mood-card absolute rounded-2xl overflow-hidden shadow-2xl"
               style={{ top: 0, left: '10%', width: '65%', height: '55%', zIndex: 3 }}
             >
-              <img
-                src="https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=800&h=600&fit=crop"
+              <Image src="https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=800&h=600&fit=crop"
                 alt="Elegant living room design"
-                className="w-full h-full object-cover"
-              />
+                className="w-full h-full object-cover" width={1200} height={800} />
             </div>
             {/* Secondary image — lower right */}
             <div
               className="mood-card absolute rounded-2xl overflow-hidden shadow-xl"
               style={{ bottom: '5%', right: 0, width: '55%', height: '48%', zIndex: 2 }}
             >
-              <img
-                src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=700&h=500&fit=crop"
+              <Image src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=700&h=500&fit=crop"
                 alt="Modern bedroom interior"
-                className="w-full h-full object-cover"
-              />
+                className="w-full h-full object-cover" width={1200} height={800} />
             </div>
             {/* Accent small image — left bottom */}
             <div
               className="mood-card absolute rounded-xl overflow-hidden shadow-lg"
               style={{ bottom: '18%', left: 0, width: '38%', height: '32%', zIndex: 4 }}
             >
-              <img
-                src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&h=400&fit=crop"
+              <Image src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&h=400&fit=crop"
                 alt="Detail of curated decor"
-                className="w-full h-full object-cover"
-              />
+                className="w-full h-full object-cover" width={1200} height={800} />
             </div>
             {/* Gold accent card */}
             <div
@@ -495,11 +490,9 @@ export default function InteriorOSDemoPage() {
                   animationDelay: `${i * 0.07}s`,
                 }}
               >
-                <img
-                  src={img.src}
+                <Image src={img.src}
                   alt={img.label}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
-                />
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]" width={1200} height={800} />
                 <div
                   className="absolute inset-0 flex flex-col justify-end p-5 transition-opacity duration-500 opacity-0 group-hover:opacity-100"
                   style={{ background: `linear-gradient(to top, ${C.charcoal}cc, transparent)` }}

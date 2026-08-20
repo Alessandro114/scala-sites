@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -283,11 +284,9 @@ export default function CinemaPage() {
 
         {/* Letterbox hero — wide, short aspect */}
         <div className="relative" style={{ height: 'clamp(280px, 40vw, 480px)' }}>
-          <img
-            src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=2400&h=800&fit=crop&q=90"
+          <Image src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=2400&h=800&fit=crop&q=90"
             alt="The Velvet Screen cinema interior"
-            className="w-full h-full object-cover"
-          />
+            className="w-full h-full object-cover" width={1200} height={800} />
 
           {/* Film grain overlay */}
           <div className="absolute inset-0 pointer-events-none" style={{
@@ -378,7 +377,7 @@ export default function CinemaPage() {
             {nowShowing.map((film, i) => (
               <div key={film.title} className="poster-card reveal-up flex gap-5 p-5 cursor-pointer"
                 style={{ animationDelay: `${i * 0.1}s`, backgroundColor: C.velvet, border: `1px solid ${C.gold}22` }}>
-                <img src={film.poster} alt={film.title} className="w-24 h-36 object-cover flex-shrink-0" style={{ filter: 'brightness(0.9)' }} />
+                <Image src={film.poster} alt={film.title} className="w-24 h-36 object-cover flex-shrink-0" style={{ filter: 'brightness(0.9)' }} width={1200} height={800} />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-2 mb-2">
                     <h3 className="text-lg font-light leading-tight" style={{ color: C.cream, fontFamily: 'Georgia, serif' }}>{film.title}</h3>
@@ -419,7 +418,7 @@ export default function CinemaPage() {
               <div key={film.title} className="coming-card reveal-up cursor-pointer"
                 style={{ animationDelay: `${i * 0.08}s`, border: `1px solid ${C.gold}22` }}>
                 <div className="relative overflow-hidden" style={{ height: '280px' }}>
-                  <img src={film.poster} alt={film.title} className="w-full h-full object-cover transition-transform duration-600 hover:scale-[1.04]" style={{ filter: 'brightness(0.7) saturate(0.8)' }} />
+                  <Image src={film.poster} alt={film.title} className="w-full h-full object-cover transition-transform duration-600 hover:scale-[1.04]" style={{ filter: 'brightness(0.7) saturate(0.8)' }} width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.void}cc, transparent 50%)` }} />
                   <div className="absolute bottom-3 left-3 text-xs font-light px-2 py-1" style={{ backgroundColor: C.red, color: C.cream }}>
                     {film.release}

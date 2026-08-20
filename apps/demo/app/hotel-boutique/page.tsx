@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useRef, useEffect } from 'react'
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
@@ -355,13 +356,11 @@ export default function HotelBoutiqueDemo() {
           className="relative w-full overflow-hidden"
           style={{ height: '60vh', minHeight: '360px', maxHeight: '680px' }}
         >
-          <img
-            data-parallax="true"
+          <Image data-parallax="true"
             src="https://images.unsplash.com/photo-1585543805890-6051f7829f98?w=1800&h=1000&fit=crop&q=90"
             alt="The Ivy House — 17th-century Cotswold manor"
             className="absolute inset-0 w-full h-full object-cover"
-            style={{ transform: 'translateY(0px) scale(1.12)', transformOrigin: 'center 40%', transition: 'transform 0.05s linear' }}
-          />
+            style={{ transform: 'translateY(0px) scale(1.12)', transformOrigin: 'center 40%', transition: 'transform 0.05s linear' }} width={1200} height={800} />
           {/* Bottom gradient — bleeds into cream below */}
           <div
             className="absolute inset-0 pointer-events-none"

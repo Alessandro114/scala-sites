@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -671,11 +672,9 @@ export default function WineBarPage() {
                 }}
               >
                 <div style={{ height: 180, overflow: 'hidden', position: 'relative' }}>
-                  <img
-                    src={event.image}
+                  <Image src={event.image}
                     alt={event.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} width={1200} height={800} />
                   <div
                     style={{
                       position: 'absolute',

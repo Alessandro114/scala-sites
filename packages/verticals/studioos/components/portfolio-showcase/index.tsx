@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState } from 'react'
 
@@ -121,8 +122,7 @@ export function PortfolioShowcase({
               }}
             >
               <div style={{ position: 'relative', paddingTop: '66%', overflow: 'hidden' }}>
-                <img
-                  src={project.image}
+                <Image src={project.image}
                   alt={project.title}
                   loading="lazy"
                   style={{
@@ -132,8 +132,7 @@ export function PortfolioShowcase({
                     height: '100%',
                     objectFit: 'cover',
                     transition: 'transform 0.4s',
-                  }}
-                />
+                  }} width={1200} height={800} />
                 <span
                   style={{
                     position: 'absolute',
@@ -203,11 +202,9 @@ export function PortfolioShowcase({
               boxShadow: '0 24px 80px rgba(0,0,0,0.4)',
             }}
           >
-            <img
-              src={lightbox.image}
+            <Image src={lightbox.image}
               alt={lightbox.title}
-              style={{ width: '100%', maxHeight: '420px', objectFit: 'cover', display: 'block' }}
-            />
+              style={{ width: '100%', maxHeight: '420px', objectFit: 'cover', display: 'block' }} width={1200} height={800} />
             <div style={{ padding: '28px 32px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
                 <div>

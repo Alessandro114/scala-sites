@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -337,11 +338,9 @@ export default function FarmShopPage() {
 
         {/* Farm photo — right half */}
         <div className="absolute right-0 top-0 w-1/2 h-full hidden md:block overflow-hidden">
-          <img
-            src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=900&h=1100&fit=crop&q=85"
+          <Image src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=900&h=1100&fit=crop&q=85"
             alt="Green Acre organic farm in summer"
-            className="w-full h-full object-cover"
-          />
+            className="w-full h-full object-cover" width={1200} height={800} />
           <div
             className="absolute inset-0"
             style={{
@@ -529,11 +528,9 @@ export default function FarmShopPage() {
                 className="relative overflow-hidden rounded-2xl group cursor-pointer"
                 style={{ height: '220px' }}
               >
-                <img
-                  src={cat.image}
+                <Image src={cat.image}
                   alt={cat.name}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" width={1200} height={800} />
                 <div
                   className="absolute inset-0"
                   style={{ background: `linear-gradient(to top, ${C.bark}cc 0%, ${C.bark}44 50%, transparent 100%)` }}
@@ -632,11 +629,9 @@ export default function FarmShopPage() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div className="relative">
             <div className="rounded-3xl overflow-hidden" style={{ height: '520px' }}>
-              <img
-                src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&h=1000&fit=crop&q=85"
+              <Image src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&h=1000&fit=crop&q=85"
                 alt="Farmer tending organic crops at Green Acre"
-                className="w-full h-full object-cover"
-              />
+                className="w-full h-full object-cover" width={1200} height={800} />
             </div>
             {/* Heritage badge overlay */}
             <div

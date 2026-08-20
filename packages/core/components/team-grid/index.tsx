@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import type { TeamMember, Locale } from '../../lib/types'
 import { t } from '../../lib/i18n'
@@ -19,12 +20,10 @@ export function TeamGrid({ members, locale = 'en', onBook }: TeamGridProps) {
             <div key={member.id} className="text-center group">
               {member.photo ? (
                 <div className="w-48 h-48 mx-auto mb-4 rounded-full overflow-hidden bg-gray-100 ring-4 ring-gray-100 group-hover:ring-gray-300 transition-all duration-300">
-                  <img
-                    src={member.photo}
+                  <Image src={member.photo}
                     alt={member.name}
                     loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" width={1200} height={800} />
                 </div>
               ) : (
                 <div className="w-48 h-48 mx-auto mb-4 rounded-full bg-gray-200 flex items-center justify-center text-4xl font-semibold text-gray-500 select-none">

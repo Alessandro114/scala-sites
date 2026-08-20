@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
@@ -296,12 +297,10 @@ export default function PsychologistPage() {
       <section id="approach" className="py-24 md:py-32 px-6 md:px-16 bg-white">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div className="reveal-left">
-            <img
-              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=700&h=900&fit=crop"
+            <Image src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=700&h=900&fit=crop"
               alt="Dr. Clara Marsh"
               className="w-full rounded-3xl object-cover"
-              style={{ maxHeight: 580 }}
-            />
+              style={{ maxHeight: 580 }} width={1200} height={800} />
           </div>
           <div className="reveal-right">
             <p className="text-xs tracking-[0.35em] uppercase mb-4 font-medium" style={S.sageDeep}>My Approach</p>

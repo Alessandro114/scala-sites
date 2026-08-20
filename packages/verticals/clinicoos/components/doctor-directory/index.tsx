@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState, useMemo } from 'react'
 
@@ -59,8 +60,7 @@ function StarRating({ rating }: { rating: number }) {
 function Avatar({ name, photo, size = 96 }: { name: string; photo: string; size?: number }) {
   if (photo) {
     return (
-      <img
-        src={photo}
+      <Image src={photo}
         alt={name}
         style={{
           width: size,
@@ -68,8 +68,7 @@ function Avatar({ name, photo, size = 96 }: { name: string; photo: string; size?
           borderRadius: '50%',
           objectFit: 'cover',
           display: 'block',
-        }}
-      />
+        }} width={1200} height={800} />
     )
   }
   const initials = name

@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -375,11 +376,9 @@ export default function DineOSDemoPage() {
       <section className="min-h-screen grid grid-cols-1 md:grid-cols-[55fr_45fr]">
         {/* Left: Editorial food image */}
         <div className="relative h-[50vh] md:h-screen overflow-hidden image-reveal">
-          <img
-            src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&h=1800&fit=crop&q=90"
+          <Image src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&h=1800&fit=crop&q=90"
             alt="The Garden Kitchen — fine dining table setting"
-            className="w-full h-full object-cover"
-          />
+            className="w-full h-full object-cover" width={1200} height={800} />
           {/* Subtle right-edge gradient blending into dark side */}
           <div
             className="absolute inset-0 pointer-events-none"
@@ -545,11 +544,9 @@ export default function DineOSDemoPage() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center relative z-10">
           {/* Left: Chef portrait */}
           <div className="reveal-left image-reveal rounded-2xl overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&h=1100&fit=crop&q=90"
+            <Image src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&h=1100&fit=crop&q=90"
               alt="Chef Marco Bianchi in the kitchen"
-              className="w-full h-[500px] md:h-[700px] object-cover"
-            />
+              className="w-full h-[500px] md:h-[700px] object-cover" width={1200} height={800} />
           </div>
 
           {/* Right: Story text */}
@@ -635,11 +632,9 @@ export default function DineOSDemoPage() {
                   {/* Card image or gradient bg */}
                   {item.image ? (
                     <>
-                      <img
-                        src={item.image}
+                      <Image src={item.image}
                         alt={item.name}
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                      />
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" width={1200} height={800} />
                       <div
                         className="absolute inset-0"
                         style={{
@@ -739,12 +734,10 @@ export default function DineOSDemoPage() {
                     height: isLarge ? undefined : '240px',
                   }}
                 >
-                  <img
-                    src={img.src}
+                  <Image src={img.src}
                     alt={img.label}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
-                    style={{ minHeight: isLarge ? '500px' : '240px' }}
-                  />
+                    style={{ minHeight: isLarge ? '500px' : '240px' }} width={1200} height={800} />
                   {/* Hover overlay with clip-path reveal */}
                   <div
                     className="absolute inset-0 flex items-end p-5 transition-all duration-500"

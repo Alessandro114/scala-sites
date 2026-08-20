@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -745,11 +746,9 @@ export default function SushiPage() {
       >
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[auto_1fr] gap-16 items-center">
           <div style={{ width: 360, flexShrink: 0 }}>
-            <img
-              src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=700&h=900&fit=crop"
+            <Image src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=700&h=900&fit=crop"
               alt="Chef Kenji at the counter"
-              style={{ width: '100%', borderRadius: '4px', display: 'block' }}
-            />
+              style={{ width: '100%', borderRadius: '4px', display: 'block' }} width={1200} height={800} />
           </div>
           <div>
             <p style={{ color: C.red, fontSize: '0.7rem', letterSpacing: '0.35em', textTransform: 'uppercase', marginBottom: '1rem' }}>
@@ -822,8 +821,7 @@ export default function SushiPage() {
                   cursor: 'pointer',
                 }}
               >
-                <img
-                  src={img.src}
+                <Image src={img.src}
                   alt={img.label}
                   style={{
                     width: '100%',
@@ -831,8 +829,7 @@ export default function SushiPage() {
                     objectFit: 'cover',
                     transition: 'transform 0.6s ease',
                     display: 'block',
-                  }}
-                />
+                  }} width={1200} height={800} />
               </div>
             ))}
           </div>

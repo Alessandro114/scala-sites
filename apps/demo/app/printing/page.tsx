@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -467,11 +468,9 @@ export default function PrintOSDemoPage() {
                 style={{ animationDelay: `${i * 0.08}s` }}
               >
                 <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={product.img}
+                  <Image src={product.img}
                     alt={product.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
-                  />
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]" width={1200} height={800} />
                   <div
                     className="absolute inset-0"
                     style={{ background: `linear-gradient(to top, ${C.inkSoft}ee 0%, transparent 60%)` }}
@@ -577,12 +576,10 @@ export default function PrintOSDemoPage() {
             </div>
 
             <div className="reveal-right">
-              <img
-                src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=800&h=900&fit=crop"
+              <Image src="https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=800&h=900&fit=crop"
                 alt="Premium print finishes and paper stocks"
                 className="w-full rounded-2xl"
-                style={{ maxHeight: 600, objectFit: 'cover' }}
-              />
+                style={{ maxHeight: 600, objectFit: 'cover' }} width={1200} height={800} />
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState } from 'react'
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
@@ -412,8 +413,7 @@ function BeautyHero() {
           onMouseEnter={() => setHoveredImg(0)}
           onMouseLeave={() => setHoveredImg(null)}
         >
-          <img
-            src={MOSAIC_IMAGES[0].src}
+          <Image src={MOSAIC_IMAGES[0].src}
             alt={MOSAIC_IMAGES[0].alt}
             style={{
               width: '100%',
@@ -421,8 +421,7 @@ function BeautyHero() {
               objectFit: 'cover',
               transition: 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
               transform: hoveredImg === 0 ? 'scale(1.06)' : 'scale(1)',
-            }}
-          />
+            }} width={1200} height={800} />
         </div>
 
         {/* Three smaller images in right column */}
@@ -439,8 +438,7 @@ function BeautyHero() {
             onMouseEnter={() => setHoveredImg(idx)}
             onMouseLeave={() => setHoveredImg(null)}
           >
-            <img
-              src={MOSAIC_IMAGES[idx].src}
+            <Image src={MOSAIC_IMAGES[idx].src}
               alt={MOSAIC_IMAGES[idx].alt}
               style={{
                 width: '100%',
@@ -449,8 +447,7 @@ function BeautyHero() {
                 minHeight: '160px',
                 transition: 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                 transform: hoveredImg === idx ? 'scale(1.07)' : 'scale(1)',
-              }}
-            />
+              }} width={1200} height={800} />
             {/* Pink overlay on hover */}
             <div
               style={{

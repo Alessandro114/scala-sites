@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState, useEffect } from 'react'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
@@ -374,14 +375,12 @@ function WorkSection() {
               style={{ borderRadius: '2px' }}
             >
               {/* Image */}
-              <img
-                src={study.image}
+              <Image src={study.image}
                 alt={study.title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 style={{
                   clipPath: 'inset(0)',
-                }}
-              />
+                }} width={1200} height={800} />
 
               {/* Dark overlay */}
               <div className="absolute inset-0 bg-[#0a0a0a]/40 group-hover:bg-[#0a0a0a]/70 transition-colors duration-500" />
@@ -521,11 +520,9 @@ function TeamSection() {
           >
             {/* Photo */}
             <div className="relative h-[340px] md:h-[380px] overflow-hidden">
-              <img
-                src={member.image}
+              <Image src={member.image}
                 alt={member.name}
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
-              />
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105" width={1200} height={800} />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-80" />
             </div>
 

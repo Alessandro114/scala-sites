@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState } from 'react'
 import type { GalleryImage, Locale } from '../../lib/types'
@@ -67,12 +68,10 @@ export function Gallery({ images, locale = 'en', columns = 3 }: GalleryProps) {
               className="aspect-square overflow-hidden rounded-lg bg-gray-100 group cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
               aria-label={img.alt}
             >
-              <img
-                src={img.src}
+              <Image src={img.src}
                 alt={img.alt}
                 loading="lazy"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              />
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" width={1200} height={800} />
             </button>
           ))}
         </div>
@@ -95,12 +94,10 @@ export function Gallery({ images, locale = 'en', columns = 3 }: GalleryProps) {
             &times;
           </button>
 
-          <img
-            src={filtered[lightbox].src}
+          <Image src={filtered[lightbox].src}
             alt={filtered[lightbox].alt}
             className="max-w-full max-h-[85vh] object-contain rounded-lg"
-            onClick={e => e.stopPropagation()}
-          />
+            onClick={e => e.stopPropagation()} width={1200} height={800} />
 
           {filtered.length > 1 && (
             <>

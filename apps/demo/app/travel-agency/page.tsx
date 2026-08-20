@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -375,11 +376,9 @@ function Hero() {
         {/* Right: hero image with floating cards */}
         <div className="relative hidden lg:block">
           <div className="relative w-full h-[520px] overflow-hidden" style={{ borderRadius: '4px' }}>
-            <img
-              src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=900&h=700&fit=crop&q=90"
+            <Image src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=900&h=700&fit=crop&q=90"
               alt="Bali rice terraces at sunrise"
-              className="w-full h-full object-cover"
-            />
+              className="w-full h-full object-cover" width={1200} height={800} />
             <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${C.navyDark}44, transparent 60%)` }} />
           </div>
 
@@ -465,7 +464,7 @@ export default function TravelAgencyPage() {
                 className="reveal-up relative group overflow-hidden cursor-pointer"
                 style={{ animationDelay: `${i * 0.08}s`, borderRadius: '4px', height: '280px' }}
               >
-                <img src={dest.image} alt={dest.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]" />
+                <Image src={dest.image} alt={dest.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]" width={1200} height={800} />
                 <div className="absolute inset-0 transition-all duration-500"
                   style={{ background: `linear-gradient(to top, ${C.navyDark}dd 0%, ${C.navyDark}44 50%, transparent 100%)` }} />
                 <div className="absolute inset-0 flex flex-col justify-end p-6">
@@ -501,7 +500,7 @@ export default function TravelAgencyPage() {
                 style={{ animationDelay: `${i * 0.1}s`, borderRadius: '4px' }}
               >
                 <div className="relative h-72 overflow-hidden">
-                  <img src={pkg.image} alt={pkg.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" />
+                  <Image src={pkg.image} alt={pkg.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.navyDark}cc, transparent 50%)` }} />
                   <span className="absolute top-4 right-4 text-xs tracking-wider uppercase px-3 py-1 font-medium"
                     style={{ backgroundColor: C.coral, color: C.white, borderRadius: '2px' }}>
@@ -612,7 +611,7 @@ export default function TravelAgencyPage() {
             {team.map((member, i) => (
               <div key={member.name} className="reveal-up text-center" style={{ animationDelay: `${i * 0.1}s` }}>
                 <div className="relative mx-auto w-48 h-48 mb-6 overflow-hidden" style={{ borderRadius: '50%', border: `3px solid ${C.sky}33` }}>
-                  <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+                  <Image src={member.image} alt={member.name} className="w-full h-full object-cover" width={1200} height={800} />
                 </div>
                 <h3 className="text-xl font-light mb-1" style={S.white}>{member.name}</h3>
                 <p className="text-sm mb-3" style={S.sky}>{member.role}</p>

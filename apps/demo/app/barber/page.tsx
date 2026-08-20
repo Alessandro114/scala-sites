@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -347,11 +348,9 @@ export default function BarberOSDemoPage() {
 
           {/* Right: Hero image */}
           <div className="reveal-right image-reveal rounded-2xl overflow-hidden hidden md:block" style={{ animationDelay: '0.2s' }}>
-            <img
-              src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=700&h=900&fit=crop"
+            <Image src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=700&h=900&fit=crop"
               alt="Master barber at work"
-              className="w-full h-[600px] object-cover"
-            />
+              className="w-full h-[600px] object-cover" width={1200} height={800} />
           </div>
         </div>
       </section>
@@ -416,7 +415,7 @@ export default function BarberOSDemoPage() {
             {barbers.map((b, i) => (
               <div key={b.name} className="reveal-up group" style={{ animationDelay: `${i * 0.1}s` }}>
                 <div className="relative overflow-hidden rounded-xl mb-6 image-reveal">
-                  <img src={b.img} alt={b.name} className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
+                  <Image src={b.img} alt={b.name} className="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-[1.04]" width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.mahoganyDeep}cc, transparent 60%)` }} />
                   <div className="absolute bottom-4 left-4">
                     <span className="text-xs tracking-widest uppercase px-3 py-1 rounded-full"
@@ -446,7 +445,7 @@ export default function BarberOSDemoPage() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 stagger-children">
             {gallery.map((img, i) => (
               <div key={i} className="reveal-up image-reveal relative overflow-hidden rounded-xl group cursor-pointer" style={{ animationDelay: `${i * 0.08}s`, height: '260px' }}>
-                <img src={img.src} alt={img.label} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]" />
+                <Image src={img.src} alt={img.label} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.06]" width={1200} height={800} />
                 <div className="absolute inset-0 flex items-end p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{ background: `linear-gradient(to top, ${C.mahoganyDeep}cc, transparent)` }}>
                   <span className="text-sm tracking-[0.15em] uppercase font-light" style={S.cream}>{img.label}</span>

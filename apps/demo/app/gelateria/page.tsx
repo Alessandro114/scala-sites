@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
@@ -725,11 +726,9 @@ export default function GelateriaPage() {
                 style={{ borderRadius: '16px', overflow: 'hidden', backgroundColor: C.white, boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}
               >
                 <div style={{ height: 200, overflow: 'hidden' }}>
-                  <img
-                    src={s.image}
+                  <Image src={s.image}
                     alt={s.name}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
-                  />
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} width={1200} height={800} />
                 </div>
                 <div style={{ padding: '1.25rem' }}>
                   <div style={{ display: 'inline-block', backgroundColor: `${C.strawberry}20`, color: C.strawberry, fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '0.2rem 0.5rem', borderRadius: '3px', marginBottom: '0.6rem' }}>
@@ -808,11 +807,9 @@ export default function GelateriaPage() {
       >
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div>
-            <img
-              src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=700&h=500&fit=crop"
+            <Image src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=700&h=500&fit=crop"
               alt="Gelato catering cart at an outdoor event"
-              style={{ width: '100%', borderRadius: '20px', display: 'block' }}
-            />
+              style={{ width: '100%', borderRadius: '20px', display: 'block' }} width={1200} height={800} />
           </div>
           <div>
             <p style={{ color: C.strawberry, fontSize: '0.75rem', letterSpacing: '0.25em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>

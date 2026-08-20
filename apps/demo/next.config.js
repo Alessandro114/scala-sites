@@ -17,6 +17,11 @@ const nextConfig = {
     '@scala-sites/themes',
   ],
   staticPageGenerationTimeout: 120,
+  images: {
+    // Every template image is served from Unsplash. next/image refuses remote
+    // hosts that are not declared here.
+    remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
+  },
 }
 
 module.exports = nextConfig

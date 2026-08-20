@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 interface StoryBlock {
   title: string
@@ -27,12 +28,10 @@ export function StorySection({ headline, blocks }: StorySectionProps) {
               >
                 {block.image && (
                   <div className="w-full md:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden bg-gray-100">
-                    <img
-                      src={block.image}
+                    <Image src={block.image}
                       alt={block.title}
                       className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
+                      loading="lazy" width={1200} height={800} />
                   </div>
                 )}
                 <div className={`w-full ${block.image ? 'md:w-1/2' : ''}`}>

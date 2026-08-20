@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -230,11 +231,9 @@ function Hero() {
 
       {/* Cinematic hero image with overlay */}
       <div className="absolute inset-0">
-        <img
-          src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1600&h=1000&fit=crop&q=90"
+        <Image src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=1600&h=1000&fit=crop&q=90"
           alt="Rome streets — Marco Russo local tour guide"
-          className="w-full h-full object-cover"
-        />
+          className="w-full h-full object-cover" width={1200} height={800} />
         <div className="absolute inset-0" style={{
           background: `linear-gradient(to right, ${C.charcoal}f0 0%, ${C.charcoal}cc 40%, ${C.charcoal}44 70%, transparent 100%)`,
         }} />
@@ -388,7 +387,7 @@ export default function TourGuidePage() {
                 className="reveal-up bg-white group overflow-hidden cursor-pointer transition-transform duration-300 hover:-translate-y-1"
                 style={{ animationDelay: `${i * 0.08}s`, boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}>
                 <div className="relative h-48 overflow-hidden">
-                  <img src={tour.image} alt={tour.name} className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-[1.05]" />
+                  <Image src={tour.image} alt={tour.name} className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-[1.05]" width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.charcoal}aa, transparent 60%)` }} />
                   {tour.featured && (
                     <span className="absolute top-3 right-3 text-xs tracking-wider uppercase px-2 py-1 font-medium"
@@ -460,11 +459,9 @@ export default function TourGuidePage() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div className="reveal-left relative">
             <div className="relative overflow-hidden" style={{ borderRadius: '4px' }}>
-              <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&h=900&fit=crop&q=90"
+              <Image src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=700&h=900&fit=crop&q=90"
                 alt="Marco Russo — Rome tour guide"
-                className="w-full h-[560px] object-cover"
-              />
+                className="w-full h-[560px] object-cover" width={1200} height={800} />
               {/* Credential badge */}
               <div className="absolute bottom-6 left-6 right-6 p-4"
                 style={{ backgroundColor: C.charcoal, borderRadius: '4px' }}>

@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -281,11 +282,9 @@ function Hero() {
       <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-2">
         {/* Left: photo */}
         <div className="relative h-[45vh] md:h-full overflow-hidden hero-photo">
-          <img
-            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=1600&fit=crop&q=85"
+          <Image src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=1600&fit=crop&q=85"
             alt="Urban cyclist on VeloHub bike"
-            className="w-full h-full object-cover"
-          />
+            className="w-full h-full object-cover" width={1200} height={800} />
           <div
             className="absolute inset-0"
             style={{ background: `linear-gradient(to right, transparent 60%, ${C.charcoalDark})` }}
@@ -478,7 +477,7 @@ export default function BikeShopPage() {
                 }}
               >
                 <div className="relative h-52 overflow-hidden">
-                  <img src={cat.image} alt={cat.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <Image src={cat.image} alt={cat.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.charcoal}, transparent)` }} />
                 </div>
                 <div className="p-6">
@@ -607,11 +606,9 @@ export default function BikeShopPage() {
           </div>
           <div className="reveal-right">
             <div className="relative rounded-2xl overflow-hidden" style={{ height: 360 }}>
-              <img
-                src="https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=700&fit=crop"
+              <Image src="https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&h=700&fit=crop"
                 alt="VeloClub group ride"
-                className="w-full h-full object-cover"
-              />
+                className="w-full h-full object-cover" width={1200} height={800} />
               <div
                 className="absolute inset-0 flex items-end p-8"
                 style={{ background: `linear-gradient(to top, ${C.charcoalDark}dd, transparent)` }}

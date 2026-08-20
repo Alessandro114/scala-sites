@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState, useMemo } from 'react'
 
@@ -164,8 +165,7 @@ export function ExperienceGrid({
                 {/* Image */}
                 <div style={{ position: 'relative', height: '200px', overflow: 'hidden' }}>
                   {exp.image ? (
-                    <img
-                      src={exp.image}
+                    <Image src={exp.image}
                       alt={exp.title}
                       style={{
                         width: '100%',
@@ -173,8 +173,7 @@ export function ExperienceGrid({
                         objectFit: 'cover',
                         transition: 'transform 0.4s',
                         transform: isHovered ? 'scale(1.06)' : 'scale(1)',
-                      }}
-                    />
+                      }} width={1200} height={800} />
                   ) : (
                     <div
                       style={{

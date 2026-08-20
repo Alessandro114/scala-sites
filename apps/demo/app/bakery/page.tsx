@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -571,23 +572,17 @@ export default function BakeryPage() {
 
         {/* Right: Rotating pastry showcase */}
         <div className="relative overflow-hidden h-[55vh] md:h-auto">
-          <img
-            className="showcase-img-1 absolute inset-0 w-full h-full object-cover"
+          <Image className="showcase-img-1 absolute inset-0 w-full h-full object-cover"
             src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=900&h=1100&fit=crop&q=90"
-            alt="Artisan sourdough bread"
-          />
-          <img
-            className="showcase-img-2 absolute inset-0 w-full h-full object-cover"
+            alt="Artisan sourdough bread" width={1200} height={800} />
+          <Image className="showcase-img-2 absolute inset-0 w-full h-full object-cover"
             src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=900&h=1100&fit=crop&q=90"
             alt="Butter croissants"
-            style={{ opacity: 0 }}
-          />
-          <img
-            className="showcase-img-3 absolute inset-0 w-full h-full object-cover"
+            style={{ opacity: 0 }} width={1200} height={800} />
+          <Image className="showcase-img-3 absolute inset-0 w-full h-full object-cover"
             src="https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?w=900&h=1100&fit=crop&q=90"
             alt="Almond tart"
-            style={{ opacity: 0 }}
-          />
+            style={{ opacity: 0 }} width={1200} height={800} />
           {/* Bottom fade */}
           <div
             className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
@@ -703,11 +698,9 @@ export default function BakeryPage() {
               >
                 {item.image && (
                   <div style={{ height: '180px', overflow: 'hidden' }}>
-                    <img
-                      src={item.image}
+                    <Image src={item.image}
                       alt={item.name}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
-                    />
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} width={1200} height={800} />
                   </div>
                 )}
                 <div style={{ padding: '1.25rem' }}>
@@ -827,16 +820,14 @@ export default function BakeryPage() {
                   backgroundColor: C.creamDark,
                 }}
               >
-                <img
-                  src={cake.image}
+                <Image src={cake.image}
                   alt={cake.name}
                   style={{
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
                     transition: 'transform 0.6s ease',
-                  }}
-                />
+                  }} width={1200} height={800} />
                 <div
                   style={{
                     position: 'absolute',

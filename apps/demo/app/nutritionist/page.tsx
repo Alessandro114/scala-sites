@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -265,12 +266,10 @@ export default function NutritionistPage() {
 
         {/* Hero image — right side */}
         <div className="absolute right-0 top-0 bottom-0 w-1/2 hidden md:block overflow-hidden">
-          <img
-            src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=900&h=1200&fit=crop"
+          <Image src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=900&h=1200&fit=crop"
             alt="Fresh, nutritious food"
             className="w-full h-full object-cover"
-            style={{ maskImage: 'linear-gradient(to left, white 40%, transparent)', WebkitMaskImage: 'linear-gradient(to left, white 40%, transparent)' }}
-          />
+            style={{ maskImage: 'linear-gradient(to left, white 40%, transparent)', WebkitMaskImage: 'linear-gradient(to left, white 40%, transparent)' }} width={1200} height={800} />
         </div>
 
         <div className="max-w-7xl mx-auto px-6 md:px-16 w-full relative z-10">
@@ -339,8 +338,8 @@ export default function NutritionistPage() {
             {programs.map((prog, i) => (
               <div key={prog.title} className={`reveal-up relative rounded-2xl overflow-hidden group cursor-pointer transition-transform duration-300 hover:-translate-y-1 ${i === 0 ? 'lg:col-span-2' : ''}`}
                 style={{ animationDelay: `${i * 0.1}s`, minHeight: 280 }}>
-                <img src={prog.image} alt={prog.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-600 group-hover:scale-[1.05]"
-                  style={{ filter: 'brightness(0.45)' }} />
+                <Image src={prog.image} alt={prog.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-600 group-hover:scale-[1.05]"
+                  style={{ filter: 'brightness(0.45)' }} width={1200} height={800} />
                 <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.textDark}ee 0%, transparent 60%)` }} />
                 {prog.badge && (
                   <div className="absolute top-5 left-5 px-3 py-1.5 rounded-full text-xs font-semibold text-white" style={{ backgroundColor: prog.color }}>

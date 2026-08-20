@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState, useMemo } from 'react'
 
@@ -151,8 +152,7 @@ export function LawyerDirectory({
                   }}
                 >
                   {lawyer.photo ? (
-                    <img
-                      src={lawyer.photo}
+                    <Image src={lawyer.photo}
                       alt={lawyer.name}
                       loading="lazy"
                       style={{
@@ -162,8 +162,7 @@ export function LawyerDirectory({
                         height: '100%',
                         objectFit: 'cover',
                         objectPosition: 'top center',
-                      }}
-                    />
+                      }} width={1200} height={800} />
                   ) : (
                     <div
                       style={{

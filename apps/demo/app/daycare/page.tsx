@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -762,11 +763,9 @@ export default function DaycarePage() {
               boxShadow:       '0 8px 40px rgba(0,0,0,0.08)',
             }}
           >
-            <img
-              src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=1200&h=800&fit=crop&q=90"
+            <Image src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=1200&h=800&fit=crop&q=90"
               alt="Little Stars Nursery — bright, welcoming play space"
-              className="w-full h-full object-cover opacity-60"
-            />
+              className="w-full h-full object-cover opacity-60" width={1200} height={800} />
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
               <div
                 className="w-20 h-20 rounded-full flex items-center justify-center"
@@ -873,11 +872,9 @@ export default function DaycarePage() {
                 }}
               >
                 <div className="relative overflow-hidden" style={{ height: 240, backgroundColor: educator.bg }}>
-                  <img
-                    src={educator.image}
+                  <Image src={educator.image}
                     alt={educator.name}
-                    className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-[1.04]"
-                  />
+                    className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-[1.04]" width={1200} height={800} />
                   <div
                     className="absolute bottom-0 left-0 right-0 h-16"
                     style={{ background: `linear-gradient(to top, ${C.white}, transparent)` }}

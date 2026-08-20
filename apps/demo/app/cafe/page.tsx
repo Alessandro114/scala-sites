@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
@@ -431,11 +432,9 @@ export default function CafePage() {
 
         {/* Right: Warm coffee photo with steam effect */}
         <div className="relative h-[50vh] md:h-auto overflow-hidden">
-          <img
-            src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=900&h=1100&fit=crop&q=90"
+          <Image src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=900&h=1100&fit=crop&q=90"
             alt="Workshop Coffee interior — warm light, coffee cups, wooden tables"
-            className="w-full h-full object-cover"
-          />
+            className="w-full h-full object-cover" width={1200} height={800} />
           {/* Warm gradient overlay */}
           <div
             className="absolute inset-0 pointer-events-none"
@@ -583,11 +582,9 @@ export default function CafePage() {
               </p>
             </div>
             <div>
-              <img
-                src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&h=600&fit=crop"
+              <Image src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&h=600&fit=crop"
                 alt="Coffee beans being sorted by hand"
-                style={{ width: '100%', borderRadius: '12px', display: 'block' }}
-              />
+                style={{ width: '100%', borderRadius: '12px', display: 'block' }} width={1200} height={800} />
             </div>
           </div>
 
@@ -668,8 +665,7 @@ export default function CafePage() {
                   cursor: 'pointer',
                 }}
               >
-                <img
-                  src={img.src}
+                <Image src={img.src}
                   alt={img.label}
                   style={{
                     width: '100%',
@@ -677,8 +673,7 @@ export default function CafePage() {
                     objectFit: 'cover',
                     transition: 'transform 0.6s ease',
                     display: 'block',
-                  }}
-                />
+                  }} width={1200} height={800} />
                 <div
                   style={{
                     position: 'absolute',

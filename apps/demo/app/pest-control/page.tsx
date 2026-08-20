@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -531,12 +532,10 @@ export default function PestOSDemoPage() {
               style={{ animationDelay: `${i * 0.1}s` }}
             >
               <div className="relative h-56 overflow-hidden">
-                <img
-                  src={s.img}
+                <Image src={s.img}
                   alt={s.type}
                   className="w-full h-full object-cover"
-                  style={{ filter: 'brightness(0.4) saturate(0.4)' }}
-                />
+                  style={{ filter: 'brightness(0.4) saturate(0.4)' }} width={1200} height={800} />
                 <div
                   className="absolute inset-0"
                   style={{ background: `linear-gradient(to top, ${C.darkGreenLight}ee, transparent 60%)` }}

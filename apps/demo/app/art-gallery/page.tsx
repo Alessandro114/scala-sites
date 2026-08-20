@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState } from 'react'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -267,11 +268,9 @@ function ArtFrame({ src, alt, width = '100%', height = '100%', matPadding = 16 }
         boxShadow: `0 ${matPadding}px ${matPadding * 4}px rgba(0,0,0,0.18), inset 0 0 0 1px ${C.warmGreyLight}`,
       }}
     >
-      <img
-        src={src}
+      <Image src={src}
         alt={alt}
-        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-      />
+        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} width={1200} height={800} />
     </div>
   )
 }
@@ -378,12 +377,10 @@ export default function GalleryPage() {
                   }}
                 />
 
-                <img
-                  src={currentExhibition.image}
+                <Image src={currentExhibition.image}
                   alt={`${currentExhibition.title} by ${currentExhibition.artist}`}
                   className="w-full block"
-                  style={{ height: '440px', objectFit: 'cover', display: 'block' }}
-                />
+                  style={{ height: '440px', objectFit: 'cover', display: 'block' }} width={1200} height={800} />
               </div>
 
               {/* Navigation dots */}
@@ -486,11 +483,9 @@ export default function GalleryPage() {
             {upcomingExhibitions.map((ex) => (
               <div key={ex.title} className="group cursor-pointer">
                 <div className="relative overflow-hidden mb-5" style={{ height: '260px' }}>
-                  <img
-                    src={ex.image}
+                  <Image src={ex.image}
                     alt={ex.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" width={1200} height={800} />
                   <div
                     className="absolute top-3 left-3 px-2.5 py-1 text-[10px] tracking-widest uppercase font-light"
                     style={{ backgroundColor: C.accentRed, color: C.galleryWhite }}
@@ -548,11 +543,9 @@ export default function GalleryPage() {
                       boxShadow: '0 2px 20px rgba(0,0,0,0.08)',
                     }}
                   >
-                    <img
-                      src={work.image}
+                    <Image src={work.image}
                       alt={work.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                    />
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" width={1200} height={800} />
                   </div>
                 </div>
                 <p className="text-xs font-light mb-0.5" style={{ color: C.frameBlack }}>{work.title}</p>
@@ -592,12 +585,10 @@ export default function GalleryPage() {
                   borderLeft: artist.current ? `3px solid ${C.accentRed}` : `1px solid ${C.warmGreyLight}`,
                 }}
               >
-                <img
-                  src={artist.image}
+                <Image src={artist.image}
                   alt={artist.name}
                   className="w-16 h-16 object-cover flex-shrink-0"
-                  style={{ filter: 'grayscale(30%)' }}
-                />
+                  style={{ filter: 'grayscale(30%)' }} width={1200} height={800} />
                 <div>
                   <div className="flex items-center gap-2 mb-1">
                     <h3 className="font-light text-lg" style={{ color: C.frameBlack }}>{artist.name}</h3>

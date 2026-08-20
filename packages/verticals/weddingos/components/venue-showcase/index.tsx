@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState } from 'react'
 
@@ -60,7 +61,7 @@ export function VenueShowcase({ venues, onCheckAvailability }: VenueShowcaseProp
               {/* Photo */}
               <div className="h-64 relative" style={{ background: 'var(--color-secondary)' }}>
                 {v.photo ? (
-                  <img src={v.photo} alt={v.name} className="w-full h-full object-cover" />
+                  <Image src={v.photo} alt={v.name} className="w-full h-full object-cover" width={1200} height={800} />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-5xl">
                     🌹

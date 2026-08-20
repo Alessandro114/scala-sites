@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -331,11 +332,9 @@ export default function VineyardPage() {
           ═══════════════════════════════════════ */}
       <section className="relative min-h-screen flex items-end overflow-hidden">
         {/* Full-bleed landscape photo */}
-        <img
-          src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1600&h=1000&fit=crop&q=90"
+        <Image src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=1600&h=1000&fit=crop&q=90"
           alt="Ashwood Estate vineyards in golden hour"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+          className="absolute inset-0 w-full h-full object-cover" width={1200} height={800} />
 
         {/* Deep purple overlay gradient */}
         <div
@@ -457,11 +456,9 @@ export default function VineyardPage() {
                 style={{ backgroundColor: C.shadow, border: `1px solid ${C.gold}15` }}
               >
                 <div className="relative h-64 md:h-full overflow-hidden" style={{ minHeight: '240px' }}>
-                  <img
-                    src={cat.image}
+                  <Image src={cat.image}
                     alt={cat.name}
-                    className="w-full h-full object-cover"
-                  />
+                    className="w-full h-full object-cover" width={1200} height={800} />
                   <div
                     className="absolute inset-0"
                     style={{ background: `linear-gradient(to right, transparent 60%, ${C.shadow})` }}
@@ -529,11 +526,9 @@ export default function VineyardPage() {
                 }}
               >
                 <div className="relative h-52 overflow-hidden">
-                  <img
-                    src={exp.image}
+                  <Image src={exp.image}
                     alt={exp.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" width={1200} height={800} />
                   {exp.popular && (
                     <div
                       className="absolute top-4 right-4 px-3 py-1 text-xs font-bold uppercase tracking-wider"
@@ -629,11 +624,9 @@ export default function VineyardPage() {
                 className="rounded-2xl overflow-hidden"
                 style={{ height: img.tall ? '300px' : '200px' }}
               >
-                <img
-                  src={img.src}
+                <Image src={img.src}
                   alt={img.label}
-                  className="w-full h-full object-cover"
-                />
+                  className="w-full h-full object-cover" width={1200} height={800} />
               </div>
             ))}
           </div>

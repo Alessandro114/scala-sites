@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 interface Trainer {
   id: string
@@ -26,7 +27,7 @@ export function TrainerCard({ trainers }: TrainerCardProps) {
           <div key={t.id} className="rounded-xl overflow-hidden border" style={{ borderColor: 'var(--color-border)', background: 'var(--color-surface)' }}>
             <div className="h-72 bg-gray-200">
               {t.photo ? (
-                <img src={t.photo} alt={t.name} className="w-full h-full object-cover" />
+                <Image src={t.photo} alt={t.name} className="w-full h-full object-cover" width={1200} height={800} />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-5xl font-bold" style={{ background: 'var(--color-secondary)', color: 'var(--color-text-muted)' }}>
                   {t.name.split(' ').map(n => n[0]).join('')}

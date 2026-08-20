@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useEffect, useRef, useState } from 'react'
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
@@ -154,11 +155,9 @@ function FloatCard({ title, address, price, beds, style, imageUrl, delay = '0s' 
         ...style,
       }}
     >
-      <img
-        src={imageUrl}
+      <Image src={imageUrl}
         alt={title}
-        style={{ width: '100%', height: '110px', objectFit: 'cover', display: 'block' }}
-      />
+        style={{ width: '100%', height: '110px', objectFit: 'cover', display: 'block' }} width={1200} height={800} />
       <div style={{ padding: '12px 14px' }}>
         <p style={{ color: '#c9a84c', fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase', marginBottom: '4px' }}>
           {price}
@@ -226,8 +225,7 @@ function PropertyHero() {
           willChange: 'transform',
         }}
       >
-        <img
-          src="https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?w=1800&q=85"
+        <Image src="https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?w=1800&q=85"
           alt="London skyline"
           style={{
             width: '100%',
@@ -235,8 +233,7 @@ function PropertyHero() {
             objectFit: 'cover',
             objectPosition: 'center top',
             opacity: 0.18,
-          }}
-        />
+          }} width={1200} height={800} />
       </div>
 
       {/* Radial gradient overlay */}

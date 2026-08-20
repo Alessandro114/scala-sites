@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -378,7 +379,7 @@ export default function ConsultingPage() {
                 className="reveal-up group bg-white overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg"
                 style={{ animationDelay: `${i * 0.08}s`, borderRadius: '2px', border: `1px solid ${C.border}` }}>
                 <div className="relative h-44 overflow-hidden">
-                  <img src={p.image} alt={p.name} className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-[1.04]" />
+                  <Image src={p.image} alt={p.name} className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-[1.04]" width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.navyDark}cc, transparent 60%)` }} />
                   <div className="absolute bottom-3 left-4 flex items-center gap-2">
                     <span className="text-xl" style={S.gold}>{p.icon}</span>
@@ -470,7 +471,7 @@ export default function ConsultingPage() {
             {team.map((member, i) => (
               <div key={member.name} className="reveal-up" style={{ animationDelay: `${i * 0.08}s` }}>
                 <div className="relative overflow-hidden mb-4 h-64">
-                  <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+                  <Image src={member.image} alt={member.name} className="w-full h-full object-cover" width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.navyDark}cc, transparent 50%)` }} />
                 </div>
                 <h3 className="font-semibold mb-1" style={S.navy}>{member.name}</h3>

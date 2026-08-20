@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState } from 'react'
 import type { MenuCategory, Locale } from '@scala-sites/core/lib/types'
@@ -94,12 +95,10 @@ export function MenuSection({ categories, locale = 'en', currency = 'EUR', showI
             >
               {showImages && item.image && (
                 <div className="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
-                  <img
-                    src={item.image}
+                  <Image src={item.image}
                     alt={item.name}
                     className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
+                    loading="lazy" width={1200} height={800} />
                 </div>
               )}
               <div className="flex-1 min-w-0">

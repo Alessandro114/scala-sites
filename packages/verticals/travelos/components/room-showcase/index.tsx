@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState } from 'react'
 
@@ -169,11 +170,9 @@ export function RoomShowcase({
               {/* Image */}
               <div style={{ position: 'relative', height: '240px', overflow: 'hidden' }}>
                 {room.image ? (
-                  <img
-                    src={room.image}
+                  <Image src={room.image}
                     alt={room.name}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s', transform: hoveredId === room.id ? 'scale(1.04)' : 'scale(1)' }}
-                  />
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s', transform: hoveredId === room.id ? 'scale(1.04)' : 'scale(1)' }} width={1200} height={800} />
                 ) : (
                   <div
                     style={{

@@ -305,13 +305,16 @@ function AnimatedCounter({ target, prefix = '', suffix = '', duration = 2200 }: 
 
 // ─── Custom Hero — Numbers Authority ─────────────────────────────────────────
 
+// Module scope on purpose: the interval in this component reads the array
+// length, and a per-render array would make it a reactive dependency of
+// the effect that drives the cycling display.
+const FIGURES = ['£340K', '£2.1B', '4,800+', '£14M', '1,400+']
+
 function NumbersAuthorityHero() {
   const navy = '#1e3a5f'
   const charcoal = '#181c24'
   const gold = '#c9a84c'
 
-  // Cycling financial figures for the large animated display
-  const figures = ['£340K', '£2.1B', '4,800+', '£14M', '1,400+']
   const [figureIdx, setFigureIdx] = useState(0)
   const [visible, setVisible] = useState(true)
 
@@ -319,7 +322,7 @@ function NumbersAuthorityHero() {
     const id = setInterval(() => {
       setVisible(false)
       setTimeout(() => {
-        setFigureIdx(i => (i + 1) % figures.length)
+        setFigureIdx(i => (i + 1) % FIGURES.length)
         setVisible(true)
       }, 350)
     }, 2800)
@@ -618,7 +621,7 @@ function NumbersAuthorityHero() {
                 letterSpacing: '-0.03em',
               }}
             >
-              {figures[figureIdx]}
+              {FIGURES[figureIdx]}
             </div>
 
             <p
@@ -634,7 +637,7 @@ function NumbersAuthorityHero() {
 
             {/* Figure dots indicator */}
             <div style={{ display: 'flex', justifyContent: 'center', gap: '6px', marginTop: '20px' }}>
-              {figures.map((_, i) => (
+              {FIGURES.map((_, i) => (
                 <div
                   key={i}
                   style={{

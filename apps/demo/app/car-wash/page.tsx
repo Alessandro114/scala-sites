@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -316,12 +317,10 @@ function Hero() {
 
       {/* Car silhouette subtle bg */}
       <div className="absolute inset-0 flex items-center justify-end pointer-events-none" style={{ opacity: 0.05 }}>
-        <img
-          src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&h=600&fit=crop"
+        <Image src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&h=600&fit=crop"
           alt=""
           className="w-2/3 h-full object-cover"
-          style={{ filter: 'grayscale(100%)' }}
-        />
+          style={{ filter: 'grayscale(100%)' }} width={1200} height={800} />
       </div>
 
       {/* Main content */}
@@ -545,7 +544,7 @@ export default function CarWashPage() {
                 className="reveal-up group relative overflow-hidden rounded-xl"
                 style={{ height: 260, animationDelay: `${i * 0.07}s` }}
               >
-                <img src={img.src} alt={img.label} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <Image src={img.src} alt={img.label} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" width={1200} height={800} />
                 <div
                   className="absolute inset-0 flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-400"
                   style={{ background: `linear-gradient(to top, ${C.dark}dd, transparent)` }}

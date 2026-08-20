@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -458,7 +459,7 @@ export default function PetShopOSDemoPage() {
                 }}
               >
                 <div className="relative h-44 overflow-hidden bg-white">
-                  <img src={product.img} alt={product.name} className="w-full h-full object-cover" />
+                  <Image src={product.img} alt={product.name} className="w-full h-full object-cover" width={1200} height={800} />
                   {product.badge && (
                     <span
                       className="absolute top-3 left-3 text-[10px] font-black tracking-widest uppercase px-2 py-1 rounded-full"

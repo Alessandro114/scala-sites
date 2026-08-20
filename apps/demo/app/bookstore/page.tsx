@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -554,7 +555,7 @@ export default function BookOSDemoPage() {
                   }}
                 />
                 <div className="h-48 overflow-hidden">
-                  <img src={book.img} alt={book.title} className="w-full h-full object-cover" />
+                  <Image src={book.img} alt={book.title} className="w-full h-full object-cover" width={1200} height={800} />
                 </div>
                 <div className="p-6">
                   <span
@@ -699,12 +700,10 @@ export default function BookOSDemoPage() {
           </div>
 
           <div className="reveal-right">
-            <img
-              src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=900&fit=crop"
+            <Image src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=900&fit=crop"
               alt="Book club gathering at Chapter & Verse"
               className="w-full rounded-2xl"
-              style={{ maxHeight: 600, objectFit: 'cover' }}
-            />
+              style={{ maxHeight: 600, objectFit: 'cover' }} width={1200} height={800} />
           </div>
         </div>
       </section>
@@ -715,12 +714,10 @@ export default function BookOSDemoPage() {
       <section id="café" className="py-24 md:py-32 px-6 md:px-16" style={S.sectionParchmentDark}>
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div className="reveal-left order-2 md:order-1">
-            <img
-              src="https://images.unsplash.com/photo-1481833761820-0509d3217039?w=800&h=600&fit=crop"
+            <Image src="https://images.unsplash.com/photo-1481833761820-0509d3217039?w=800&h=600&fit=crop"
               alt="Chapter & Verse café"
               className="w-full rounded-2xl"
-              style={{ maxHeight: 500, objectFit: 'cover' }}
-            />
+              style={{ maxHeight: 500, objectFit: 'cover' }} width={1200} height={800} />
           </div>
           <div className="reveal-right order-1 md:order-2">
             <p className="text-xs tracking-widest uppercase mb-4" style={S.leather}>The Café</p>

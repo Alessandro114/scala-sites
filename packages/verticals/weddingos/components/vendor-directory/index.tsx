@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState, useMemo } from 'react'
 
@@ -120,7 +121,7 @@ export function VendorDirectory({ vendors, currencySymbol = '£' }: VendorDirect
               {/* Photo */}
               <div className="h-48 relative" style={{ background: 'var(--color-secondary)' }}>
                 {v.photo ? (
-                  <img src={v.photo} alt={v.name} className="w-full h-full object-cover" />
+                  <Image src={v.photo} alt={v.name} className="w-full h-full object-cover" width={1200} height={800} />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-4xl">
                     {categoryIcons[v.category]}

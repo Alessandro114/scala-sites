@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -286,11 +287,9 @@ export default function BnBPage() {
       <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden" style={{ paddingTop: '80px' }}>
         {/* Background hero image */}
         <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=1600&h=1200&fit=crop&q=90"
+          <Image src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=1600&h=1200&fit=crop&q=90"
             alt="Willowbrook countryside setting"
-            className="w-full h-full object-cover"
-          />
+            className="w-full h-full object-cover" width={1200} height={800} />
           {/* Heavy warm vignette */}
           <div className="vignette-breath absolute inset-0" style={{
             background: `radial-gradient(ellipse 70% 80% at 50% 50%, transparent 20%, ${C.textDark}99 100%)`,
@@ -372,7 +371,7 @@ export default function BnBPage() {
               <div key={room.name} className="room-card reveal-up relative overflow-hidden"
                 style={{ animationDelay: `${i * 0.1}s`, backgroundColor: C.warmWhite, border: `1px solid ${C.wood}22` }}>
                 <div className="relative h-60 overflow-hidden">
-                  <img src={room.image} alt={room.name} className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.04]" />
+                  <Image src={room.image} alt={room.name} className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.04]" width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.peat}88, transparent 50%)` }} />
                   <div className="absolute top-4 right-4 text-xs px-3 py-1 font-light" style={{ backgroundColor: room.available ? `${C.forest}cc` : `${C.berry}cc`, color: C.cream }}>
                     {room.available ? 'Available' : 'Booked out'}
@@ -416,7 +415,7 @@ export default function BnBPage() {
             {experiences.map((exp, i) => (
               <div key={exp.name} className="reveal-up" style={{ animationDelay: `${i * 0.1}s` }}>
                 <div className="relative h-72 mb-6 overflow-hidden" style={{ border: `1px solid ${C.wood}22` }}>
-                  <img src={exp.image} alt={exp.name} className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.04]" />
+                  <Image src={exp.image} alt={exp.name} className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.04]" width={1200} height={800} />
                 </div>
                 <h3 className="text-xl font-extralight mb-3" style={{ ...S.textDark, fontFamily: 'Georgia, serif' }}>{exp.name}</h3>
                 <p className="text-sm font-light leading-relaxed" style={S.textMid}>{exp.desc}</p>
@@ -479,12 +478,10 @@ export default function BnBPage() {
             </div>
           </div>
           <div className="reveal-right">
-            <img
-              src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=800&h=1000&fit=crop&q=90"
+            <Image src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=800&h=1000&fit=crop&q=90"
               alt="Farm breakfast at Willowbrook"
               className="w-full h-[600px] object-cover"
-              style={{ border: `1px solid ${C.wood}22` }}
-            />
+              style={{ border: `1px solid ${C.wood}22` }} width={1200} height={800} />
           </div>
         </div>
       </section>

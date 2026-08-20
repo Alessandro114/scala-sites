@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState } from 'react'
 
@@ -40,7 +41,7 @@ export function StylistBooking({ stylists, onSelect }: StylistBookingProps) {
             <div className="flex items-center gap-4 mb-4">
               <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
                 {s.photo ? (
-                  <img src={s.photo} alt={s.name} className="w-full h-full object-cover" />
+                  <Image src={s.photo} alt={s.name} className="w-full h-full object-cover" width={1200} height={800} />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-xl font-bold" style={{ color: 'var(--color-text-muted)' }}>
                     {s.name.split(' ').map(n => n[0]).join('')}

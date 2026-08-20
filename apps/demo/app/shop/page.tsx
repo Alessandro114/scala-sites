@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState, useEffect, useRef } from 'react'
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
@@ -241,11 +242,9 @@ function ProductCard({ product }: { product: typeof products[0] }) {
       onMouseLeave={() => setHovered(false)}
     >
       <div className="relative overflow-hidden bg-[#111] aspect-[3/4] mb-4">
-        <img
-          src={product.image}
+        <Image src={product.image}
           alt={product.name}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" width={1200} height={800} />
         {product.originalPrice && (
           <span className="absolute top-3 left-3 bg-[#c8956c] text-white text-xs font-semibold px-2 py-1 tracking-widest uppercase">
             Sale
@@ -279,11 +278,9 @@ function FeaturedProductCard({ product, reversed }: { product: typeof featuredPr
   return (
     <div className={`grid md:grid-cols-2 gap-0 min-h-[600px] ${reversed ? 'direction-rtl' : ''}`}>
       <div className={`relative overflow-hidden ${reversed ? 'order-2' : 'order-1'}`}>
-        <img
-          src={product.image}
+        <Image src={product.image}
           alt={product.name}
-          className="w-full h-full min-h-[400px] object-cover"
-        />
+          className="w-full h-full min-h-[400px] object-cover" width={1200} height={800} />
         <span
           style={{ backgroundColor: '#c8956c' }}
           className="absolute top-6 left-6 text-white text-xs font-bold tracking-widest uppercase px-3 py-1.5"
@@ -422,12 +419,10 @@ export default function ShopPage() {
                 transition: 'filter 0.7s ease',
               }}
             >
-              <img
-                src={src}
+              <Image src={src}
                 alt=""
                 aria-hidden="true"
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
-              />
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" width={1200} height={800} />
               {/* Each panel gets a dark gradient to blend into bg */}
               <div
                 className="absolute inset-0"
@@ -625,8 +620,8 @@ export default function ShopPage() {
             </a>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600" alt="MAISON store" className="w-full aspect-[3/4] object-cover" />
-            <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=600" alt="MAISON detail" className="w-full aspect-[3/4] object-cover mt-12" />
+            <Image src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600" alt="MAISON store" className="w-full aspect-[3/4] object-cover" width={1200} height={800} />
+            <Image src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=600" alt="MAISON detail" className="w-full aspect-[3/4] object-cover mt-12" width={1200} height={800} />
           </div>
         </div>
       </section>

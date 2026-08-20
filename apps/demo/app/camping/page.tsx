@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -447,7 +448,7 @@ export default function CampingPage() {
                   </div>
                 )}
                 <div className="relative h-52 overflow-hidden">
-                  <img src={pitch.img} alt={pitch.name} className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.04]" style={{ filter: 'brightness(0.8)' }} />
+                  <Image src={pitch.img} alt={pitch.name} className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.04]" style={{ filter: 'brightness(0.8)' }} width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, #1a2535 0%, transparent 50%)` }} />
                 </div>
                 <div className="p-6">
@@ -510,7 +511,7 @@ export default function CampingPage() {
             {activities.map((act, i) => (
               <div key={act.name} className="reveal-up flex gap-6 items-start" style={{ animationDelay: `${i * 0.1}s` }}>
                 <div className="w-40 h-28 overflow-hidden flex-shrink-0" style={{ border: `1px solid ${C.forest}44` }}>
-                  <img src={act.img} alt={act.name} className="activity-img w-full h-full object-cover" />
+                  <Image src={act.img} alt={act.name} className="activity-img w-full h-full object-cover" width={1200} height={800} />
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-extralight mb-2" style={S.amber}>{act.name}</h3>
@@ -535,7 +536,7 @@ export default function CampingPage() {
             {gallery.map((img, i) => (
               <div key={i} className="reveal-up relative overflow-hidden"
                 style={{ animationDelay: `${i * 0.08}s`, height: img.tall ? '400px' : '230px', border: `1px solid ${C.forest}33` }}>
-                <img src={img.src} alt={img.label} className="activity-img w-full h-full object-cover" />
+                <Image src={img.src} alt={img.label} className="activity-img w-full h-full object-cover" width={1200} height={800} />
                 <div className="absolute inset-0 flex items-end p-4" style={{ background: `linear-gradient(to top, ${C.nightDeep}bb, transparent 60%)` }}>
                   <span className="text-xs tracking-[0.2em] uppercase font-light" style={S.cream}>{img.label}</span>
                 </div>

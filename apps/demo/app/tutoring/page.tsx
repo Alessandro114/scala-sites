@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -401,7 +402,7 @@ export default function TutorOSPage() {
                 style={{ animationDelay: `${i * 0.08}s`, borderColor: `${subj.color}22` }}
               >
                 <div className="relative h-40 overflow-hidden">
-                  <img src={subj.image} alt={subj.name} className="w-full h-full object-cover" style={{ filter: 'saturate(0.7)' }} />
+                  <Image src={subj.image} alt={subj.name} className="w-full h-full object-cover" style={{ filter: 'saturate(0.7)' }} width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${subj.color}dd, ${subj.color}44)` }} />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <span className="text-5xl font-black text-white opacity-70">{subj.icon}</span>
@@ -462,7 +463,7 @@ export default function TutorOSPage() {
                 style={{ animationDelay: `${i * 0.1}s`, borderColor: `${C.yellow}33`, backgroundColor: `${C.white}0a` }}
               >
                 <div className="h-52 overflow-hidden">
-                  <img src={tutor.image} alt={tutor.name} className="tutor-img w-full h-full object-cover" />
+                  <Image src={tutor.image} alt={tutor.name} className="tutor-img w-full h-full object-cover" width={1200} height={800} />
                 </div>
                 <div className="p-5">
                   <div className="flex items-center gap-2 mb-1">

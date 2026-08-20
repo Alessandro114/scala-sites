@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -456,7 +457,7 @@ export default function DriveOSDemoPage() {
             {instructors.map((inst, i) => (
               <div key={inst.name} className="reveal-up group" style={{ animationDelay: `${i * 0.08}s` }}>
                 <div className="relative overflow-hidden rounded-xl mb-4 image-reveal">
-                  <img src={inst.img} alt={inst.name} className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-[1.05]" />
+                  <Image src={inst.img} alt={inst.name} className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-[1.05]" width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.asphalt}cc 0%, transparent 60%)` }} />
                   {/* Pass rate badge */}
                   <div className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-medium"

@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useEffect, useRef, useState } from 'react'
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
@@ -298,8 +299,7 @@ function AutoHero() {
       />
 
       {/* Background car image */}
-      <img
-        src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1800&q=80"
+      <Image src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1800&q=80"
         alt="Luxury showroom car"
         style={{
           position: 'absolute',
@@ -310,8 +310,7 @@ function AutoHero() {
           objectPosition: 'center 60%',
           opacity: 0.12,
           mixBlendMode: 'luminosity',
-        }}
-      />
+        }} width={1200} height={800} />
 
       {/* Fine grid perspective lines overlay */}
       <div

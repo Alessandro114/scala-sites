@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState, useEffect } from 'react'
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
@@ -322,11 +323,9 @@ function TeamSection() {
           {team.map(({ name, role, background, image }) => (
             <div key={name} className="group">
               <div className="aspect-[4/5] overflow-hidden bg-[#e5e5e0] mb-4">
-                <img
-                  src={image}
+                <Image src={image}
                   alt={name}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                />
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" width={1200} height={800} />
               </div>
               <p className="text-[#2c2c2c] font-medium text-sm">{name}</p>
               <p className="text-[#2c2c2c]/60 text-xs mt-0.5">{role}</p>

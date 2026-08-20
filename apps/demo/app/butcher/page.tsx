@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -331,11 +332,9 @@ export default function ButcherPage() {
 
         {/* Right: meat photo */}
         <div className="absolute right-0 top-0 w-1/2 h-full hidden md:block">
-          <img
-            src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=900&h=1100&fit=crop&q=85"
+          <Image src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=900&h=1100&fit=crop&q=85"
             alt="Premium cuts at Holt's Family Butchers"
-            className="w-full h-full object-cover opacity-60"
-          />
+            className="w-full h-full object-cover opacity-60" width={1200} height={800} />
           <div
             className="absolute inset-0"
             style={{
@@ -467,11 +466,9 @@ export default function ButcherPage() {
                 onMouseLeave={(e) => { e.currentTarget.style.border = `1px solid ${C.cream}10`; e.currentTarget.style.transform = 'translateY(0)' }}
               >
                 <div className="relative h-44 overflow-hidden">
-                  <img
-                    src={item.image}
+                  <Image src={item.image}
                     alt={item.category}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.shadow} 10%, transparent 60%)` }} />
                   <div className="absolute top-3 left-3 text-2xl">{item.icon}</div>
                 </div>
@@ -534,7 +531,7 @@ export default function ButcherPage() {
                     {pkg.badge}
                   </div>
                 )}
-                <img src={pkg.image} alt={pkg.name} className="w-full h-44 object-cover" style={{ marginTop: pkg.popular ? '28px' : '0' }} />
+                <Image src={pkg.image} alt={pkg.name} className="w-full h-44 object-cover" style={{ marginTop: pkg.popular ? '28px' : '0' }} width={1200} height={800} />
                 <div className="p-6">
                   <h3 className="font-black text-xl" style={{ color: C.cream, fontFamily: 'Georgia, serif' }}>{pkg.name}</h3>
                   <p className="text-sm mb-3" style={{ color: C.craft }}>{pkg.sub}</p>
@@ -605,11 +602,9 @@ export default function ButcherPage() {
             </div>
           </div>
           <div className="rounded-3xl overflow-hidden" style={{ height: '520px' }}>
-            <img
-              src="https://images.unsplash.com/photo-1508615039623-a25605d2b022?w=700&h=1000&fit=crop&q=85"
+            <Image src="https://images.unsplash.com/photo-1508615039623-a25605d2b022?w=700&h=1000&fit=crop&q=85"
               alt="Tom Holt in the butchery"
-              className="w-full h-full object-cover"
-            />
+              className="w-full h-full object-cover" width={1200} height={800} />
           </div>
         </div>
       </section>

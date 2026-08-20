@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -280,12 +281,10 @@ export default function PhysiotherapyPage() {
             }} />
           ))}
           {/* Gradient photo */}
-          <img
-            src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=1000&fit=crop"
+          <Image src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=1000&fit=crop"
             alt="Physiotherapy treatment"
             className="absolute right-0 top-0 w-4/5 h-full object-cover"
-            style={{ maskImage: 'linear-gradient(to left, white 50%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to left, white 50%, transparent 100%)' }}
-          />
+            style={{ maskImage: 'linear-gradient(to left, white 50%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to left, white 50%, transparent 100%)' }} width={1200} height={800} />
         </div>
 
         <div className="max-w-7xl mx-auto px-6 md:px-16 w-full relative z-10">
@@ -396,7 +395,7 @@ export default function PhysiotherapyPage() {
             {team.map((member, i) => (
               <div key={member.name} className="reveal-up group" style={{ animationDelay: `${i * 0.1}s` }}>
                 <div className="relative overflow-hidden rounded-2xl mb-5" style={{ height: 280 }}>
-                  <img src={member.image} alt={member.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
+                  <Image src={member.image} alt={member.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" width={1200} height={800} />
                   <div className="absolute bottom-0 left-0 right-0 p-4" style={{ background: `linear-gradient(to top, ${C.textDark}cc, transparent)` }}>
                     <span className="text-xs font-medium text-white px-2.5 py-1 rounded-full" style={{ background: `${C.teal}cc` }}>
                       {member.credentials}

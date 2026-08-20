@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { createCustomTheme, themeToStyleObject } from '@scala-sites/themes'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -570,8 +571,7 @@ function WeddingHero() {
       }}
     >
       {/* Background image */}
-      <img
-        src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1800&h=1200&fit=crop&q=85"
+      <Image src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1800&h=1200&fit=crop&q=85"
         alt="Oakwood Barn wedding venue"
         style={{
           position: 'absolute',
@@ -581,8 +581,7 @@ function WeddingHero() {
           objectFit: 'cover',
           objectPosition: 'center',
           filter: 'sepia(40%) brightness(0.55)',
-        }}
-      />
+        }} width={1200} height={800} />
 
       {/* Heavy vignette overlay */}
       <div

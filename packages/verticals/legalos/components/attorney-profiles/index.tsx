@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { useState } from 'react'
 
@@ -137,8 +138,7 @@ export function AttorneyProfiles({
             >
               {/* Photo */}
               <div style={{ position: 'relative', paddingTop: '100%', overflow: 'hidden', background: '#e2e8f0' }}>
-                <img
-                  src={attorney.photo}
+                <Image src={attorney.photo}
                   alt={attorney.name}
                   loading="lazy"
                   style={{
@@ -148,8 +148,7 @@ export function AttorneyProfiles({
                     height: '100%',
                     objectFit: 'cover',
                     objectPosition: 'top center',
-                  }}
-                />
+                  }} width={1200} height={800} />
                 {/* Title badge */}
                 <span
                   style={{

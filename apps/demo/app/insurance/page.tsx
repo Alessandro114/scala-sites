@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -361,7 +362,7 @@ export default function InsurancePage() {
                 className="reveal-up group overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-xl"
                 style={{ animationDelay: `${i * 0.08}s`, borderRadius: '8px', border: `1px solid ${C.silver}`, background: C.white }}>
                 <div className="relative h-44 overflow-hidden">
-                  <img src={type.image} alt={type.name} className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-[1.04]" />
+                  <Image src={type.image} alt={type.name} className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-[1.04]" width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.trustBlueDark}cc, transparent 60%)` }} />
                   <div className="absolute bottom-3 left-4 flex items-center gap-2">
                     <span className="text-2xl">{type.icon}</span>

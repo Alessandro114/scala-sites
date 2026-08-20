@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -428,7 +429,7 @@ export default function BowlingPage() {
                 style={{ animationDelay: `${i * 0.1}s`, backgroundColor: C.darkCard, border: `1px solid ${act.color}33` }}
               >
                 <div className="relative h-52 overflow-hidden">
-                  <img src={act.img} alt={act.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
+                  <Image src={act.img} alt={act.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.darkCard} 0%, transparent 60%)` }} />
                   <div
                     className="absolute top-4 left-4 text-xs font-bold tracking-widest uppercase px-3 py-1.5"
@@ -543,7 +544,7 @@ export default function BowlingPage() {
             {gallery.map((img, i) => (
               <div key={i} className="gallery-item reveal-up relative overflow-hidden"
                 style={{ animationDelay: `${i * 0.08}s`, height: img.tall ? '400px' : '230px', border: `1px solid ${C.pink}22` }}>
-                <img src={img.src} alt={img.label} className="w-full h-full object-cover" />
+                <Image src={img.src} alt={img.label} className="w-full h-full object-cover" width={1200} height={800} />
                 <div className="absolute inset-0 flex items-end p-4" style={{ background: `linear-gradient(to top, ${C.void}cc, transparent 60%)` }}>
                   <span className="text-xs tracking-[0.2em] uppercase font-bold" style={S.white}>{img.label}</span>
                 </div>

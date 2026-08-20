@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
@@ -557,11 +558,9 @@ export default function BreweryPage() {
 
           {/* Right: Brewery photo */}
           <div className="relative h-[500px] overflow-hidden rounded-xl hidden md:block">
-            <img
-              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&h=1100&fit=crop&q=90"
+            <Image src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&h=1100&fit=crop&q=90"
               alt="Iron Gate Brewery taproom with copper fermenters"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }} width={1200} height={800} />
             <div
               style={{
                 position: 'absolute',
@@ -744,11 +743,9 @@ export default function BreweryPage() {
                 style={{ borderRadius: '12px', overflow: 'hidden', backgroundColor: C.charcoalMid, border: `1px solid ${C.steel}44` }}
               >
                 <div style={{ height: 200, overflow: 'hidden' }}>
-                  <img
-                    src={tour.image}
+                  <Image src={tour.image}
                     alt={tour.name}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
-                  />
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} width={1200} height={800} />
                 </div>
                 <div style={{ padding: '1.5rem' }}>
                   <h3 style={{ color: C.cream, fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.5rem' }}>{tour.name}</h3>

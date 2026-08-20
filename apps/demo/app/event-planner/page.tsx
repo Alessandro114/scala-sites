@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image';
 
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
@@ -386,7 +387,7 @@ export default function EventOSPage() {
                   animation: `mosaic-in 0.6s ${0.2 + i * 0.1}s both`,
                 }}
               >
-                <img src={evt.image} alt={evt.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.06]" />
+                <Image src={evt.image} alt={evt.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.06]" width={1200} height={800} />
                 <div
                   className="absolute inset-0 flex items-end p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-400"
                   style={{ background: `linear-gradient(to top, ${C.black}cc, transparent)` }}
@@ -420,7 +421,7 @@ export default function EventOSPage() {
                 style={{ animationDelay: `${i * 0.08}s`, borderColor: `${svc.color}22` }}
               >
                 <div className="relative h-44 overflow-hidden">
-                  <img src={svc.image} alt={svc.name} className="w-full h-full object-cover" style={{ filter: 'brightness(0.6) saturate(0.8)' }} />
+                  <Image src={svc.image} alt={svc.name} className="w-full h-full object-cover" style={{ filter: 'brightness(0.6) saturate(0.8)' }} width={1200} height={800} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${C.black}ee, transparent)` }} />
                   <div className="absolute bottom-4 left-4 text-3xl">{svc.icon}</div>
                 </div>
@@ -453,7 +454,7 @@ export default function EventOSPage() {
                   className={`portfolio-item reveal-up rounded-xl overflow-hidden relative cursor-pointer ${isLarge ? 'col-span-2 row-span-2' : ''}`}
                   style={{ animationDelay: `${i * 0.07}s` }}
                 >
-                  <img src={evt.image} alt={evt.name} className="w-full h-full object-cover" />
+                  <Image src={evt.image} alt={evt.name} className="w-full h-full object-cover" width={1200} height={800} />
                   <div
                     className="overlay absolute inset-0 flex flex-col justify-end p-4"
                     style={{ background: `linear-gradient(to top, ${C.black}dd, transparent)` }}
