@@ -90,12 +90,12 @@ const services = [
 ]
 
 const portfolio = [
-  { label: 'Complesso "Le Palme"', cat: 'Residenziale', loc: 'Villa Literno (CE)', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop&q=80' },
-  { label: 'Stabilimento produttivo', cat: 'Industriale', loc: 'Zona ASI Aversa Nord', image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop&q=80' },
-  { label: 'Palazzo storico', cat: 'Restauro', loc: 'Centro storico, Caserta', image: 'https://images.unsplash.com/photo-1523413363574-c30aa1c2a516?w=800&h=600&fit=crop&q=80' },
-  { label: 'Resort Litorale Domitio', cat: 'Hospitality', loc: 'Castel Volturno (CE)', image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&h=600&fit=crop&q=80' },
-  { label: 'Riqualificazione urbana', cat: 'Urbanizzazione', loc: 'Giugliano in Campania', image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=600&fit=crop&q=80' },
-  { label: 'Edilizia scolastica', cat: 'Pubblico', loc: 'Provincia di Caserta', image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&h=600&fit=crop&q=80' },
+  { label: 'Flotta aziendale', cat: 'Mezzi', loc: 'Villa Literno (CE)', image: '/costruzioni/camion1.jpg' },
+  { label: 'Cantiere in corso', cat: 'Edilizia', loc: 'Campania', image: '/costruzioni/cantiere.jpg' },
+  { label: 'Parco mezzi', cat: 'Attrezzatura', loc: 'Sede operativa', image: '/costruzioni/camion2.jpg' },
+  { label: 'Trasporto materiali', cat: 'Logistica', loc: 'Villa Literno (CE)', image: '/costruzioni/camion3.jpg' },
+  { label: 'Il nostro team', cat: 'Squadra', loc: 'Evento aziendale', image: '/costruzioni/cena.jpg' },
+  { label: 'Mezzi con gru', cat: 'Attrezzatura', loc: 'Cantiere', image: '/costruzioni/camion4.jpg' },
 ]
 
 const reviews: Review[] = [
@@ -328,29 +328,12 @@ function Navbar() {
 // ─────────────────────────────────────────────
 function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden" style={S.heroBg}>
+    <section className="relative min-h-screen flex flex-col overflow-hidden" style={S.heroBg}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap');
       `}</style>
 
-      {/* Background image */}
-      <div className="absolute inset-0">
-        <Image
-          src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1800&h=1200&fit=crop&q=80"
-          alt="GF Costruzioni — edilizia professionale"
-          fill
-          className="object-cover"
-          style={{ opacity: 0.12 }}
-          priority
-          sizes="100vw"
-        />
-        <div
-          className="absolute inset-0"
-          style={{ background: `linear-gradient(135deg, ${C.carbon}f0 0%, ${C.carbon}cc 50%, ${C.basalt}e8 100%)` }}
-        />
-      </div>
-
-      {/* Grid pattern */}
+      {/* Grid pattern — no external images, pure CSS */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -358,6 +341,14 @@ function Hero() {
             repeating-linear-gradient(90deg, rgba(184,154,82,.04) 0, rgba(184,154,82,.04) 1px, transparent 1px, transparent 120px),
             repeating-linear-gradient(0deg, rgba(184,154,82,.03) 0, rgba(184,154,82,.03) 1px, transparent 1px, transparent 120px)
           `,
+        }}
+      />
+
+      {/* Diagonal accent */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `linear-gradient(160deg, ${C.tufo}08 0%, transparent 40%)`,
         }}
       />
 
@@ -374,7 +365,8 @@ function Hero() {
         }}
       />
 
-      <div className="relative z-10 max-w-[1200px] mx-auto w-full px-6 md:px-12 pt-[clamp(100px,14vh,160px)]">
+      {/* Main content — flex-grow pushes certs to bottom */}
+      <div className="relative z-10 max-w-[1200px] mx-auto w-full px-6 md:px-12 flex-1 flex flex-col justify-center pt-24 pb-8">
         {/* Eyebrow */}
         <div className="flex items-center gap-4 mb-7">
           <div className="w-10 h-px" style={{ backgroundColor: C.tufo }} />
@@ -449,9 +441,11 @@ function Hero() {
             I nostri lavori
           </a>
         </div>
+      </div>
 
-        {/* Certs bottom */}
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-8 mt-14 sm:mt-0 sm:absolute sm:bottom-12">
+      {/* Certs — pinned at bottom, separate from content flow */}
+      <div className="relative z-10 max-w-[1200px] mx-auto w-full px-6 md:px-12 pb-10">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-8">
           {['Certificazione SOA', 'Qualità ISE-CERT', 'Dal 2000'].map((cert) => (
             <div key={cert} className="flex items-center gap-2 text-[0.7rem] tracking-[0.15em] uppercase" style={S.muted}>
               <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: C.tufo }} />
@@ -668,12 +662,11 @@ function Portfolio() {
                 gridColumn: i === 3 ? 'span 2' : undefined,
               }}
             >
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src={p.image}
                 alt={`${p.cat} — ${p.label}`}
-                fill
-                className="object-cover transition-transform duration-[600ms] group-hover:scale-[1.04]"
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-[600ms] group-hover:scale-[1.04]"
               />
               <div
                 className="absolute inset-0 flex flex-col justify-end p-[clamp(16px,3vw,28px)]"
