@@ -241,12 +241,14 @@ function Navbar() {
     >
       <div className="max-w-[1200px] mx-auto px-6 md:px-12 flex justify-between items-center h-[72px]">
         <a href="#" className="flex items-center gap-3">
-          <div
-            className="w-9 h-9 flex items-center justify-center text-sm tracking-wide"
-            style={{ backgroundColor: C.tufo, color: C.carbon, fontFamily: "'DM Serif Display', Georgia, serif" }}
-          >
-            GF
-          </div>
+          <Image
+            src="/costruzioni/logo.jpg"
+            alt="GF Costruzioni SRL"
+            width={36}
+            height={36}
+            className="rounded-full"
+            style={{ objectFit: 'cover' }}
+          />
           <span
             className="text-[1.05rem] tracking-wide"
             style={{ color: C.white, fontFamily: "'DM Serif Display', Georgia, serif" }}
@@ -551,8 +553,8 @@ function About() {
             style={{ aspectRatio: '4/5' }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=1000&fit=crop&q=80"
-              alt="GF Costruzioni — cantiere attivo"
+              src="/costruzioni/team.jpg"
+              alt="Il team di GF Costruzioni SRL"
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -565,7 +567,7 @@ function About() {
               className="absolute bottom-6 left-6 text-[0.7rem] tracking-[0.2em] uppercase z-10"
               style={{ color: 'rgba(240,236,229,.7)' }}
             >
-              Cantiere attivo · Villa Literno
+              Il nostro team · GF Costruzioni
             </div>
           </div>
         </div>
