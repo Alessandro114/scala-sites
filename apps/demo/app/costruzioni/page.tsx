@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { BookingWidget } from '@scala-sites/core/components/booking-widget'
 import { ReviewCarousel } from '@scala-sites/core/components/review-carousel'
 import { WhatsAppCTA } from '@scala-sites/core/components/whatsapp-cta'
@@ -89,12 +90,12 @@ const services = [
 ]
 
 const portfolio = [
-  { label: 'Complesso "Le Palme"', cat: 'Residenziale', loc: 'Villa Literno (CE)', gradient: 'linear-gradient(160deg, #3a342a 0%, #1a1816 100%)' },
-  { label: 'Stabilimento produttivo', cat: 'Industriale', loc: 'Zona ASI Aversa Nord', gradient: 'linear-gradient(160deg, #2a2d30 0%, #141618 100%)' },
-  { label: 'Palazzo storico', cat: 'Restauro', loc: 'Centro storico, Caserta', gradient: 'linear-gradient(160deg, #3a3028 0%, #1e1a16 100%)' },
-  { label: 'Resort Litorale Domitio', cat: 'Hospitality', loc: 'Castel Volturno (CE)', gradient: 'linear-gradient(160deg, #2a3035 0%, #161a1e 100%)' },
-  { label: 'Riqualificazione urbana', cat: 'Urbanizzazione', loc: 'Giugliano in Campania', gradient: 'linear-gradient(160deg, #30302a 0%, #1a1a16 100%)' },
-  { label: 'Edilizia scolastica', cat: 'Pubblico', loc: 'Provincia di Caserta', gradient: 'linear-gradient(160deg, #2d2a26 0%, #161412 100%)' },
+  { label: 'Complesso "Le Palme"', cat: 'Residenziale', loc: 'Villa Literno (CE)', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop&q=80' },
+  { label: 'Stabilimento produttivo', cat: 'Industriale', loc: 'Zona ASI Aversa Nord', image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=600&fit=crop&q=80' },
+  { label: 'Palazzo storico', cat: 'Restauro', loc: 'Centro storico, Caserta', image: 'https://images.unsplash.com/photo-1523413363574-c30aa1c2a516?w=800&h=600&fit=crop&q=80' },
+  { label: 'Resort Litorale Domitio', cat: 'Hospitality', loc: 'Castel Volturno (CE)', image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800&h=600&fit=crop&q=80' },
+  { label: 'Riqualificazione urbana', cat: 'Urbanizzazione', loc: 'Giugliano in Campania', image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=600&fit=crop&q=80' },
+  { label: 'Edilizia scolastica', cat: 'Pubblico', loc: 'Provincia di Caserta', image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&h=600&fit=crop&q=80' },
 ]
 
 const reviews: Review[] = [
@@ -330,6 +331,23 @@ function Hero() {
         @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&display=swap');
       `}</style>
 
+      {/* Background image */}
+      <div className="absolute inset-0">
+        <Image
+          src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1800&h=1200&fit=crop&q=80"
+          alt="GF Costruzioni — edilizia professionale"
+          fill
+          className="object-cover"
+          style={{ opacity: 0.12 }}
+          priority
+          sizes="100vw"
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: `linear-gradient(135deg, ${C.carbon}f0 0%, ${C.carbon}cc 50%, ${C.basalt}e8 100%)` }}
+        />
+      </div>
+
       {/* Grid pattern */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -530,20 +548,22 @@ function About() {
 
           <div
             className="relative overflow-hidden"
-            style={{
-              aspectRatio: '4/5',
-              background: `linear-gradient(145deg, ${C.basalt}, ${C.carbon})`,
-            }}
+            style={{ aspectRatio: '4/5' }}
           >
-            <div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background: 'repeating-linear-gradient(45deg, transparent 0, transparent 20px, rgba(184,154,82,.06) 20px, rgba(184,154,82,.06) 21px)',
-              }}
+            <Image
+              src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=1000&fit=crop&q=80"
+              alt="GF Costruzioni — cantiere attivo"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
             <div
-              className="absolute bottom-6 left-6 text-[0.7rem] tracking-[0.2em] uppercase"
-              style={{ color: 'rgba(240,236,229,.5)' }}
+              className="absolute inset-0"
+              style={{ background: 'linear-gradient(to top, rgba(20,18,16,.6) 0%, transparent 40%)' }}
+            />
+            <div
+              className="absolute bottom-6 left-6 text-[0.7rem] tracking-[0.2em] uppercase z-10"
+              style={{ color: 'rgba(240,236,229,.7)' }}
             >
               Cantiere attivo · Villa Literno
             </div>
@@ -646,9 +666,12 @@ function Portfolio() {
                 gridColumn: i === 3 ? 'span 2' : undefined,
               }}
             >
-              <div
-                className="absolute inset-0 transition-transform duration-[600ms] group-hover:scale-[1.04]"
-                style={{ background: p.gradient }}
+              <Image
+                src={p.image}
+                alt={`${p.cat} — ${p.label}`}
+                fill
+                className="object-cover transition-transform duration-[600ms] group-hover:scale-[1.04]"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
               <div
                 className="absolute inset-0 flex flex-col justify-end p-[clamp(16px,3vw,28px)]"
