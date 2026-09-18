@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
+import { GAPageView } from './ga-page-view'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -49,7 +51,33 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <head>
+        {/* GA4 — never installed on sites.get-scala.com before (18/09/2026 audit).
+            Inline in <head> so it fires on the initial SSR response. */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-LX2PQTW78M" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('consent', 'default', {
+            'analytics_storage': 'granted',
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied'
+          });
+          gtag('js', new Date());
+          gtag('config', 'G-LX2PQTW78M');
+        `,
+          }}
+        />
+      </head>
+      <body className="antialiased">
+        {children}
+        <Suspense fallback={null}>
+          <GAPageView />
+        </Suspense>
+      </body>
     </html>
   )
 }
