@@ -4,6 +4,11 @@ import { GAPageView } from './ga-page-view'
 import './globals.css'
 
 export const metadata: Metadata = {
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
   title: {
     template: '%s | SCALA Sites',
     default: 'SCALA Sites — 100 Industry Website Templates, Open Source',
