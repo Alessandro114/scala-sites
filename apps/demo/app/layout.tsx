@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import { GAPageView } from './ga-page-view'
+import { LangProvider } from './components/lang-provider'
 import './globals.css'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://sites.get-scala.com'),
   icons: {
     icon: '/favicon.svg',
     shortcut: '/favicon.svg',
@@ -78,7 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="antialiased">
-        {children}
+        <LangProvider>{children}</LangProvider>
         <Suspense fallback={null}>
           <GAPageView />
         </Suspense>
