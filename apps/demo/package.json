@@ -6,7 +6,8 @@
     "dev": "next dev --port 3099",
     "build": "next build",
     "start": "next start --port 3099",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "node --test tests/"
   },
   "dependencies": {
     "@scala-sites/autoos": "*",

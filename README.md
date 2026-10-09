@@ -2,16 +2,16 @@
 
 [![GitHub Stars](https://img.shields.io/github/stars/Alessandro114/scala-sites?style=flat-square&logo=github&label=Stars)](https://github.com/Alessandro114/scala-sites/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
-[![Templates](https://img.shields.io/badge/Templates-100-brightgreen?style=flat-square)](https://scala-sites.vercel.app)
+[![Templates](https://img.shields.io/badge/Templates-99-brightgreen?style=flat-square)](https://scala-sites.vercel.app)
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Alessandro114/scala-sites)
 [![Analyze your site](https://img.shields.io/badge/Analyze%20your%20site-analyze.get--scala.com-orange?style=flat-square)](https://analyze.get-scala.com)
 
-# 🚀 100 Industry Website Templates. Zero Cost.
+# 🚀 99 Industry Website Templates. Zero Cost.
 
 **Your website costs €6,660/year.**
-**We built 100 free alternatives. For every industry.**
+**We built 99 free alternatives. For every industry.**
 
-[**→ Browse all 100 live demos**](https://scala-sites.vercel.app)
+[**→ Browse all 99 live demos**](https://scala-sites.vercel.app)
 
 </div>
 
@@ -44,11 +44,11 @@ The average SMB pays **€6,660/year** for:
 - SEO tools
 - Review management
 
-Most of it is unnecessary in 2026. We built the whole thing into 100 free templates.
+Most of it is unnecessary in 2026. We built the whole thing into 99 free templates.
 
 ---
 
-## The Solution — 100 Verticals, All Free
+## The Solution — 99 Verticals, All Free
 
 Every template ships with booking, WhatsApp, reviews, FAQ with JSON-LD, and SEO out of the box. Not as plugins. Not as paid add-ons. Built in.
 
@@ -58,7 +58,7 @@ Every template ships with booking, WhatsApp, reviews, FAQ with JSON-LD, and SEO 
 | Bakery | [bakery](https://scala-sites.vercel.app/bakery) |
 | Café | [café](https://scala-sites.vercel.app/cafe) |
 | Gelateria | [gelateria](https://scala-sites.vercel.app/gelateria) |
-| Wine Bar | [wine-bar](https://scala-sites.vercel.app/wine-bar) |
+| Wine Bar | [winebar](https://scala-sites.vercel.app/winebar) |
 | Brewery | [brewery](https://scala-sites.vercel.app/brewery) |
 | Sushi | [sushi](https://scala-sites.vercel.app/sushi) |
 | Catering | [catering](https://scala-sites.vercel.app/catering) |
@@ -75,6 +75,8 @@ Every template ships with booking, WhatsApp, reviews, FAQ with JSON-LD, and SEO 
 | Chiropractor | [chiropractor](https://scala-sites.vercel.app/chiropractor) |
 | Pharmacy | [pharmacy](https://scala-sites.vercel.app/pharmacy) |
 | Optician | [optician](https://scala-sites.vercel.app/optician) |
+| Gym | [gym](https://scala-sites.vercel.app/gym) |
+| CrossFit | [gym-crossfit](https://scala-sites.vercel.app/gym-crossfit) |
 | Yoga | [yoga](https://scala-sites.vercel.app/yoga) |
 | Clinic | [clinic](https://scala-sites.vercel.app/clinic) |
 | Dental Clinic | [clinic-dental](https://scala-sites.vercel.app/clinic-dental) |
@@ -174,6 +176,8 @@ Every template ships with booking, WhatsApp, reviews, FAQ with JSON-LD, and SEO 
 | Shop | [shop](https://scala-sites.vercel.app/shop) |
 | Local Shop | [shop-local](https://scala-sites.vercel.app/shop-local) |
 | Pet Shop | [pet-shop](https://scala-sites.vercel.app/pet-shop) |
+| Veterinary | [vet](https://scala-sites.vercel.app/vet) |
+| Exotic Vet | [vet-exotic](https://scala-sites.vercel.app/vet-exotic) |
 | Bookstore | [bookstore](https://scala-sites.vercel.app/bookstore) |
 | Farm Shop | [farm-shop](https://scala-sites.vercel.app/farm-shop) |
 | Butcher | [butcher](https://scala-sites.vercel.app/butcher) |
@@ -203,7 +207,7 @@ Every template ships with booking, WhatsApp, reviews, FAQ with JSON-LD, and SEO 
 
 ## What You Get for Free
 
-- ✅ 100 unique templates (not 100 copies of the same layout)
+- ✅ 99 unique templates (not 99 copies of the same layout)
 - ✅ Unique hero design per template — parallax, video, typewriter, split, glassmorphism, and more
 - ✅ Built-in booking widget
 - ✅ WhatsApp integration
@@ -307,7 +311,7 @@ Part of the **S.C.A.L.A.** open-source ecosystem:
 |---------|-------------|
 | [SARA](https://github.com/Alessandro114/sara) | WhatsApp AI agent with 20 industry-specific brains |
 | [LandIQ](https://github.com/Alessandro114/landiq) | Autonomous real estate feasibility agent |
-| [scala-sites](https://github.com/Alessandro114/scala-sites) | 100 vertical website templates (Next.js, MIT) |
+| [scala-sites](https://github.com/Alessandro114/scala-sites) | 99 vertical website templates (Next.js, MIT) |
 | [scala-agent-definitions](https://github.com/Alessandro114/scala-agent-definitions) | 79 AI tool definitions for 20 verticals |
 | [scala-mcp-server](https://github.com/Alessandro114/scala-mcp-server) | MCP server for Claude/ChatGPT — 250M+ companies |
 | [Score SDKs](https://github.com/Alessandro114/scala-score-js) | Company data — [JS](https://npmjs.com/package/scala-score) · [Python](https://pypi.org/project/scala-score) · [Go](https://github.com/Alessandro114/company-lookup-go) · [Rust](https://github.com/Alessandro114/score-rust) · [Deno](https://github.com/Alessandro114/scala-score-deno) |

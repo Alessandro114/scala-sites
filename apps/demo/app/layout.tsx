@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import { GAPageView } from './ga-page-view'
+import { LangProvider } from './components/lang-provider'
 import './globals.css'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://sites.get-scala.com'),
   icons: {
     icon: '/favicon.svg',
     shortcut: '/favicon.svg',
@@ -11,10 +13,10 @@ export const metadata: Metadata = {
   },
   title: {
     template: '%s | SCALA Sites',
-    default: 'SCALA Sites — 100 Industry Website Templates, Open Source',
+    default: 'SCALA Sites — 99 Industry Website Templates, Open Source',
   },
   description:
-    '100 production-ready, industry-optimized website templates. Restaurant, hotel, clinic, gym, law firm, farm shop, vineyard, art gallery and more. Free, open source, built with Next.js + TypeScript.',
+    '99 production-ready, industry-optimized website templates. Restaurant, hotel, clinic, gym, law firm, farm shop, vineyard, art gallery and more. Free, open source, built with Next.js + TypeScript.',
   keywords: [
     'website templates',
     'next.js templates',
@@ -25,7 +27,7 @@ export const metadata: Metadata = {
     'SCALA AI OS',
     'vertical SaaS',
     'business website',
-    '100 templates',
+    '99 templates',
     'farm shop website',
     'vineyard website',
     'art gallery website',
@@ -34,18 +36,18 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'SCALA AI OS', url: 'https://get-scala.com' }],
   openGraph: {
-    title: 'SCALA Sites — 100 Industry Website Templates',
+    title: 'SCALA Sites — 99 Industry Website Templates',
     description:
-      '100 production-ready website templates for every industry. Restaurant, hotel, clinic, gym, law firm, vineyard, art gallery and more. Free & open source.',
+      '99 production-ready website templates for every industry. Restaurant, hotel, clinic, gym, law firm, vineyard, art gallery and more. Free & open source.',
     url: 'https://sites.get-scala.com',
     siteName: 'SCALA Sites',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SCALA Sites — 100 Industry Website Templates',
+    title: 'SCALA Sites — 99 Industry Website Templates',
     description:
-      '100 production-ready website templates for every industry. Free & open source.',
+      '99 production-ready website templates for every industry. Free & open source.',
   },
   robots: {
     index: true,
@@ -78,7 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="antialiased">
-        {children}
+        <LangProvider>{children}</LangProvider>
         <Suspense fallback={null}>
           <GAPageView />
         </Suspense>
