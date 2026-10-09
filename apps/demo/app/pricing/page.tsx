@@ -89,6 +89,7 @@ export default function PricingPage() {
         <p className="text-center mt-6 text-sm">
           <a href={PLATFORM} target="_blank" rel="noopener noreferrer" style={{ color: '#a5b4fc' }}>{p('plan.compare')}</a>
         </p>
+        <p className="text-center mt-2 text-xs" style={muted}>{p('plan.vat')}</p>
       </section>
 
       {/* ADD-ONS */}
@@ -102,7 +103,7 @@ export default function PricingPage() {
             </div>
           ))}
         </div>
-        <p className="text-xs text-center mt-4" style={muted}>{p('addons.note')}</p>
+        <p className="text-xs text-center mt-4" style={muted}>{p('addons.note')} {p('plan.vat')}</p>
       </section>
 
       {/* WHY A PLATFORM */}
@@ -126,7 +127,6 @@ export default function PricingPage() {
             <thead>
               <tr style={{ color: '#a5b4fc' }}>
                 <th scope="col" className="p-4 font-semibold">{p('tco.col.tool')}</th>
-                <th scope="col" className="p-4 font-semibold">{p('tco.col.cost')}</th>
                 <th scope="col" className="p-4 font-semibold">{p('tco.col.scala')}</th>
               </tr>
             </thead>
@@ -134,15 +134,13 @@ export default function PricingPage() {
               {[1, 2, 3, 4, 5, 6, 7].map((n) => (
                 <tr key={n} style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
                   <th scope="row" className="p-4 font-medium">{p(`tco.r${n}.tool`)}</th>
-                  <td className="p-4" style={muted}>{p(`tco.r${n}.cost`)}</td>
                   <td className="p-4" style={{ color: '#34d399' }}>{p(`tco.r${n}.scala`)}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="text-center font-semibold mt-5">{p('tco.total')}</p>
-        <p className="text-xs text-center mt-2" style={muted}>{p('tco.note')}</p>
+        <p className="text-xs text-center mt-4" style={muted}>{p('tco.note')}</p>
       </section>
 
       {/* FAQ */}

@@ -21,6 +21,7 @@ const SAME_AS_EN_OK = new Set([
   'ui:hero.tagTemplates', // DE "{n} Templates"
   'pr:addons.title', // DE "Add-ons"
   'pr:why.1.t', // FR "Consolidation"
+  'pr:tco.r2.tool', 'pr:tco.r3.tool', 'pr:tco.r5.tool', // loanwords used as-is (IT/DE/PT/FR)
   'pr:faq.title', // FR "Questions"
   'pr:tco.col.scala', // IT/DE "In SCALA AI OS"
 ])
@@ -32,12 +33,12 @@ const isBrandOnly = (v) => !/[a-zA-Z]/.test(v.replace(BRANDS, ''))
 const STOP = {
   en: [' the ', ' and ', ' with ', ' for ', ' of ', ' your ', ' our '],
   it: [' il ', ' di ', ' per ', ' con ', ' della ', ' sono ', ' dei ', ' gli ', ' nel ', ' una ', ' del ', ' un ', ' alla ', ' le ', ' la ', ' che '],
-  es: [' el ', ' los ', ' las ', ' para ', ' con ', ' una ', ' del ', ' y ', ' un ', ' la ', ' il '],
+  es: [' el ', ' los ', ' las ', ' para ', ' con ', ' una ', ' del ', ' y ', ' un ', ' la '],
   pt: [' para ', ' com ', ' uma ', ' não ', ' dos ', ' das '],
   de: [' der ', ' die ', ' das ', ' und ', ' mit ', ' für ', ' ein ', ' eine '],
   fr: [' le ', ' les ', ' des ', ' pour ', ' avec ', ' une ', ' du ', ' et ', ' un ', ' la ', ' il '],
 }
-const pad = (s) => ` ${s.replace(/\b(MIT|AI OS|City of London)\b/g, '').replace(/\bper (month|user|agent|tool|seat)\b/g, '').toLowerCase()} `
+const pad = (s) => ` ${s.replace(/\b(MIT|AI OS|City of London)\b/g, '').toLowerCase()} `
 
 test('same keys in every language', () => {
   for (const sec of ['ui', 'tag', 'pr']) {
@@ -71,24 +72,28 @@ test('no untranslated strings (identical to EN) outside the allowlist', () => {
 })
 
 test('no wrong-language stopwords (any language into any other)', () => {
-  // Only words that belong to exactly one language count, so shared words ("con", "una", "des") can't misfire.
-  const distinct = Object.fromEntries(
-    LANGS.map((l) => [l, STOP[l].filter((w) => LANGS.filter((o) => o !== l).every((o) => !STOP[o].includes(w)))]),
-  )
+  // A word from language X's list is a failure inside language Y unless Y's own list also contains it
+  // (so shared words like "la", "un", "des" can't misfire, but X-only words are still caught everywhere else).
   for (const sec of ['ui', 'tag', 'pr'])
     for (const l of LANGS)
       for (const [k, v] of Object.entries(dict[l][sec])) {
-        const s = pad(v)
+        // "per month/user/…" is plain English; the strip is applied to English strings only.
+        const s = pad(l === 'en' ? v.replace(/\bper (month|user|agent|tool|seat)\b/g, '') : v)
         for (const other of LANGS.filter((x) => x !== l)) {
-          const hit = distinct[other].find((w) => s.includes(w))
+          const hit = STOP[other].find((w) => s.includes(w) && !STOP[l].includes(w))
           assert.ok(!hit, `${l}.${sec}.${k} contains ${other} word "${hit?.trim()}": ${v}`)
         }
       }
 })
 
-test('template count claimed in metadata matches the catalog', () => {
+test('template count claimed in metadata and copy matches the catalog', () => {
+  const claim = /(\d+) (?:Industry Website Templates|industry templates|production-ready|templates|template)\b/gi
+  const check = (label, text) => {
+    for (const m of text.matchAll(claim)) assert.equal(Number(m[1]), slugs.length, `${label} claims ${m[1]} templates, catalog has ${slugs.length}`)
+  }
   const layout = readFileSync(join(root, 'layout.tsx'), 'utf8')
-  const nums = [...layout.matchAll(/'?(\d+) (?:Industry Website Templates|production-ready|templates)/g)].map((m) => Number(m[1]))
-  assert.ok(nums.length >= 3, 'expected count claims in layout metadata')
-  for (const n of nums) assert.equal(n, slugs.length, `layout.tsx claims ${n} templates, catalog has ${slugs.length}`)
+  assert.ok([...layout.matchAll(claim)].length >= 3, 'expected count claims in layout metadata')
+  check('layout.tsx', layout)
+  check('pricing/layout.tsx', readFileSync(join(root, 'pricing/layout.tsx'), 'utf8'))
+  for (const [k, v] of Object.entries({ ...dict.en.ui, ...dict.en.pr })) check(`en.${k}`, v)
 })
