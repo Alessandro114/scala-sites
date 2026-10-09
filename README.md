@@ -6,10 +6,10 @@
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Alessandro114/scala-sites)
 [![Analyze your site](https://img.shields.io/badge/Analyze%20your%20site-analyze.get--scala.com-orange?style=flat-square)](https://analyze.get-scala.com)
 
-# 🚀 100 Industry Website Templates. Zero Cost.
+# 🚀 99 Industry Website Templates. Zero Cost.
 
 **Your website costs €6,660/year.**
-**We built 100 free alternatives. For every industry.**
+**We built 99 free alternatives. For every industry.**
 
 [**→ Browse all 99 live demos**](https://scala-sites.vercel.app)
 
@@ -44,11 +44,11 @@ The average SMB pays **€6,660/year** for:
 - SEO tools
 - Review management
 
-Most of it is unnecessary in 2026. We built the whole thing into 100 free templates.
+Most of it is unnecessary in 2026. We built the whole thing into 99 free templates.
 
 ---
 
-## The Solution — 100 Verticals, All Free
+## The Solution — 99 Verticals, All Free
 
 Every template ships with booking, WhatsApp, reviews, FAQ with JSON-LD, and SEO out of the box. Not as plugins. Not as paid add-ons. Built in.
 
@@ -203,7 +203,7 @@ Every template ships with booking, WhatsApp, reviews, FAQ with JSON-LD, and SEO 
 
 ## What You Get for Free
 
-- ✅ 100 unique templates (not 100 copies of the same layout)
+- ✅ 99 unique templates (not 99 copies of the same layout)
 - ✅ Unique hero design per template — parallax, video, typewriter, split, glassmorphism, and more
 - ✅ Built-in booking widget
 - ✅ WhatsApp integration
