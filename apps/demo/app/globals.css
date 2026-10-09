@@ -6,6 +6,14 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Decorative blobs / marquees in several templates are wider than the viewport
+   (measured: /restaurant +82px, /pricing +60px and /law +37px on mobile).
+   `clip` (unlike `hidden`) keeps position: sticky working. */
+html,
+body {
+  overflow-x: clip;
+}
+
 /* ============================================
    SCALA SITES — WOW EFFECTS ENGINE
    CSS-only, zero JS deps, 60fps
