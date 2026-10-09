@@ -1,40 +1,24 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Your Website Costs €6,660/Year. Ours Costs €0. | SCALA Sites',
+  title: 'Pricing — from free templates to an AI operating system',
   description:
-    'We analyzed 16 categories of tools SMBs pay for — website builders, CRM, booking, live chat, WhatsApp, SEO, and more. The average SMB spends €6,660/year on a fragmented stack. SCALA Sites is free.',
-  keywords: [
-    'website builder cost comparison',
-    'wix vs free website',
-    'how much does a website cost',
-    'smb website tools cost',
-    'free website for business',
-    'scala sites pricing',
-    'website stack cost calculator',
-    'hubspot alternative free',
-    'wix alternative',
-    'squarespace alternative',
-  ],
-  authors: [{ name: 'SCALA AI OS', url: 'https://get-scala.com' }],
+    'The 99 SCALA Sites templates are open source (MIT) and free. SCALA AI OS, the platform behind them, starts at €97/month; SOLO SARA €9.90/month; Enterprise from €2,000/month.',
+  alternates: { canonical: '/pricing' },
   openGraph: {
-    title: 'Your Website Costs €6,660/Year. Ours Costs €0.',
+    title: 'SCALA Sites Pricing — from free templates to an AI operating system',
     description:
-      'We analyzed 16 categories of tools SMBs pay for. The average fragmented stack costs €555/month. Here\'s what you\'re actually paying — and what you get for free with SCALA Sites.',
+      'Open-source templates are free. SCALA AI OS: Growth €97/month, Scale €197/month, Enterprise from €2,000/month.',
     url: 'https://sites.get-scala.com/pricing',
     siteName: 'SCALA Sites',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Your Website Costs €6,660/Year. Ours Costs €0.',
-    description:
-      'We analyzed 16 categories of tools SMBs pay for. Calculator inside — toggle your stack and watch the total climb.',
+    title: 'SCALA Sites Pricing — from free templates to an AI operating system',
+    description: 'Open-source templates are free. SCALA AI OS from €97/month.',
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 }
 
 export default function PricingLayout({ children }: { children: React.ReactNode }) {

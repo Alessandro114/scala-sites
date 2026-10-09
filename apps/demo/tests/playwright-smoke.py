@@ -25,13 +25,13 @@ with sync_playwright() as p:
                 ov=pg.evaluate('document.documentElement.scrollWidth-document.documentElement.clientWidth')
                 hl=pg.evaluate('document.documentElement.lang')
                 row=dict(vp=vp,lang=lang,path=path,overflow=ov,html_lang=hl,js_errors=[e[:100] for e in errs if 'googletagmanager' not in e and 'ERR_' not in e and 'unsplash' not in e.lower()])
-                if path=='/':
+                if path in ('/','/pricing'):
                     txt=pg.inner_text('body')
                     row['en_words']=sorted(set(m.lower() for m in EN_STOP.findall(txt))) if lang!='en' else None
                     row['h1']=pg.inner_text('h1')[:50].replace('\n',' ')
                 res.append(row); ctx.close()
     b.close()
-bad=[r for r in res if isinstance(r,dict) and (r['overflow']>0 or r['js_errors'] or (r['html_lang']!=(r['lang'] if r['path']=='/' else 'en')) or r.get('en_words'))]
+bad=[r for r in res if isinstance(r,dict) and (r['overflow']>0 or r['js_errors'] or (r['html_lang']!=(r['lang'] if r['path'] in ('/','/pricing') else 'en')) or r.get('en_words'))]
 for r in res:
     if not isinstance(r,dict): print(r)
 print('total',len([r for r in res if isinstance(r,dict)]),'bad',len(bad))

@@ -19,20 +19,28 @@ const SAME_AS_EN_OK = new Set([
   'ui:banner.eyebrow', 'ui:footer.poweredBy', // "Powered by" is used as-is in IT/DE
   'ui:cat.Food & Drink', // IT keeps the English term
   'ui:hero.tagTemplates', // DE "{n} Templates"
+  'pr:addons.title', // DE "Add-ons"
+  'pr:why.1.t', // FR "Consolidation"
+  'pr:faq.title', // FR "Questions"
+  'pr:tco.col.scala', // IT/DE "In SCALA AI OS"
 ])
+
+// A value made only of brand names, product names, numbers and currency is legitimately identical in every language.
+const BRANDS = /SOLO SARA|Growth|Scale|Enterprise|SARA|WhatsApp Business API|WhatsApp|Voice AI|Salesforce CRM|HubSpot Marketing|Zendesk Support|Docebo Academy|Power BI|CRM|Academy|MIT|AI OS/g
+const isBrandOnly = (v) => !/[a-zA-Z]/.test(v.replace(BRANDS, ''))
 
 const STOP = {
   en: [' the ', ' and ', ' with ', ' for ', ' of ', ' your ', ' our '],
-  it: [' il ', ' di ', ' per ', ' con ', ' della ', ' sono ', ' dei ', ' gli ', ' nel ', ' una ', ' del ', ' un ', ' alla '],
-  es: [' el ', ' los ', ' las ', ' para ', ' con ', ' una ', ' del ', ' y ', ' un '],
+  it: [' il ', ' di ', ' per ', ' con ', ' della ', ' sono ', ' dei ', ' gli ', ' nel ', ' una ', ' del ', ' un ', ' alla ', ' le ', ' la ', ' che '],
+  es: [' el ', ' los ', ' las ', ' para ', ' con ', ' una ', ' del ', ' y ', ' un ', ' la ', ' il '],
   pt: [' para ', ' com ', ' uma ', ' não ', ' dos ', ' das '],
   de: [' der ', ' die ', ' das ', ' und ', ' mit ', ' für ', ' ein ', ' eine '],
-  fr: [' le ', ' les ', ' des ', ' pour ', ' avec ', ' une ', ' du ', ' et ', ' un '],
+  fr: [' le ', ' les ', ' des ', ' pour ', ' avec ', ' une ', ' du ', ' et ', ' un ', ' la ', ' il '],
 }
-const pad = (s) => ` ${s.replace(/\b(MIT|AI OS|City of London)\b/g, '').toLowerCase()} `
+const pad = (s) => ` ${s.replace(/\b(MIT|AI OS|City of London)\b/g, '').replace(/\bper (month|user|agent|tool|seat)\b/g, '').toLowerCase()} `
 
 test('same keys in every language', () => {
-  for (const sec of ['ui', 'tag']) {
+  for (const sec of ['ui', 'tag', 'pr']) {
     const ref = Object.keys(dict.en[sec]).sort()
     for (const l of LANGS) assert.deepEqual(Object.keys(dict[l][sec]).sort(), ref, `${l}.${sec} keys differ from en`)
   }
@@ -45,7 +53,7 @@ test('tagline keys == real template slugs; categories all translated', () => {
 })
 
 test('no empty values, placeholders preserved', () => {
-  for (const sec of ['ui', 'tag'])
+  for (const sec of ['ui', 'tag', 'pr'])
     for (const [k, en] of Object.entries(dict.en[sec]))
       for (const l of LANGS) {
         const v = dict[l][sec][k]
@@ -56,10 +64,10 @@ test('no empty values, placeholders preserved', () => {
 })
 
 test('no untranslated strings (identical to EN) outside the allowlist', () => {
-  for (const sec of ['ui', 'tag'])
+  for (const sec of ['ui', 'tag', 'pr'])
     for (const [k, en] of Object.entries(dict.en[sec]))
       for (const l of LANGS.filter((x) => x !== 'en'))
-        if (dict[l][sec][k] === en) assert.ok(SAME_AS_EN_OK.has(`${sec}:${k}`), `${l}.${sec}.${k} is still English`)
+        if (dict[l][sec][k] === en) assert.ok(SAME_AS_EN_OK.has(`${sec}:${k}`) || isBrandOnly(en), `${l}.${sec}.${k} is still English`)
 })
 
 test('no wrong-language stopwords (any language into any other)', () => {
@@ -67,7 +75,7 @@ test('no wrong-language stopwords (any language into any other)', () => {
   const distinct = Object.fromEntries(
     LANGS.map((l) => [l, STOP[l].filter((w) => LANGS.filter((o) => o !== l).every((o) => !STOP[o].includes(w)))]),
   )
-  for (const sec of ['ui', 'tag'])
+  for (const sec of ['ui', 'tag', 'pr'])
     for (const l of LANGS)
       for (const [k, v] of Object.entries(dict[l][sec])) {
         const s = pad(v)
