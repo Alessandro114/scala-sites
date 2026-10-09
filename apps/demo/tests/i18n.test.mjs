@@ -14,21 +14,20 @@ const categories = [...new Set([...catalogSrc.matchAll(/category:\s*'([^']+)'/g)
 
 // Values that legitimately stay identical to English (brand names, loanwords, product names).
 const SAME_AS_EN_OK = new Set([
-  'ui:nav.platform', 'ui:cta.platform', 'ui:eco.app',
+  'ui:nav.platform', 'ui:cta.platform',
   'ui:hero.title2', // "Open Source." is used as-is in DE
   'ui:banner.eyebrow', 'ui:footer.poweredBy', // "Powered by" is used as-is in IT/DE
   'ui:cat.Food & Drink', // IT keeps the English term
-  'ui:eco.website', // DE "Website"
   'ui:hero.tagTemplates', // DE "{n} Templates"
 ])
 
 const STOP = {
-  en: [' the ', ' and ', ' with ', ' for ', ' of '],
-  it: [' il ', ' di ', ' per ', ' con ', ' della ', ' sono '],
-  es: [' el ', ' los ', ' las ', ' para ', ' con ', ' una '],
+  en: [' the ', ' and ', ' with ', ' for ', ' of ', ' your ', ' our '],
+  it: [' il ', ' di ', ' per ', ' con ', ' della ', ' sono ', ' dei ', ' gli ', ' nel ', ' una ', ' del ', ' un ', ' alla '],
+  es: [' el ', ' los ', ' las ', ' para ', ' con ', ' una ', ' del ', ' y ', ' un '],
   pt: [' para ', ' com ', ' uma ', ' não ', ' dos ', ' das '],
-  de: [' der ', ' die ', ' das ', ' und ', ' mit ', ' für '],
-  fr: [' le ', ' les ', ' des ', ' pour ', ' avec ', ' une '],
+  de: [' der ', ' die ', ' das ', ' und ', ' mit ', ' für ', ' ein ', ' eine '],
+  fr: [' le ', ' les ', ' des ', ' pour ', ' avec ', ' une ', ' du ', ' et ', ' un '],
 }
 const pad = (s) => ` ${s.replace(/\b(MIT|AI OS|City of London)\b/g, '').toLowerCase()} `
 
@@ -63,21 +62,18 @@ test('no untranslated strings (identical to EN) outside the allowlist', () => {
         if (dict[l][sec][k] === en) assert.ok(SAME_AS_EN_OK.has(`${sec}:${k}`), `${l}.${sec}.${k} is still English`)
 })
 
-test('no wrong-language stopwords', () => {
+test('no wrong-language stopwords (any language into any other)', () => {
+  // Only words that belong to exactly one language count, so shared words ("con", "una", "des") can't misfire.
+  const distinct = Object.fromEntries(
+    LANGS.map((l) => [l, STOP[l].filter((w) => LANGS.filter((o) => o !== l).every((o) => !STOP[o].includes(w)))]),
+  )
   for (const sec of ['ui', 'tag'])
     for (const l of LANGS)
       for (const [k, v] of Object.entries(dict[l][sec])) {
         const s = pad(v)
         for (const other of LANGS.filter((x) => x !== l)) {
-          if (other === 'en' && l !== 'en') {
-            // ES/PT/FR/IT/DE strings must not contain English function words
-            const hit = STOP.en.find((w) => s.includes(w))
-            assert.ok(!hit, `${l}.${sec}.${k} contains English word "${hit?.trim()}": ${v}`)
-          }
-        }
-        if (l === 'en') {
-          const hit = [...STOP.it, ...STOP.es, ...STOP.pt, ...STOP.de, ...STOP.fr].find((w) => s.includes(w) && !STOP.en.includes(w))
-          assert.ok(!hit, `en.${sec}.${k} contains non-English word "${hit?.trim()}": ${v}`)
+          const hit = distinct[other].find((w) => s.includes(w))
+          assert.ok(!hit, `${l}.${sec}.${k} contains ${other} word "${hit?.trim()}": ${v}`)
         }
       }
 })

@@ -14,18 +14,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: BASE_URL,
-      // hreflang: English is the default (x-default); the other languages use ?lang=xx.
-      alternates: {
-        languages: {
-          en: BASE_URL,
-          'x-default': BASE_URL,
-          it: `${BASE_URL}/?lang=it`,
-          es: `${BASE_URL}/?lang=es`,
-          pt: `${BASE_URL}/?lang=pt`,
-          de: `${BASE_URL}/?lang=de`,
-          fr: `${BASE_URL}/?lang=fr`,
-        },
-      },
       lastModified: now,
       changeFrequency: 'weekly',
       priority: 1.0,

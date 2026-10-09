@@ -58,7 +58,7 @@ Every template ships with booking, WhatsApp, reviews, FAQ with JSON-LD, and SEO 
 | Bakery | [bakery](https://scala-sites.vercel.app/bakery) |
 | Café | [café](https://scala-sites.vercel.app/cafe) |
 | Gelateria | [gelateria](https://scala-sites.vercel.app/gelateria) |
-| Wine Bar | [wine-bar](https://scala-sites.vercel.app/winebar) |
+| Wine Bar | [winebar](https://scala-sites.vercel.app/winebar) |
 | Brewery | [brewery](https://scala-sites.vercel.app/brewery) |
 | Sushi | [sushi](https://scala-sites.vercel.app/sushi) |
 | Catering | [catering](https://scala-sites.vercel.app/catering) |
@@ -75,6 +75,8 @@ Every template ships with booking, WhatsApp, reviews, FAQ with JSON-LD, and SEO 
 | Chiropractor | [chiropractor](https://scala-sites.vercel.app/chiropractor) |
 | Pharmacy | [pharmacy](https://scala-sites.vercel.app/pharmacy) |
 | Optician | [optician](https://scala-sites.vercel.app/optician) |
+| Gym | [gym](https://scala-sites.vercel.app/gym) |
+| CrossFit | [gym-crossfit](https://scala-sites.vercel.app/gym-crossfit) |
 | Yoga | [yoga](https://scala-sites.vercel.app/yoga) |
 | Clinic | [clinic](https://scala-sites.vercel.app/clinic) |
 | Dental Clinic | [clinic-dental](https://scala-sites.vercel.app/clinic-dental) |
@@ -174,6 +176,8 @@ Every template ships with booking, WhatsApp, reviews, FAQ with JSON-LD, and SEO 
 | Shop | [shop](https://scala-sites.vercel.app/shop) |
 | Local Shop | [shop-local](https://scala-sites.vercel.app/shop-local) |
 | Pet Shop | [pet-shop](https://scala-sites.vercel.app/pet-shop) |
+| Veterinary | [vet](https://scala-sites.vercel.app/vet) |
+| Exotic Vet | [vet-exotic](https://scala-sites.vercel.app/vet-exotic) |
 | Bookstore | [bookstore](https://scala-sites.vercel.app/bookstore) |
 | Farm Shop | [farm-shop](https://scala-sites.vercel.app/farm-shop) |
 | Butcher | [butcher](https://scala-sites.vercel.app/butcher) |

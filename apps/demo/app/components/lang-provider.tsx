@@ -1,5 +1,6 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
 import { createContext, useCallback, useContext, useEffect, useState } from 'react'
 import { DEFAULT_LANG, LANG_COOKIE, isLang, translate, type Lang } from '../lib/i18n'
 
@@ -26,15 +27,14 @@ function readCookie(): string | null {
 
 function writeCookie(lang: Lang) {
   try {
-    // Shared with the other *.get-scala.com products when served from that domain.
-    const domain = location.hostname.endsWith('get-scala.com') ? '; domain=.get-scala.com' : ''
-    document.cookie = `${LANG_COOKIE}=${lang}; path=/; max-age=31536000; samesite=lax${domain}`
+    document.cookie = `${LANG_COOKIE}=${lang}; path=/; max-age=31536000; samesite=lax`
   } catch {
     /* storage can be blocked: the choice then lasts for this page view only */
   }
 }
 
 export function LangProvider({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname()
   // First render is always EN (matches the prerendered HTML); the real language
   // is resolved right after hydration: ?lang= > saved choice > EN. No browser sniffing.
   const [lang, setLangState] = useState<Lang>(DEFAULT_LANG)
@@ -46,9 +46,11 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
     setLangState(next)
   }, [])
 
+  // Only the home page is translated: every other route (English-only demos, /pricing)
+  // must keep lang="en" whatever the saved choice is.
   useEffect(() => {
-    document.documentElement.lang = lang
-  }, [lang])
+    document.documentElement.lang = pathname === '/' ? lang : DEFAULT_LANG
+  }, [lang, pathname])
 
   const setLang = useCallback((l: Lang) => {
     writeCookie(l)

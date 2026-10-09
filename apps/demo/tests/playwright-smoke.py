@@ -31,7 +31,7 @@ with sync_playwright() as p:
                     row['h1']=pg.inner_text('h1')[:50].replace('\n',' ')
                 res.append(row); ctx.close()
     b.close()
-bad=[r for r in res if isinstance(r,dict) and (r['overflow']>0 or r['js_errors'] or r['html_lang']!=r['lang'] and r['path']=='/' or r.get('en_words'))]
+bad=[r for r in res if isinstance(r,dict) and (r['overflow']>0 or r['js_errors'] or (r['html_lang']!=(r['lang'] if r['path']=='/' else 'en')) or r.get('en_words'))]
 for r in res:
     if not isinstance(r,dict): print(r)
 print('total',len([r for r in res if isinstance(r,dict)]),'bad',len(bad))

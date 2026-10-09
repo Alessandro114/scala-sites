@@ -2,7 +2,6 @@
  "ui": {
   "nav.platform": "SCALA AI OS",
   "nav.pricing": "Pricing",
-  "nav.lang": "Language",
   "hero.badge": "Open Source · MIT License",
   "hero.title1": "{n} Industry Templates.",
   "hero.title2": "Open Source.",
@@ -22,8 +21,6 @@
   "footer.builtWith": "Built with",
   "footer.poweredBy": "Powered by",
   "eco.title": "SCALA ecosystem",
-  "eco.website": "Website",
-  "eco.app": "App",
   "aria.langSwitch": "Choose language",
   "cat.Food & Drink": "Food & Drink",
   "cat.Property": "Property",
