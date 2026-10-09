@@ -4,6 +4,8 @@ import { usePathname } from 'next/navigation'
 import { createContext, useCallback, useContext, useEffect, useState } from 'react'
 import { DEFAULT_LANG, LANG_COOKIE, isLang, translate, type Lang } from '../lib/i18n'
 
+const TRANSLATED_ROUTES = ['/', '/pricing']
+
 interface Ctx {
   lang: Lang
   setLang: (l: Lang) => void
@@ -46,10 +48,10 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
     setLangState(next)
   }, [])
 
-  // Only the home page is translated: every other route (English-only demos, /pricing)
-  // must keep lang="en" whatever the saved choice is.
+  // Only the home page and /pricing are translated: every other route (English-only
+  // template demos) must keep lang="en" whatever the saved choice is.
   useEffect(() => {
-    document.documentElement.lang = pathname === '/' ? lang : DEFAULT_LANG
+    document.documentElement.lang = TRANSLATED_ROUTES.includes(pathname) ? lang : DEFAULT_LANG
   }, [lang, pathname])
 
   const setLang = useCallback((l: Lang) => {
