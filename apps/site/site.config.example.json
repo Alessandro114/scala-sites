@@ -1,0 +1,23 @@
+{
+  "template": "bakery",
+  "locale": "it",
+  "site_url": "https://www.tuodominio.it",
+  "business": {
+    "name": "Panificio Rossi",
+    "legal_name": "Rossi Mario",
+    "vat_id": "IT01234567890",
+    "address": "Via Roma 1, 20100 Milano MI",
+    "phone": "+39 02 1234567",
+    "email": "info@tuodominio.it",
+    "whatsapp": "+39 333 1234567",
+    "instagram": "panificiorossi",
+    "facebook": ""
+  },
+  "seo": {
+    "title": "Panificio Rossi | Pane e dolci a Milano",
+    "description": "Pane a lievitazione naturale, focacce e dolci appena sfornati a Milano."
+  },
+  "branding": { "primary": "#3c1f0a", "accent": "#c9941a" },
+  "content_reviewed": false,
+  "go_live": false
+}
