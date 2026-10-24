@@ -11,17 +11,17 @@ import { EcosystemBar } from './components/ecosystem-bar'
 
 
 const CATEGORY_COLORS: Record<Category, string> = {
-  All: 'from-violet-600 to-indigo-600',
+  All: 'from-[#D4AF37] to-[#B8962E]',
   'Food & Drink': 'from-orange-500 to-red-500',
   Property: 'from-blue-600 to-cyan-500',
   'Health & Beauty': 'from-pink-500 to-rose-400',
-  Creative: 'from-purple-600 to-fuchsia-500',
+  Creative: 'from-[#D4AF37] to-fuchsia-500',
   'Professional Services': 'from-slate-600 to-blue-700',
-  Education: 'from-violet-600 to-purple-500',
+  Education: 'from-[#D4AF37] to-[#B8962E]',
   Automotive: 'from-zinc-600 to-slate-500',
-  Entertainment: 'from-red-600 to-purple-600',
+  Entertainment: 'from-red-600 to-[#B8962E]',
   'Home Services': 'from-teal-600 to-blue-500',
-  Travel: 'from-sky-500 to-indigo-500',
+  Travel: 'from-sky-500 to-[#B8962E]',
   Retail: 'from-amber-500 to-orange-500',
   Community: 'from-rose-500 to-amber-500',
 }
@@ -34,13 +34,13 @@ export default function HomeClient() {
     active === 'All' ? verticals : verticals.filter((v) => v.category === active)
 
   return (
-    <div className="min-h-screen" style={{ background: '#080c14' }}>
+    <div className="min-h-screen" style={{ background: '#0B1120' }}>
       {/* ── NAV ── */}
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4"
-        style={{ background: 'rgba(8,12,20,0.8)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+        style={{ background: 'rgba(11,17,32,0.8)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
         <div className="flex items-center gap-3">
-          <div className="w-7 h-7 rounded-lg flex items-center justify-center text-white text-xs font-bold"
-            style={{ background: 'linear-gradient(135deg,#6c63ff,#a855f7)' }}>S</div>
+          <div className="w-7 h-7 rounded-lg flex items-center justify-center text-[#0B1120] text-xs font-bold"
+            style={{ background: 'linear-gradient(135deg,#D4AF37,#E6C24A)' }}>S</div>
           <span className="text-white font-semibold tracking-tight">SCALA Sites</span>
         </div>
         <div className="flex items-center gap-3">
@@ -73,9 +73,9 @@ export default function HomeClient() {
         {/* gradient mesh background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full opacity-25"
-            style={{ background: 'radial-gradient(ellipse at center, #6c63ff 0%, transparent 70%)', filter: 'blur(80px)' }} />
+            style={{ background: 'radial-gradient(ellipse at center, #D4AF37 0%, transparent 70%)', filter: 'blur(80px)' }} />
           <div className="absolute top-20 left-1/4 w-[400px] h-[400px] rounded-full opacity-15"
-            style={{ background: 'radial-gradient(ellipse at center, #a855f7 0%, transparent 70%)', filter: 'blur(60px)' }} />
+            style={{ background: 'radial-gradient(ellipse at center, #E6C24A 0%, transparent 70%)', filter: 'blur(60px)' }} />
           <div className="absolute top-32 right-1/4 w-[300px] h-[300px] rounded-full opacity-15"
             style={{ background: 'radial-gradient(ellipse at center, #06b6d4 0%, transparent 70%)', filter: 'blur(60px)' }} />
           {/* subtle grid overlay */}
@@ -86,15 +86,15 @@ export default function HomeClient() {
         <div className="relative max-w-4xl mx-auto">
           {/* badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold mb-6 tracking-wide uppercase"
-            style={{ background: 'rgba(108,99,255,0.15)', border: '1px solid rgba(108,99,255,0.35)', color: '#a5b4fc' }}>
-            <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
+            style={{ background: 'rgba(212,175,55,0.15)', border: '1px solid rgba(212,175,55,0.35)', color: '#F3DE8A' }}>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#E6C24A] animate-pulse" />
             {t('hero.badge')}
           </div>
 
           <h1 className="text-5xl sm:text-7xl font-extrabold text-white leading-tight tracking-tight mb-6"
             style={{ letterSpacing: '-0.03em' }}>
             <span className="block">{t('hero.title1', { n: verticals.length })}</span>
-            <span className="block" style={{ background: 'linear-gradient(135deg,#6c63ff 0%,#a855f7 40%,#06b6d4 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+            <span className="block" style={{ background: 'linear-gradient(135deg,#D4AF37 0%,#E6C24A 40%,#F3DE8A 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
               {t('hero.title2')}
             </span>
           </h1>
@@ -114,8 +114,8 @@ export default function HomeClient() {
 
           <div className="flex flex-wrap justify-center gap-4">
             <a href="https://github.com/Alessandro114/scala-sites" target="_blank" rel="noopener noreferrer"
-              className="px-6 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:scale-105"
-              style={{ background: 'linear-gradient(135deg,#6c63ff,#a855f7)' }}>
+              className="px-6 py-3 rounded-xl text-sm font-semibold text-[#0B1120] transition-all hover:scale-105"
+              style={{ background: 'linear-gradient(135deg,#D4AF37,#E6C24A)' }}>
               {t('cta.github')}
             </a>
             <a href="https://get-scala.com" target="_blank" rel="noopener noreferrer"
@@ -143,7 +143,7 @@ export default function HomeClient() {
                 'pink-500': '#ec4899', 'rose-400': '#fb7185',
                 'purple-600': '#9333ea', 'fuchsia-500': '#d946ef',
                 'slate-600': '#475569', 'blue-700': '#1d4ed8',
-                'purple-500': '#a855f7',
+                'purple-500': '#E6C24A',
                 'zinc-600': '#52525b', 'slate-500': '#64748b',
                 'red-600': '#dc2626',
                 'teal-600': '#0d9488', 'blue-500': '#3b82f6',
@@ -151,8 +151,8 @@ export default function HomeClient() {
                 'amber-500': '#f59e0b', 'amber-500-2': '#f59e0b',
                 'rose-500': '#f43f5e',
               }
-              const fromColor = gradMap[gradParts[0]] || '#6c63ff'
-              const toColor = gradMap[gradParts[1]] || '#a855f7'
+              const fromColor = gradMap[gradParts[0]] || '#D4AF37'
+              const toColor = gradMap[gradParts[1]] || '#E6C24A'
 
               return (
                 <button
@@ -163,7 +163,7 @@ export default function HomeClient() {
                   }`}
                   style={
                     isActive
-                      ? { background: `linear-gradient(135deg, ${fromColor}, ${toColor})`, boxShadow: '0 2px 12px rgba(108,99,255,0.3)' }
+                      ? { background: `linear-gradient(135deg, ${fromColor}, ${toColor})`, boxShadow: '0 2px 12px rgba(212,175,55,0.3)' }
                       : { background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.5)' }
                   }
                 >
@@ -186,7 +186,7 @@ export default function HomeClient() {
               key={v.slug}
               href={v.slug}
               className="group relative rounded-2xl overflow-hidden transition-all hover:scale-[1.02] hover:shadow-2xl"
-              style={{ border: '1px solid rgba(255,255,255,0.08)', background: '#0d1117' }}
+              style={{ border: '1px solid rgba(255,255,255,0.08)', background: '#0B1120' }}
             >
               {/* color preview band */}
               <div className="h-28 relative overflow-hidden"
@@ -212,7 +212,7 @@ export default function HomeClient() {
 
               {/* card body */}
               <div className="p-4">
-                <h3 className="text-sm font-bold text-white mb-1 leading-tight group-hover:text-violet-300 transition-colors">
+                <h3 className="text-sm font-bold text-white mb-1 leading-tight group-hover:text-[#F3DE8A] transition-colors">
                   {v.name}
                 </h3>
                 <p className="text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.45)' }}>
@@ -239,12 +239,12 @@ export default function HomeClient() {
       {/* ── PLATFORM BANNER ── */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
         <div className="relative overflow-hidden rounded-3xl p-10 text-center"
-          style={{ background: 'linear-gradient(135deg, #0d0c1f 0%, #1a1040 50%, #0a1628 100%)', border: '1px solid rgba(108,99,255,0.25)' }}>
+          style={{ background: 'linear-gradient(135deg, #0B1120 0%, #111827 50%, #0a1628 100%)', border: '1px solid rgba(212,175,55,0.25)' }}>
           <div className="absolute inset-0 opacity-30 pointer-events-none"
-            style={{ background: 'radial-gradient(ellipse at 50% 0%, #6c63ff 0%, transparent 60%)', filter: 'blur(40px)' }} />
+            style={{ background: 'radial-gradient(ellipse at 50% 0%, #D4AF37 0%, transparent 60%)', filter: 'blur(40px)' }} />
           <div className="relative">
             <p className="text-xs font-semibold uppercase tracking-widest mb-4"
-              style={{ color: '#a5b4fc' }}>{t('banner.eyebrow')}</p>
+              style={{ color: '#F3DE8A' }}>{t('banner.eyebrow')}</p>
             <h2 className="text-3xl font-bold text-white mb-4">
               {t('banner.title')}
             </h2>
@@ -254,7 +254,7 @@ export default function HomeClient() {
             <div className="flex flex-wrap justify-center gap-4">
               <a href="https://get-scala.com" target="_blank" rel="noopener noreferrer"
                 className="px-6 py-3 rounded-xl text-sm font-semibold text-white transition-all hover:scale-105"
-                style={{ background: 'linear-gradient(135deg,#6c63ff,#a855f7)' }}>
+                style={{ background: 'linear-gradient(135deg,#D4AF37,#E6C24A)' }}>
                 {t('banner.cta1')}
               </a>
               <a href="https://github.com/Alessandro114/scala-sites" target="_blank" rel="noopener noreferrer"

@@ -68,7 +68,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('consent', 'default', {
-            'analytics_storage': 'granted',
+            'analytics_storage': 'denied', // 24/10/2026: decisione consenso 14/10 (default negato); nessun banner su questo sito: misura Umami/server, GA4 non misura
+
             'ad_storage': 'denied',
             'ad_user_data': 'denied',
             'ad_personalization': 'denied'

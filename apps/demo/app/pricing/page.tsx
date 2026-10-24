@@ -10,8 +10,8 @@ const PLATFORM = 'https://get-scala.com/en/pricing'
 const CONTACT = 'https://get-scala.com/en/contact'
 
 const muted = { color: 'rgba(255,255,255,0.55)' } as const
-const card = { background: '#0d1117', border: '1px solid rgba(255,255,255,0.08)' } as const
-const gradient = { background: 'linear-gradient(135deg,#6c63ff,#a855f7)' } as const
+const card = { background: '#0B1120', border: '1px solid rgba(255,255,255,0.08)' } as const
+const gradient = { background: 'linear-gradient(135deg,#D4AF37,#E6C24A)' } as const
 
 interface Plan {
   id: 'free' | 'sara' | 'growth' | 'scale' | 'ent'
@@ -38,7 +38,7 @@ export default function PricingPage() {
       <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4"
         style={{ background: 'rgba(8,12,20,0.8)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
         <Link href="/" className="flex items-center gap-3">
-          <span className="w-7 h-7 rounded-lg flex items-center justify-center text-white text-xs font-bold" style={gradient}>S</span>
+          <span className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold" style={{ ...gradient, color: '#0B1120' }}>S</span>
           <span className="font-semibold tracking-tight">SCALA Sites</span>
         </Link>
         <div className="flex items-center gap-3">
@@ -51,10 +51,10 @@ export default function PricingPage() {
 
       {/* HERO */}
       <header className="pt-32 pb-14 px-6 text-center">
-        <p className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: '#a5b4fc' }}>{p('hero.eyebrow')}</p>
+        <p className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: '#F3DE8A' }}>{p('hero.eyebrow')}</p>
         <h1 className="text-4xl sm:text-6xl font-extrabold leading-tight mb-6" style={{ letterSpacing: '-0.03em' }}>
           <span className="block">{p('hero.title1')}</span>
-          <span className="block" style={{ background: 'linear-gradient(135deg,#6c63ff,#a855f7 45%,#06b6d4)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+          <span className="block" style={{ background: 'linear-gradient(135deg,#D4AF37,#E6C24A 45%,#F3DE8A)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
             {p('hero.title2')}
           </span>
         </h1>
@@ -66,8 +66,8 @@ export default function PricingPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-4">
           {PLANS.map((pl) => (
             <div key={pl.id} className="rounded-2xl p-6 flex flex-col"
-              style={pl.accent ? { ...card, border: '1px solid rgba(108,99,255,0.5)', background: 'linear-gradient(160deg,#12102a,#0d1117)' } : card}>
-              <h2 className="text-sm font-semibold uppercase tracking-wide mb-4" style={{ color: '#a5b4fc' }}>{p(`plan.${pl.id}.name`)}</h2>
+              style={pl.accent ? { ...card, border: '1px solid rgba(212,175,55,0.5)', background: 'linear-gradient(160deg,#0B1120,#0B1120)' } : card}>
+              <h2 className="text-sm font-semibold uppercase tracking-wide mb-4" style={{ color: '#F3DE8A' }}>{p(`plan.${pl.id}.name`)}</h2>
               <div className="text-3xl font-extrabold">{p(`plan.${pl.id}.price`)}</div>
               {pl.id !== 'free' && <div className="text-xs mt-1 mb-5" style={muted}>{p(`plan.${pl.id}.note`)}</div>}
               {pl.id === 'free' && <div className="text-xs mt-1 mb-5" style={muted}>{p('plan.free.note')}</div>}
@@ -79,7 +79,7 @@ export default function PricingPage() {
               {pl.cta && (
                 <a href={pl.href} target="_blank" rel="noopener noreferrer"
                   className="text-center px-4 py-2.5 rounded-xl text-sm font-semibold"
-                  style={pl.accent ? { ...gradient, color: '#fff' } : { background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.9)' }}>
+                  style={pl.accent ? { ...gradient, color: '#0B1120' } : { background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.9)' }}>
                   {p(pl.cta)}
                 </a>
               )}
@@ -87,7 +87,7 @@ export default function PricingPage() {
           ))}
         </div>
         <p className="text-center mt-6 text-sm">
-          <a href={PLATFORM} target="_blank" rel="noopener noreferrer" style={{ color: '#a5b4fc' }}>{p('plan.compare')}</a>
+          <a href={PLATFORM} target="_blank" rel="noopener noreferrer" style={{ color: '#F3DE8A' }}>{p('plan.compare')}</a>
         </p>
         <p className="text-center mt-2 text-xs" style={muted}>{p('plan.vat')}</p>
       </section>
@@ -99,7 +99,7 @@ export default function PricingPage() {
           {(['wa', 'voice', 'waapi'] as const).map((a) => (
             <div key={a} className="rounded-xl p-5 text-center" style={card}>
               <div className="font-semibold mb-1">{p(`addons.${a}`)}</div>
-              <div style={{ color: '#a5b4fc' }}>{p(`addons.${a}.price`)}</div>
+              <div style={{ color: '#F3DE8A' }}>{p(`addons.${a}.price`)}</div>
             </div>
           ))}
         </div>
@@ -125,7 +125,7 @@ export default function PricingPage() {
         <div className="rounded-xl overflow-x-auto" style={card}>
           <table className="w-full text-sm text-left">
             <thead>
-              <tr style={{ color: '#a5b4fc' }}>
+              <tr style={{ color: '#F3DE8A' }}>
                 <th scope="col" className="p-4 font-semibold">{p('tco.col.tool')}</th>
                 <th scope="col" className="p-4 font-semibold">{p('tco.col.scala')}</th>
               </tr>
@@ -158,10 +158,10 @@ export default function PricingPage() {
 
       {/* CTA */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 pb-20">
-        <div className="rounded-3xl p-10 text-center" style={{ background: 'linear-gradient(135deg,#0d0c1f,#1a1040 50%,#0a1628)', border: '1px solid rgba(108,99,255,0.25)' }}>
+        <div className="rounded-3xl p-10 text-center" style={{ background: 'linear-gradient(135deg,#0B1120,#111827 50%,#0a1628)', border: '1px solid rgba(212,175,55,0.25)' }}>
           <h2 className="text-2xl sm:text-3xl font-bold mb-6">{p('cta.title')}</h2>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href={CONTACT} target="_blank" rel="noopener noreferrer" className="px-6 py-3 rounded-xl text-sm font-semibold" style={gradient}>{p('cta.primary')}</a>
+            <a href={CONTACT} target="_blank" rel="noopener noreferrer" className="px-6 py-3 rounded-xl text-sm font-semibold" style={{ ...gradient, color: '#0B1120' }}>{p('cta.primary')}</a>
             <Link href="/" className="px-6 py-3 rounded-xl text-sm font-semibold" style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)' }}>{p('cta.secondary')}</Link>
           </div>
         </div>
