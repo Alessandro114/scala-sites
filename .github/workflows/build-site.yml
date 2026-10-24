@@ -1,0 +1,34 @@
+# Costruisce il sito statico dal file apps/site/site.config.json e lo offre come zip (artifact).
+# Solo avvio manuale: nel repo originale non consuma minuti se nessuno lo lancia. Pensato per il FORK dell'utente
+# (Actions gratuite sui repository pubblici): fork -> carica site.config.json -> Actions -> "Build site" -> scarica lo zip.
+name: Build site
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Controlla che la configurazione esista
+        run: test -f apps/site/site.config.json || (echo "Manca apps/site/site.config.json: caricalo nel fork (vedi apps/site/docs/SELF-SERVICE.md)" && exit 1)
+      - name: Build (prepare + next build + postbuild)
+        run: npm -w scala-sites-installer run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sito-statico
+          path: apps/site/out
+          if-no-files-found: error
+          retention-days: 7
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rapporto-contenuti
+          path: apps/site/site-report.md
+          retention-days: 7

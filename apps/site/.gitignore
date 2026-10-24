@@ -1,0 +1,10 @@
+# generati da prepare-site / next build
+app/page.tsx
+app/layout.tsx
+app/privacy/
+public/img/
+out/
+.next/
+site-report.md
+next-env.d.ts
+tsconfig.tsbuildinfo

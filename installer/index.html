@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SCALA Sites — configura il tuo sito / set up your site</title>
+<meta name="robots" content="noindex">
+<style>
+:root{--bg:#fff;--fg:#14213d;--mut:#5b6b80;--line:#d9dee7;--acc:#b07f00;--bad:#b3261e;--ok:#0e7a3e}
+@media(prefers-color-scheme:dark){:root{--bg:#0b1220;--fg:#e8eef6;--mut:#93a3b8;--line:#243046;--acc:#f5b700;--bad:#ff8a80;--ok:#4ade80}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+main{max-width:760px;margin:0 auto;padding:1.5rem 1rem 4rem}h1{font-size:1.6rem;margin:.2rem 0}h2{font-size:1.15rem;margin:1.6rem 0 .5rem}
+label{display:block;margin:.8rem 0 .2rem;font-weight:600}small{color:var(--mut);font-weight:400}
+input,select{width:100%;padding:.65rem .8rem;border:1px solid var(--line);border-radius:8px;background:transparent;color:inherit;font:inherit}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}@media(max-width:560px){.row{grid-template-columns:1fr}}
+button{padding:.8rem 1.2rem;border-radius:8px;border:0;background:var(--acc);color:#111;font-weight:700;font:inherit;font-weight:700;cursor:pointer;margin-top:1.2rem}
+.err{color:var(--bad);font-size:.9rem;margin:.2rem 0 0}.note{border:1px solid var(--line);border-radius:10px;padding:.8rem 1rem;margin:1rem 0}
+code,pre{background:rgba(127,127,127,.15);border-radius:6px;padding:.1rem .35rem}pre{padding:.7rem;overflow:auto}
+.lang{float:right}#out{display:none}a{color:var(--acc)}
+</style>
+</head>
+<body>
+<main>
+<div class="lang"><a href="#" id="l-it">IT</a> · <a href="#" id="l-en">EN</a></div>
+<h1 data-i="title"></h1>
+<p data-i="intro"></p>
+<div class="note" data-i="privacy"></div>
+
+<form id="f" novalidate>
+<label><span data-i="tpl"></span><select id="template"><option value="bakery">Bakery / Panificio (verificato / verified)</option></select></label>
+<div class="row">
+  <div><label><span data-i="name"></span><input id="name" maxlength="80" autocomplete="off"></label><div class="err" id="e-name"></div></div>
+  <div><label><span data-i="legal"></span><input id="legal" maxlength="120" autocomplete="off"></label><div class="err" id="e-legal"></div></div>
+</div>
+<div class="row">
+  <div><label><span data-i="vat"></span><input id="vat" maxlength="30" autocomplete="off"></label><div class="err" id="e-vat"></div></div>
+  <div><label><span data-i="site"></span><input id="site" placeholder="https://www.tuodominio.it" autocomplete="off"></label><div class="err" id="e-site"></div></div>
+</div>
+<label><span data-i="addr"></span><input id="addr" maxlength="160" autocomplete="off"></label><div class="err" id="e-addr"></div>
+<div class="row">
+  <div><label><span data-i="phone"></span><input id="phone" placeholder="+39 02 1234567" autocomplete="off"></label><div class="err" id="e-phone"></div></div>
+  <div><label><span data-i="wa"></span><input id="wa" placeholder="+39 333 1234567" autocomplete="off"></label><div class="err" id="e-wa"></div></div>
+</div>
+<label><span data-i="email"></span><input id="email" type="email" autocomplete="off"></label><div class="err" id="e-email"></div>
+<div class="row">
+  <div><label><span data-i="ig"></span><input id="ig" placeholder="panificiorossi" autocomplete="off"></label></div>
+  <div><label><span data-i="fb"></span><input id="fb" placeholder="https://facebook.com/..." autocomplete="off"></label><div class="err" id="e-fb"></div></div>
+</div>
+<label><span data-i="stitle"></span> <small>(max 70)</small><input id="stitle" maxlength="70" autocomplete="off"></label><div class="err" id="e-stitle"></div>
+<label><span data-i="sdesc"></span> <small>(max 170)</small><input id="sdesc" maxlength="170" autocomplete="off"></label><div class="err" id="e-sdesc"></div>
+<div class="row">
+  <div><label><span data-i="c1"></span><input id="c1" type="color" value="#3c1f0a"></label></div>
+  <div><label><span data-i="c2"></span><input id="c2" type="color" value="#c9941a"></label></div>
+</div>
+<label><span data-i="lang"></span><select id="locale"><option value="it">Italiano</option><option value="en">English</option></select></label>
+<button type="submit" data-i="go"></button>
+</form>
+
+<section id="out">
+<h2 data-i="done"></h2>
+<p data-i="doneTxt"></p>
+<h2 data-i="paths"></h2>
+<div class="note"><b data-i="p1t"></b><div data-i="p1"></div></div>
+<div class="note"><b data-i="p2t"></b><div data-i="p2"></div></div>
+<div class="note"><b data-i="p3t"></b><div data-i="p3"></div></div>
+<p data-i="warn"></p>
+</section>
+</main>
+<script>
+(function(){
+var T={
+it:{title:'Configura il tuo sito',intro:'Compila i dati della tua attività, scarica il file di configurazione e usalo per costruire il sito. Questa pagina funziona nel tuo browser: non invia nulla a nessun server.',
+privacy:'Nessun tracciamento, nessun cookie, nessun invio di dati: quello che scrivi resta sul tuo computer finché non scarichi il file.',
+tpl:'Modello',name:'Nome dell\'attività',legal:'Ragione sociale / titolare',vat:'Partita IVA / ID fiscale',site:'Indirizzo del sito (https://…)',addr:'Indirizzo',phone:'Telefono',wa:'WhatsApp (se diverso)',email:'Email',ig:'Instagram (facoltativo)',fb:'Facebook (facoltativo)',stitle:'Titolo per Google',sdesc:'Descrizione per Google',c1:'Colore principale',c2:'Colore secondario',lang:'Lingua di modulo e privacy',go:'Crea il file di configurazione',
+done:'Fatto: site.config.json scaricato',doneTxt:'Ora scegli come costruire il sito. In ogni caso il primo risultato è una versione di PROVA nascosta ai motori di ricerca: non è pubblicabile finché non sostituisci prodotti, prezzi, orari e FAQ della demo e imposti content_reviewed e go_live.',paths:'Tre modi per costruirlo',
+p1t:'1. Fork + GitHub Action (senza installare nulla)',p1:'Fai il fork di github.com/Alessandro114/scala-sites, carica site.config.json in apps/site/, apri Actions → "Build site" → Run workflow, scarica lo zip "sito-statico" e carica il contenuto sul tuo hosting (FTP/cPanel).',
+p2t:'2. Fork + Cloudflare Pages / Vercel / Netlify',p2:'Collega il tuo fork. Comando di build: npm -w scala-sites-installer run build — cartella di output: apps/site/out. Il file site.config.json deve essere nel repository.',
+p3t:'3. Sul tuo computer',p3:'Serve Node 20. <pre>git clone https://github.com/Alessandro114/scala-sites\ncd scala-sites &amp;&amp; npm install\n# metti site.config.json in apps/site/\nnpm -w scala-sites-installer run build</pre> Il sito è in apps/site/out.',
+warn:'Attenzione: i testi del modello sono in inglese e i prodotti/prezzi/FAQ sono quelli della demo. La pagina privacy è un modello da verificare, non una consulenza legale. Guida completa: apps/site/docs/SELF-SERVICE.md.',
+req:'Obbligatorio',bad:'Formato non valido',chars:'Non usare < > { } " ` \\ $'},
+en:{title:'Set up your site',intro:'Fill in your business details, download the configuration file and use it to build the site. This page runs in your browser: nothing is sent to any server.',
+privacy:'No tracking, no cookies, no data sent: what you type stays on your computer until you download the file.',
+tpl:'Template',name:'Business name',legal:'Legal name / owner',vat:'VAT / tax ID',site:'Site address (https://…)',addr:'Address',phone:'Phone',wa:'WhatsApp (if different)',email:'Email',ig:'Instagram (optional)',fb:'Facebook (optional)',stitle:'Title for Google',sdesc:'Description for Google',c1:'Main colour',c2:'Accent colour',lang:'Form and privacy language',go:'Create the configuration file',
+done:'Done: site.config.json downloaded',doneTxt:'Now choose how to build the site. Either way the first result is a TEST version hidden from search engines: it cannot go live until you replace the demo products, prices, hours and FAQ and set content_reviewed and go_live.',paths:'Three ways to build it',
+p1t:'1. Fork + GitHub Action (nothing to install)',p1:'Fork github.com/Alessandro114/scala-sites, upload site.config.json to apps/site/, open Actions → "Build site" → Run workflow, download the "sito-statico" zip and upload its contents to your hosting (FTP/cPanel).',
+p2t:'2. Fork + Cloudflare Pages / Vercel / Netlify',p2:'Connect your fork. Build command: npm -w scala-sites-installer run build — output directory: apps/site/out. site.config.json must be in the repository.',
+p3t:'3. On your computer',p3:'Needs Node 20. <pre>git clone https://github.com/Alessandro114/scala-sites\ncd scala-sites &amp;&amp; npm install\n# put site.config.json in apps/site/\nnpm -w scala-sites-installer run build</pre> The site is in apps/site/out.',
+warn:'Note: template text is in English and products/prices/FAQ are the demo\'s. The privacy page is a template to review, not legal advice. Full guide: apps/site/docs/SELF-SERVICE.md.',
+req:'Required',bad:'Invalid format',chars:'Do not use < > { } " ` \\ $'}};
+var L=(navigator.language||'it').slice(0,2)==='en'?'en':'it';
+function t(k){return T[L][k]}
+function apply(){document.documentElement.lang=L;document.querySelectorAll('[data-i]').forEach(function(e){var v=t(e.getAttribute('data-i'));if(/<pre>/.test(v))e.innerHTML=v;else e.textContent=v});document.getElementById('locale').value=L}
+document.getElementById('l-it').onclick=function(e){e.preventDefault();L='it';apply()};
+document.getElementById('l-en').onclick=function(e){e.preventDefault();L='en';apply()};
+var SAFE=/^[^<>{}"`\\$]*$/;
+function v(id){return document.getElementById(id).value.trim()}
+function err(id,m){document.getElementById('e-'+id).textContent=m||''; return !m}
+document.getElementById('f').addEventListener('submit',function(ev){
+ ev.preventDefault();var ok=true;
+ function req(id,max){var x=v(id);if(!x)return err(id,t('req'));if(!SAFE.test(x))return err(id,t('chars'));if(x.length>max)return err(id,t('bad'));return err(id)}
+ ok=req('name',80)&ok;ok=req('legal',120)&ok;ok=req('vat',30)&ok;ok=req('addr',160)&ok;ok=req('stitle',70)&ok;ok=req('sdesc',170)&ok;
+ ok=err('site',/^https:\/\/[a-z0-9.-]+\.[a-z]{2,}(\/\S*)?$/i.test(v('site'))?'':t('bad'))&ok;
+ ok=err('phone',/^\+?[0-9 ()-]{7,}$/.test(v('phone'))?'':t('bad'))&ok;
+ ok=err('wa',(!v('wa')||/^\+?[0-9 ()-]{7,}$/.test(v('wa')))?'':t('bad'))&ok;
+ ok=err('email',/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('email'))?'':t('bad'))&ok;
+ ok=err('fb',(!v('fb')||/^https:\/\//.test(v('fb')))?'':t('bad'))&ok;
+ if(!ok){var first=document.querySelector('.err:not(:empty)');if(first)first.scrollIntoView({block:'center'});return}
+ var cfg={template:document.getElementById('template').value,locale:document.getElementById('locale').value,site_url:v('site').replace(/\/+$/,''),
+  business:{name:v('name'),legal_name:v('legal'),vat_id:v('vat'),address:v('addr'),phone:v('phone'),email:v('email'),whatsapp:v('wa')||v('phone'),instagram:v('ig').replace(/^@/,''),facebook:v('fb')},
+  seo:{title:v('stitle'),description:v('sdesc')},branding:{primary:document.getElementById('c1').value,accent:document.getElementById('c2').value},content_reviewed:false,go_live:false};
+ var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(cfg,null,2)+'\n'],{type:'application/json'}));a.download='site.config.json';document.body.appendChild(a);a.click();a.remove();
+ document.getElementById('out').style.display='block';document.getElementById('out').scrollIntoView({behavior:'smooth'});
+});
+apply();
+})();
+</script>
+</body>
+</html>
