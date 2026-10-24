@@ -18,7 +18,11 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Controlla che la configurazione esista
-        run: test -f apps/site/site.config.json || (echo "Manca apps/site/site.config.json: caricalo nel fork (vedi apps/site/docs/SELF-SERVICE.md)" && exit 1)
+        run: |
+          if [ ! -f apps/site/site.config.json ]; then
+            echo "Manca apps/site/site.config.json - caricalo nel fork (vedi apps/site/docs/SELF-SERVICE.md)"
+            exit 1
+          fi
       - name: Build (prepare + next build + postbuild)
         run: npm -w scala-sites-installer run build
       - uses: actions/upload-artifact@v4
