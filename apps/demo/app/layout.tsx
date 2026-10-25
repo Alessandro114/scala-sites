@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
+import Script from 'next/script'
 import { GAPageView } from './ga-page-view'
 import './globals.css'
 
@@ -77,6 +78,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Suspense fallback={null}>
           <GAPageView />
         </Suspense>
+        {/* Attribuzione primo contatto: snippet same-origin, nessuna richiesta di rete */}
+        <Script src="/scala-attribution.js" strategy="afterInteractive" />
       </body>
     </html>
   )
