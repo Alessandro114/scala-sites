@@ -30,10 +30,13 @@ const isRange = (ds) => { const ix = ds.map((d) => DAYS.indexOf(d)); return ix.e
 export function renderSite(site, opts = {}) {
   const v = validateSite(site)
   if (!v.ok) { const e = new Error('sito non valido: ' + v.errors.map((x) => `${x.path}: ${x.msg}`).join('; ')); e.errors = v.errors; throw e }
+  // preview = anteprima privata (noindex, evidenzia "da verificare"); export = file per il dominio del CLIENTE (nessun hosting nostro);
+  // live = hosting nostro: disattivato in beta e non necessario nel modello "esporta e pubblica sul tuo dominio".
   const mode = opts.mode || 'preview'
-  if (mode === 'live' && !opts.publishEnabled) throw new Error('pubblicazione disattivata (beta chiusa): usare mode "preview"')
-  const ui = UI[site.locale], b = site.business, preview = mode !== 'live'
-  const indexable = !preview && site.seo.indexable === true && site.compliance?.content_reviewed === true
+  if (mode === 'live' && !opts.publishEnabled) throw new Error('pubblicazione disattivata (beta chiusa): usare mode "preview" o "export"')
+  const ui = UI[site.locale], b = site.business, preview = mode === 'preview'
+  const formMode = site.lead?.mode === 'form'
+  const indexable = !preview && site.seo.indexable === true && site.compliance?.content_reviewed === true && (mode === 'live' || !!opts.baseUrl)
   const flags = new Set(site.compliance?.flags || [])
   const theme = resolveTheme(site.brand?.theme || 'sabbia', site.brand?.accent)
   const base = (opts.baseUrl || '').replace(/\/+$/, '')
@@ -65,7 +68,7 @@ export function renderSite(site, opts = {}) {
     contact: (s) => `<section id="${sid(s)}"><div class="w"><h2>${title(s, ui.contact)}</h2><div class="grid c2"><div>${b.address ? `<p><strong>${ui.address}</strong><br>${esc(b.address.street)}<br>${esc(b.address.postal_code)} ${esc(b.address.city)} (${esc((b.address.province || '').toUpperCase())})</p>` : ''}${(b.service_area || []).length ? `<p><strong>${ui.area}</strong><br>${esc(b.service_area.join(', '))}</p>` : ''}</div><div>${b.phone ? `<p><strong>${ui.phone}</strong><br><a href="tel:${esc(b.phone.replace(/[^\d+]/g, ''))}">${esc(b.phone)}</a></p>` : ''}${b.email ? `<p><strong>${ui.email}</strong><br><a href="mailto:${esc(b.email)}">${esc(b.email)}</a></p>` : ''}${mapsLink(b) ? `<p><a class="btn alt" href="${esc(mapsLink(b))}" rel="noopener">${ui.openMap}</a></p>` : ''}</div></div></div></section>`,
     map: () => '', // la mappa e' un link nella sezione contatti: nessun iframe, nessuna richiesta a terzi
     faq: (s, i) => `<section id="${sid(s)}"><div class="w"><h2>${title(s, ui.faq)}</h2>${s.items.map((it, j) => `<details><summary>${f(`sections.${i}.items.${j}.q`, esc(it.q))}</summary><p>${f(`sections.${i}.items.${j}.a`, esc(it.a))}</p></details>`).join('')}</div></section>`,
-    request: (s) => `<section id="${sid(s)}"><div class="w"><h2>${title(s, ui.reqTitle)}</h2><p class="lead">${ui.reqLead}</p>
+    request: (s) => formMode ? `<section id="${sid(s)}"><div class="w"><h2>${title(s, ui.reqTitle)}</h2><p class="lead">${ui.reqLead}</p>
 <form method="post" action="${esc(endpoint)}" style="max-width:34rem"><input type="hidden" name="consent_version" value="${CONSENT_VERSION}"><input type="hidden" name="site" value="${esc(site.id || site.slug)}">
 <div class="hp" aria-hidden="true"><label for="website">Non compilare</label><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
 <div class="field"><label for="f-name">${ui.fName}</label><input type="text" id="f-name" name="name" required maxlength="80" autocomplete="name"></div>
@@ -74,7 +77,7 @@ export function renderSite(site, opts = {}) {
 <div class="field"><label for="f-msg">${ui.fMsg}</label><textarea id="f-msg" name="message" required maxlength="1000"></textarea></div>
 <div class="chk"><input type="checkbox" id="f-consent" name="consent" value="1" required><label for="f-consent">${esc(consentText(b.name, site.locale))} <a href="privacy/">${ui.privacy}</a></label></div>
 <div class="chk"><input type="checkbox" id="f-mkt" name="marketing" value="1"><label for="f-mkt">${esc(ui.fMarketing.replace('{name}', b.name))}</label></div>
-<p><button class="btn" type="submit">${ui.fSend}</button></p></form></div></section>`,
+<p><button class="btn" type="submit">${ui.fSend}</button></p></form></div></section>` : `<section id="${sid(s)}"><div class="w"><h2>${title(s, ui.reqTitle)}</h2><p class="lead">${ui.linksLead}</p><div class="btns">${[waHref && `<a class="btn" href="${esc(waHref)}" rel="noopener">${ui.whatsapp}</a>`, b.email && `<a class="btn alt" href="mailto:${esc(b.email)}?subject=${encodeURIComponent(ui.mailSubject + ' ' + b.name)}">${ui.writeEmail}</a>`, b.phone && `<a class="btn alt" href="tel:${esc(b.phone.replace(/[^\d+]/g, ''))}">${ui.call}</a>`].filter(Boolean).join('')}</div></div></section>`,
     event: (s, i) => `<section id="${sid(s)}"><div class="w"><h2>${title(s, ui.event)}</h2><p><strong>${ui.when}:</strong> <time datetime="${esc(s.starts_at)}">${esc(new Date(s.starts_at).toLocaleString(site.locale === 'en' ? 'en-GB' : 'it-IT', { dateStyle: 'full', timeStyle: 'short', timeZone: 'Europe/Rome' }))}</time></p>${s.place ? `<p><strong>${ui.where}:</strong> ${esc(s.place)}</p>` : ''}${s.text ? `<p>${f(`sections.${i}.text`, esc(s.text))}</p>` : ''}</div></section>`,
     links: (s) => `<section id="${sid(s)}"><div class="w"><div class="btns" style="flex-direction:column;max-width:28rem">${s.items.map((it) => `<a class="btn alt" href="${esc(it.url)}" rel="noopener nofollow">${esc(it.label)}</a>`).join('')}</div></div></section>`,
   }
@@ -98,11 +101,11 @@ ${canonical && indexable ? `<link rel="canonical" href="${esc(canonical + path)}
 
   const files = {
     'index.html': page(body),
-    'privacy/index.html': page(`<section><div class="w">${privacyHtml(site)}</div></section>`, { t: `${ui.privacy} — ${b.name}`, d: ui.privacy, path: 'privacy/' }),
+    'privacy/index.html': page(`<section><div class="w">${privacyHtml(site, formMode)}</div></section>`, { t: `${ui.privacy} — ${b.name}`, d: ui.privacy, path: 'privacy/' }),
     'cookie/index.html': page(`<section><div class="w">${cookieHtml()}</div></section>`, { t: `${ui.cookies} — ${b.name}`, d: ui.cookies, path: 'cookie/' }),
     'robots.txt': indexable && base ? `User-agent: *\nAllow: /\nSitemap: ${base}/sitemap.xml\n` : 'User-agent: *\nDisallow: /\n',
-    '_headers': `/*\n  X-Robots-Tag: ${robots}\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n  Content-Security-Policy: default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; form-action 'self' ${endpoint.startsWith('http') ? new URL(endpoint).origin : ''}; base-uri 'none'; frame-ancestors 'none'\n`,
+    '_headers': `/*\n  X-Robots-Tag: ${robots}\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n  Content-Security-Policy: default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'; form-action ${formMode ? "'self' " + (endpoint.startsWith('http') ? new URL(endpoint).origin : '') : "'none'"}; base-uri 'none'; frame-ancestors 'none'\n`,
   }
   if (indexable && base) files['sitemap.xml'] = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${esc(base)}/</loc></url><url><loc>${esc(base)}/privacy/</loc></url></urlset>\n`
-  return { files, meta: { indexable, mode, theme: site.brand?.theme || 'sabbia', bytes: Buffer.byteLength(files['index.html']) } }
+  return { files, meta: { indexable, mode, theme: site.brand?.theme || 'sabbia', bytes: new TextEncoder().encode(files['index.html']).length } }
 }

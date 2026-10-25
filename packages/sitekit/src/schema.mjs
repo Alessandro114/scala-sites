@@ -86,6 +86,7 @@ export function validateSite(site) {
   const seo = site.seo || {}
   str(seo.title, 'seo.title', { required: true, max: 70 }); str(seo.description, 'seo.description', { required: true, max: 170 })
   if (seo.indexable === true && site.compliance?.content_reviewed !== true) err('seo.indexable', 'indicizzabile solo con content_reviewed=true')
+  if (site.lead && !['links', 'form'].includes(site.lead.mode)) err('lead.mode', 'links | form')
   const c = site.compliance || {}
   if (!REGULATED.includes(c.regulated || 'none')) err('compliance.regulated', REGULATED.join(' | '))
   if (c.cookie_mode && c.cookie_mode !== 'none') err('compliance.cookie_mode', 'in MVP solo "none": nessun cookie, nessun tracciamento di terzi')

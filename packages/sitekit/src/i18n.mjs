@@ -11,6 +11,7 @@ export const UI = {
     wa_msg: 'Buongiorno, vi scrivo dal vostro sito. ', days: { lun: 'Lun', mar: 'Mar', mer: 'Mer', gio: 'Gio', ven: 'Ven', sab: 'Sab', dom: 'Dom' },
     disclaimerMed: 'Le informazioni di questo sito hanno carattere generale e non sostituiscono una visita o un parere medico.',
     disclaimerPro: 'Le informazioni di questo sito hanno carattere generale e non costituiscono consulenza professionale ne’ promessa di risultato.',
+    linksLead: 'Scrivici o chiamaci: ti rispondiamo noi, appena possibile.', mailSubject: 'Richiesta dal sito di', writeEmail: 'Scrivici una email',
     vat: 'P. IVA', event: 'Evento', when: 'Quando', where: 'Dove',
   },
   en: {
@@ -23,6 +24,7 @@ export const UI = {
     privacy: 'Privacy notice', cookies: 'Cookies', report: 'Report this site', madeWith: 'Site made with S.C.A.L.A.', preview: 'PREVIEW — not published, not indexed', toVerify: 'to verify', thanks: 'Thank you, we received your request.',
     wa_msg: 'Hello, I am writing from your website. ', days: { lun: 'Mon', mar: 'Tue', mer: 'Wed', gio: 'Thu', ven: 'Fri', sab: 'Sat', dom: 'Sun' },
     disclaimerMed: 'Information on this site is general and does not replace a medical visit or advice.', disclaimerPro: 'Information on this site is general and is not professional advice nor a promise of results.',
+    linksLead: 'Write or call us: we will reply as soon as we can.', mailSubject: 'Request from the website of', writeEmail: 'Send us an email',
     vat: 'VAT', event: 'Event', when: 'When', where: 'Where',
   },
 }

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="it" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Crea il tuo sito — S.C.A.L.A. Sites</title>
+<meta name="robots" content="noindex"><link rel="icon" href="data:,">
+<meta name="description" content="Compila i dati della tua attività, guarda l'anteprima e scarica il sito da pubblicare sul tuo dominio.">
+<link rel="stylesheet" href="../vendor/tokens.css">
+<link rel="stylesheet" href="editor.css">
+</head>
+<body>
+<a class="skip" href="#form">Vai al modulo</a>
+<header class="bar"><div class="wrap"><strong>S.C.A.L.A. Sites</strong><span class="note">Il sito è tuo: lo pubblichi sul tuo dominio. I dati restano nel tuo browser.</span></div></header>
+<main class="wrap grid2">
+  <form id="form" autocomplete="off" novalidate>
+    <h1>Crea il tuo sito</h1>
+    <p class="lead">Compila solo ciò che è vero. Cosa non indichi (orari, prezzi, foto, recensioni) non viene inventato: la sezione resta nascosta.</p>
+
+    <fieldset><legend>1. Che attività hai?</legend>
+      <div class="field"><label for="template">Tipo di attività</label><select id="template"></select><p class="note" id="tpl-help"></p></div>
+    </fieldset>
+
+    <fieldset><legend>2. I tuoi dati</legend>
+      <div class="field"><label for="name">Nome dell’attività</label><input id="name" maxlength="80" required></div>
+      <div class="field"><label for="legal_name">Ragione sociale (per il piè di pagina e la privacy)</label><input id="legal_name" maxlength="120"></div>
+      <div class="field"><label for="vat_id">Partita IVA</label><input id="vat_id" maxlength="30" inputmode="text"></div>
+      <div class="row"><div class="field"><label for="street">Via e numero</label><input id="street" maxlength="80"></div><div class="field s"><label for="postal_code">CAP</label><input id="postal_code" maxlength="5" inputmode="numeric"></div></div>
+      <div class="row"><div class="field"><label for="city">Città</label><input id="city" maxlength="80"></div><div class="field s"><label for="province">Provincia (sigla)</label><input id="province" maxlength="2"></div></div>
+      <div class="field"><label for="phone">Telefono</label><input id="phone" type="tel" maxlength="20"></div>
+      <div class="field"><label for="whatsapp">WhatsApp (se diverso dal telefono)</label><input id="whatsapp" type="tel" maxlength="20"></div>
+      <div class="field"><label for="email">Email</label><input id="email" type="email" maxlength="120"></div>
+      <div class="field"><label for="maps_url">Link di Google Maps della tua scheda (facoltativo)</label><input id="maps_url" type="url" placeholder="https://www.google.com/maps/place/…"><p class="note">Leggiamo solo nome e posizione dal link che incolli: orari e recensioni non vengono presi da Google.</p></div>
+      <div class="field"><label for="service_area">Zone in cui lavori (separate da virgola, facoltativo)</label><input id="service_area" maxlength="200"></div>
+      <div class="field"><label for="free_text">Presentati in 2-3 frasi, con parole tue</label><textarea id="free_text" maxlength="1200"></textarea><p class="note">Il testo resta tuo: non aggiungiamo anni di attività, premi o numeri che non scrivi tu.</p></div>
+    </fieldset>
+
+    <fieldset><legend>3. Orari <span class="note">(facoltativo)</span></legend>
+      <div id="hours"></div><button type="button" class="btn btn-secondary" id="add-hours">Aggiungi una fascia oraria</button>
+    </fieldset>
+
+    <fieldset><legend id="services-legend">4. Servizi o prodotti <span class="note">(facoltativo)</span></legend>
+      <p class="note">Il prezzo compare solo se lo scrivi tu e viene segnato “da verificare”.</p>
+      <div id="services"></div><button type="button" class="btn btn-secondary" id="add-service">Aggiungi una voce</button>
+    </fieldset>
+
+    <fieldset><legend>5. Le tue foto <span class="note">(facoltativo)</span></legend>
+      <p class="note">Solo foto tue o che hai il diritto di usare. Vengono ridotte e convertite nel tuo browser: non partono dal tuo computer.</p>
+      <div class="field"><label for="photos">Scegli le foto</label><input id="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple></div>
+      <div id="photo-list"></div>
+    </fieldset>
+
+    <fieldset><legend>6. Aspetto e contatti</legend>
+      <div class="field"><label for="theme">Colori</label><select id="theme"></select></div>
+      <div class="field"><label for="accent">Colore dei pulsanti (facoltativo)</label><input id="accent" type="color" value="#9a4608"><label class="inline"><input type="checkbox" id="use-accent"> usa questo colore</label></div>
+      <div class="field"><label for="lead_mode">Come ti contattano i clienti</label><select id="lead_mode"><option value="links">WhatsApp, email e telefono (nessun dato passa da noi)</option><option value="form" disabled>Modulo collegato al CRM S.C.A.L.A. — non ancora disponibile</option></select></div>
+    </fieldset>
+
+    <fieldset><legend>7. Controlla e scarica</legend>
+      <div id="review"></div>
+      <div class="field"><label for="base_url">Indirizzo del tuo sito (es. https://www.tuodominio.it)</label><input id="base_url" type="url" placeholder="https://"></div>
+      <div class="chk"><input type="checkbox" id="confirm_all"><label for="confirm_all">Ho controllato tutti i contenuti: orari, prezzi, indirizzo, telefono e privacy sono giusti e le foto sono mie.</label></div>
+      <p class="note">Senza questa conferma e senza l’indirizzo il sito viene esportato ma non indicizzabile da Google (sicuro per un primo giro).</p>
+      <div class="btns"><button type="button" class="btn btn-primary" id="export">Scarica il sito (ZIP)</button><button type="button" class="btn btn-secondary" id="open-preview">Apri anteprima a tutto schermo</button><button type="button" class="btn btn-secondary" id="reset">Ricomincia</button></div>
+      <div id="msg" role="status" aria-live="polite"></div>
+      <div class="field"><label for="import">Riapri un sito già scaricato (file site.json)</label><input id="import" type="file" accept="application/json"></div>
+    </fieldset>
+  </form>
+  <aside class="preview" aria-label="Anteprima"><h2>Anteprima</h2><p class="note">È la tua anteprima privata: non è pubblicata e non è indicizzata.</p><iframe id="frame" title="Anteprima del sito" sandbox="allow-same-origin"></iframe></aside>
+</main>
+<script type="module" src="app.mjs"></script>
+</body>
+</html>

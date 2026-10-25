@@ -1,5 +1,4 @@
 // Protezioni: moderazione di contenuto, quote, gate di pubblicazione, token di anteprima, audit dell'HTML generato.
-import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto'
 import { validateSite } from './schema.mjs'
 
 // ---- quote (valori iniziali di beta; da ricalibrare dopo la misura dei costi) ----
@@ -23,7 +22,7 @@ const FORBIDDEN_CATEGORY = [
   [/\b(guadagna \d+|raddoppia i tuoi soldi|rendimento garantito|investimento sicuro|trading garantito|criptovalut[ae] .{0,30}(garantit|sicur))/i, 'promesse finanziarie'],
   [/\b(documenti falsi|patente falsa|recensioni a pagamento|followers? comprat)/i, 'attivita’ illecite'],
 ]
-const PHISHING_PHRASES = [/accedi al tuo (conto|account)/i, /verifica (la tua )?(identit|account|conto)/i, /inserisci (la tua )?(password|pin|codice)/i, /il tuo (conto|account) (e’|è|e') (stato )?(sospeso|bloccato)/i, /aggiorna i (tuoi )?dati (di pagamento|della carta)/i, /(carta di credito|iban|cvv)\b/i, /(log ?in|sign ?in)\b.{0,20}(banca|bank|paypal|poste)/i]
+const PHISHING_PHRASES = [/accedi al tuo (conto|account)/i, /verifica (la tua )?(identit|account|conto)/i, /inserisci (la |il |i )?(tua |tuo |tuoi )?(password|pin|codice)/i, /il tuo (conto|account) (e’|è|e') (stato )?(sospeso|bloccato)/i, /aggiorna i (tuoi )?dati (di pagamento|della carta)/i, /(carta di credito|iban|cvv)\b/i, /(log ?in|sign ?in)\b.{0,20}(banca|bank|paypal|poste)/i]
 const BRANDS = /\b(intesa sanpaolo|unicredit|poste italiane|postepay|paypal|amazon|netflix|agenzia delle entrate|inps|aruba|google|apple|microsoft|dhl|ups|bnl|mps|fineco|revolut|satispay)\b/i
 const SHORTENERS = /\b(bit\.ly|tinyurl\.com|t\.co|goo\.gl|cutt\.ly|is\.gd|rb\.gy|shorturl\.at)\b/i
 const DISPOSABLE = /@(mailinator|guerrillamail|10minutemail|tempmail|yopmail|sharklasers|trashmail)\./i
@@ -74,12 +73,6 @@ export function canPublish(site, env = {}) {
   return { allowed: reasons.length === 0, reasons }
 }
 
-// ---- anteprima a URL non indovinabile e revocabile ----
-// token = base64url(nonce[16]) . base64url(HMAC(secret, siteId|nonce)[16]). Revoca = cambiare il nonce salvato col sito.
-export const newPreviewNonce = () => randomBytes(16).toString('base64url')
-export function previewToken(siteId, nonce, secret) { return nonce + '.' + createHmac('sha256', secret).update(`${siteId}|${nonce}`).digest().subarray(0, 16).toString('base64url') }
-export function verifyPreviewToken(siteId, nonce, token, secret) { const a = Buffer.from(previewToken(siteId, nonce, secret)), b = Buffer.from(String(token)); return a.length === b.length && timingSafeEqual(a, b) }
-
 // ---- audit dell'HTML generato (equivalente del postbuild dell'installer) ----
 const TRACKERS = /(googletagmanager|google-analytics|gtag\(|fbq\(|facebook\.net|hotjar|clarity\.ms|segment\.com|mixpanel|matomo|plausible|umami|doubleclick|adsbygoogle|tiktok|linkedin\.com\/insight|fonts\.googleapis|fonts\.gstatic|cdnjs|jsdelivr|unpkg|youtube\.com\/embed|maps\.googleapis)/i
 export function auditHtml(html, { page = 'index.html' } = {}) {
@@ -101,6 +94,6 @@ export function auditHtml(html, { page = 'index.html' } = {}) {
     if (!id || !new RegExp(`<label for="${id}"`).test(html)) add('error', `campo senza etichetta visibile: ${id || m[0].slice(0, 40)}`)
   }
   for (const m of html.matchAll(/<a\b[^>]*href="#"[^>]*>/gi)) add('error', 'href="#" vuoto')
-  const bytes = Buffer.byteLength(html); if (bytes > 40 * 1024) add('warn', `pagina di ${bytes} byte (> 40 KB)`)
+  const bytes = new TextEncoder().encode(html).length; if (bytes > 40 * 1024) add('warn', `pagina di ${bytes} byte (> 40 KB)`)
   return { ok: !issues.some((i) => i.sev === 'error'), issues, bytes }
 }

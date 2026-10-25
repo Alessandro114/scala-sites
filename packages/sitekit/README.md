@@ -15,3 +15,9 @@ node bin/sitekit.mjs preview ./out/ristorante 8101  # anteprima locale, X-Robots
 - `src/lead.mjs` + `sql/` contratto form -> CRM con consenso GDPR (proposta, non applicata a nessun DB)
 
 Documento di architettura: `/home/ale/PROSPECTS/strategy/SITES-MVP-ARCHITETTURA-OTT25-2026.md`.
+
+## Editor self-service (modello "esporta e pubblica sul tuo dominio")
+```bash
+node bin/sitekit.mjs editor 8110      # http://127.0.0.1:8110/editor/ — tutto nel browser, nessun dato inviato
+SITEKIT_E2E=1 node --test tests/editor.e2e.test.mjs   # E2E in Chromium headless locale
+```
