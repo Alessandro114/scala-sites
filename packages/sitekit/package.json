@@ -1,0 +1,15 @@
+{
+  "name": "@scala-sites/sitekit",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "Motore a sezioni guidato da dati: JSON del sito -> HTML statico senza JavaScript, per attivita locali italiane.",
+  "bin": { "sitekit": "bin/sitekit.mjs" },
+  "exports": { ".": "./src/index.mjs" },
+  "scripts": {
+    "test": "node --test tests/",
+    "audit:samples": "node bin/sitekit.mjs build-samples ./out"
+  },
+  "engines": { "node": ">=20" }
+}

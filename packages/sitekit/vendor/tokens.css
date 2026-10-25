@@ -1,0 +1,58 @@
+/* S.C.A.L.A. design tokens v1 (23/10/2026) — sorgente unica per vetrina, score, academy, outbound.
+   Contrasti WCAG 2.1 AA verificati (tabella in README.md). Tema scuro = default marketing/app; chiaro = dati/documenti.
+   Uso: copiare in ogni repo (src/app/tokens.css nella vetrina). Non inventare colori fuori da qui. */
+:root, [data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0B1120;  --surface: #111827;  --surface-2: #1e293b;  --border: #334155;
+  --fg: #E2E8F0;  --fg-2: #CBD5E1;  --fg-muted: #94A3B8;  --fg-subtle: #8B9AB0;
+  --gold: #D4AF37;  --gold-hover: #E6C24A;  --on-gold: #0B1120;
+  --link: #E6C24A;  --danger: #FCA5A5;  --ok: #86EFAC;
+  --focus: #D4AF37;
+  --warn: #FCD34D;  --info: #7DD3FC;
+  /* grafici: 8 serie categoriche, ognuna >=5,4:1 su bg/surface/surface-2 (tabella README §8); mai solo colore: etichetta diretta o forma */
+  --chart-1:#D4AF37; --chart-2:#56B4E9; --chart-3:#4ADE80; --chart-4:#F472B6; --chart-5:#A78BFA; --chart-6:#FB923C; --chart-7:#2DD4BF; --chart-8:#94A3B8;
+  --shadow-1: 0 1px 2px rgba(0,0,0,.35);  --shadow-2: 0 18px 60px rgba(0,0,0,.35);
+}
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #F7F8FB;  --surface: #FFFFFF;  --surface-2: #EEF1F7;  --border: #D5DCE8;
+  --fg: #0B1F3A;  --fg-2: #2B3A52;  --fg-muted: #4A5A72;  --fg-subtle: #5B6B82;
+  --gold: #D4AF37;  --gold-hover: #C29E2B;  --on-gold: #0B1120;
+  --link: #1A3FA0;  --danger: #B42318;  --ok: #0E7A3E;  --gold-text: #8A6100;
+  --focus: #0B1F3A;
+  --warn: #92400E;  --info: #0B5A8C;
+  --chart-1:#8A6100; --chart-2:#0072B2; --chart-3:#0E7A3E; --chart-4:#B4236B; --chart-5:#6D3FD1; --chart-6:#C2410C; --chart-7:#0F766E; --chart-8:#4A5A72;
+  --shadow-1: 0 1px 2px rgba(11,31,58,.08);  --shadow-2: 0 14px 40px rgba(11,31,58,.12);
+}
+@media (prefers-color-scheme: light) {
+  [data-theme="auto"] { color-scheme: light; --bg:#F7F8FB; --surface:#FFFFFF; --surface-2:#EEF1F7; --border:#D5DCE8; --fg:#0B1F3A; --fg-2:#2B3A52; --fg-muted:#4A5A72; --fg-subtle:#5B6B82; --gold-hover:#C29E2B; --link:#1A3FA0; --danger:#B42318; --ok:#0E7A3E; --gold-text:#8A6100; --focus:#0B1F3A; }
+}
+:root {
+  /* tipografia: Inter variabile (SIL OFL 1.1), self-hosted, mai font di terzi a runtime */
+  --font-sans: 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  --fs-xs: .75rem; --fs-sm: .875rem; --fs-base: 1rem; --fs-lg: 1.125rem; --fs-xl: 1.25rem;
+  --fs-2xl: clamp(1.5rem, 3vw, 1.875rem); --fs-3xl: clamp(1.875rem, 4.5vw, 2.5rem); --fs-hero: clamp(2rem, 6vw, 3.25rem);
+  --lh-tight: 1.15; --lh-body: 1.6;
+  /* spaziatura a base 4 px */
+  --s-1: .25rem; --s-2: .5rem; --s-3: .75rem; --s-4: 1rem; --s-5: 1.5rem; --s-6: 2rem; --s-7: 3rem; --s-8: 4rem; --s-9: 6rem;
+  --gutter: 16px; --container: 72rem; --container-text: 42rem;
+  /* raggi e target */
+  --r-sm: 6px; --r-md: 10px; --r-lg: 16px; --r-pill: 999px;
+  --tap: 44px;               /* altezza minima di ogni controllo (AA richiede 24, noi 44) */
+  --ease: cubic-bezier(.2,.8,.2,1); --dur: 150ms;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { font-family: var(--font-sans); background: var(--bg); color: var(--fg); line-height: var(--lh-body); }
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+/* componenti di base (classi opzionali, stesse in tutti i siti) */
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: var(--tap); padding: 0 var(--s-5); border-radius: var(--r-md); font-weight: 700; text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: background var(--dur) var(--ease); }
+.btn-primary { background: var(--gold); color: var(--on-gold); }
+.btn-primary:hover { background: var(--gold-hover); }
+.btn-secondary { background: transparent; color: var(--fg); border-color: var(--border); }
+.btn-secondary:hover { border-color: var(--gold); }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: var(--s-5); box-shadow: var(--shadow-1); }
+.field label { display: block; font-size: var(--fs-sm); font-weight: 600; color: var(--fg-2); margin-bottom: var(--s-1); }
+.field :is(input, select, textarea) { width: 100%; min-height: var(--tap); padding: var(--s-3); background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r-md); color: var(--fg); font: inherit; }
+.table-wrap { overflow-x: auto; } /* mobile (<700px): tabella -> schede, vedi README "Tabella dati" */
