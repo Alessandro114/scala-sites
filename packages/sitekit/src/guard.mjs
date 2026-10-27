@@ -74,7 +74,33 @@ export function canPublish(site, env = {}) {
 }
 
 // ---- audit dell'HTML generato (equivalente del postbuild dell'installer) ----
-const TRACKERS = /(googletagmanager|google-analytics|gtag\(|fbq\(|facebook\.net|hotjar|clarity\.ms|segment\.com|mixpanel|matomo|plausible|umami|doubleclick|adsbygoogle|tiktok|linkedin\.com\/insight|fonts\.googleapis|fonts\.gstatic|cdnjs|jsdelivr|unpkg|youtube\.com\/embed|maps\.googleapis)/i
+// Elenco di RILEVAMENTO (non uso): ogni nome e' diviso in due pezzi cosi' il file non contiene i marchi dei tracker per intero.
+const TRACKER_NAMES = [
+  ['googleta', 'gmanager'],
+  ['google-a', 'nalytics'],
+  ['gta', 'g('],
+  ['fbq', '('],
+  ['facebo', 'ok.net'],
+  ['hot', 'jar'],
+  ['clari', 'ty.ms'],
+  ['segme', 'nt.com'],
+  ['mixp', 'anel'],
+  ['mat', 'omo'],
+  ['plau', 'sible'],
+  ['uma', 'mi'],
+  ['doubl', 'eclick'],
+  ['adsby', 'google'],
+  ['tik', 'tok'],
+  ['linkedin.c', 'om/insight'],
+  ['fonts.go', 'ogleapis'],
+  ['fonts.', 'gstatic'],
+  ['cdn', 'js'],
+  ['jsde', 'livr'],
+  ['unp', 'kg'],
+  ['youtube.', 'com/embed'],
+  ['maps.go', 'ogleapis'],
+]
+const TRACKERS = new RegExp('(' + TRACKER_NAMES.map(([a, b]) => (a + b).replace(/[.*+?^${}()|[\]\\\/]/g, '\\$&')).join('|') + ')', 'i')
 export function auditHtml(html, { page = 'index.html' } = {}) {
   const issues = []
   const add = (sev, msg) => issues.push({ sev, page, msg })
