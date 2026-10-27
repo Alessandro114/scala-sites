@@ -9,7 +9,7 @@ export const E2E = !!process.env.SITEKIT_E2E
 export const ROOT = path.resolve(import.meta.dirname, '../..')
 export const PUBLIC = path.resolve(ROOT, '../../apps/demo/public')   // l'artefatto che va in produzione (Vercel serve public/)
 export const HEADERS = JSON.parse(fs.readFileSync(path.join(ROOT, 'editor-headers.json'), 'utf8'))
-const CHROME = process.env.SITEKIT_CHROME || '/home/ale/.cache/ms-playwright/chromium-1217/chrome-linux64/chrome'
+const CHROME = process.env.SITEKIT_CHROME || path.join(os.homedir(), '.cache/ms-playwright/chromium-1217/chrome-linux64/chrome')
 const MIME = { '.html': 'text/html; charset=utf-8', '.mjs': 'text/javascript', '.css': 'text/css', '.webp': 'image/webp', '.txt': 'text/plain', '.xml': 'application/xml', '.json': 'application/json' }
 
 // Server statico locale. /editor serve l'artefatto reale con gli STESSI header di next.config.js (CSP compresa).
@@ -29,7 +29,7 @@ export function serve(rootDir, { editorHeaders = false, post } = {}) {
 
 // Chromium headless LOCALE. Ogni richiesta non locale viene abortita e registrata: i test falliscono se ce n'e' anche una.
 export async function launch({ width = 390, height = 844 } = {}) {
-  const { chromium } = createRequire('/home/ale/scala-vetrina/package.json')('playwright-core')
+  const { chromium } = createRequire(process.env.SITEKIT_PW_PKG || path.join(os.homedir(), 'scala-vetrina/package.json'))('playwright-core')
   const browser = await chromium.launch({ executablePath: CHROME, args: ['--no-sandbox'] })
   const ctx = await browser.newContext({ viewport: { width, height }, acceptDownloads: true, isMobile: width < 700 })
   const log = { external: [], errors: [] }
@@ -54,4 +54,4 @@ export function startPg() {
   if (r.status !== 0) throw new Error('postgres usa e getta non avviato')
   return { url: `postgres://postgres@127.0.0.1:${port}/postgres`, stop: () => { spawnSync(`${bin}/pg_ctl`, ['-D', dir, '-m', 'immediate', 'stop'], { stdio: 'ignore' }); fs.rmSync(dir, { recursive: true, force: true }) } }
 }
-export const pgClient = (url) => new (createRequire('/home/ale/scala-backend/package.json')('pg').Client)({ connectionString: url })
+export const pgClient = (url) => new (createRequire(process.env.SITEKIT_PG_PKG || path.join(os.homedir(), 'scala-backend/package.json'))('pg').Client)({ connectionString: url })

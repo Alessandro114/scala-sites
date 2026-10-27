@@ -14,7 +14,7 @@ node bin/sitekit.mjs preview ./out/ristorante 8101  # anteprima locale, X-Robots
 - `src/guard.mjs` moderazione, quote, `canPublish` (disattivato in beta), token di anteprima, `auditHtml`
 - `src/lead.mjs` + `sql/` contratto form -> CRM con consenso GDPR (proposta, non applicata a nessun DB)
 
-Documento di architettura: `/home/ale/PROSPECTS/strategy/SITES-MVP-ARCHITETTURA-OTT25-2026.md`.
+I test E2E richiedono Chromium (`SITEKIT_CHROME`), `playwright-core` (`SITEKIT_PW_PKG`) e `pg` (`SITEKIT_PG_PKG`) installati fuori dal repo: il pacchetto non ha dipendenze.
 
 ## Editor self-service (modello "esporta e pubblica sul tuo dominio")
 ```bash

@@ -10,7 +10,7 @@ import { execFileSync } from 'node:child_process'
 import { createRequire } from 'node:module'
 import { auditHtml } from '../src/index.mjs'
 const T = process.env.SITEKIT_E2E ? test : test.skip
-const CHROME = process.env.SITEKIT_CHROME || '/home/ale/.cache/ms-playwright/chromium-1217/chrome-linux64/chrome'
+const CHROME = process.env.SITEKIT_CHROME || path.join(os.homedir(), '.cache/ms-playwright/chromium-1217/chrome-linux64/chrome')
 const root = path.resolve(import.meta.dirname, '..')
 const MIME = { '.html': 'text/html; charset=utf-8', '.mjs': 'text/javascript', '.css': 'text/css' }
 let srv, base, browser, ctx, page, dl
@@ -18,7 +18,7 @@ let srv, base, browser, ctx, page, dl
 T('avvio server locale e browser', async () => {
   srv = http.createServer((q, r) => { let u = q.url.split('?')[0]; if (u === '/editor/') u = '/editor/index.html'; const f = path.join(root, u); if (!f.startsWith(root) || !fs.existsSync(f) || !/^\/(editor|src|vendor)\//.test(u)) { r.writeHead(404); return r.end() } r.writeHead(200, { 'content-type': MIME[path.extname(f)] || 'text/plain' }); r.end(fs.readFileSync(f)) })
   await new Promise((r) => srv.listen(0, '127.0.0.1', r)); base = `http://127.0.0.1:${srv.address().port}`
-  const { chromium } = createRequire('/home/ale/scala-vetrina/package.json')('playwright-core')
+  const { chromium } = createRequire(process.env.SITEKIT_PW_PKG || path.join(os.homedir(), 'scala-vetrina/package.json'))('playwright-core')
   browser = await chromium.launch({ executablePath: CHROME, args: ['--no-sandbox'] })
   ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, acceptDownloads: true, isMobile: true })
   page = await ctx.newPage(); page.external = []; page.errors = []

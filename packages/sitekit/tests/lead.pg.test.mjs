@@ -2,6 +2,8 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
+import path from 'node:path'
+import os from 'node:os'
 import { createRequire } from 'node:module'
 import { validateLead, buildLeadStatements, runLeadStatements, CONSENT_VERSION } from '../src/index.mjs'
 const url = process.env.SITEKIT_PG_URL
@@ -10,7 +12,7 @@ const TA = '11111111-1111-1111-1111-111111111111', TB = '22222222-2222-2222-2222
 let pg, c
 T('setup', async () => {
   { const u = new URL(url); if (!['127.0.0.1', 'localhost', '::1', '[::1]'].includes(u.hostname) || u.searchParams.has('host') || u.searchParams.has('hostaddr')) throw new Error('SITEKIT_PG_URL deve essere locale (host letto dall\u2019URL)') }
-  pg = createRequire('/home/ale/scala-backend/package.json')('pg'); c = new pg.Client({ connectionString: url }); await c.connect()
+  pg = createRequire(process.env.SITEKIT_PG_PKG || path.join(os.homedir(), 'scala-backend/package.json'))('pg'); c = new pg.Client({ connectionString: url }); await c.connect()
   await c.query('DROP SCHEMA public CASCADE; CREATE SCHEMA public; DROP ROLE IF EXISTS app_rt; CREATE ROLE app_rt LOGIN; ')
   for (const f of ['test_prerequisites', '001_sites_mvp']) await c.query(fs.readFileSync(new URL(`../sql/${f}.sql`, import.meta.url), 'utf8'))
   await c.query(`INSERT INTO sites (id, tenant_id, owner_user_id, slug, doc, preview_nonce) VALUES ('${S}','${TA}','${U}','bar-prova','{}','n')`)
