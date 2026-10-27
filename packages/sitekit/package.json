@@ -5,11 +5,20 @@
   "type": "module",
   "license": "MIT",
   "description": "Motore a sezioni guidato da dati: JSON del sito -> HTML statico senza JavaScript, per attivita locali italiane.",
-  "bin": { "sitekit": "bin/sitekit.mjs" },
-  "exports": { ".": "./src/index.mjs" },
+  "bin": {
+    "sitekit": "bin/sitekit.mjs"
+  },
+  "exports": {
+    ".": "./src/index.mjs"
+  },
   "scripts": {
     "test": "node --test tests/",
-    "audit:samples": "node bin/sitekit.mjs build-samples ./out"
+    "audit:samples": "node bin/sitekit.mjs build-samples ./out",
+    "test:e2e": "SITEKIT_E2E=1 node --test tests/",
+    "sync-editor": "node scripts/sync-editor.mjs",
+    "smoke:live": "node tests/smoke-live.mjs"
   },
-  "engines": { "node": ">=20" }
+  "engines": {
+    "node": ">=20"
+  }
 }
