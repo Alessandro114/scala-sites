@@ -19,7 +19,8 @@ test('header dell’editor: noindex, CSP senza terze parti, nessun unsafe-eval',
 })
 
 let S, B, dir = tmp('art')
-T('avvio', async () => { S = await serve(PUBLIC, { editorHeaders: true }); B = await launch({ width: 390 }); await B.page.goto(S.base + '/editor') })
+// SITEKIT_EDITOR_BASE=http://127.0.0.1:3099 prova lo stesso identico test sul server Next reale (next start) invece che sul server statico locale
+T('avvio', async () => { S = process.env.SITEKIT_EDITOR_BASE ? { base: process.env.SITEKIT_EDITOR_BASE, close: async () => {} } : await serve(PUBLIC, { editorHeaders: true }); B = await launch({ width: 390 }); await B.page.goto(S.base + '/editor') })
 T('/editor e /editor/ rispondono, con gli header di sicurezza', async () => {
   for (const u of ['/editor', '/editor/index.html', '/editor/app.mjs']) { const r = await fetch(S.base + u); assert.equal(r.status, 200, u); assert.match(r.headers.get('x-robots-tag'), /noindex/); assert.ok(r.headers.get('content-security-policy')) }
 })

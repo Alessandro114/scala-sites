@@ -2,7 +2,7 @@
 // Verifica POST-DEPLOY dell'editor su un host reale (sola lettura: solo GET). Uso: node tests/smoke-live.mjs https://sites.get-scala.com
 // Esce 0 = tutto ok, 1 = almeno un controllo fallito. Non usa browser: controlla file, header e coerenza degli import.
 const base = (process.argv[2] || '').replace(/\/+$/, '')
-if (!/^https:\/\/[a-z0-9.-]+$/i.test(base)) { console.error('uso: smoke-live.mjs https://host'); process.exit(2) }
+if (!/^(https:\/\/[a-z0-9.-]+|http:\/\/127\.0\.0\.1:\d+)$/i.test(base)) { console.error('uso: smoke-live.mjs https://host (o http://127.0.0.1:porta)'); process.exit(2) }
 let bad = 0
 const ck = (ok, msg) => { console.log((ok ? 'OK   ' : 'FAIL ') + msg); if (!ok) bad++ }
 const get = async (p) => { const r = await fetch(base + p, { redirect: 'follow' }); return { r, t: await r.text() } }
