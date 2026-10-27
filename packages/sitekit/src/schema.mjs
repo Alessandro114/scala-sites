@@ -64,7 +64,7 @@ export function validateSite(site) {
     secs.forEach((s, i) => {
       const p = `sections.${i}`
       if (!SECTION_TYPES.includes(s.type)) return err(p + '.type', 'sezione sconosciuta')
-      if (!s.id || ids.has(s.id)) err(p + '.id', 'id mancante o duplicato'); ids.add(s.id)
+      if (!/^[a-z0-9][a-z0-9-]{0,30}$/.test(s.id || '')) err(p + '.id', 'id: minuscole, cifre e trattini (max 31)'); else if (ids.has(s.id)) err(p + '.id', 'id duplicato'); ids.add(s.id)
       str(s.title, p + '.title', { max: 80 })
       if (s.type === 'hero') { str(s.headline, p + '.headline', { required: true, max: 100 }); str(s.subheadline, p + '.subheadline', { max: 220 }); if (s.cta && !['whatsapp', 'call', 'request', 'directions'].includes(s.cta)) err(p + '.cta', 'cta sconosciuta') }
       if (s.type === 'about') str(s.text, p + '.text', { max: LIMITS.text, required: true })

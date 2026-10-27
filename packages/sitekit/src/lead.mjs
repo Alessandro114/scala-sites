@@ -5,12 +5,16 @@ import { createHash } from 'node:crypto'
 import { CONSENT_VERSION, RETENTION_MONTHS, consentText } from './legal.mjs'
 import { QUOTA } from './guard.mjs'
 
+export const CONTACT_ID = Symbol('contact.id') // sentinella: un testo dell'utente non puo' mai coincidere
 const PHONE = /^\+?[0-9 ()./-]{6,20}$/, EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 export const sha256 = (s) => createHash('sha256').update(s).digest('hex')
 
 // IPv4: ultimo ottetto a 0 (/24). IPv6: tengo i primi 48 bit (/48). Risultato valido per il tipo INET.
+const IPV4 = /^(25[0-5]|2[0-4]\d|1?\d?\d)(\.(25[0-5]|2[0-4]\d|1?\d?\d)){3}$/, IPV6 = /^[0-9a-f:]+$/i
 export function truncateIp(ip) {
-  if (!ip) return null
+  if (!ip || typeof ip !== 'string') return null
+  if (!ip.includes(':') && !IPV4.test(ip)) return null
+  if (ip.includes(':') && !(IPV6.test(ip) || /^::ffff:\d{1,3}(\.\d{1,3}){3}$/i.test(ip))) return null
   const v4 = /^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.\d{1,3}$/.exec(ip); if (v4) return `${v4[1]}.${v4[2]}.${v4[3]}.0`
   const m = /^::ffff:(\d+\.\d+\.\d+)\.\d+$/i.exec(ip); if (m) return `${m[1]}.0`
   if (ip.includes(':')) { const parts = ip.split(':'); if (parts.includes('')) { const i = parts.indexOf(''); const head = parts.slice(0, i); return [...head, '', ''].slice(0, 3).join(':').replace(/:+$/, '') + '::' } return parts.slice(0, 3).join(':') + '::' }
@@ -46,11 +50,11 @@ export function buildLeadStatements({ tenantId, ownerUserId, siteId, siteSlug, v
       VALUES ($1,$2,$3,NULLIF($4,''),NULLIF($5,''),'site_form','lead',$6,ARRAY[$7],$8,CASE WHEN $8 THEN now() END,CASE WHEN $8 THEN 'site_form' END,CASE WHEN $8 THEN 1 END) RETURNING id`,
       values: [tenantId, ownerUserId, v.lead.name, v.lead.email, v.lead.phone, v.lead.message, tag, v.marketing] },
     { name: 'consent_contact', text: `INSERT INTO consent_history (tenant_id, contact_id, consent_type, action, version, ip_address, source)
-      VALUES ($1,$2,'site_contact_request','given',1,$3::inet,$4)`, values: [tenantId, '$contact.id', ipT, `site:${siteSlug}`], needsContactId: true },
+      VALUES ($1,$2,'site_contact_request','given',1,$3::inet,$4)`, values: [tenantId, CONTACT_ID, ipT, `site:${siteSlug}`], needsContactId: true },
     ...(v.marketing ? [{ name: 'consent_marketing', text: `INSERT INTO consent_history (tenant_id, contact_id, consent_type, action, version, ip_address, source)
-      VALUES ($1,$2,'marketing_email','given',1,$3::inet,$4)`, values: [tenantId, '$contact.id', ipT, `site:${siteSlug}`], needsContactId: true }] : []),
+      VALUES ($1,$2,'marketing_email','given',1,$3::inet,$4)`, values: [tenantId, CONTACT_ID, ipT, `site:${siteSlug}`], needsContactId: true }] : []),
     { name: 'event', text: `INSERT INTO site_lead_events (tenant_id, site_id, contact_id, consent_text_sha256, consent_text_version, marketing_consent, ip_truncated, user_agent_sha256, retention_until)
-      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)`, values: [tenantId, siteId, '$contact.id', v.consent.text_sha256, v.consent.version, v.marketing, ipT, userAgent ? sha256(userAgent) : null, retention.toISOString()], needsContactId: true },
+      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9)`, values: [tenantId, siteId, CONTACT_ID, v.consent.text_sha256, v.consent.version, v.marketing, ipT, userAgent ? sha256(userAgent) : null, retention.toISOString()], needsContactId: true },
   ]
 }
 // Esegue gli statement con un client che espone query(text, values) (pg.Client). BEGIN/COMMIT gestiti qui.
@@ -59,7 +63,7 @@ export async function runLeadStatements(client, statements) {
   try {
     let contactId = null
     for (const st of statements) {
-      const values = st.values.map((x) => x === '$contact.id' ? contactId : x)
+      const values = st.values.map((x) => x === CONTACT_ID ? contactId : x)
       const r = await client.query(st.text, values)
       if (st.name === 'contact') contactId = r.rows[0].id
     }

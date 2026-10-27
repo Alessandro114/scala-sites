@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { validateLead, truncateIp, buildLeadStatements, CONSENT_VERSION, previewToken, verifyPreviewToken, newPreviewNonce, checkQuota, QUOTA } from '../src/index.mjs'
+import { CONTACT_ID, validateLead, truncateIp, buildLeadStatements, CONSENT_VERSION, previewToken, verifyPreviewToken, newPreviewNonce, checkQuota, QUOTA } from '../src/index.mjs'
 const ok = { name: 'Mario', phone: '333 1234567', message: 'Ciao', consent: '1', consent_version: CONSENT_VERSION }
 test('lead: consenso obbligatorio, versione nota, almeno un recapito, honeypot', () => {
   assert.equal(validateLead(ok, { businessName: 'Bar' }).ok, true)
@@ -15,7 +15,7 @@ test('lead: il testo di consenso e il suo hash viaggiano con il lead; il marketi
   assert.equal(validateLead({ ...ok, marketing: '1' }, { businessName: 'B' }).marketing, true)
 })
 test('IP troncato (v4 /24, v6 /48, v4-mapped)', () => {
-  assert.equal(truncateIp('93.184.216.34'), '93.184.216.0'); assert.equal(truncateIp('::ffff:10.1.2.3'), '10.1.2.0'); assert.equal(truncateIp('2001:db8:85a3:8d3:1319:8a2e:370:7344'), '2001:db8:85a3::'); assert.equal(truncateIp(undefined), null)
+  assert.equal(truncateIp('93.184.216.34'), '93.184.216.0'); assert.equal(truncateIp('::ffff:10.1.2.3'), '10.1.2.0'); assert.equal(truncateIp('2001:db8:85a3:8d3:1319:8a2e:370:7344'), '2001:db8:85a3::'); assert.equal(truncateIp(undefined), null); assert.equal(truncateIp('foo:bar:baz:qux'), null); assert.equal(truncateIp('999.1.1.1'), null); assert.equal(truncateIp('a b'), null)
 })
 test('statement: il tenant e’ un parametro server-side, mai un campo del form; il corpo del form non finisce nel SQL', () => {
   const v = validateLead({ ...ok, name: "x'); DROP TABLE crm_contacts;--", tenant_id: 'ALTRO' }, { businessName: 'B' })
@@ -29,4 +29,9 @@ test('anteprima: token non indovinabile, verificabile, revocabile cambiando il n
 test('quote', () => {
   assert.equal(checkQuota({ sites: QUOTA.sitesPerUser }, 'create_site').allowed, false); assert.equal(checkQuota({ sites: 2 }, 'create_site').allowed, true)
   assert.equal(checkQuota({ generationsToday: 5 }, 'generate').allowed, false); assert.equal(checkQuota({ fileBytes: 9 * 1024 * 1024 }, 'upload').allowed, false)
+})
+
+test('sentinella contatto: un testo "$contact.id" scritto dall\u2019utente resta testo', () => {
+  const v = validateLead({ ...ok, message: '$contact.id' }, { businessName: 'B' }); const st = buildLeadStatements({ tenantId: 'T', ownerUserId: 'U', siteId: 'S', siteSlug: 'x', v, ip: '1.2.3.4' })
+  assert.ok(st[1].values.includes('$contact.id')); assert.ok(!st[1].values.includes(CONTACT_ID)); assert.ok(st[2].values.includes(CONTACT_ID))
 })

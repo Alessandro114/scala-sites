@@ -41,3 +41,8 @@ test('modalita’ "links" (default): nessun form, nessun dato passa da noi; "for
   const f = structuredClone(SAMPLES[0]); f.lead = { mode: 'form' }; assert.match(buildExport(f).files['index.html'], /<form/)
 })
 test('studio-medico esportato: disclaimer presente', () => assert.match(buildExport(SAMPLES[4]).files['index.html'], /non sostituiscono una visita/))
+
+test('sicurezza: indirizzo del sito con newline/spazi/protocollo errato bloccato (no injection in robots/sitemap)', () => {
+  for (const u of ['http://x.example', 'https://x.example\nDisallow: /', 'https://x .example', 'javascript:alert(1)']) assert.equal(prepareExport(SAMPLES[0], { baseUrl: u }).ok, false, u)
+  assert.equal(prepareExport(SAMPLES[0], { baseUrl: 'https://www.cliente.example' }).ok, true)
+})

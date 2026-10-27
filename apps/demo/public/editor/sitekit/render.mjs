@@ -46,13 +46,13 @@ export function renderSite(site, opts = {}) {
   // Testo che l'AI ha scritto o che l'utente non ha ancora confermato: in anteprima e' evidenziato "da verificare".
   const f = (path, html) => preview && flags.has(path) ? `<mark class="tbv">${html}<span class="note"> (${ui.toVerify})</span></mark>` : html
   const visible = site.sections.filter((s) => s.visible !== false)
-  const sid = (s) => `s-${s.id}`
+  const sid = (s) => `s-${esc(s.id)}`
   const navTypes = new Set(['services', 'gallery', 'reviews', 'hours', 'faq', 'contact', 'request', 'about', 'event', 'links'])
   const title = (s, fallback) => esc(s.title || fallback)
 
   const ctaBtns = (cta) => {
     const out = []
-    const mk = { whatsapp: waHref && `<a class="btn" href="${esc(waHref)}" rel="noopener">${ui.whatsapp}</a>`, call: b.phone && `<a class="btn" href="tel:${esc(b.phone.replace(/[^\d+]/g, ''))}">${ui.call} ${esc(b.phone)}</a>`, request: visible.some((s) => s.type === 'request') && `<a class="btn" href="#s-${visible.find((s) => s.type === 'request').id}">${ui.reqTitle}</a>`, directions: mapsLink(b) && `<a class="btn" href="${esc(mapsLink(b))}" rel="noopener">${ui.directions}</a>` }
+    const mk = { whatsapp: waHref && `<a class="btn" href="${esc(waHref)}" rel="noopener">${ui.whatsapp}</a>`, call: b.phone && `<a class="btn" href="tel:${esc(b.phone.replace(/[^\d+]/g, ''))}">${ui.call} ${esc(b.phone)}</a>`, request: visible.some((s) => s.type === 'request') && `<a class="btn" href="#s-${esc(visible.find((s) => s.type === 'request').id)}">${ui.reqTitle}</a>`, directions: mapsLink(b) && `<a class="btn" href="${esc(mapsLink(b))}" rel="noopener">${ui.directions}</a>` }
     const order = [cta || (waHref ? 'whatsapp' : b.phone ? 'call' : 'request'), 'call', 'directions']
     for (const k of order) if (mk[k] && !out.includes(mk[k])) out.push(mk[k])
     return out.slice(0, 2).map((h, i) => i ? h.replace('class="btn"', 'class="btn alt"') : h).join('')

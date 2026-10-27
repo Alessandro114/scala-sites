@@ -12,6 +12,7 @@ export function prepareExport(site, { assets = {}, baseUrl } = {}) {
   const v = validateSite(site); for (const e of v.errors) errors.push(`${e.path}: ${e.msg}`)
   const m = moderate(site); if (m.blocked) errors.push('contenuto non ammesso: ' + m.blocked_reasons.map((r) => `${r.path} (${r.rule})`).join(', '))
   for (const s of site.sections || []) if (s.type === 'gallery') for (const it of s.items || []) if (ASSET.test(it.src) && !assets[it.src]) errors.push(`foto mancante: ${it.src}`)
+  if (baseUrl && !/^https:\/\/[a-z0-9.-]+\.[a-z]{2,}(\/[A-Za-z0-9._~\/-]*)?$/i.test(baseUrl)) errors.push('indirizzo del sito: serve https://dominio (senza spazi)')
   const flags = site.compliance?.flags || []
   if (flags.length) warnings.push(`${flags.length} contenuti ancora "da verificare": il sito resta non indicizzabile finche’ non li confermi`)
   if (site.compliance?.content_reviewed !== true) warnings.push('contenuti non ancora confermati dal titolare: il sito resta non indicizzabile (noindex)')

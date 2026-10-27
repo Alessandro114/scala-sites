@@ -9,7 +9,7 @@ const T = url ? test : test.skip
 const TA = '11111111-1111-1111-1111-111111111111', TB = '22222222-2222-2222-2222-222222222222', U = '33333333-3333-3333-3333-333333333333', S = '44444444-4444-4444-4444-444444444444'
 let pg, c
 T('setup', async () => {
-  if (!/(127\.0\.0\.1|localhost|\/tmp\/)/.test(url)) throw new Error('SITEKIT_PG_URL deve essere locale')
+  { const u = new URL(url); if (!['127.0.0.1', 'localhost', '::1', '[::1]'].includes(u.hostname) || u.searchParams.has('host') || u.searchParams.has('hostaddr')) throw new Error('SITEKIT_PG_URL deve essere locale (host letto dall\u2019URL)') }
   pg = createRequire('/home/ale/scala-backend/package.json')('pg'); c = new pg.Client({ connectionString: url }); await c.connect()
   await c.query('DROP SCHEMA public CASCADE; CREATE SCHEMA public; DROP ROLE IF EXISTS app_rt; CREATE ROLE app_rt LOGIN; ')
   for (const f of ['test_prerequisites', '001_sites_mvp']) await c.query(fs.readFileSync(new URL(`../sql/${f}.sql`, import.meta.url), 'utf8'))

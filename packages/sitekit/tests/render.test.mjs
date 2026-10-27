@@ -86,3 +86,8 @@ test('estrazione dal testo libero e link Maps (solo parsing dell’URL)', () => 
   assert.deepEqual(parseMapsUrl('https://www.google.com/maps/place/Bar+Prova/@45.1,7.6,17z'), { name: 'Bar Prova', geo: { lat: 45.1, lng: 7.6 }, short: false })
   assert.equal(parseMapsUrl('https://evil.example/maps/place/X'), null)
 })
+
+test('sicurezza: id di sezione ostile rifiutato, non arriva mai in un attributo', () => {
+  const s = structuredClone(SAMPLES[0]); s.sections[1].id = 'x" onmouseover="alert(1)'
+  assert.ok(validateSite(s).errors.some((e) => e.path.endsWith('.id'))); assert.throws(() => renderSite(s), /sito non valido/)
+})
