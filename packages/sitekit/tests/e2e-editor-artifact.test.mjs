@@ -64,4 +64,15 @@ for (const t of TEMPLATES) {
     await E.close()
   })
 }
+T('XSS: input ostile in nome, servizi, foto e descrizioni non esegue nulla e viene mostrato come testo', async () => {
+  const p = B.page; await p.goto(S.base + '/editor'); await p.evaluate(() => localStorage.clear()); await p.reload()
+  const evil = '<img src=x onerror="window.__xss=1"><script>window.__xss=2</script>'
+  await p.fill('#name', evil); await p.fill('#free_text', evil); await p.fill('#street', evil); await p.click('#add-service'); await p.fill('#sn0', evil); await p.fill('#sd0', evil)
+  await p.click('#add-hours'); await p.waitForTimeout(700)
+  assert.equal(await p.evaluate(() => window.__xss), undefined)
+  assert.equal(await p.locator('#review script, #review img, #services img, #hours img').count(), 0)
+  assert.match(await p.textContent('#review'), /non usare/)
+  const fr = p.frames().find((f) => f !== p.mainFrame()); if (fr) assert.equal(await fr.evaluate(() => window.__xss), undefined)
+  assert.deepEqual(B.log.external, [])
+})
 T('chiusura', async () => { await B?.browser.close(); await S?.close() })
