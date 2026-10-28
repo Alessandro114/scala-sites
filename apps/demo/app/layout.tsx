@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import { GAPageView } from './ga-page-view'
 import { LangProvider } from './components/lang-provider'
+import { SiteChrome } from './components/site-chrome'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -82,6 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="antialiased">
         <LangProvider>{children}</LangProvider>
+        <SiteChrome />
         <Suspense fallback={null}>
           <GAPageView />
         </Suspense>
