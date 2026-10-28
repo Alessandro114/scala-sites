@@ -1,0 +1,43 @@
+/* Values copied from design-system/tokens.css (dark theme): bg #0B1120, fg #E2E8F0, gold #D4AF37.
+   Scoped to the controls below on purpose: tokens.css sets body styles, which would override the 99 templates. */
+
+/* Dark mode for templates that style themselves inline: invert the page, re-invert media and the controls.
+   Contrast ratios survive an inversion; photos and brand imagery keep their real colours. */
+html[data-theme='dark'] { background: #fff; filter: invert(1) hue-rotate(180deg); }
+html[data-theme='dark'] :is(img, video, picture, iframe, canvas, svg image, [style*='background-image']) { filter: invert(1) hue-rotate(180deg); }
+html[data-theme='dark'] :is(.sc-theme-toggle, .sc-nav-btn, .sc-nav-panel) { filter: invert(1) hue-rotate(180deg); }
+
+.sc-theme-toggle {
+  position: fixed; left: 16px; bottom: 16px; z-index: 2147483000;
+  width: 48px; height: 48px; border-radius: 999px; padding: 0;
+  background: #0B1120; color: #D4AF37; border: 1px solid #D4AF37;
+  font-size: 22px; line-height: 1; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .35);
+}
+.sc-theme-toggle:hover { background: #1e293b; }
+.sc-theme-toggle:focus-visible, .sc-nav-btn:focus-visible, .sc-nav-panel a:focus-visible { outline: 3px solid #D4AF37; outline-offset: 2px; }
+
+.sc-nav-btn {
+  display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+  width: 44px; min-width: 44px; height: 44px; flex: 0 0 44px; padding: 0; margin-left: auto;
+  background: #0B1120; border: 1px solid #D4AF37; border-radius: 8px; cursor: pointer;
+}
+.sc-nav-btn span, .sc-nav-btn span::before, .sc-nav-btn span::after { display: block; width: 20px; height: 2px; background: #E2E8F0; content: ''; }
+.sc-nav-btn span { position: relative; }
+.sc-nav-btn span::before { position: absolute; top: -6px; }
+.sc-nav-btn span::after { position: absolute; top: 6px; }
+
+.sc-nav-panel {
+  position: absolute; left: 0; right: 0; top: 100%;
+  display: flex; flex-direction: column; padding: 8px 16px 16px;
+  background: #0B1120; border-bottom: 1px solid #334155; box-shadow: 0 18px 60px rgba(0, 0, 0, .35);
+}
+.sc-nav-panel[hidden] { display: none; }
+.sc-nav-panel a {
+  display: flex; align-items: center; min-height: 44px; padding: 0 8px;
+  color: #E2E8F0; font-size: 16px; text-decoration: none; border-bottom: 1px solid #1e293b;
+}
+.sc-nav-panel a:hover { color: #E6C24A; }
+
+@media (max-width: 767px) { [data-sc-links] { display: none !important; } }
+@media (min-width: 768px) { .sc-nav-btn, .sc-nav-panel { display: none !important; } }
