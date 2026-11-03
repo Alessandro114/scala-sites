@@ -21,3 +21,7 @@ I test E2E richiedono Chromium (`SITEKIT_CHROME`), `playwright-core` (`SITEKIT_P
 node bin/sitekit.mjs editor 8110      # http://127.0.0.1:8110/editor/ — tutto nel browser, nessun dato inviato
 SITEKIT_E2E=1 node --test tests/editor.e2e.test.mjs   # E2E in Chromium headless locale
 ```
+
+## Data coverage
+
+S.C.A.L.A. Score holds about 249 million company records from public registries and open data in 264 countries (figure shown on [score.get-scala.com](https://score.get-scala.com), checked 03/11/2026). Financial fields such as revenue, employees or score are present only where the source publishes them, which is a minority of the records; always check each field before relying on it.
