@@ -22,6 +22,11 @@ test('export: nessun banner di anteprima, nessun marcatore, noindex finche’ no
   assert.ok(r.files['LEGGIMI-PUBBLICA.txt'].includes('NON INDICIZZABILE')); assert.ok(JSON.parse(r.files['site.json']).business.name)
   assert.ok(r.warnings.length >= 2); assert.ok(auditHtml(html).ok)
 })
+test('export: nessun link «Segnala questo sito» verso /segnala/ che nello ZIP non esiste (404 sul dominio del cliente)', () => {
+  const r = buildExport(SAMPLES[0], { baseUrl: 'https://www.cliente.example' })
+  for (const [name, content] of Object.entries(r.files)) if (name.endsWith('.html')) assert.ok(!/\/segnala\//.test(content), name + ' contiene /segnala/')
+  assert.ok(!/\/segnala\//.test(renderSite(SAMPLES[0], { mode: 'export' }).files['index.html']), 'renderSite export senza reportUrl')
+})
 test('export: revisionato + indirizzo = indicizzabile, con sitemap e canonical', () => {
   const s = structuredClone(SAMPLES[0]); s.compliance.content_reviewed = true; s.compliance.flags = []; s.seo.indexable = true
   const r = buildExport(s, { baseUrl: 'https://www.cliente.example' }); assert.equal(r.meta.indexable, true)
