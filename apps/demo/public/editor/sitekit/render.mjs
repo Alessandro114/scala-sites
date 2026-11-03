@@ -97,7 +97,7 @@ ${canonical && indexable ? `<link rel="canonical" href="${esc(canonical + path)}
 <header class="top"><div class="w"><a class="brand" href="${path ? '../' : './'}">${esc(b.name)}</a><nav aria-label="${ui.menu}"><ul>${path ? '' : nav}</ul></nav></div></header>
 <main id="main">${inner}</main>
 <footer><div class="w">${disclaimer ? `<p>${disclaimer}</p>` : ''}<p>${esc(site.compliance?.controller?.name || b.legal_name || b.name)}${vat ? ` — ${ui.vat} ${esc(vat)}` : ''}${b.address ? ` — ${esc(b.address.street)}, ${esc(b.address.city)}` : ''}</p>
-<p><a href="${path ? '../' : ''}privacy/">${ui.privacy}</a><a href="${path ? '../' : ''}cookie/">${ui.cookies}</a><a href="${esc(opts.reportUrl || '/segnala/')}?site=${esc(site.slug)}" rel="nofollow">${ui.report}</a>${site.brand?.badge === false && opts.allowRemoveBadge ? '' : `<a href="https://get-scala.com/?ref=site-${esc(site.slug)}" rel="nofollow noopener">${ui.madeWith}</a>`}</p></div></footer></body></html>`
+<p><a href="${path ? '../' : ''}privacy/">${ui.privacy}</a><a href="${path ? '../' : ''}cookie/">${ui.cookies}</a>${opts.mode === 'export' && !opts.reportUrl ? '' : `<a href="${esc(opts.reportUrl || '/segnala/')}?site=${esc(site.slug)}" rel="nofollow">${ui.report}</a>`}${site.brand?.badge === false && opts.allowRemoveBadge ? '' : `<a href="https://get-scala.com/?ref=site-${esc(site.slug)}" rel="nofollow noopener">${ui.madeWith}</a>`}</p></div></footer></body></html>`
 
   const files = {
     'index.html': page(body),
